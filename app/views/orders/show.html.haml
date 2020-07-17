@@ -1,0 +1,84 @@
+%p#notice= notice
+
+%p
+  %b Uuid:
+  = @order.uuid
+%p
+  %b Name:
+  = @order.name
+%p
+  %b Ordered date:
+  = @order.ordered_date
+%p
+  %b Responsed date:
+  = @order.responsed_date
+%p
+  %b Contact person:
+  = @order.contact_person
+%p
+  %b States:
+  = @order.states
+%p
+  %b Silk screen a:
+  = @order.silk_screen_a
+%p
+  %b Silk screen b:
+  = @order.silk_screen_b
+%p
+  %b Silk screen c:
+  = @order.silk_screen_c
+%p
+  %b Inkjet:
+  = @order.inkjet
+%p
+  %b Embroidery:
+  = @order.embroidery
+%p
+  %b Sewing:
+  = @order.sewing
+%p
+  %b Uv:
+  = @order.uv
+%p
+  %b Silk screen d:
+  = @order.silk_screen_d
+%p
+  %b Option a:
+  = @order.option_a
+%p
+  %b Option b:
+  = @order.option_b
+%p
+  %b Delivery address:
+  = @order.delivery_address
+%p
+  %b Desired delivery date:
+  = @order.desired_delivery_date
+%p
+  %b Internal delivery date:
+  = @order.internal_delivery_date
+%p
+  %b Payment date:
+  = @order.payment_date
+%p
+  %b Amount paid:
+  = @order.amount_paid
+%p
+  %b Location name:
+  = @order.location_name
+%p
+  %b Purchase domestic products:
+  = @order.purchase_domestic_products
+%p
+  %b Purchase oversea products:
+  = @order.purchase_oversea_products
+%p
+  %b Sorting:
+  = @order.sorting
+%p
+  %b Order note:
+  = @order.order_note
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path

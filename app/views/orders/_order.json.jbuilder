@@ -1,0 +1,2 @@
+json.extract! order, :id, :uuid, :name, :ordered_date, :responsed_date, :contact_person, :states, :silk_screen_a, :silk_screen_b, :silk_screen_c, :inkjet, :embroidery, :sewing, :uv, :silk_screen_d, :option_a, :option_b, :delivery_address, :desired_delivery_date, :internal_delivery_date, :payment_date, :amount_paid, :location_name, :purchase_domestic_products, :purchase_oversea_products, :sorting, :order_note, :created_at, :updated_at
+json.url order_url(order, format: :json)
