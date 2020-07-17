@@ -17,7 +17,7 @@ location_name = ['🐭', '🐰', '🐲', '🐭+🐰', '🐭+🐲', '🐰+🐲', 
 amount = (0..1000000).to_a
 check = ["✅", ""]
 
-100000.times do
+50000.times do
   Order.create(
     uuid: Faker::Number.number(digits: 16),
     name: Faker::Name.name,
