@@ -30,3 +30,4 @@
 .generators
 *.rdb
 .rakeTasks
+/vendor/bundle
