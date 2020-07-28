@@ -16,5 +16,11 @@
     %br/
     = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name )
 
+  .field
+    = f.fields_for :customer_notes, CustomerNote.new do |n|
+      = n.label :customer_note
+      %br/
+      = n.text_area :customer_note, autofocus: true, autocomplete: "customer_note"
+
   .actions
     = f.submit "Submit"

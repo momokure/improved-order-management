@@ -14,8 +14,10 @@ ActiveRecord::Schema.define(version: 2020_07_28_074714) do
 
   create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.text "customer_note"
+    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_notes_on_customer_id"
   end
 
   create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_074714) do
     t.index ["user_id"], name: "index_users_factories_on_user_id"
   end
 
+  add_foreign_key "customer_notes", "customers"
   add_foreign_key "customers", "customer_types"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
