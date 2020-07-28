@@ -13,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     @user = User.new(configure_permitted_parameters)
-    @user.departments.build
     @user.save
   end
 

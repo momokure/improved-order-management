@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2020_07_28_014004) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "position_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "user_name", default: "", null: false
     t.string "email", default: "", null: false
@@ -40,9 +46,11 @@ ActiveRecord::Schema.define(version: 2020_07_28_014004) do
   create_table "users_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "department_id"
+    t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_users_departments_on_department_id"
+    t.index ["position_id"], name: "index_users_departments_on_position_id"
     t.index ["user_id"], name: "index_users_departments_on_user_id"
   end
 
@@ -56,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_014004) do
   end
 
   add_foreign_key "users_departments", "departments"
+  add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"
   add_foreign_key "users_factories", "factories"
   add_foreign_key "users_factories", "users"

@@ -12,6 +12,7 @@
       = d.label :department_id
       %br/
       = d.collection_select(:department_id, Department.all, :id, :department_name )
+      = d.collection_select(:position_id, Position.all, :id, :position_name )
 
   .field
     = f.fields_for :users_factories, UsersFactory.new do |d|
