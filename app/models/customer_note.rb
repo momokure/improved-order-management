@@ -1,0 +1,2 @@
+class CustomerNote < ApplicationRecord
+end

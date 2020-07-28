@@ -1,3 +1,3 @@
 class Customer < ApplicationRecord
-  belongs_to :customers_type
+  belongs_to :customer_type
 end

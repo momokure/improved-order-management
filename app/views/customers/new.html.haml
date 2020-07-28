@@ -14,7 +14,7 @@
   .field
     = f.label :customer_type
     %br/
-    = f.collection_select(:customers_type_id, CustomersType.all, :id, :customers_types_name )
+    = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name )
 
   .actions
     = f.submit "Submit"

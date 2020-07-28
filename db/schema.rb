@@ -10,21 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_061531) do
+ActiveRecord::Schema.define(version: 2020_07_28_074714) do
+
+  create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.text "customer_note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "customer_type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "customer_name"
     t.string "customer_furigana"
-    t.bigint "customers_type_id"
+    t.bigint "customer_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customers_type_id"], name: "index_customers_on_customers_type_id"
-  end
-
-  create_table "customers_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "customers_types_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
   end
 
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -78,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_061531) do
     t.index ["user_id"], name: "index_users_factories_on_user_id"
   end
 
-  add_foreign_key "customers", "customers_types"
+  add_foreign_key "customers", "customer_types"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"
