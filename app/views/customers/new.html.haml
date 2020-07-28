@@ -1,0 +1,20 @@
+%h2 Customer Registration
+= form_with model: @customer, local: true do |f|
+
+  .field
+    = f.label :customer_name
+    %br/
+    = f.text_field :customer_name, autofocus: true, autocomplete: "customer_name"
+
+  .field
+    = f.label :customer_furigana
+    %br/
+    = f.text_field :customer_furigana, autofocus: true, autocomplete: "customer_furigana"
+
+  .field
+    = f.label :customer_type
+    %br/
+    = f.collection_select(:customers_type_id, CustomersType.all, :id, :customers_types_name )
+
+  .actions
+    = f.submit "Submit"
