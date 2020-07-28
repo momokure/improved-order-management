@@ -9,9 +9,15 @@
 
   .field
     = f.fields_for :users_departments, UsersDepartment.new do |d|
-      = d.label :department_name
+      = d.label :department_id
       %br/
       = d.collection_select(:department_id, Department.all, :id, :department_name )
+
+  .field
+    = f.fields_for :users_factories, UsersFactory.new do |d|
+      = d.label :factory_id
+      %br/
+      = d.collection_select(:factory_id, Factory.all, :id, :factory_name )
 
   .field
     = f.label :email

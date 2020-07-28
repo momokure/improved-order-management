@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    @user = User.new(user_params)
+    @user = User.new(configure_permitted_parameters)
     @user.departments.build
     @user.save
   end
@@ -61,12 +61,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     super(resource)
-  end
-
-  private
-
-  def user_params
-    params.permit(:sign_up, keys: [:user_name, departments_attributes: [:department_name]])
   end
 
 end

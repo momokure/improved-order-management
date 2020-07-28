@@ -6,4 +6,7 @@ class User < ApplicationRecord
   has_many :users_departments
   has_many :departments, through: :users_departments
   accepts_nested_attributes_for :users_departments
+  has_many :users_factories
+  has_many :factories, through: :users_factories
+  accepts_nested_attributes_for :users_factories
 end
