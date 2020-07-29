@@ -17,6 +17,18 @@
     = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name )
 
   .field
+    = f.fields_for :customer_emails, CustomerEmail.new do |e|
+      = e.label :customer_email
+      %br/
+      = e.email_field :customer_email, autofocus: true, autocomplete: "customer_email"
+
+  .field
+    = f.fields_for :customer_phone_numbers, CustomerPhoneNumber.new do |p|
+      = p.label :customer_phone_number
+      %br/
+      = p.text_field :customer_phone_number, autofocus: true, autocomplete: "customer_phone_number"
+
+  .field
     = f.fields_for :customer_notes, CustomerNote.new do |n|
       = n.label :customer_note
       %br/
