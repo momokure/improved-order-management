@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_001445) do
+ActiveRecord::Schema.define(version: 2020_07_29_042600) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.text "company_name"
     t.text "company_name_furigana"
-    t.integer "payment_method"
-    t.integer "invoice_required"
-    t.integer "receipt_required"
+    t.bigint "payment_method_id"
+    t.bigint "receipt_required_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["payment_method_id"], name: "index_companies_on_payment_method_id"
+    t.index ["receipt_required_id"], name: "index_companies_on_receipt_required_id"
   end
 
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -56,9 +57,13 @@ ActiveRecord::Schema.define(version: 2020_07_29_001445) do
     t.string "customer_name"
     t.string "customer_furigana"
     t.bigint "customer_type_id"
+    t.bigint "payment_method_id"
+    t.bigint "receipt_required_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
+    t.index ["payment_method_id"], name: "index_customers_on_payment_method_id"
+    t.index ["receipt_required_id"], name: "index_customers_on_receipt_required_id"
   end
 
   create_table "customers_companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -82,8 +87,30 @@ ActiveRecord::Schema.define(version: 2020_07_29_001445) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invoicing_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "payment_method_id"
+    t.bigint "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_invoicing_departments_on_department_id"
+    t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
+  end
+
+  create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "payment_conditions"
+    t.string "invoice_required"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "position_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "receipt_requireds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "receipt_required"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -121,12 +148,18 @@ ActiveRecord::Schema.define(version: 2020_07_29_001445) do
     t.index ["user_id"], name: "index_users_factories_on_user_id"
   end
 
+  add_foreign_key "companies", "payment_methods"
+  add_foreign_key "companies", "receipt_requireds"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
   add_foreign_key "customers", "customer_types"
+  add_foreign_key "customers", "payment_methods"
+  add_foreign_key "customers", "receipt_requireds"
   add_foreign_key "customers_companies", "companies"
   add_foreign_key "customers_companies", "customers"
+  add_foreign_key "invoicing_departments", "departments"
+  add_foreign_key "invoicing_departments", "payment_methods"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"

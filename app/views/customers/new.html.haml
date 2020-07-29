@@ -5,16 +5,20 @@
     = f.label :customer_name
     %br/
     = f.text_field :customer_name, autofocus: true, autocomplete: "customer_name"
-
-  .field
-    = f.label :customer_furigana
-    %br/
     = f.text_field :customer_furigana, autofocus: true, autocomplete: "customer_furigana"
 
   .field
     = f.label :customer_type
     %br/
     = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name )
+
+  .field
+    = f.fields_for :companies, Company.new do |c|
+      = c.label :company_name
+      %br/
+      = c.text_field :company_name, autofocus: true, autocomplete: "company_name"
+      = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name"
+
 
   .field
     = f.fields_for :customer_emails, CustomerEmail.new do |e|
