@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_114325) do
+ActiveRecord::Schema.define(version: 2020_07_29_001445) do
+
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.text "company_name"
+    t.text "company_name_furigana"
+    t.integer "payment_method"
+    t.integer "invoice_required"
+    t.integer "receipt_required"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.text "customer_email"
@@ -49,6 +59,15 @@ ActiveRecord::Schema.define(version: 2020_07_28_114325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
+  end
+
+  create_table "customers_companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_customers_companies_on_company_id"
+    t.index ["customer_id"], name: "index_customers_companies_on_customer_id"
   end
 
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -106,6 +125,8 @@ ActiveRecord::Schema.define(version: 2020_07_28_114325) do
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
   add_foreign_key "customers", "customer_types"
+  add_foreign_key "customers_companies", "companies"
+  add_foreign_key "customers_companies", "customers"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"
