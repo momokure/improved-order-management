@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_030006) do
+ActiveRecord::Schema.define(version: 2020_07_30_060834) do
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.text "company_name"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2020_07_30_030006) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_customers_on_company_id"
     t.index ["customer_id"], name: "index_company_customers_on_customer_id"
+  end
+
+  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.text "company_note"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_notes_on_company_id"
   end
 
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -151,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_030006) do
   add_foreign_key "companies", "payment_methods"
   add_foreign_key "company_customers", "companies"
   add_foreign_key "company_customers", "customers"
+  add_foreign_key "company_notes", "companies"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
