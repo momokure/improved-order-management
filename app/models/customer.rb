@@ -1,10 +1,11 @@
 class Customer < ApplicationRecord
   belongs_to :customer_type
-  belongs_to :payment_method
-  belongs_to :receipt_required
 
-  has_many :customers_companies
-  has_many :companies, through: :customers_companies
+  has_one :individual_customer
+  accepts_nested_attributes_for :individual_customer
+
+  has_many :company_customers
+  has_many :companies, through: :company_customers
   accepts_nested_attributes_for :companies, reject_if: :reject_company
 
   def reject_company(attributed)
