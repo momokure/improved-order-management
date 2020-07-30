@@ -1,0 +1,2 @@
+class TagNote < ApplicationRecord
+end

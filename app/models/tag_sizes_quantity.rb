@@ -1,0 +1,2 @@
+class TagSizesQuantity < ApplicationRecord
+end

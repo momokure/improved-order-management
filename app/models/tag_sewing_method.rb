@@ -1,0 +1,2 @@
+class TagSewingMethod < ApplicationRecord
+end
