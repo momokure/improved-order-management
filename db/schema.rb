@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
   end
 
   create_table "tag_sewing_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_sewing_method"
+    t.string "tag_sewing_method_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

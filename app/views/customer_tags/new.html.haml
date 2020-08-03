@@ -1,2 +1,14 @@
 %h2 Customer Tags Registration
 = form_with model: @customer_tag, local: true do |f|
+  = f.hidden_field :customer_id, value: @customer.id
+
+  .field
+    = f.label :tag_name
+    %br/
+    = f.text_field :tag_name, autofocus: true, autocomplete: "customer_name"
+
+  .field
+    = f.collection_select(:tag_sewing_method_id, TagSewingMethod.all, :id, :tag_sewing_method_name)
+
+  .actions
+    = f.submit "Submit"
