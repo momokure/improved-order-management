@@ -3,9 +3,22 @@
   = f.hidden_field :customer_id, value: @customer.id
 
   .field
+    = f.fields_for :tag_photos, TagPhoto.new do |p|
+      = p.label :tag_photo
+      %br/
+      = p.file_field :tag_photo, autofocus: true, autocomplete: "tag_photo"
+
+  .field
+    = f.fields_for :tag_sizes_quantities, TagSizesQuantity.new do |q|
+      = q.label :tag_sizes_quantity
+      %br/
+      = q.collection_select(:tag_size_id, TagSize.all, :id, :tag_size)
+      = q.text_field :tag_quantity, autofocus: true, autocomplete: "tag_sizes_quantity"
+
+  .field
     = f.label :tag_name
     %br/
-    = f.text_field :tag_name, autofocus: true, autocomplete: "customer_name"
+    = f.text_field :tag_name, autofocus: true, autocomplete: "tag_name"
 
   .field
     = f.label :tag_type

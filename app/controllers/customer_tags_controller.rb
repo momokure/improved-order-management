@@ -16,6 +16,8 @@ class CustomerTagsController < ApplicationController
       .require(:customer_tag)
       .permit(
         :tag_name, :tag_type, :tag_position, :brand_name_tag_cut, :composition_tag_cut, :customer_id, :tag_sewing_method_id,
+        tag_photos_attributes: [:tag_photo],
+        tag_sizes_quantities_attributes: [:tag_size_id, :tag_quantity],
         tag_notes_attributes: [:tag_note]
         )
   end

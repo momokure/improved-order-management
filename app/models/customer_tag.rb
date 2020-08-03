@@ -6,7 +6,7 @@ class CustomerTag < ApplicationRecord
 
   has_many :tag_sizes_quantities
   has_many :tag_sizes, through: :tag_sizes_quantities
-  accepts_nested_attributes_for :tag_sizes
+  accepts_nested_attributes_for :tag_sizes_quantities
 
   has_many :tag_photos
   accepts_nested_attributes_for :tag_photos
