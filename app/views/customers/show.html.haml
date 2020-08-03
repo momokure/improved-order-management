@@ -1,7 +1,7 @@
 %h2 Customer
 
-.field
+.information
   = @customer.customer_name
 
-.field
+.link
   = link_to 'new_customer_tag', new_customer_tag_path(customer_id: @customer.id)

@@ -9,5 +9,8 @@ class CustomerTag < ApplicationRecord
   accepts_nested_attributes_for :tag_sizes
 
   has_many :tag_photos
+  accepts_nested_attributes_for :tag_photos
+
   has_many :tag_notes
+  accepts_nested_attributes_for :tag_notes
 end

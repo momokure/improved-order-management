@@ -1,7 +1,8 @@
 class CustomerTagsController < ApplicationController
   def new
-    @customer_tag = CustomerTag.new
     @customer = Customer.find(params[:customer_id])
+    @customer_tag = CustomerTag.new
+    @customer_tag.tag_notes.build
   end
 
   def create
@@ -14,7 +15,8 @@ class CustomerTagsController < ApplicationController
     params
       .require(:customer_tag)
       .permit(
-        :tag_name, :customer_id, :tag_sewing_method_id
-      )
+        :tag_name, :tag_type, :tag_position, :brand_name_tag_cut, :composition_tag_cut, :customer_id, :tag_sewing_method_id,
+        tag_notes_attributes: [:tag_note]
+        )
   end
 end

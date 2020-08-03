@@ -8,7 +8,35 @@
     = f.text_field :tag_name, autofocus: true, autocomplete: "customer_name"
 
   .field
+    = f.label :tag_type
+    %br/
+    = f.text_field :tag_type, autofocus: true, autocomplete: "tag_type"
+
+  .field
+    = f.label :tag_position
+    %br/
+    = f.text_field :tag_position, autofocus: true, autocomplete: "tag_position"
+
+  .field
+    = f.label :brand_name_tag_cut
+    %br/
+    = f.select(:brand_name_tag_cut, [%w[カットしない uncut], %w[カットする cut]])
+
+  .field
+    = f.label :composition_tag_cut
+    %br/
+    = f.select(:composition_tag_cut, [%w[カットしない uncut], %w[カットする cut]])
+
+  .field
+    = f.label :tag_sewing_method
+    %br/
     = f.collection_select(:tag_sewing_method_id, TagSewingMethod.all, :id, :tag_sewing_method_name)
+
+  .field
+    = f.fields_for :tag_notes, TagNote.new do |n|
+      = n.label :tag_note
+      %br/
+      = n.text_area :tag_note, autofocus: true, autocomplete: "tag_note"
 
   .actions
     = f.submit "Submit"
