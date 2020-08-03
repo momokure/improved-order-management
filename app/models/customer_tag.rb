@@ -1,4 +1,6 @@
 class CustomerTag < ApplicationRecord
+  enum cut_the_tag: { uncut: 0, cut: 1 }
+
   belongs_to :tag_sewing_method
   belongs_to :customer
 
