@@ -69,20 +69,6 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.index ["customer_id"], name: "index_customer_phone_numbers_on_customer_id"
   end
 
-  create_table "customer_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_name"
-    t.string "tag_type"
-    t.string "tag_position"
-    t.integer "brand_name_tag_cut"
-    t.integer "composition_tag_cut"
-    t.bigint "tag_sewing_method_id"
-    t.bigint "customer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_customer_tags_on_customer_id"
-    t.index ["tag_sewing_method_id"], name: "index_customer_tags_on_tag_sewing_method_id"
-  end
-
   create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "customer_type_name"
     t.datetime "created_at", null: false
@@ -174,44 +160,6 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tag_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.text "tag_note"
-    t.bigint "customer_tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_tag_id"], name: "index_tag_notes_on_customer_tag_id"
-  end
-
-  create_table "tag_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_photo"
-    t.bigint "customer_tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_tag_id"], name: "index_tag_photos_on_customer_tag_id"
-  end
-
-  create_table "tag_sewing_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_sewing_method_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tag_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_size_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tag_sizes_quantities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.bigint "customer_tag_id"
-    t.bigint "tag_size_id"
-    t.integer "tag_quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_tag_id"], name: "index_tag_sizes_quantities_on_customer_tag_id"
-    t.index ["tag_size_id"], name: "index_tag_sizes_quantities_on_tag_size_id"
-  end
-
   create_table "technique_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "technique_option_name"
     t.bigint "technique_id"
@@ -266,17 +214,11 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
-  add_foreign_key "customer_tags", "customers"
-  add_foreign_key "customer_tags", "tag_sewing_methods"
   add_foreign_key "customers", "customer_types"
   add_foreign_key "individual_customers", "customers"
   add_foreign_key "individual_customers", "payment_methods"
   add_foreign_key "invoicing_departments", "departments"
   add_foreign_key "invoicing_departments", "payment_methods"
-  add_foreign_key "tag_notes", "customer_tags"
-  add_foreign_key "tag_photos", "customer_tags"
-  add_foreign_key "tag_sizes_quantities", "customer_tags"
-  add_foreign_key "tag_sizes_quantities", "tag_sizes"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
