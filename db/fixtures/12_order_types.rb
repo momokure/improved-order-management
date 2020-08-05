@@ -4,5 +4,6 @@ OrderType.seed(
   {id: 3, order_type_name: "ご質問"},
   {id: 4, order_type_name: "不備・クレーム"},
   {id: 5, order_type_name: "欠品による後日納品"},
-  {id: 6, order_type_name: "制作時不備による後日納品"}
+  {id: 6, order_type_name: "制作時不備による後日納品"},
+  {id: 7, order_type_name: "他の商品との同梱"}
 )
