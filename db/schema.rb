@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_093732) do
+ActiveRecord::Schema.define(version: 2020_08_04_061045) do
+
+  create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "buy_type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "company_name"
@@ -123,6 +129,18 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
     t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
   end
 
+  create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "order_option_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "order_type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "payment_method_name"
     t.string "payment_condition"
@@ -133,6 +151,25 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
 
   create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "position_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "progress_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "quote_difficulty_level_name"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "supplier_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -160,7 +197,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
   end
 
   create_table "tag_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
-    t.string "tag_size"
+    t.string "tag_size_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -173,6 +210,20 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
     t.datetime "updated_at", null: false
     t.index ["customer_tag_id"], name: "index_tag_sizes_quantities_on_customer_tag_id"
     t.index ["tag_size_id"], name: "index_tag_sizes_quantities_on_tag_size_id"
+  end
+
+  create_table "technique_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "technique_option_name"
+    t.bigint "technique_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["technique_id"], name: "index_technique_options_on_technique_id"
+  end
+
+  create_table "techniques", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "technique_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -226,6 +277,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_093732) do
   add_foreign_key "tag_photos", "customer_tags"
   add_foreign_key "tag_sizes_quantities", "customer_tags"
   add_foreign_key "tag_sizes_quantities", "tag_sizes"
+  add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"

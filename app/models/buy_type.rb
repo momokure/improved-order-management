@@ -1,0 +1,2 @@
+class BuyType < ApplicationRecord
+end

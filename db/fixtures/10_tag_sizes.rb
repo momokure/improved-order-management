@@ -1,34 +1,9 @@
-TagSize.seed do |s|
-  s.id = 1
-  s.tag_size = "Free"
-end
-
-TagSize.seed do |s|
-  s.id = 2
-  s.tag_size = "Sサイズ"
-end
-
-TagSize.seed do |s|
-  s.id = 3
-  s.tag_size = "Mサイズ"
-end
-
-TagSize.seed do |s|
-  s.id = 4
-  s.tag_size = "Lサイズ"
-end
-
-TagSize.seed do |s|
-  s.id = 5
-  s.tag_size = "XLサイズ"
-end
-
-TagSize.seed do |s|
-  s.id = 6
-  s.tag_size = "XXLサイズ"
-end
-
-TagSize.seed do |s|
-  s.id = 7
-  s.tag_size = "その他"
-end
+TagSize.seed(
+  {id: 1, tag_size_name: "Free"},
+  {id: 2, tag_size_name: "Sサイズ"},
+  {id: 3, tag_size_name: "Mサイズ"},
+  {id: 4, tag_size_name: "Lサイズ"},
+  {id: 5, tag_size_name: "XLサイズ"},
+  {id: 6, tag_size_name: "XXLサイズ"},
+  {id: 7, tag_size_name: "その他"}
+)

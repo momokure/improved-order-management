@@ -1,0 +1,2 @@
+class OrderOption < ApplicationRecord
+end
