@@ -32,6 +32,4 @@ class Customer < ApplicationRecord
   def reject_customer_phone_number(attributed)
     attributed['customer_phone_number'].blank?
   end
-
-  has_many :customer_tags
 end
