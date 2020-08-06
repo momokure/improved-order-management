@@ -1,0 +1,2 @@
+class SpecifiedTime < ApplicationRecord
+end

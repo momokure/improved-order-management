@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_061045) do
+ActiveRecord::Schema.define(version: 2020_08_06_000309) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -127,6 +127,42 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "order_reflect_user_id"
+    t.bigint "order_user_id"
+    t.bigint "order_type_id"
+    t.bigint "quote_difficulty_level_id"
+    t.bigint "payment_method_id"
+    t.datetime "order_date"
+    t.datetime "first_response_date"
+    t.datetime "desired_delivery_date"
+    t.datetime "internal_delivery_date"
+    t.bigint "specified_time_id"
+    t.integer "domestic_buying"
+    t.integer "overseas_buying"
+    t.integer "carry_in"
+    t.datetime "payment_deadline"
+    t.integer "payment_amount"
+    t.integer "payment_confirmation"
+    t.integer "send_receipt"
+    t.integer "send_invoice"
+    t.integer "shipment_status"
+    t.datetime "shipment_date"
+    t.bigint "shipment_user_id"
+    t.integer "cancellation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["order_reflect_user_id"], name: "index_orders_on_order_reflect_user_id"
+    t.index ["order_type_id"], name: "index_orders_on_order_type_id"
+    t.index ["order_user_id"], name: "index_orders_on_order_user_id"
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
+    t.index ["quote_difficulty_level_id"], name: "index_orders_on_quote_difficulty_level_id"
+    t.index ["shipment_user_id"], name: "index_orders_on_shipment_user_id"
+    t.index ["specified_time_id"], name: "index_orders_on_specified_time_id"
+  end
+
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "payment_method_name"
     t.string "payment_condition"
@@ -150,6 +186,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "quote_difficulty_level_name"
     t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "specified_time_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -219,6 +261,14 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   add_foreign_key "individual_customers", "payment_methods"
   add_foreign_key "invoicing_departments", "departments"
   add_foreign_key "invoicing_departments", "payment_methods"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "order_types"
+  add_foreign_key "orders", "payment_methods"
+  add_foreign_key "orders", "quote_difficulty_levels"
+  add_foreign_key "orders", "specified_times"
+  add_foreign_key "orders", "users", column: "order_reflect_user_id"
+  add_foreign_key "orders", "users", column: "order_user_id"
+  add_foreign_key "orders", "users", column: "shipment_user_id"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
