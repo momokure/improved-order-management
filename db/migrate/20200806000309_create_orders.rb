@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.references :customer, index: true, foreign_key: true
       t.references :order_reflect_user, index: true, foreign_key: { to_table: :users }
-      t.references :order_user, index: true, foreign_key: { to_table: :users }
+      t.references :csr_user, index: true, foreign_key: { to_table: :users }
       t.references :order_type, index: true, foreign_key: true
       t.references :quote_difficulty_level, index: true, foreign_key: true
       t.references :payment_method, index: true, foreign_key: true
@@ -15,7 +15,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :domestic_buying
       t.integer :overseas_buying
       t.integer :carry_in
-      t.datetime :payment_deadline
+      t.datetime :payment_deadline_date
       t.integer :payment_amount
       t.integer :payment_confirmation
       t.integer :send_receipt

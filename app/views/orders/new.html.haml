@@ -1,0 +1,119 @@
+%h2 Order Registration
+= form_with model: @order, local: true do |f|
+  = f.hidden_field :customer_id, value: @customer.id
+  = f.hidden_field :order_reflect_user_id, value: current_user.id
+  = f.hidden_field :csr_user_id, value: current_user.id
+  = f.hidden_field :shipment_user_id, value: current_user.id
+
+  .field
+    = f.label :order_type
+    %br/
+    = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
+
+  .field
+    = f.label :quote_difficulty_level
+    %br/
+    = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
+
+  .field
+    = f.label :payment_method
+    %br/
+    = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+
+  .field
+    = f.label :order_date
+    %br/
+    = f.datetime_field :order_date, autofocus: true, autocomplete: "order_date"
+
+  .field
+    = f.label :desired_delivery_date
+    %br/
+    = f.datetime_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+
+  .field
+    = f.label :desired_delivery_date
+    %br/
+    = f.datetime_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
+
+  .field
+    = f.label :specified_time
+    %br/
+    = f.collection_select(:specified_time_id, SpecifiedTime.all, :id, :specified_time_name)
+
+  .field
+    = f.label :domestic_buying
+    %br/
+    = f.radio_button :domestic_buying, :not_included_domestic_buying
+    = f.label :domestic_buying, "含まれない", {value: :not_included_domestic_buying, style: "display: inline-block;"}
+    = f.radio_button :domestic_buying, :included_domestic_buying
+    = f.label :domestic_buying, "含まれる", {value: :included_domestic_buying, style: "display: inline-block;"}
+
+  .field
+    = f.label :overseas_buying
+    %br/
+    = f.radio_button :overseas_buying, :not_included_overseas_buying
+    = f.label :overseas_buying, "含まれない", {value: :not_included_overseas_buying, style: "display: inline-block;"}
+    = f.radio_button :overseas_buying, :included_overseas_buying
+    = f.label :overseas_buying, "含まれる", {value: :included_overseas_buying, style: "display: inline-block;"}
+
+  .field
+    = f.label :carry_in
+    %br/
+    = f.radio_button :carry_in, :not_included_carry_in
+    = f.label :carry_in, "含まれない", {value: :not_included_carry_in, style: "display: inline-block;"}
+    = f.radio_button :carry_in, :included_carry_in
+    = f.label :carry_in, "含まれる", {value: :included_carry_in, style: "display: inline-block;"}
+
+  .field
+    = f.label :payment_deadline_date
+    %br/
+    = f.datetime_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
+
+  .field
+    = f.label :payment_amount
+    %br/
+    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
+
+
+
+  -#.field
+  -#  = f.label :customer_type
+  -#  %br/
+  -#  = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name)
+  -#
+  -#.field
+  -#  = f.fields_for :individual_customer, IndividualCustomer.new do |i|
+  -#    = i.label :customer_payment_method
+  -#    %br/
+  -#    = i.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+  -#    = i.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
+  -#
+  -#.field
+  -#  = f.fields_for :companies, Company.new do |c|
+  -#    = c.label :company_name, "Corporation"
+  -#    %br/
+  -#    = c.text_field :company_name, autofocus: true, autocomplete: "company_name"
+  -#    = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
+  -#    = c.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+  -#    = c.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
+  -#
+  -#.field
+  -#  = f.fields_for :customer_emails, CustomerEmail.new do |e|
+  -#    = e.label :customer_email
+  -#    %br/
+  -#    = e.email_field :customer_email, autofocus: true, autocomplete: "customer_email"
+  -#
+  -#.field
+  -#  = f.fields_for :customer_phone_numbers, CustomerPhoneNumber.new do |p|
+  -#    = p.label :customer_phone_number
+  -#    %br/
+  -#    = p.text_field :customer_phone_number, autofocus: true, autocomplete: "customer_phone_number"
+  -#
+  -#.field
+  -#  = f.fields_for :customer_notes, CustomerNote.new do |n|
+  -#    = n.label :customer_note
+  -#    %br/
+  -#    = n.text_area :customer_note, autofocus: true, autocomplete: "customer_note"
+
+  .actions
+    = f.submit "Submit"

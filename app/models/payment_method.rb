@@ -3,4 +3,5 @@ class PaymentMethod < ApplicationRecord
   has_many :individual_customers
   belongs_to :invoicing_department
   has_many :companies
+  has_many :orders
 end
