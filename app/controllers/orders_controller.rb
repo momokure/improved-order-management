@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
   def new
     @customer = Customer.find(params[:customer_id])
     @order = Order.new
-    # @order.build_individual_customer
-    # @order.companies.build
+    # @order.build_order_detail
+    @order.order_details.build
   end
 
   def create
@@ -30,12 +30,8 @@ class OrdersController < ApplicationController
         :payment_deadline_date, :payment_amount, :payment_confirmation,
         :send_receipt, :send_invoice,
         :shipment_status, :shipment_date, :shipment_user_id,
-        :cancellation
-        # individual_customer_attributes: [:payment_method_id, :receipt_required],
-        # companies_attributes: [:company_name, :company_name_furigana, :payment_method_id, :receipt_required],
-        # customer_emails_attributes: [:customer_email],
-        # customer_phone_numbers_attributes: [:customer_phone_number],
-        # customer_notes_attributes: [:customer_note]
+        :cancellation,
+        order_details_attributes: [:mixed_techniques, :large_order, :factory_id]
       )
   end
 end

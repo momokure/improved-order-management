@@ -3,7 +3,7 @@ class CreatePaymentMethods < ActiveRecord::Migration[5.2]
     create_table :payment_methods do |t|
       t.string :payment_method_name
       t.string :payment_condition
-      t.integer :invoice_required
+      t.boolean :invoice_required, null: false, default: false
       t.timestamps
     end
   end

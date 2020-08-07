@@ -31,7 +31,12 @@
     = f.datetime_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
 
   .field
-    = f.label :desired_delivery_date
+    = f.label :desired_delivery_type
+    %br/
+    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
+
+  .field
+    = f.label :internal_delivery_date
     %br/
     = f.datetime_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
 
@@ -43,26 +48,26 @@
   .field
     = f.label :domestic_buying
     %br/
-    = f.radio_button :domestic_buying, :not_included_domestic_buying
-    = f.label :domestic_buying, "含まれない", {value: :not_included_domestic_buying, style: "display: inline-block;"}
-    = f.radio_button :domestic_buying, :included_domestic_buying
-    = f.label :domestic_buying, "含まれる", {value: :included_domestic_buying, style: "display: inline-block;"}
+    = f.radio_button :domestic_buying, :not_included
+    = f.label :domestic_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :domestic_buying, :included
+    = f.label :domestic_buying, "含まれる", {value: :included, style: "display: inline-block;"}
 
   .field
     = f.label :overseas_buying
     %br/
-    = f.radio_button :overseas_buying, :not_included_overseas_buying
-    = f.label :overseas_buying, "含まれない", {value: :not_included_overseas_buying, style: "display: inline-block;"}
-    = f.radio_button :overseas_buying, :included_overseas_buying
-    = f.label :overseas_buying, "含まれる", {value: :included_overseas_buying, style: "display: inline-block;"}
+    = f.radio_button :overseas_buying, :not_included
+    = f.label :overseas_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :overseas_buying, :included
+    = f.label :overseas_buying, "含まれる", {value: :included, style: "display: inline-block;"}
 
   .field
     = f.label :carry_in
     %br/
-    = f.radio_button :carry_in, :not_included_carry_in
-    = f.label :carry_in, "含まれない", {value: :not_included_carry_in, style: "display: inline-block;"}
-    = f.radio_button :carry_in, :included_carry_in
-    = f.label :carry_in, "含まれる", {value: :included_carry_in, style: "display: inline-block;"}
+    = f.radio_button :carry_in, :not_included
+    = f.label :carry_in, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :carry_in, :included
+    = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
 
   .field
     = f.label :payment_deadline_date
@@ -74,46 +79,25 @@
     %br/
     = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
 
+  .field
+    = f.fields_for :order_details, OrderDetail.new do |d|
+      = d.label :mixed_techniques
+      %br/
+      = d.radio_button :mixed_techniques, :unmixed
+      = d.label :mixed_techniques, "単独加工", {value: :unmixed, style: "display: inline-block;"}
+      = d.radio_button :mixed_techniques, :mixed
+      = d.label :mixed_techniques, "合体加工", {value: :mixed, style: "display: inline-block;"}
 
+  .field
+    = f.fields_for :order_details, OrderDetail.new do |d|
+      = d.label :large_order
+      %br/
+      = d.radio_button :large_order, :small
+      = d.label :large_order, "通常注文", {value: :small, style: "display: inline-block;"}
+      = d.radio_button :large_order, :large
+      = d.label :large_order, "大口注文", {value: :large, style: "display: inline-block;"}
 
-  -#.field
-  -#  = f.label :customer_type
-  -#  %br/
-  -#  = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name)
-  -#
-  -#.field
-  -#  = f.fields_for :individual_customer, IndividualCustomer.new do |i|
-  -#    = i.label :customer_payment_method
-  -#    %br/
-  -#    = i.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
-  -#    = i.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
-  -#
-  -#.field
-  -#  = f.fields_for :companies, Company.new do |c|
-  -#    = c.label :company_name, "Corporation"
-  -#    %br/
-  -#    = c.text_field :company_name, autofocus: true, autocomplete: "company_name"
-  -#    = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
-  -#    = c.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
-  -#    = c.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
-  -#
-  -#.field
-  -#  = f.fields_for :customer_emails, CustomerEmail.new do |e|
-  -#    = e.label :customer_email
-  -#    %br/
-  -#    = e.email_field :customer_email, autofocus: true, autocomplete: "customer_email"
-  -#
-  -#.field
-  -#  = f.fields_for :customer_phone_numbers, CustomerPhoneNumber.new do |p|
-  -#    = p.label :customer_phone_number
-  -#    %br/
-  -#    = p.text_field :customer_phone_number, autofocus: true, autocomplete: "customer_phone_number"
-  -#
-  -#.field
-  -#  = f.fields_for :customer_notes, CustomerNote.new do |n|
-  -#    = n.label :customer_note
-  -#    %br/
-  -#    = n.text_area :customer_note, autofocus: true, autocomplete: "customer_note"
+      = d.hidden_field :factory_id, value: current_user.id
 
   .actions
     = f.submit "Submit"

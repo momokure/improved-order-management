@@ -10,17 +10,18 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.datetime :order_date
       t.datetime :first_response_date
       t.datetime :desired_delivery_date
+      t.references :desired_delivery_type, index: true, foreign_key: true
       t.datetime :internal_delivery_date
       t.references :specified_time, index: true, foreign_key: true
-      t.integer :domestic_buying
-      t.integer :overseas_buying
-      t.integer :carry_in
+      t.boolean :domestic_buying, null: false, default: true
+      t.boolean :overseas_buying, null: false, default: false
+      t.boolean :carry_in, null: false, default: false
       t.datetime :payment_deadline_date
       t.integer :payment_amount
-      t.integer :payment_confirmation
-      t.integer :send_receipt
-      t.integer :send_invoice
-      t.integer :shipment_status
+      t.boolean :payment_confirmation, null: false, default: false
+      t.boolean :send_receipt, null: false, default: false
+      t.boolean :send_invoice, null: false, default: false
+      t.boolean :shipment_status, null: false, default: false
       t.datetime :shipment_date
       t.references :shipment_user, index: true, foreign_key: { to_table: :users }
       t.integer :cancellation

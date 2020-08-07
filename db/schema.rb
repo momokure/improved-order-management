@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_000309) do
+ActiveRecord::Schema.define(version: 2020_08_06_083249) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
     t.string "company_name"
     t.string "company_name_furigana"
     t.bigint "payment_method_id"
-    t.integer "receipt_required", default: 0, null: false
+    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payment_method_id"], name: "index_companies_on_payment_method_id"
@@ -90,6 +90,12 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "desired_delivery_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "desired_delivery_type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "factory_name", null: false
     t.datetime "created_at", null: false
@@ -99,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
   create_table "individual_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "payment_method_id"
-    t.integer "receipt_required", default: 0, null: false
+    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_individual_customers_on_customer_id"
@@ -113,6 +119,17 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_invoicing_departments_on_department_id"
     t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
+  end
+
+  create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.boolean "mixed_techniques", default: false, null: false
+    t.boolean "large_order", default: false, null: false
+    t.bigint "factory_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["factory_id"], name: "index_order_details_on_factory_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
   create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -137,17 +154,18 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
     t.datetime "order_date"
     t.datetime "first_response_date"
     t.datetime "desired_delivery_date"
+    t.bigint "desired_delivery_type_id"
     t.datetime "internal_delivery_date"
     t.bigint "specified_time_id"
-    t.integer "domestic_buying"
-    t.integer "overseas_buying"
-    t.integer "carry_in"
+    t.boolean "domestic_buying", default: true, null: false
+    t.boolean "overseas_buying", default: false, null: false
+    t.boolean "carry_in", default: false, null: false
     t.datetime "payment_deadline_date"
     t.integer "payment_amount"
-    t.integer "payment_confirmation"
-    t.integer "send_receipt"
-    t.integer "send_invoice"
-    t.integer "shipment_status"
+    t.boolean "payment_confirmation", default: false, null: false
+    t.boolean "send_receipt", default: false, null: false
+    t.boolean "send_invoice", default: false, null: false
+    t.boolean "shipment_status", default: false, null: false
     t.datetime "shipment_date"
     t.bigint "shipment_user_id"
     t.integer "cancellation"
@@ -155,6 +173,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
     t.datetime "updated_at", null: false
     t.index ["csr_user_id"], name: "index_orders_on_csr_user_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["desired_delivery_type_id"], name: "index_orders_on_desired_delivery_type_id"
     t.index ["order_reflect_user_id"], name: "index_orders_on_order_reflect_user_id"
     t.index ["order_type_id"], name: "index_orders_on_order_type_id"
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
@@ -166,7 +185,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "payment_method_name"
     t.string "payment_condition"
-    t.integer "invoice_required"
+    t.boolean "invoice_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -261,7 +280,10 @@ ActiveRecord::Schema.define(version: 2020_08_06_000309) do
   add_foreign_key "individual_customers", "payment_methods"
   add_foreign_key "invoicing_departments", "departments"
   add_foreign_key "invoicing_departments", "payment_methods"
+  add_foreign_key "order_details", "factories"
+  add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "desired_delivery_types"
   add_foreign_key "orders", "order_types"
   add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "quote_difficulty_levels"
