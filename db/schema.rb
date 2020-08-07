@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_083249) do
+ActiveRecord::Schema.define(version: 2020_08_07_045936) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -235,6 +235,17 @@ ActiveRecord::Schema.define(version: 2020_08_06_083249) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "techniques_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "order_detail_id"
+    t.bigint "technique_id"
+    t.bigint "progress_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_detail_id"], name: "index_techniques_details_on_order_detail_id"
+    t.index ["progress_id"], name: "index_techniques_details_on_progress_id"
+    t.index ["technique_id"], name: "index_techniques_details_on_technique_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "user_name", default: "", null: false
     t.string "email", default: "", null: false
@@ -292,6 +303,9 @@ ActiveRecord::Schema.define(version: 2020_08_06_083249) do
   add_foreign_key "orders", "users", column: "order_reflect_user_id"
   add_foreign_key "orders", "users", column: "shipment_user_id"
   add_foreign_key "technique_options", "techniques"
+  add_foreign_key "techniques_details", "order_details"
+  add_foreign_key "techniques_details", "progresses"
+  add_foreign_key "techniques_details", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
   add_foreign_key "users_departments", "users"
