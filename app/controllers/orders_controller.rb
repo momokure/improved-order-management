@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
   def new
     @customer = Customer.find(params[:customer_id])
     @order = Order.new
-    # @order.build_order_detail
-    @order.order_details.build
+    order_detail = @order.order_details.build
+    order_detail.order_technique_details.build
   end
 
   def create
@@ -31,7 +31,9 @@ class OrdersController < ApplicationController
         :send_receipt, :send_invoice,
         :shipment_status, :shipment_date, :shipment_user_id,
         :cancellation,
-        order_details_attributes: [:mixed_techniques, :large_order, :factory_id]
+        order_details_attributes: [:mixed_techniques, :large_order, :factory_id,
+                                   order_technique_details_attributes: [:order_detail_id, :technique_id, :progress_id]
+        ]
       )
   end
 end

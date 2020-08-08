@@ -88,16 +88,23 @@
       = d.radio_button :mixed_techniques, :mixed
       = d.label :mixed_techniques, "合体加工", {value: :mixed, style: "display: inline-block;"}
 
-  .field
-    = f.fields_for :order_details, OrderDetail.new do |d|
+      %br/
+      %br/
       = d.label :large_order
       %br/
       = d.radio_button :large_order, :small
       = d.label :large_order, "通常注文", {value: :small, style: "display: inline-block;"}
       = d.radio_button :large_order, :large
       = d.label :large_order, "大口注文", {value: :large, style: "display: inline-block;"}
-
       = d.hidden_field :factory_id, value: current_user.id
+
+      %br/
+      %br/
+      = d.fields_for :order_technique_details, OrderTechniqueDetail.new do |t|
+        = t.label :order_technique_detail
+        %br/
+        = t.collection_select(:technique_id, Technique.all, :id, :technique_name)
+        = t.collection_select(:progress_id, Progress.all, :id, :progress_name)
 
   .actions
     = f.submit "Submit"

@@ -4,5 +4,6 @@ class OrderDetail < ApplicationRecord
 
   belongs_to :order
   # belongs_to :factory
-  has_many :techniques_details
+  has_many :order_technique_details
+  accepts_nested_attributes_for :order_technique_details
 end
