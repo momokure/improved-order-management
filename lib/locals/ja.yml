@@ -98,4 +98,4 @@ ja:
       name:
         - "#{Name.last_name}#{University.suffix}"
         - "#{University.prefix}#{Name.last_name}#{University.suffix}"
-        - "#{University.prefix}#{Address.city_prefix}#{University.suffix}"
+        - "#{University.prefix}#{CustomerAddress.city_prefix}#{University.suffix}"

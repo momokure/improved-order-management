@@ -12,6 +12,11 @@ class Customer < ApplicationRecord
     attributed['company_name'].blank?
   end
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture_code
+  has_many :customer_addresses
+  accepts_nested_attributes_for :customer_addresses
+
   has_many :customer_notes
   accepts_nested_attributes_for :customer_notes, reject_if: :reject_customer_note
 

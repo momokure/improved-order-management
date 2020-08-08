@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_112805) do
+ActiveRecord::Schema.define(version: 2020_08_08_120156) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_08_08_112805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_notes_on_company_id"
+  end
+
+  create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "prefecture_code"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_addresses_on_customer_id"
+    t.index ["prefecture_code"], name: "index_customer_addresses_on_prefecture_code"
   end
 
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -119,6 +128,15 @@ ActiveRecord::Schema.define(version: 2020_08_08_112805) do
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_invoicing_departments_on_department_id"
     t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
+  end
+
+  create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "customer_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_order_addresses_on_customer_address_id"
+    t.index ["order_id"], name: "index_order_addresses_on_order_id"
   end
 
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -302,6 +320,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_112805) do
   add_foreign_key "company_customers", "companies"
   add_foreign_key "company_customers", "customers"
   add_foreign_key "company_notes", "companies"
+  add_foreign_key "customer_addresses", "customers"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
@@ -310,6 +329,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_112805) do
   add_foreign_key "individual_customers", "payment_methods"
   add_foreign_key "invoicing_departments", "departments"
   add_foreign_key "invoicing_departments", "payment_methods"
+  add_foreign_key "order_addresses", "customer_addresses"
+  add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_details", "factories"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_notes", "orders"

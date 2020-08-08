@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     order_detail = @order.order_details.build
     order_detail.order_technique_details.build
     order_detail.order_technique_detail_options.build
+    @order.order_addresses.build
     @order.order_notes.build
   end
 

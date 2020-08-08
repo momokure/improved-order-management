@@ -41,6 +41,12 @@
       = p.text_field :customer_phone_number, autofocus: true, autocomplete: "customer_phone_number"
 
   .field
+    = f.fields_for :customer_addresses, CustomerAddress.new do |a|
+      = a.label :customer_addresses
+      %br/
+      = a.collection_select(:prefecture_code, PrefectureCode.all, :id, :name)
+
+  .field
     = f.fields_for :customer_notes, CustomerNote.new do |n|
       = n.label :customer_note
       %br/
