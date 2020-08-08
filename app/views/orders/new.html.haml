@@ -106,5 +106,19 @@
         = t.collection_select(:technique_id, Technique.all, :id, :technique_name)
         = t.collection_select(:progress_id, Progress.all, :id, :progress_name)
 
+      %br/
+      %br/
+      = d.fields_for :order_technique_detail_options, OrderTechniqueDetailOption.new do |o|
+        = o.label :order_technique_detail_option
+        %br/
+        = o.collection_select(:technique_option_id, TechniqueOption.all, :id, :technique_option_name)
+
+  .field
+    = f.fields_for :order_notes, OrderNote.new do |n|
+      = n.label :order_note
+      %br/
+      = n.text_area :order_note, autofocus: true, autocomplete: "order_note"
+      = n.hidden_field :user_id, value: current_user.id
+
   .actions
     = f.submit "Submit"

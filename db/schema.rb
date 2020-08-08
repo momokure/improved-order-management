@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_103209) do
+ActiveRecord::Schema.define(version: 2020_08_08_112805) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -130,6 +130,16 @@ ActiveRecord::Schema.define(version: 2020_08_08_103209) do
     t.datetime "updated_at", null: false
     t.index ["factory_id"], name: "index_order_details_on_factory_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "order_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.text "order_note"
+    t.bigint "order_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_notes_on_order_id"
+    t.index ["user_id"], name: "index_order_notes_on_user_id"
   end
 
   create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -302,6 +312,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_103209) do
   add_foreign_key "invoicing_departments", "payment_methods"
   add_foreign_key "order_details", "factories"
   add_foreign_key "order_details", "orders"
+  add_foreign_key "order_notes", "orders"
+  add_foreign_key "order_notes", "users"
   add_foreign_key "order_technique_detail_options", "order_details"
   add_foreign_key "order_technique_detail_options", "technique_options"
   add_foreign_key "order_technique_details", "order_details"

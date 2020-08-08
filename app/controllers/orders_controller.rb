@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     order_detail = @order.order_details.build
     order_detail.order_technique_details.build
+    order_detail.order_technique_detail_options.build
+    @order.order_notes.build
   end
 
   def create
@@ -32,8 +34,10 @@ class OrdersController < ApplicationController
         :shipment_status, :shipment_date, :shipment_user_id,
         :cancellation,
         order_details_attributes: [:mixed_techniques, :large_order, :factory_id,
-                                   order_technique_details_attributes: [:order_detail_id, :technique_id, :progress_id]
-        ]
-      )
+                                   order_technique_details_attributes: [:technique_id, :progress_id],
+                                   order_technique_detail_options_attributes: [:technique_option_id],
+        ],
+        order_notes_attributes: [:order_note, :user_id]
+    )
   end
 end
