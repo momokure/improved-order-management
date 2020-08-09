@@ -1,0 +1,2 @@
+class DesiredDeliveryType < ApplicationRecord
+end

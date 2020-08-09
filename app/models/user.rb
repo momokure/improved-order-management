@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :users_factories
   has_many :factories, through: :users_factories
   accepts_nested_attributes_for :users_factories
+  has_many :orders
+  has_many :order_notes
 end

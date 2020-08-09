@@ -1,7 +1,5 @@
-%h2 Customer
+%h2 Order
+= @customer.customer_name
 
-.information
-  = @customer.customer_name
-
--#.link
--#  = link_to 'new_customer_tag', new_customer_tag_path(customer_id: @customer.id)
+.link
+  = link_to 'new_order', new_order_path(customer_id: @customer.id)

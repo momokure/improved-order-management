@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_061045) do
+ActiveRecord::Schema.define(version: 2020_08_08_120156) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "buy_type_name"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.string "company_name"
     t.string "company_name_furigana"
     t.bigint "payment_method_id"
-    t.integer "receipt_required", default: 0, null: false
+    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payment_method_id"], name: "index_companies_on_payment_method_id"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_notes_on_company_id"
+  end
+
+  create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "prefecture_code"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_addresses_on_customer_id"
+    t.index ["prefecture_code"], name: "index_customer_addresses_on_prefecture_code"
   end
 
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -90,6 +99,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "desired_delivery_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "desired_delivery_type_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "factory_name", null: false
     t.datetime "created_at", null: false
@@ -99,7 +114,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   create_table "individual_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "payment_method_id"
-    t.integer "receipt_required", default: 0, null: false
+    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_individual_customers_on_customer_id"
@@ -115,10 +130,60 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
   end
 
+  create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "customer_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_order_addresses_on_customer_address_id"
+    t.index ["order_id"], name: "index_order_addresses_on_order_id"
+  end
+
+  create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.boolean "mixed_techniques", default: false, null: false
+    t.boolean "large_order", default: false, null: false
+    t.bigint "factory_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["factory_id"], name: "index_order_details_on_factory_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "order_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.text "order_note"
+    t.bigint "order_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_notes_on_order_id"
+    t.index ["user_id"], name: "index_order_notes_on_user_id"
+  end
+
   create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "order_option_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_technique_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "order_detail_id"
+    t.bigint "technique_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_detail_id"], name: "index_order_technique_detail_options_on_order_detail_id"
+    t.index ["technique_option_id"], name: "index_order_technique_detail_options_on_technique_option_id"
+  end
+
+  create_table "order_technique_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "order_detail_id"
+    t.bigint "technique_id"
+    t.bigint "progress_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_detail_id"], name: "index_order_technique_details_on_order_detail_id"
+    t.index ["progress_id"], name: "index_order_technique_details_on_progress_id"
+    t.index ["technique_id"], name: "index_order_technique_details_on_technique_id"
   end
 
   create_table "order_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -127,10 +192,48 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "order_reflect_user_id"
+    t.bigint "csr_user_id"
+    t.bigint "order_type_id"
+    t.bigint "quote_difficulty_level_id"
+    t.bigint "payment_method_id"
+    t.datetime "order_date"
+    t.datetime "first_response_date"
+    t.datetime "desired_delivery_date"
+    t.bigint "desired_delivery_type_id"
+    t.datetime "internal_delivery_date"
+    t.bigint "specified_time_id"
+    t.boolean "domestic_buying", default: true, null: false
+    t.boolean "overseas_buying", default: false, null: false
+    t.boolean "carry_in", default: false, null: false
+    t.datetime "payment_deadline_date"
+    t.integer "payment_amount"
+    t.boolean "payment_confirmation", default: false, null: false
+    t.boolean "send_receipt", default: false, null: false
+    t.boolean "send_invoice", default: false, null: false
+    t.boolean "shipment_status", default: false, null: false
+    t.datetime "shipment_date"
+    t.bigint "shipment_user_id"
+    t.integer "cancellation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["csr_user_id"], name: "index_orders_on_csr_user_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["desired_delivery_type_id"], name: "index_orders_on_desired_delivery_type_id"
+    t.index ["order_reflect_user_id"], name: "index_orders_on_order_reflect_user_id"
+    t.index ["order_type_id"], name: "index_orders_on_order_type_id"
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
+    t.index ["quote_difficulty_level_id"], name: "index_orders_on_quote_difficulty_level_id"
+    t.index ["shipment_user_id"], name: "index_orders_on_shipment_user_id"
+    t.index ["specified_time_id"], name: "index_orders_on_specified_time_id"
+  end
+
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "payment_method_name"
     t.string "payment_condition"
-    t.integer "invoice_required"
+    t.boolean "invoice_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -150,6 +253,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.string "quote_difficulty_level_name"
     t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.string "specified_time_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -211,6 +320,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   add_foreign_key "company_customers", "companies"
   add_foreign_key "company_customers", "customers"
   add_foreign_key "company_notes", "companies"
+  add_foreign_key "customer_addresses", "customers"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_phone_numbers", "customers"
@@ -219,6 +329,26 @@ ActiveRecord::Schema.define(version: 2020_08_04_061045) do
   add_foreign_key "individual_customers", "payment_methods"
   add_foreign_key "invoicing_departments", "departments"
   add_foreign_key "invoicing_departments", "payment_methods"
+  add_foreign_key "order_addresses", "customer_addresses"
+  add_foreign_key "order_addresses", "orders"
+  add_foreign_key "order_details", "factories"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_notes", "orders"
+  add_foreign_key "order_notes", "users"
+  add_foreign_key "order_technique_detail_options", "order_details"
+  add_foreign_key "order_technique_detail_options", "technique_options"
+  add_foreign_key "order_technique_details", "order_details"
+  add_foreign_key "order_technique_details", "progresses"
+  add_foreign_key "order_technique_details", "techniques"
+  add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "desired_delivery_types"
+  add_foreign_key "orders", "order_types"
+  add_foreign_key "orders", "payment_methods"
+  add_foreign_key "orders", "quote_difficulty_levels"
+  add_foreign_key "orders", "specified_times"
+  add_foreign_key "orders", "users", column: "csr_user_id"
+  add_foreign_key "orders", "users", column: "order_reflect_user_id"
+  add_foreign_key "orders", "users", column: "shipment_user_id"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
