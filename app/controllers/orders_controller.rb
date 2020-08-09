@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
                                    order_technique_details_attributes: [:technique_id, :progress_id],
                                    order_technique_detail_options_attributes: [:technique_option_id],
         ],
+        order_addresses_attributes: [:customer_address_id],
         order_notes_attributes: [:order_note, :user_id]
     )
   end

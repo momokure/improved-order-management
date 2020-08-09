@@ -19,9 +19,11 @@ class Order < ApplicationRecord
   has_many :order_details
   accepts_nested_attributes_for :order_details
 
-  has_many :order_notes
-  accepts_nested_attributes_for :order_notes
-
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture_code
   has_many :order_addresses
   accepts_nested_attributes_for :order_addresses
+
+  has_many :order_notes
+  accepts_nested_attributes_for :order_notes
 end

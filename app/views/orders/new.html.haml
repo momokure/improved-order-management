@@ -114,6 +114,12 @@
         = o.collection_select(:technique_option_id, TechniqueOption.all, :id, :technique_option_name)
 
   .field
+    = f.fields_for :order_addresses, OrderAddress.new do |a|
+      = a.label :order_address
+      %br/
+      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+
+  .field
     = f.fields_for :order_notes, OrderNote.new do |n|
       = n.label :order_note
       %br/
