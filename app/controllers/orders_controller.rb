@@ -11,12 +11,6 @@ class OrdersController < ApplicationController
     @order.order_notes.build
   end
 
-  def register
-    @order = Order.new
-    @order.order_addresses.build
-    @order.order_notes.build
-  end
-
   def create
     order = Order.new(order_params)
     order.save!
