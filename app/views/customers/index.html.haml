@@ -4,7 +4,6 @@
   = link_to 'お客様の新規登録', new_customer_path
 
 .field
-  = text_field_tag :customers_name,'', class: 'js-text_field', placeholder: 'お客様のお名前を入力'
+  = text_field_tag :customers_name,'', class: 'js-text_field', placeholder: 'お客様のお名前で検索'
 
 %ul.js-customers
-  = render @customers
