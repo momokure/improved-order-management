@@ -1,7 +1,7 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
-      t.string :uid
+      t.string :uid, null: false
       t.references :customer, index: true, foreign_key: true
       t.references :order_reflect_user, index: true, foreign_key: { to_table: :users }
       t.references :csr_user, index: true, foreign_key: { to_table: :users }
@@ -28,5 +28,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :cancellation
       t.timestamps
     end
+    add_index :orders, :uid, unique: true
   end
 end

@@ -11,7 +11,7 @@ $(function () {
         $('.js-customers li').remove();
         $(data).each(function(i,customer) {
           $('.js-customers').append(
-            `<li class="customer"><a href="/customers/${customer.id}">${customer.customer_name} 様</a></li>`
+            `<li class="customer"><a href="/customers/${customer.uid}">${customer.customer_name} 様</a></li>`
         );
       });
     })

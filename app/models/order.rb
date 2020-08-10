@@ -1,5 +1,9 @@
 class Order < ApplicationRecord
-  include IdGeneratorOrder
+  after_initialize :set_default_values
+
+  def to_param
+    uid
+  end
 
   enum domestic_buying: { not_included: false, included: true }, _prefix: true
   enum overseas_buying: { not_included: false, included: true }, _prefix: true
@@ -28,4 +32,13 @@ class Order < ApplicationRecord
 
   has_many :order_notes
   accepts_nested_attributes_for :order_notes
+
+  private
+
+  def set_default_values
+    self.uid ||= loop do
+      uid = 'CP' + [*0..9, *'A'..'Z'].sample(14)*''
+      break uid unless self.class.exists?(uid: uid)
+    end
+  end
 end

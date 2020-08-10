@@ -85,13 +85,14 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
   end
 
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "uid"
+    t.string "uid", null: false
     t.string "customer_name"
     t.string "customer_furigana"
     t.bigint "customer_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
+    t.index ["uid"], name: "index_customers_on_uid", unique: true
   end
 
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -194,7 +195,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "uid"
+    t.string "uid", null: false
     t.bigint "customer_id"
     t.bigint "order_reflect_user_id"
     t.bigint "csr_user_id"
@@ -230,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
     t.index ["quote_difficulty_level_id"], name: "index_orders_on_quote_difficulty_level_id"
     t.index ["shipment_user_id"], name: "index_orders_on_shipment_user_id"
     t.index ["specified_time_id"], name: "index_orders_on_specified_time_id"
+    t.index ["uid"], name: "index_orders_on_uid", unique: true
   end
 
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|

@@ -1,6 +1,10 @@
 class Customer < ApplicationRecord
   include IdGeneratorCustomer
 
+  def to_param
+    uid
+  end
+
   belongs_to :customer_type
 
   has_one :individual_customer

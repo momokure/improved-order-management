@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @customer = Customer.find(params[:customer_id])
+    @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
     order_detail = @order.order_details.build
     order_detail.order_technique_details.build
@@ -18,13 +18,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    @customer = Customer.find(@order.customer_id)
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find_by(uid: @order.customer_id)
   end
 
   def edit
-    @order = Order.find(params[:id])
-    @customer = Customer.find(@order.customer_id)
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find_by(uid: @order.customer_id)
   end
 
   private
