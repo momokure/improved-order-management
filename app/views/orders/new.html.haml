@@ -25,7 +25,7 @@
 
   .field
     = f.label :納品ご希望日
-    = f.datetime_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+    = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
 
   .field
     = f.label :納品ご希望日の種類
@@ -33,7 +33,7 @@
 
   .field
     = f.label :社内納品日
-    = f.datetime_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
+    = f.date_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
 
   .field
     = f.label :時間帯指定
@@ -62,7 +62,7 @@
 
   .field
     = f.label :お支払い期限日
-    = f.datetime_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
+    = f.date_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
 
   .field
     = f.label :合計金額

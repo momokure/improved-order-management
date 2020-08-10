@@ -22,6 +22,11 @@ class OrdersController < ApplicationController
     @customer = Customer.find(@order.customer_id)
   end
 
+  def edit
+    @order = Order.find(params[:id])
+    @customer = Customer.find(@order.customer_id)
+  end
+
   private
   def order_params
     params
