@@ -1,5 +1,7 @@
-%h2 Order
-= @customer.customer_name
+%h2
+  #{@customer.customer_name} 様
+
+
 
 .link
-  = link_to 'new_order', new_order_path(customer_id: @customer.id)
+  = link_to 'あたらしいご注文を登録', new_order_path(customer_id: @customer.id)
