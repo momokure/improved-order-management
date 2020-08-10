@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include IdGeneratorOrder
+
   enum domestic_buying: { not_included: false, included: true }, _prefix: true
   enum overseas_buying: { not_included: false, included: true }, _prefix: true
   enum carry_in: { not_included: false, included: true }, _prefix: true

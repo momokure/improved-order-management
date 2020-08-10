@@ -8,6 +8,10 @@
   = f.hidden_field :shipment_user_id, value: current_user.id
 
   .field
+    = f.label :ご注文ＩＤ
+    = f.text_field :uid, autofocus: true
+
+  .field
     = f.label :ご注文種別
     = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
 

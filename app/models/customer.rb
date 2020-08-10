@@ -1,4 +1,6 @@
 class Customer < ApplicationRecord
+  include IdGeneratorCustomer
+
   belongs_to :customer_type
 
   has_one :individual_customer
