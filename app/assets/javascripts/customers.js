@@ -12,9 +12,9 @@ $(function () {
         $(data).each(function(i,customer) {
           $('.js-customers').append(
             `<li class="customer"><a href="/customers/${customer.uid}">${customer.customer_name} 様のご注文一覧</a>
-             <class="customer_button"><a href="/orders/new?customer_id=${customer.uid}">(新規ご注文を登録)</a></li>`
+             <class="customer_button"><a href="/orders/new?customer_id=${customer.uid}">(新規ご注文を登録)</a>`
         );
       });
     })
   });
-});
+})
