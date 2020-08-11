@@ -1,0 +1,22 @@
+%h2
+= order.uid
+= OrderType.find(order.order_type_id).order_type_name
+
+#{order.customer.customer_name} 様
+(#{order.customer.customer_type.customer_type_name})
+
+= QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
+= l(order.order_date, format: :middle)
+
+= l(order.desired_delivery_date, format: :middle)
+
+-# = Payment.find_by(order_id: order.id).payment_date
+-# = Payment.find_by(order_id: order.id).amount_paid
+
+= DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
+= order.internal_delivery_date
+
+= PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+
+= OrderNote.find_by(order_id: order.id).order_note

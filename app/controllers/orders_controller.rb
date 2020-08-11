@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     params
       .require(:order)
       .permit(
-        :uid, :customer_id, :order_reflect_user_id, :csr_user_id,
+        :uid, :customer_id, :order_reflect_user_id, :representative_user_id,
         :order_type_id, :quote_difficulty_level_id, :payment_method_id,
         :order_date, :first_response_date, :desired_delivery_date, :internal_delivery_date, :specified_time_id,
         :domestic_buying, :overseas_buying, :carry_in,

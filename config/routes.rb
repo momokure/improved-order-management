@@ -7,17 +7,17 @@ Rails.application.routes.draw do
   end
   resources :customers
 
-  namespace :orders do
-    namespace :representative do
-      resources :backlog, only: :index
-      resources :wip, only: :index
-      resources :done, only: :index
-    end
-    namespace :pasteup do
-      resources :backlog, only: :index
-      resources :wip, only: :index
-      resources :done, only: :index
-    end
-    end
+  namespace :representative do
+    resources :backlog, only: :index
+    resources :wip, only: :index
+    resources :done, only: :index
+  end
+
+  namespace :pasteup do
+    resources :backlog, only: :index
+    resources :wip, only: :index
+    resources :done, only: :index
+  end
+
   resources :orders
 end
