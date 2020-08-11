@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_120156) do
+ActiveRecord::Schema.define(version: 2020_08_11_103031) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "buy_type_name"
@@ -204,14 +204,14 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
     t.bigint "payment_method_id"
     t.datetime "order_date"
     t.datetime "first_response_date"
-    t.datetime "desired_delivery_date"
+    t.date "desired_delivery_date"
     t.bigint "desired_delivery_type_id"
-    t.datetime "internal_delivery_date"
+    t.date "internal_delivery_date"
     t.bigint "specified_time_id"
     t.boolean "domestic_buying", default: true, null: false
     t.boolean "overseas_buying", default: false, null: false
     t.boolean "carry_in", default: false, null: false
-    t.datetime "payment_deadline_date"
+    t.date "payment_deadline_date"
     t.integer "payment_amount"
     t.boolean "payment_confirmation", default: false, null: false
     t.boolean "send_receipt", default: false, null: false
@@ -240,6 +240,25 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
     t.boolean "invoice_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.text "payment_note"
+    t.bigint "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payment_notes_on_payment_id"
+  end
+
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.date "payment_date"
+    t.integer "amount_paid"
+    t.bigint "accounting_user_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accounting_user_id"], name: "index_payments_on_accounting_user_id"
+    t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -353,6 +372,9 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
   add_foreign_key "orders", "users", column: "order_reflect_user_id"
   add_foreign_key "orders", "users", column: "representative_user_id"
   add_foreign_key "orders", "users", column: "shipment_user_id"
+  add_foreign_key "payment_notes", "payments"
+  add_foreign_key "payments", "orders"
+  add_foreign_key "payments", "users", column: "accounting_user_id"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"

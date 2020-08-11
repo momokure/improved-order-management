@@ -11,8 +11,8 @@
 
 = l(order.desired_delivery_date, format: :middle)
 
--# = Payment.find_by(order_id: order.id).payment_date
--# = Payment.find_by(order_id: order.id).amount_paid
+= l(Payment.find_by(order_id: order.id).payment_date, format: :long)
+= Payment.find_by(order_id: order.id).amount_paid
 
 = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
 = order.internal_delivery_date
