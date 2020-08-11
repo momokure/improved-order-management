@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :uid, null: false
       t.references :customer, index: true, foreign_key: true
       t.references :order_reflect_user, index: true, foreign_key: { to_table: :users }
-      t.references :csr_user, index: true, foreign_key: { to_table: :users }
+      t.references :representative_user, index: true, foreign_key: { to_table: :users }
       t.references :order_type, index: true, foreign_key: true
       t.references :quote_difficulty_level, index: true, foreign_key: true
       t.references :payment_method, index: true, foreign_key: true

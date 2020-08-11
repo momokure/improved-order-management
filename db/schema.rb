@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
     t.string "uid", null: false
     t.bigint "customer_id"
     t.bigint "order_reflect_user_id"
-    t.bigint "csr_user_id"
+    t.bigint "representative_user_id"
     t.bigint "order_type_id"
     t.bigint "quote_difficulty_level_id"
     t.bigint "payment_method_id"
@@ -222,13 +222,13 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
     t.integer "cancellation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["csr_user_id"], name: "index_orders_on_csr_user_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["desired_delivery_type_id"], name: "index_orders_on_desired_delivery_type_id"
     t.index ["order_reflect_user_id"], name: "index_orders_on_order_reflect_user_id"
     t.index ["order_type_id"], name: "index_orders_on_order_type_id"
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["quote_difficulty_level_id"], name: "index_orders_on_quote_difficulty_level_id"
+    t.index ["representative_user_id"], name: "index_orders_on_representative_user_id"
     t.index ["shipment_user_id"], name: "index_orders_on_shipment_user_id"
     t.index ["specified_time_id"], name: "index_orders_on_specified_time_id"
     t.index ["uid"], name: "index_orders_on_uid", unique: true
@@ -350,8 +350,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_120156) do
   add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "quote_difficulty_levels"
   add_foreign_key "orders", "specified_times"
-  add_foreign_key "orders", "users", column: "csr_user_id"
   add_foreign_key "orders", "users", column: "order_reflect_user_id"
+  add_foreign_key "orders", "users", column: "representative_user_id"
   add_foreign_key "orders", "users", column: "shipment_user_id"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
