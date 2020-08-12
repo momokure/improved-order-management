@@ -1,49 +1,32 @@
-.container
-  %table.neumorphic
-    %thead
-      %tr
-        %th ご注文ID
-        %th お名前
-        %th お客様種別
-        %th ご注文日
-        %th ご注文種別
-        %th 難易度
-        %th 納品先
-        %th 納品ご希望日
-        %th 納品ご希望種別
-        %th 社内納品日
-        %th ご入金日
-        %th ご入金額
-        %th ご注文備考欄
-        %th 🐤
-    %tbody
-      %tr
-        %td
-          = order.uid
-        %td
-          = link_to customer_path(id: order.customer.uid) do
-            #{order.customer.customer_name} 様
-        %td
-          #{order.customer.customer_type.customer_type_name}
-        %td
-          = l(order.order_date, format: :middle)
-        %td
-          = OrderType.find(order.order_type_id).order_type_name
-        %td
-          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
-        %td
-          = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
-        %td
-          = l(order.desired_delivery_date, format: :middle)
-        %td
-          = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
-        %td
-          = l(order.internal_delivery_date, format: :middle)
-        %td
-          = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
-        %td
-          = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
-        %td
-          = OrderNote.find_by(order_id: order.id).try(:order_note)
-        %td
-          = link_to 'ご対応する', edit_order_path(id: order.uid)
+
+%tr
+  %td
+    -# = order.uid
+    = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+  %td
+    = link_to customer_path(id: order.customer.uid) do
+      #{order.customer.customer_name} 様
+  %td
+    #{order.customer.customer_type.customer_type_name}
+  %td
+    = l(order.try(:order_date), format: :middle, default: '')
+  %td
+    = OrderType.find(order.order_type_id).order_type_name
+  %td
+    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+  %td
+    = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+  %td
+    = l(order.try(:desired_delivery_date), format: :middle, default: '')
+  %td
+    = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
+  %td
+    = l(order.try(:internal_delivery_date), format: :middle, default: '')
+  %td
+    = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
+  %td
+    = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+  %td
+    = OrderNote.find_by(order_id: order.id).try(:order_note)
+  %td
+    = link_to 'ご対応する', edit_order_path(id: order.uid)

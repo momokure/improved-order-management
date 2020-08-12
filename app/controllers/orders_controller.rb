@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find_by(uid: params[:id])
-    @customer = Customer.find_by(uid: @order.customer_id)
+    @customer = Customer.find(@order.customer_id)
   end
 
   private
