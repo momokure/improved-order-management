@@ -7,8 +7,11 @@
 
 %h3 ご注文日時(受信日時) : #{l(@order.order_date, format: :long, default: '')}
 %h3 みつもり難易度 : #{QuoteDifficultyLevel.find(@order.quote_difficulty_level_id).quote_difficulty_level_name}
-%p
-  %b ご注文備考欄 : #{OrderNote.find_by(order_id: @order.id).try(:order_note)} (記入 : #{User.find(OrderNote.find_by(order_id: @order.id).try(:user_id)).user_name})
+
+- if OrderNote.find_by(order_id: @order.id).present?
+  %p
+    %b ご注文備考欄 : #{OrderNote.find_by(order_id: @order.id).order_note}
+    (記入者 : #{User.find(OrderNote.find_by(order_id: @order.id).user_id).user_name})
 
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
@@ -97,7 +100,7 @@
 
   %br
   %h3 💴ご入金について
-  %b お支払い方法 : #{OrderNote.find_by(order_id: @order.id).try(:order_note)} (記入 : #{User.find(OrderNote.find_by(order_id: @order.id).try(:user_id)).user_name})
+  %b お支払い方法 :
 
   %br/
   %br/
