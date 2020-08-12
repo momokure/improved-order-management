@@ -4,6 +4,8 @@
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
   = f.hidden_field :order_reflect_user_id, value: current_user.id
+  = f.hidden_field :payment_method_id, value: 1
+
   = f.hidden_field :representative_user_id, value: 1
   = f.hidden_field :shipment_user_id, value: 1
 
@@ -19,9 +21,9 @@
     = f.label :みつもり難易度
     = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
 
-  .field
-    = f.label :お支払い方法
-    = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+  -#.field
+  -#  = f.label :お支払い方法
+  -#  = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
 
   .field
     = f.label :ご注文日

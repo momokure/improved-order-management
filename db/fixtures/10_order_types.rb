@@ -1,7 +1,7 @@
 OrderType.seed(
   # {id: 1, order_type_name: "直接のご注文"},
   # {id: 2, order_type_name: "ECでのご注文"},
-  {id: 1, order_type_name: "お見積り"},
+  {id: 1, order_type_name: "みつもり"},
   {id: 2, order_type_name: "ご質問"},
   {id: 3, order_type_name: "不備・クレーム"},
   {id: 4, order_type_name: "欠品のため後日納品"},
