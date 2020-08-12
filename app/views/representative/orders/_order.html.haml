@@ -1,22 +1,48 @@
-%h2
-= order.uid
-= OrderType.find(order.order_type_id).order_type_name
-
-#{order.customer.customer_name} 様
-(#{order.customer.customer_type.customer_type_name})
-
-= QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
-
-= l(order.order_date, format: :middle)
-
-= l(order.desired_delivery_date, format: :middle)
-
-= l(Payment.find_by(order_id: order.id).payment_date, format: :long)
-= Payment.find_by(order_id: order.id).amount_paid
-
-= DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
-= order.internal_delivery_date
-
-= PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
-
-= OrderNote.find_by(order_id: order.id).order_note
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th ご注文ID
+        %th お名前
+        %th お客様種別
+        %th ご注文日
+        %th ご注文種別
+        %th 難易度
+        %th 納品先
+        %th 納品ご希望日
+        %th 納品ご希望種別
+        %th 社内納品日
+        %th ご入金日
+        %th ご入金額
+        %th ご注文備考欄
+        %th
+    %tbody
+      %tr
+        %td
+          = order.uid
+        %td
+          #{order.customer.customer_name} 様
+        %td
+          #{order.customer.customer_type.customer_type_name}
+        %td
+          = l(order.order_date, format: :middle)
+        %td
+          = OrderType.find(order.order_type_id).order_type_name
+        %td
+          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+        %td
+          = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+        %td
+          = l(order.desired_delivery_date, format: :middle)
+        %td
+          = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
+        %td
+          = l(order.internal_delivery_date, format: :middle)
+        %td
+          = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
+        %td
+          = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+        %td
+          = OrderNote.find_by(order_id: order.id).try(:order_note)
+        %td
+          = OrderNote.find_by(order_id: order.id).try(:order_note)
