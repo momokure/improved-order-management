@@ -15,13 +15,14 @@
         %th ご入金日
         %th ご入金額
         %th ご注文備考欄
-        %th
+        %th 🐤
     %tbody
       %tr
         %td
           = order.uid
         %td
-          #{order.customer.customer_name} 様
+          = link_to customer_path(id: order.customer.uid) do
+            #{order.customer.customer_name} 様
         %td
           #{order.customer.customer_type.customer_type_name}
         %td
@@ -45,4 +46,4 @@
         %td
           = OrderNote.find_by(order_id: order.id).try(:order_note)
         %td
-          = OrderNote.find_by(order_id: order.id).try(:order_note)
+          = link_to 'ご対応する', edit_order_path(id: order.uid)
