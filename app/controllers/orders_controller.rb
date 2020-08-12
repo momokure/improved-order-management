@@ -27,6 +27,13 @@ class OrdersController < ApplicationController
     @customer = Customer.find(@order.customer_id)
   end
 
+  def update
+    order = Order.find_by(uid: params[:id])
+    order.representative_user_id = current_user.id
+    order.save
+    redirect_to edit_order_path
+  end
+
   private
   def order_params
     params
