@@ -1,11 +1,11 @@
 %h2
-  #{@customer.customer_name} 様のあたらしいご注文を登録
+  #{@customer.customer_name} 様の新規ご注文を登録
 
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
   = f.hidden_field :order_reflect_user_id, value: current_user.id
   = f.hidden_field :representative_user_id, value: 1
-  = f.hidden_field :shipment_user_id, value: current_user.id
+  = f.hidden_field :shipment_user_id, value: 1
 
   .field
     = f.label :ご注文ＩＤ
