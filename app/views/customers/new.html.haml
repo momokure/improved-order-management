@@ -38,7 +38,7 @@
   .field
     = f.fields_for :customer_addresses, CustomerAddress.new do |a|
       = a.label :納品先のご住所
-      = a.collection_select(:prefecture_code, PrefectureCode.all, :id, :name)
+      = a.collection_select(:prefecture_code, PrefectureCode.all, :id, :name, selected: 48)
 
   .field
     = f.fields_for :customer_notes, CustomerNote.new do |n|

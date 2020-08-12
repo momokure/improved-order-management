@@ -1,5 +1,7 @@
 %h2
-  #{@customer.customer_name} 様の新規ご注文を登録
+  = link_to customer_path(@customer.uid) do
+    #{@customer.customer_name} 様
+  の新規ご注文を登録
 
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
@@ -10,15 +12,15 @@
   = f.hidden_field :shipment_user_id, value: 1
 
   .field
-    = f.label :ご注文ＩＤ
+    = f.label :uid, "ご注文ID"
     = f.text_field :uid, autofocus: true
 
   .field
-    = f.label :ご注文種別
+    = f.label :order_type_name, "ご注文の種類"
     = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
 
   .field
-    = f.label :みつもり難易度
+    = f.label :quote_difficulty_level_name, "お見積り難易度"
     = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
 
   -#.field
@@ -26,16 +28,21 @@
   -#  = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
 
   .field
-    = f.label :ご注文日
-    = f.datetime_field :order_date, autofocus: true, autocomplete: "order_date"
+    = f.label :order_date, "ご注文日時"
+    = f.datetime_select :order_date
+
+  .field
+    = f.fields_for :order_addresses, OrderAddress.new do |a|
+      = a.label :ご注文の納品先
+      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+
+  .field
+    = f.label :desired_delivery_type_name, "納品ご希望日の種類"
+    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
 
   .field
     = f.label :納品ご希望日
     = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
-
-  .field
-    = f.label :納品ご希望日の種類
-    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
 
   .field
     = f.label :社内納品日
@@ -103,11 +110,6 @@
   -#    = d.fields_for :order_technique_detail_options, OrderTechniqueDetailOption.new do |o|
   -#      = o.label :加工内容の詳細オプション
   -#      = o.collection_select(:technique_option_id, TechniqueOption.all, :id, :technique_option_name)
-
-  .field
-    = f.fields_for :order_addresses, OrderAddress.new do |a|
-      = a.label :ご注文の納品先
-      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
 
   .field
     = f.fields_for :order_notes, OrderNote.new do |n|
