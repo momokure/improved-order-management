@@ -14,7 +14,6 @@ Department.seed(
   {id: 13, department_name: "インクジェット"},
   {id: 14, department_name: "刺繍"},
   {id: 15, department_name: "UV"},
-  {id: 16, department_name: "縫製"},
-  {id: 17, department_name: "シルクスクリーンD"},
-  {id: 18, department_name: "発送"}
+  {id: 16, department_name: "シルクスクリーンD"},
+  {id: 17, department_name: "発送"}
 )

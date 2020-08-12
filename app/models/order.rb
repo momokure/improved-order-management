@@ -31,7 +31,11 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_addresses
 
   has_many :order_notes
-  accepts_nested_attributes_for :order_notes
+  accepts_nested_attributes_for :order_notes, reject_if: :reject_order_note
+
+  def reject_order_note(attributed)
+    attributed['order_note'].blank?
+  end
 
   has_many :payments
 
