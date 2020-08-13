@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   def new
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
+    # @order.order_details.build
+    # @order.order_technique_details.build
     @order.order_addresses.build
     @order.order_notes.build
   end
