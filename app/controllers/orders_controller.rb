@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     params
       .require(:order)
       .permit(
-        :uid, :customer_id, :order_reflect_user_id, :representative_user_id,
+        :id, :uid, :customer_id, :order_reflect_user_id, :representative_user_id,
         :order_type_id, :quote_difficulty_level_id, :payment_method_id,
         :order_date, :first_response_date, :desired_delivery_date, :desired_delivery_type_id, :internal_delivery_date, :specified_time_id,
         :domestic_buying, :overseas_buying, :carry_in,
@@ -51,11 +51,11 @@ class OrdersController < ApplicationController
         :cancellation,
         order_details_attributes: [:id, :mixed_techniques, :large_order, :factory_id, :_destroy,
                                    order_detail_options_attributes: [:id, :order_option_id, :_destroy],
-                                   order_technique_details_attributes: [:technique_id, :progress_id, :representative_user_id, :pasteup_user_id, :maker_id, :_destroy, :id],
-                                   order_technique_detail_options_attributes: [:technique_option_id, :_destroy, :id]
+                                   order_technique_details_attributes: [:id, :technique_id, :progress_id, :representative_user_id, :pasteup_user_id, :maker_id, :_destroy],
+                                   order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy]
         ],
-        order_addresses_attributes: [:customer_address_id],
-        order_notes_attributes: [:order_note, :user_id]
+        order_addresses_attributes: [:id, :customer_address_id],
+        order_notes_attributes: [:id, :order_note, :user_id]
     )
   end
 end
