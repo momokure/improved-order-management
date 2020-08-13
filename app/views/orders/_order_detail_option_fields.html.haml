@@ -1,0 +1,4 @@
+.nested-fields.form-inline
+  .form-group
+    = f.label :order_option_id, "🎁加工内容のオプション"
+    = f.collection_select(:order_option_id, OrderOption.all, :id, :order_option_name)

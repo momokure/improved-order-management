@@ -28,4 +28,4 @@
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
-    = button_to 'ご対応する', order_path(id: order.uid), method: :patch
+    = link_to 'ご対応する', edit_order_path(id: order.uid)

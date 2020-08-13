@@ -22,7 +22,7 @@ class Order < ApplicationRecord
   belongs_to :payment_method
   belongs_to :specified_time
 
-  has_many :order_details
+  has_many :order_details, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :order_details, reject_if: :all_blank, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions

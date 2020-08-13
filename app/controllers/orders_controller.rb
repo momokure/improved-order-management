@@ -4,9 +4,6 @@ class OrdersController < ApplicationController
   def new
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
-    order_detail = @order.order_details.build
-    order_detail.order_technique_details.build
-    order_detail.order_technique_detail_options.build
     @order.order_addresses.build
     @order.order_notes.build
   end
@@ -28,10 +25,15 @@ class OrdersController < ApplicationController
   end
 
   def update
-    order = Order.find_by(uid: params[:id])
-    order.representative_user_id = current_user.id
-    order.save
-    redirect_to edit_order_path
+    @order = Order.find_by(uid: params[:id])
+    # @order.representative_user_id = current_user.id
+    @order.update_attributes(order_params)
+    # redirect_to edit_order_path
+  end
+
+  def destroy
+    @order = Order.find_by(uid: params[:id])
+    @order.destroy!
   end
 
   private
@@ -47,9 +49,10 @@ class OrdersController < ApplicationController
         :send_receipt, :send_invoice,
         :shipment_status, :shipment_date, :shipment_user_id,
         :cancellation,
-        order_details_attributes: [:mixed_techniques, :large_order, :factory_id,
-                                   order_technique_details_attributes: [:technique_id, :progress_id],
-                                   order_technique_detail_options_attributes: [:technique_option_id],
+        order_details_attributes: [:id, :mixed_techniques, :large_order, :factory_id, :_destroy,
+                                   order_detail_options_attributes: [:id, :order_option_id, :_destroy],
+                                   order_technique_details_attributes: [:technique_id, :progress_id, :representative_user_id, :pasteup_user_id, :maker_id, :_destroy, :id],
+                                   order_technique_detail_options_attributes: [:technique_option_id, :_destroy, :id]
         ],
         order_addresses_attributes: [:customer_address_id],
         order_notes_attributes: [:order_note, :user_id]
