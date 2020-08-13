@@ -12,5 +12,5 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :users_factories
   has_many :orders
   has_many :order_notes
-  has_many :order_details
+  has_many :order_technique_details
 end

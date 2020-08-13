@@ -1,3 +1,3 @@
 class Progress < ApplicationRecord
-  has_many :techniques_details
+  has_many :order_technique_details
 end

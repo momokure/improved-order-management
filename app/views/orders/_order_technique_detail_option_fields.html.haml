@@ -1,0 +1,5 @@
+.nested-fields.form-inline
+  .form-group
+    = f.collection_select(:technique_option_id, TechniqueOption.all, :id, :technique_option_name)
+    %br/
+    = link_to_remove_association "🐤加工方法の詳細オプションを削除❌", f

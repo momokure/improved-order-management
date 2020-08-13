@@ -31,11 +31,10 @@
 
   %br
   %h3 🐣制作・加工内容について
-  #order_details
-    = f.fields_for :order_details do |order_detail|
-      = render 'order_detail_fields', f: order_detail
-    #links
-      = link_to_add_association '加工内容の詳細を追加', f, :order_details
+  = f.fields_for :order_details do |order_detail|
+    = render 'order_detail_fields', f: order_detail
+  #links
+    = link_to_add_association '🥚加工内容を追加➕', f, :order_details
 
   %br
   %h3 📦発注内容について

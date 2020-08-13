@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by(uid: params[:id])
     # @order.representative_user_id = current_user.id
-    @order.update_attributes(order_params)
+    @order.update_attributes!(order_params)
     # redirect_to edit_order_path
   end
 
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
         :send_receipt, :send_invoice,
         :shipment_status, :shipment_date, :shipment_user_id,
         :cancellation,
-        order_details_attributes: [:id, :mixed_techniques, :large_order, :factory_id, :_destroy,
+        order_details_attributes: [:id, :mixed_techniques, :factory_id, :_destroy,
                                    order_detail_options_attributes: [:id, :order_option_id, :_destroy],
                                    order_technique_details_attributes: [:id, :technique_id, :progress_id, :representative_user_id, :pasteup_user_id, :maker_id, :_destroy],
                                    order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy]
