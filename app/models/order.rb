@@ -23,7 +23,7 @@ class Order < ApplicationRecord
   belongs_to :specified_time
 
   has_many :order_details
-  accepts_nested_attributes_for :order_details
+  accepts_nested_attributes_for :order_details, reject_if: :all_blank, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture_code
