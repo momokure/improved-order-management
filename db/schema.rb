@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_103031) do
+ActiveRecord::Schema.define(version: 2020_08_13_000911) do
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "buy_type_name"
@@ -141,6 +141,15 @@ ActiveRecord::Schema.define(version: 2020_08_11_103031) do
     t.index ["order_id"], name: "index_order_addresses_on_order_id"
   end
 
+  create_table "order_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.bigint "order_detail_id"
+    t.bigint "order_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_detail_id"], name: "index_order_detail_options_on_order_detail_id"
+    t.index ["order_option_id"], name: "index_order_detail_options_on_order_option_id"
+  end
+
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.boolean "mixed_techniques", default: false, null: false
     t.boolean "large_order", default: false, null: false
@@ -181,10 +190,16 @@ ActiveRecord::Schema.define(version: 2020_08_11_103031) do
     t.bigint "order_detail_id"
     t.bigint "technique_id"
     t.bigint "progress_id"
+    t.bigint "representative_user_id"
+    t.bigint "pasteup_user_id"
+    t.bigint "maker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_order_technique_details_on_maker_id"
     t.index ["order_detail_id"], name: "index_order_technique_details_on_order_detail_id"
+    t.index ["pasteup_user_id"], name: "index_order_technique_details_on_pasteup_user_id"
     t.index ["progress_id"], name: "index_order_technique_details_on_progress_id"
+    t.index ["representative_user_id"], name: "index_order_technique_details_on_representative_user_id"
     t.index ["technique_id"], name: "index_order_technique_details_on_technique_id"
   end
 
@@ -354,6 +369,8 @@ ActiveRecord::Schema.define(version: 2020_08_11_103031) do
   add_foreign_key "invoicing_departments", "payment_methods"
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "orders"
+  add_foreign_key "order_detail_options", "order_details"
+  add_foreign_key "order_detail_options", "order_options"
   add_foreign_key "order_details", "factories"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_notes", "orders"
@@ -363,6 +380,9 @@ ActiveRecord::Schema.define(version: 2020_08_11_103031) do
   add_foreign_key "order_technique_details", "order_details"
   add_foreign_key "order_technique_details", "progresses"
   add_foreign_key "order_technique_details", "techniques"
+  add_foreign_key "order_technique_details", "users", column: "maker_id"
+  add_foreign_key "order_technique_details", "users", column: "pasteup_user_id"
+  add_foreign_key "order_technique_details", "users", column: "representative_user_id"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "desired_delivery_types"
   add_foreign_key "orders", "order_types"
