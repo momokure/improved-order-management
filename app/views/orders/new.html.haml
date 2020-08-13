@@ -1,130 +1,58 @@
-%h2 Order Registration
+%h2
+  = link_to customer_path(@customer.uid) do
+    #{@customer.customer_name} 様
+  の新規ご注文を登録
+
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
   = f.hidden_field :order_reflect_user_id, value: current_user.id
-  = f.hidden_field :csr_user_id, value: current_user.id
-  = f.hidden_field :shipment_user_id, value: current_user.id
+  = f.hidden_field :payment_method_id, value: 1
+
+  = f.hidden_field :representative_user_id, value: 1
+  = f.hidden_field :shipment_user_id, value: 1
 
   .field
-    = f.label :order_type
-    %br/
+    = f.label :uid, "ご注文ID"
+    = f.text_field :uid, autofocus: true
+
+  .field
+    = f.label :order_type_name, "ご注文の種類"
     = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
 
   .field
-    = f.label :quote_difficulty_level
-    %br/
+    = f.label :quote_difficulty_level_name, "みつもり難易度"
     = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
 
   .field
-    = f.label :payment_method
-    %br/
-    = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
-
-  .field
-    = f.label :order_date
-    %br/
-    = f.datetime_field :order_date, autofocus: true, autocomplete: "order_date"
-
-  .field
-    = f.label :desired_delivery_date
-    %br/
-    = f.datetime_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
-
-  .field
-    = f.label :desired_delivery_type
-    %br/
-    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
-
-  .field
-    = f.label :internal_delivery_date
-    %br/
-    = f.datetime_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
-
-  .field
-    = f.label :specified_time
-    %br/
-    = f.collection_select(:specified_time_id, SpecifiedTime.all, :id, :specified_time_name)
-
-  .field
-    = f.label :domestic_buying
-    %br/
-    = f.radio_button :domestic_buying, :not_included
-    = f.label :domestic_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
-    = f.radio_button :domestic_buying, :included
-    = f.label :domestic_buying, "含まれる", {value: :included, style: "display: inline-block;"}
-
-  .field
-    = f.label :overseas_buying
-    %br/
-    = f.radio_button :overseas_buying, :not_included
-    = f.label :overseas_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
-    = f.radio_button :overseas_buying, :included
-    = f.label :overseas_buying, "含まれる", {value: :included, style: "display: inline-block;"}
-
-  .field
-    = f.label :carry_in
-    %br/
-    = f.radio_button :carry_in, :not_included
-    = f.label :carry_in, "含まれない", {value: :not_included, style: "display: inline-block;"}
-    = f.radio_button :carry_in, :included
-    = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
-
-  .field
-    = f.label :payment_deadline_date
-    %br/
-    = f.datetime_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
-
-  .field
-    = f.label :payment_amount
-    %br/
-    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
-
-  .field
-    = f.fields_for :order_details, OrderDetail.new do |d|
-      = d.label :mixed_techniques
-      %br/
-      = d.radio_button :mixed_techniques, :unmixed
-      = d.label :mixed_techniques, "単独加工", {value: :unmixed, style: "display: inline-block;"}
-      = d.radio_button :mixed_techniques, :mixed
-      = d.label :mixed_techniques, "合体加工", {value: :mixed, style: "display: inline-block;"}
-
-      %br/
-      %br/
-      = d.label :large_order
-      %br/
-      = d.radio_button :large_order, :small
-      = d.label :large_order, "通常注文", {value: :small, style: "display: inline-block;"}
-      = d.radio_button :large_order, :large
-      = d.label :large_order, "大口注文", {value: :large, style: "display: inline-block;"}
-      = d.hidden_field :factory_id, value: current_user.id
-
-      %br/
-      %br/
-      = d.fields_for :order_technique_details, OrderTechniqueDetail.new do |t|
-        = t.label :order_technique_detail
-        %br/
-        = t.collection_select(:technique_id, Technique.all, :id, :technique_name)
-        = t.collection_select(:progress_id, Progress.all, :id, :progress_name)
-
-      %br/
-      %br/
-      = d.fields_for :order_technique_detail_options, OrderTechniqueDetailOption.new do |o|
-        = o.label :order_technique_detail_option
-        %br/
-        = o.collection_select(:technique_option_id, TechniqueOption.all, :id, :technique_option_name)
+    = f.label :order_date, "ご注文日時"
+    = f.datetime_select :order_date
 
   .field
     = f.fields_for :order_addresses, OrderAddress.new do |a|
-      = a.label :order_address
-      %br/
+      = a.label :order_addresses, "ご注文の納品先"
       = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
 
   .field
+    = f.label :desired_delivery_type_name, "納品ご希望日の種類"
+    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
+
+  .field
+    = f.label :desired_delivery_date, "納品ご希望日"
+    = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+
+  .field
+    = f.label :internal_delivery_date, "社内納品日"
+    = f.date_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
+
+  .field
+    = f.label :specified_time, "時間帯指定"
+    = f.collection_select(:specified_time_id, SpecifiedTime.all, :id, :specified_time_name)
+
+  .field
     = f.fields_for :order_notes, OrderNote.new do |n|
-      = n.label :order_note
-      %br/
+      = n.label :order_note, "ご注文の備考欄"
       = n.text_area :order_note, autofocus: true, autocomplete: "order_note"
       = n.hidden_field :user_id, value: current_user.id
 
   .actions
-    = f.submit "Submit"
+    = f.submit "ご注文を登録"

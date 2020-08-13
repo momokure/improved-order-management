@@ -1,0 +1,84 @@
+= form_with model: @order, local: true do |f|
+  = f.hidden_field :customer_id, value: @customer.id
+  = f.hidden_field :order_reflect_user_id, value: current_user.id
+  = f.hidden_field :representative_user_id, value: 1
+  = f.hidden_field :progress_id, value: 1
+  = f.hidden_field :shipment_user_id, value: 1
+
+  %br
+  .field
+    = f.label :order_type_name, "ご注文種別"
+    = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
+
+  %br
+  %h3 ⏳納品先と納期について
+  .field
+    = f.fields_for :order_addresses, OrderAddress.new do |a|
+      = a.label :customer_address_id, "納品先"
+      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+
+  .field
+    = f.label :desired_delivery_date, "納品ご希望日"
+    = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+
+  .field
+    = f.label :desired_delivery_type_name, "納品ご希望日の種類"
+    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
+
+  .field
+    = f.label :specified_time_name, "時間帯指定"
+    = f.collection_select(:specified_time_id, SpecifiedTime.all, :id, :specified_time_name)
+
+  %br
+  %h3 🐣制作・加工内容について
+  = f.fields_for :order_details do |order_detail|
+    = render 'order_detail_fields', f: order_detail
+  #links
+    = link_to_add_association '🥚加工内容を追加➕', f, :order_details
+
+  %br
+  %h3 📦発注内容について
+  .field
+    = f.label :domestic_buying, "🚚国内発注商品は"
+    = f.radio_button :domestic_buying, :not_included
+    = f.label :domestic_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :domestic_buying, :included
+    = f.label :domestic_buying, "含まれる", {value: :included, style: "display: inline-block;"}
+
+  .field
+    = f.label :overseas_buying, "🐚海外発注商品は"
+    = f.radio_button :overseas_buying, :not_included
+    = f.label :overseas_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :overseas_buying, :included
+    = f.label :overseas_buying, "含まれる", {value: :included, style: "display: inline-block;"}
+
+  .field
+    = f.label :carry_in, "🍡お持込商品は"
+    = f.radio_button :carry_in, :not_included
+    = f.label :carry_in, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :carry_in, :included
+    = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
+
+  %br
+  %h3 💴ご入金について
+  %b お支払い方法 :
+
+  %br/
+  %br/
+  .field
+    = f.label :payment_deadline_date, "お支払い期限日"
+    = f.date_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
+
+  .field
+    = f.label :payment_amount, "合計金額"
+    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
+
+
+  .field
+    = f.fields_for :order_notes, OrderNote.new do |n|
+      = n.label :order_note, "ご注文の備考欄"
+      = n.text_area :order_note, autofocus: true, autocomplete: "order_note"
+      = n.hidden_field :user_id, value: current_user.id
+
+  .actions
+    = f.submit "ご注文を登録"

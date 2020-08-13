@@ -1,56 +1,49 @@
-%h2 Customer Registration
+%h2 お客様の新規登録
 = form_with model: @customer, local: true do |f|
 
   .field
-    = f.label :customer_name
-    %br/
-    = f.text_field :customer_name, autofocus: true, autocomplete: "customer_name"
-    = f.text_field :customer_furigana, autofocus: true, autocomplete: "customer_furigana"
+    = f.label :お客様のお名前
+    = f.text_field :customer_name, autofocus: true
+    -# = f.text_field :customer_furigana, autofocus: true
 
   .field
-    = f.label :customer_type
-    %br/
+    = f.label :お客様の種類
     = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name)
 
   .field
     = f.fields_for :individual_customer, IndividualCustomer.new do |i|
-      = i.label :customer_payment_method
-      %br/
+      = i.label :お客様のお支払い方法
       = i.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
       = i.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
 
   .field
     = f.fields_for :companies, Company.new do |c|
-      = c.label :company_name, "Corporation"
-      %br/
+      = c.label :法人名
       = c.text_field :company_name, autofocus: true, autocomplete: "company_name"
-      = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
+      -# = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
       = c.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
       = c.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
 
   .field
     = f.fields_for :customer_emails, CustomerEmail.new do |e|
-      = e.label :customer_email
-      %br/
+      = e.label :Eメールアドレス
       = e.email_field :customer_email, autofocus: true, autocomplete: "customer_email"
 
   .field
     = f.fields_for :customer_phone_numbers, CustomerPhoneNumber.new do |p|
-      = p.label :customer_phone_number
+      = p.label :お電話番号
       %br/
       = p.text_field :customer_phone_number, autofocus: true, autocomplete: "customer_phone_number"
 
   .field
     = f.fields_for :customer_addresses, CustomerAddress.new do |a|
-      = a.label :customer_addresses
-      %br/
-      = a.collection_select(:prefecture_code, PrefectureCode.all, :id, :name)
+      = a.label :納品先のご住所
+      = a.collection_select(:prefecture_code, PrefectureCode.all, :id, :name, selected: 48)
 
   .field
     = f.fields_for :customer_notes, CustomerNote.new do |n|
-      = n.label :customer_note
-      %br/
+      = n.label :お客様備考欄
       = n.text_area :customer_note, autofocus: true, autocomplete: "customer_note"
 
   .actions
-    = f.submit "Submit"
+    = f.submit "保存"

@@ -1,0 +1,28 @@
+.nested-fields.well.well-compact
+  .form-group
+    = f.label :mixed_techniques, "🥚加工の種類"
+    = f.radio_button :mixed_techniques, :unmixed
+    = f.label :mixed_techniques, "単独加工", {value: :unmixed, style: "display: inline-block;"}
+    = f.radio_button :mixed_techniques, :mixed
+    = f.label :mixed_techniques, "合体加工", {value: :mixed, style: "display: inline-block;"}
+
+    = f.hidden_field :factory_id, value: 1
+    %br/
+    = link_to_remove_association "🥚加工内容をすべて削除❌", f
+    %br/
+    %br/
+  .order_technique_details
+    = f.fields_for :order_technique_details do |order_technique_detail|
+      = render 'order_technique_detail_fields', f: order_technique_detail
+    .links
+      = link_to_add_association "🐤加工方法を追加➕", f, :order_technique_details
+  .order_technique_detail_options
+    = f.fields_for :order_technique_detail_options do |order_technique_detail_option|
+      = render 'order_technique_detail_option_fields', f: order_technique_detail_option
+    .links
+      = link_to_add_association "🐤加工方法の詳細オプションを追加➕", f, :order_technique_detail_options
+  .order_detail_options
+    = f.fields_for :order_detail_options do |order_detail_option|
+      = render 'order_detail_option_fields', f: order_detail_option
+    .links
+      = link_to_add_association "🎁📷オプションを追加➕", f, :order_detail_options
