@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(uid: params[:id])
-    @customer = Customer.find_by(uid: @order.customer_id)
+    @customer = Customer.find(@order.customer_id)
   end
 
   def edit
@@ -28,9 +28,8 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find_by(uid: params[:id])
-    # @order.representative_user_id = current_user.id
     @order.update_attributes!(order_params)
-    # redirect_to edit_order_path
+    redirect_to edit_order_path
   end
 
   def destroy
