@@ -28,10 +28,14 @@ table.neumorphic {
     padding: 7px;
   }
 
+  th.payment{
+    color: dodgerblue;
+  }
+
   > tbody > tr {
     > td {
       white-space: nowrap;
-      padding: 10px;
+      padding: 5px 10px;
       font-size: 14px;
       position: relative;
     }

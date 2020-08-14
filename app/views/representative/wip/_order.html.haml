@@ -27,7 +27,43 @@
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
-    -# = link_to 'ご対応する', edit_order_path(id: order.uid)
+    = button_to '修正する', edit_order_path(id: order.uid), method: :get
+  %td
     = form_with model: order, url: order_path(id: order.uid), local: true do |f|
       = f.hidden_field :representative_user_id, value: current_user.id
       = f.submit "ご入金連絡済にする"
+      .container
+        %tbody
+          %tr
+          - OrderDetail.where(order_id: order.id).each do |order_detail|
+            %td{align: "right"}
+              ↳
+            %td
+              - if order_detail.mixed_techniques == "mixed"
+                合体加工
+              - else
+                単体加工
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+              %tbody
+                %td
+                %td{align: "right"}
+                  ↳
+                %td
+                  = Technique.find(order_technique_detail.technique_id).technique_name
+                %td
+                  - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                    = TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name
+                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                    = OrderOption.find(order_detail_option.order_option_id).order_option_name
+                %td
+                  #{Factory.find(order_detail.factory_id).factory_name}工場
+                %td
+                  国内発注済
+                %td
+                  海外発注済
+                %td
+                  仕分け済
+                %td
+                  指示書作成済
+                %td
+                  制作済

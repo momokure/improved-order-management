@@ -1,6 +1,6 @@
 TechniqueOption.seed do |s|
   s.id = 1
-  s.technique_option_name = "💧濃色処理+お洗濯"
+  s.technique_option_name = "💧お洗濯"
   s.technique_id = 4
 end
 

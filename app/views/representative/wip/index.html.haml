@@ -15,9 +15,9 @@
         %th 納品ご希望日
         %th 納品ご希望種別
         %th 社内納品日
-        %th ご入金日
-        %th ご入金額
+        %th.payment ご入金日
+        %th.payment ご入金額
         %th ご注文備考欄
-        %th 🐤
+        %th
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
