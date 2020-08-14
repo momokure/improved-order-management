@@ -1,6 +1,5 @@
 %tr
   %td
-    -# = order.uid
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
     = link_to customer_path(id: order.customer.uid) do

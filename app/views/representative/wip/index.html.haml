@@ -1,0 +1,23 @@
+%h2
+  #{current_user.user_name}さんの対応済一覧
+
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th ご注文ID
+        %th お名前
+        %th お客様種別
+        %th ご注文日
+        %th ご注文種別
+        %th 難易度
+        %th 納品先
+        %th 納品ご希望日
+        %th 納品ご希望種別
+        %th 社内納品日
+        %th ご入金日
+        %th ご入金額
+        %th ご注文備考欄
+        %th 🐤
+    %tbody
+      = render partial: 'order', collection: @orders, locals: { order: @orders }

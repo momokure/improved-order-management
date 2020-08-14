@@ -18,4 +18,4 @@
         %th ご注文備考欄
         %th 🐤
     %tbody
-      = render @orders
+      = render partial: 'order', collection: @orders, locals: { order: @orders }
