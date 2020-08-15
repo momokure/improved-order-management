@@ -9,12 +9,6 @@
   %td
     = l(order.try(:order_date), format: :middle, default: '')
   %td
-    = OrderType.find(order.order_type_id).order_type_name
-  %td
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
-  %td
-    = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
-  %td
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td
     = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
@@ -25,11 +19,7 @@
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
+    = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+  %td
     = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
-    = form_with model: order, url: update_representative_user_order_path(id: order.uid), local: true do |f|
-      = f.hidden_field :representative_user_id, value: current_user.id
-      = f.submit "ご対応する"
-    -# = button_to "対応する",  , { method: :patch , params: {representative_user_id: current_user_id} }
-    -# = button_to "対応する", representative_backlog_path(order.uid), {method: :PATCH }
-    -# = link_to 'ご対応する', edit_order_path(id: order.uid)

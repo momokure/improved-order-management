@@ -26,10 +26,18 @@ class OrdersController < ApplicationController
     @customer = Customer.find(@order.customer_id)
   end
 
-  def update
+  def update_representative_user
     @order = Order.find_by(uid: params[:id])
     @order.update_attributes!(order_params)
     redirect_to edit_order_path
+  end
+
+  def update
+    @order = Order.find_by(uid: params[:id])
+    @order.update_attributes!(order_params)
+    if current_user.id == 2
+      redirect_to controller: 'representative/wip', action: 'index'
+    end
   end
 
   def destroy

@@ -19,5 +19,15 @@ Rails.application.routes.draw do
     resources :done, only: :index
   end
 
-  resources :orders
+  namespace :accounting do
+    resources :backlog, only: [:index, :update]
+    resources :wip, only: :index
+    resources :done, only: :index
+  end
+
+  resources :orders do
+    member do
+      patch 'update_representative_user'
+    end
+  end
 end
