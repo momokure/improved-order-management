@@ -1,5 +1,8 @@
 %h2
   #{@customer.customer_name} 様
 
+お客様の詳細情報は現在作成中です
+%br/
+%br/
 .link
   = link_to 'あたらしいご注文を登録', new_order_path(customer_id: @customer.uid)

@@ -3,8 +3,7 @@ class OrdersController < ApplicationController
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
     @order.order_addresses.build
-    payment = @order.payments.build
-    payment.payment_note.build
+    @order.payments.build
     @order.order_notes.build
   end
 
