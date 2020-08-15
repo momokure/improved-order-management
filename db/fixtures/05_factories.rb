@@ -1,5 +1,5 @@
 Factory.seed(
-  {id: 1, factory_name: "❓",
+  {id: 1, factory_name: "❓"},
   # {id: 2, factory_name: "福岡"},
   # {id: 3, factory_name: "三鷹"},
   {id: 4, factory_name: "🐭戸田公園第1"},
