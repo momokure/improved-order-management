@@ -1,0 +1,19 @@
+.nested-fields.form-inline
+  #buy.form-group
+    = f.label :sort_date, "仕分け日"
+    = f.date_select :sort_date
+    %br/
+    %br/
+    = f.label :buy_type_id, "国内発注/海外発注"
+    = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
+
+    = f.hidden_field :sorting_user_id, value: current_user.id
+    %br/
+    %br/
+    = link_to_remove_association "仕分け詳細を削除❌", f
+    %br/
+    .buy_notes
+      = f.fields_for :sort_notes do |sort_note|
+        = render 'sort_note_fields', f: sort_note
+      .links
+        = link_to_add_association "仕分け備考を追加➕", f, :sort_notes
