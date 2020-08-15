@@ -9,6 +9,12 @@
   %td
     = l(order.try(:order_date), format: :middle, default: '')
   %td
+    = OrderType.find(order.order_type_id).order_type_name
+  %td
+    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+  %td
+    = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+  %td
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td
     = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
@@ -16,8 +22,6 @@
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
-  %td
-    = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
@@ -30,4 +34,39 @@
       = f.hidden_field :order_id, value: order.id
       = f.submit "入金照会済にする"
   %td
-    = link_to "詳細を記入する", edit_order_path(id: order.uid)
+    = button_to "詳細を記入する", edit_order_path(id: order.uid), method: :get
+    .container
+      %tbody
+        %tr
+        - OrderDetail.where(order_id: order.id).each do |order_detail|
+          %td{align: "right"}
+            ↳
+          %td
+            - if order_detail.mixed_techniques == "mixed"
+              合体加工
+            - else
+              単体加工
+          - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+            %tbody
+              %td
+              %td{align: "right"}
+                ↳
+              %td
+                = Technique.find(order_technique_detail.technique_id).technique_name
+              %td
+                - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                  = TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name
+                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                  = OrderOption.find(order_detail_option.order_option_id).order_option_name
+              %td
+                #{Factory.find(order_detail.factory_id).factory_name}工場
+              %td
+                国内発注済
+              %td
+                海外発注済
+              %td
+                仕分け済
+              %td
+                指示書作成済
+              %td
+                制作済
