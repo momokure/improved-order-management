@@ -1,6 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
-    create_table :orders do |t|
+    create_table :orders, options: "DEFAULT CHARSET=utf8mb4" do |t|
       t.string :uid, null: false
       t.references :customer, index: true, foreign_key: true
       t.references :order_reflect_user, index: true, foreign_key: { to_table: :users }

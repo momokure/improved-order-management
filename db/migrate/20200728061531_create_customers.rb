@@ -1,6 +1,6 @@
 class CreateCustomers < ActiveRecord::Migration[5.2]
   def change
-    create_table :customers do |t|
+    create_table :customers, options: "DEFAULT CHARSET=utf8mb4" do |t|
       t.string :uid, null: false
       t.string :customer_name
       t.string :customer_furigana

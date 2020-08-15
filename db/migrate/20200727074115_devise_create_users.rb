@@ -2,7 +2,7 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
-    create_table :users do |t|
+    create_table :users, options: "DEFAULT CHARSET=utf8mb4" do |t|
       ## Database authenticatable
       t.string :user_name,          null: false, default: ""
       t.string :email,              null: false, default: ""
