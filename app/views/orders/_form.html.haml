@@ -72,6 +72,25 @@
     = f.label :payment_amount, "合計金額"
     = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
 
+  -if current_user.id == 2
+    .field
+      = f.fields_for :payments, Payment.new do |p|
+        = p.label :payment_date, "ご入金日"
+        = p.date_select :payment_date, autofocus: true, autocomplete: "payment_date"
+        %br
+        = p.label :amount_paid, "ご入金額"
+        = p.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
+        = p.hidden_field :accounting_user_id, value: current_user.id
+
+  -if current_user.id == 2
+    .field
+      = f.fields_for :payments, Payment.new do |p|
+        = p.label :payment_date, "ご入金日"
+        = p.date_select :payment_date, autofocus: true, autocomplete: "payment_date"
+        %br
+        = p.label :amount_paid, "ご入金額"
+        = p.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
+        = p.hidden_field :accounting_user_id, value: current_user.id
 
   .field
     = f.fields_for :order_notes, OrderNote.new do |n|

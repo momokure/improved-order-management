@@ -2,9 +2,8 @@ class OrdersController < ApplicationController
   def new
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
-    # @order.order_details.build
-    # @order.order_technique_details.build
     @order.order_addresses.build
+    @order.payments.build
     @order.order_notes.build
   end
 
@@ -61,6 +60,7 @@ class OrdersController < ApplicationController
                                    order_technique_details_attributes: [:id, :technique_id, :progress_id, :representative_user_id, :pasteup_user_id, :maker_id, :_destroy],
                                    order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy]
         ],
+        payments_attributes: [:id, :payment_date, :amount_paid, :accounting_user_id],
         order_addresses_attributes: [:id, :customer_address_id],
         order_notes_attributes: [:id, :order_note, :user_id]
     )
