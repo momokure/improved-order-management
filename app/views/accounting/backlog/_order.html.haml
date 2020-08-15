@@ -23,3 +23,11 @@
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
+    = form_with model: @payment, local: true do |f|
+      = f.hidden_field :payment_date, value: @day
+      = f.hidden_field :amount_paid, value: order.payment_amount
+      = f.hidden_field :accounting_user_id, value: current_user.id
+      = f.hidden_field :order_id, value: order.id
+      = f.submit "入金照会済にする"
+  %td
+    = link_to "詳細を記入する", edit_order_path(id: order.uid)

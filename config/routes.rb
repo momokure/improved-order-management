@@ -30,4 +30,6 @@ Rails.application.routes.draw do
       patch 'update_representative_user'
     end
   end
+
+  resources :payments
 end

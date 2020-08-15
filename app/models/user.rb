@@ -13,4 +13,6 @@ class User < ApplicationRecord
   has_many :orders
   has_many :order_notes
   has_many :order_technique_details
+  has_many :payments
+  has_many :payment_notes
 end

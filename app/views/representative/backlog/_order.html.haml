@@ -30,6 +30,3 @@
     = form_with model: order, url: update_representative_user_order_path(id: order.uid), local: true do |f|
       = f.hidden_field :representative_user_id, value: current_user.id
       = f.submit "ご対応する"
-    -# = button_to "対応する",  , { method: :patch , params: {representative_user_id: current_user_id} }
-    -# = button_to "対応する", representative_backlog_path(order.uid), {method: :PATCH }
-    -# = link_to 'ご対応する', edit_order_path(id: order.uid)

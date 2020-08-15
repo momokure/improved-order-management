@@ -1,10 +1,8 @@
 class Accounting::BacklogController < ApplicationController
+  require "date"
   def index
-    payment = Order.eager_load(:payments)
-    @orders = Order.where(payment.nil?)
-  end
-
-  def update
-
+    @day = Date.today
+    @orders = Order.left_joins(:payments).where(payments: { order_id: nil })
+    @payment = Payment.new
   end
 end

@@ -1,4 +1,4 @@
-%h2 未入金一覧
+%h2 未入金のご注文一覧
 .container
   %table.neumorphic
     %thead
@@ -14,6 +14,6 @@
         %th ご入金日
         %th ご入金額
         %th ご注文備考欄
-        %th 🐤
+        %th
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
