@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "buy_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "buy_note"
     t.bigint "buy_detail_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buy_detail_id"], name: "index_buy_notes_on_buy_detail_id"
+    t.index ["user_id"], name: "index_buy_notes_on_user_id"
   end
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -63,9 +65,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "company_note"
     t.bigint "company_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_notes_on_company_id"
+    t.index ["user_id"], name: "index_company_notes_on_user_id"
   end
 
   create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -282,9 +286,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "payment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "payment_note"
     t.bigint "payment_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payment_id"], name: "index_payment_notes_on_payment_id"
+    t.index ["user_id"], name: "index_payment_notes_on_user_id"
   end
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -332,9 +338,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "sort_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "sort_note"
     t.bigint "sort_detail_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sort_detail_id"], name: "index_sort_notes_on_sort_detail_id"
+    t.index ["user_id"], name: "index_sort_notes_on_user_id"
   end
 
   create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -401,10 +409,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "buy_details", "suppliers"
   add_foreign_key "buy_details", "users", column: "buying_user_id"
   add_foreign_key "buy_notes", "buy_details"
+  add_foreign_key "buy_notes", "users"
   add_foreign_key "companies", "payment_methods"
   add_foreign_key "company_customers", "companies"
   add_foreign_key "company_customers", "customers"
   add_foreign_key "company_notes", "companies"
+  add_foreign_key "company_notes", "users"
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
@@ -440,12 +450,14 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "orders", "users", column: "representative_user_id"
   add_foreign_key "orders", "users", column: "shipment_user_id"
   add_foreign_key "payment_notes", "payments"
+  add_foreign_key "payment_notes", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users", column: "accounting_user_id"
   add_foreign_key "sort_details", "buy_types"
   add_foreign_key "sort_details", "order_details"
   add_foreign_key "sort_details", "users", column: "sorting_user_id"
   add_foreign_key "sort_notes", "sort_details"
+  add_foreign_key "sort_notes", "users"
   add_foreign_key "technique_options", "techniques"
   add_foreign_key "users_departments", "departments"
   add_foreign_key "users_departments", "positions"
