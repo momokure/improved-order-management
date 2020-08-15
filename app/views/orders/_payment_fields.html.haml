@@ -1,0 +1,18 @@
+.nested-fields.well.well-compact
+  .form-group
+    = f.label :payment_date, "ご入金日"
+    = f.date_select :payment_date, autofocus: true, autocomplete: "payment_date"
+    %br
+    = f.label :amount_paid, "ご入金額"
+    = f.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
+    = f.hidden_field :accounting_user_id, value: current_user.id
+
+    %br/
+    %br/
+    = link_to_remove_association "💴反映したご入金を削除❌", f
+    %br/
+  .payment_notes
+    = f.fields_for :payment_notes do |payment_note|
+      = render 'payment_note_fields', f: payment_note
+    .links
+      = link_to_add_association "ご入金備考を追加➕", f, :payment_notes

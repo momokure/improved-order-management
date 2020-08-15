@@ -75,14 +75,10 @@
   -# -if current_user.id == 2
   #accounting
     %h2 💴経理記入用
-    .field
-      = f.fields_for :payments, Payment.new do |p|
-        = p.label :payment_date, "ご入金日"
-        = p.date_select :payment_date, autofocus: true, autocomplete: "payment_date"
-        %br
-        = p.label :amount_paid, "ご入金額"
-        = p.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
-        = p.hidden_field :accounting_user_id, value: current_user.id
+    = f.fields_for :payments do |payment|
+      = render 'payment_fields', f: payment
+    #links
+      = link_to_add_association '💴ご入金を反映➕', f, :payments
 
   .field
     = f.fields_for :order_notes, OrderNote.new do |n|

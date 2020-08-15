@@ -30,8 +30,8 @@ class Order < ApplicationRecord
   has_many :order_addresses
   accepts_nested_attributes_for :order_addresses
 
-  has_many :payments
-  accepts_nested_attributes_for :payments, reject_if: :all_blank
+  has_many :payments, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true
 
   has_many :order_notes
   accepts_nested_attributes_for :order_notes, reject_if: :all_blank
