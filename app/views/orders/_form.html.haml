@@ -58,14 +58,6 @@
     = f.radio_button :carry_in, :included
     = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
 
-  -if current_user.id == 2
-    %br
-    %h2 📦発注担当者用
-    = f.fields_for :order_details do |order_detail|
-      = render 'order_detail_fields', f: order_detail
-    #links
-      = link_to_add_association '🥚加工内容を追加➕', f, :order_details
-
   %br
   %h3 💴ご入金について
   %b お支払い方法 :

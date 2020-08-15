@@ -1,0 +1,2 @@
+class SortDetail < ApplicationRecord
+end

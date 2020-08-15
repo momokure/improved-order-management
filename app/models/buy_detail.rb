@@ -1,0 +1,2 @@
+class BuyDetail < ApplicationRecord
+end

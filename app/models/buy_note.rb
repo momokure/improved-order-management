@@ -1,0 +1,2 @@
+class BuyNote < ApplicationRecord
+end
