@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
   def new
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new
