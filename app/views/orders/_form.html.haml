@@ -58,6 +58,14 @@
     = f.radio_button :carry_in, :included
     = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
 
+  -if current_user.id == 2
+    %br
+    %h2 📦発注担当者用
+    = f.fields_for :order_details do |order_detail|
+      = render 'order_detail_fields', f: order_detail
+    #links
+      = link_to_add_association '🥚加工内容を追加➕', f, :order_details
+
   %br
   %h3 💴ご入金について
   %b お支払い方法 :
@@ -73,16 +81,8 @@
     = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
 
   -if current_user.id == 2
-    .field
-      = f.fields_for :payments, Payment.new do |p|
-        = p.label :payment_date, "ご入金日"
-        = p.date_select :payment_date, autofocus: true, autocomplete: "payment_date"
-        %br
-        = p.label :amount_paid, "ご入金額"
-        = p.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
-        = p.hidden_field :accounting_user_id, value: current_user.id
-
-  -if current_user.id == 2
+    %br/
+    %h2 💴経理記入用
     .field
       = f.fields_for :payments, Payment.new do |p|
         = p.label :payment_date, "ご入金日"
