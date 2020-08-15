@@ -1,0 +1,9 @@
+.nested-fields.form-inline
+  %br/
+  .form-group
+    = f.label :buy_note, "発注備考欄"
+    = f.text_area :buy_note
+    = f.hidden_field :user_id, value: current_user.id
+    %br/
+    %br/
+    = link_to_remove_association "発注備考を削除❌", f

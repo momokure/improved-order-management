@@ -1,6 +1,5 @@
 .nested-fields.form-inline
   .form-group
-    -# = f.label :order_option_id, "🎁📷オプション"
     = f.collection_select(:order_option_id, OrderOption.all, :id, :order_option_name)
     %br/
     = link_to_remove_association "🎁📷オプションを削除❌", f

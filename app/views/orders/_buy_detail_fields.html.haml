@@ -1,0 +1,24 @@
+.nested-fields.form-inline
+  #buy.form-group
+    = f.label :purchase_date, "発注日"
+    = f.date_select :purchase_date
+    %br/
+    %br/
+    = f.label :arrival_date, "到着日"
+    = f.date_field :arrival_date
+    %br/
+    %br/
+    = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
+    %br/
+    %br/
+    = f.collection_select(:supplier_id, Supplier.all, :id, :supplier_name)
+    = f.hidden_field :buying_user_id, value: current_user.id
+    %br/
+    %br/
+    = link_to_remove_association "発注詳細を削除❌", f
+    %br/
+    .buy_notes
+      = f.fields_for :buy_notes do |buy_note|
+        = render 'buy_note_fields', f: buy_note
+      .links
+        = link_to_add_association "発注備考を追加➕", f, :buy_notes
