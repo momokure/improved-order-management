@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
                                    buy_details_attributes: [:id, :buy_progress_id, :purchase_date, :arrival_date, :buy_type_id, :supplier_id, :order_detail_id, :buying_user_id ,:_destroy,
                                                             buy_notes_attributes: [:id, :buy_note, :buy_detail_id, :user_id, :_destroy]
                                    ],
-                                   sort_details_attributes: [:id, :technique_option_id, :_destroy,
+                                   sort_details_attributes: [:id, :buy_type_id, :order_detail_id, :sorting_user_id, :_destroy,
                                                              sort_notes_attributes: [:id, :sort_note, :sort_detail_id, :user_id, :_destroy]
                                    ]
         ],
