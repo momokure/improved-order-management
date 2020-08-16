@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+
+  def index
+    @orders = Order.all
+  end
+
   def new
     @customer = Customer.find_by(uid: params[:customer_id])
     @order = Order.new

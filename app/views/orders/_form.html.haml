@@ -20,7 +20,7 @@
   -#  = f.fields_for :order_addresses, OrderAddress.new do |oa|
   -#    = oa.label :customer_address_id, "納品先"
   -#    = oa.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
-  
+
   %br
   .field
     = f.label :desired_delivery_date, "納品ご希望日"
