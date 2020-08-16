@@ -3,15 +3,15 @@
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
     = link_to customer_path(id: order.customer.uid) do
+      #{order.customer.customer_type.customer_type_name}
       #{order.customer.customer_name} 様
   %td
-    #{order.customer.customer_type.customer_type_name}
+    = OrderType.find(order.order_type_id).order_type_name
+    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
     = l(order.try(:order_date), format: :middle, default: '')
   %td
-    = OrderType.find(order.order_type_id).order_type_name
-  %td
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+    = User.find(order.representative_user_id).user_name
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
       = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
@@ -22,49 +22,49 @@
   %td
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
+  %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
-    = button_to '修正する', edit_order_path(id: order.uid), method: :get
   %td
-    = form_with model: order, url: order_path(id: order.uid), local: true do |f|
-      = f.hidden_field :representative_user_id, value: current_user.id
-      = f.submit "ご入金連絡済にする"
-      .container
-        %tbody
-          %tr
-          - OrderDetail.where(order_id: order.id).each do |order_detail|
-            %td{align: "right"}
-              ↳
-            %td
-              - if order_detail.mixed_techniques == "mixed"
-                合体加工
-              - else
-                単体加工
-            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-              %tbody
-                %td
-                %td{align: "right"}
-                  ↳
-                %td
-                  = Technique.find(order_technique_detail.technique_id).technique_name
-                %td
-                  - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-                    = TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name
+  %td
+    = button_to '変更する', edit_order_path(id: order.uid), method: :get
+    .container
+      %tbody
+        %tr
+        - OrderDetail.where(order_id: order.id).each do |order_detail|
+          %td{align: "right"}
+            ↳
+          %td
+            - if order_detail.mixed_techniques == "mixed"
+              合体加工
+            - else
+              単体加工
+          - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+            %tbody
+              %td
+              %td{align: "right"}
+                ↳
+              %td
+                = Technique.find(order_technique_detail.technique_id).technique_name
+                %br
+                - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                  #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                  %br
                   - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                    = OrderOption.find(order_detail_option.order_option_id).order_option_name
-                %td
-                  #{Factory.find(order_detail.factory_id).factory_name}工場
-                %td
-                  国内発注済
-                %td
-                  海外発注済
-                %td
-                  仕分け済
-                %td
-                  指示書作成済
-                %td
-                  制作済
+                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+              %td
+                #{Factory.find(order_detail.factory_id).factory_name}工場
+              %td
+                国内発注済
+              %td
+                海外発注済
+              %td
+                仕分け済
+              %td
+                指示書作成済
+              %td
+                制作済
