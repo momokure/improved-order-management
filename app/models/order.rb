@@ -28,7 +28,8 @@ class Order < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture_code
   has_many :order_addresses
-  accepts_nested_attributes_for :order_addresses
+  has_many :customer_addresses, through: :order_addresses, dependent: :destroy
+  accepts_nested_attributes_for :customer_addresses, reject_if: :all_blank, allow_destroy: true
 
   has_many :payments, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true

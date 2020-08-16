@@ -11,11 +11,17 @@
 
   %br
   %h3 ⏳納品先と納期について
-  .field
-    = f.fields_for :order_addresses, OrderAddress.new do |a|
-      = a.label :customer_address_id, "納品先"
-      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+  = f.fields_for :customer_addresses do |customer_address|
+    = render 'customer_address_fields', f: customer_address
+  #links
+    = link_to_add_association '🗾納品先を追加➕', f, :customer_addresses
 
+  -#.field
+  -#  = f.fields_for :order_addresses, OrderAddress.new do |oa|
+  -#    = oa.label :customer_address_id, "納品先"
+  -#    = oa.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+  
+  %br
   .field
     = f.label :desired_delivery_date, "納品ご希望日"
     = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"

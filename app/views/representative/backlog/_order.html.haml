@@ -13,7 +13,8 @@
   %td
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
-    = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+    - OrderAddress.where(order_id: order.id).each do |oa|
+      = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
   %td
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td

@@ -1,0 +1,8 @@
+.nested-fields.well.well-compact
+  .form-group
+    = f.label :prefecture_code, "納品先"
+    = f.collection_select(:prefecture_code, PrefectureCode.all, :id, :name)
+    = f.hidden_field :customer_id, value: @customer.id
+    %br/
+    = link_to_remove_association "🗾納品先を削除❌", f
+    %br/

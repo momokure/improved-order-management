@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
         payments_attributes: [:id, :payment_date, :amount_paid, :accounting_user_id, :_destroy,
                               payment_notes_attributes: [:id, :payment_note, :user_id, :_destroy]
         ],
-        order_addresses_attributes: [:id, :customer_address_id],
+        customer_addresses_attributes: [:id, :prefecture_code, :customer_id, :_destroy],
         order_notes_attributes: [:id, :order_note, :user_id]
     )
   end
