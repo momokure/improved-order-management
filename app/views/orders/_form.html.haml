@@ -2,7 +2,11 @@
   -# = f.hidden_field :customer_id, value: @customer.id
   -# = f.hidden_field :order_reflect_user_id, value: current_user.id
   -# = f.hidden_field :representative_user_id, value: current_user.id
-  = f.hidden_field :shipment_user_id, value: 1
+
+
+  .field
+    = f.label :representative_user_id, "担当者"
+    = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3] } ), :id, :user_name)
 
   .field
     = f.label :order_type_name, "ご注文種別"
@@ -95,6 +99,12 @@
   #links
     = link_to_add_association '💴ご入金を反映➕', f, :payments
 
+  %br/
+  %h2 発送記入用
+  %div{style: "display:inline-flex"}
+    = f.label :shipment_user_id, "発送担当者 :"
+    = f.collection_select(:shipment_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 17] }), :id, :user_name)
+  %br/
   %br/
   %h2 ご注文備考欄
   = f.fields_for :order_notes do |order_note|

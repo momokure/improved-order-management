@@ -31,7 +31,7 @@
   %td
   %td
   %td
-    = button_to '詳細確認・変更', edit_order_path(id: order.uid), method: :get
+    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
     .container
       %tbody
         %tr
@@ -59,12 +59,12 @@
               %td
                 #{Factory.find(order_detail.factory_id).factory_name}工場
               %td
-                国内発注済
+                -#国内発注済
               %td
-                海外発注済
+                -#海外発注済
               %td
-                仕分け済
+                -#仕分け済
               %td
-                指示書作成済
+                -#指示書作成済
               %td
-                制作済
+                -#制作済

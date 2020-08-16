@@ -6,9 +6,11 @@
     %br/
     = f.label :buy_type_id, "国内発注/海外発注"
     = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
-
-    //改修予定 : 経理のリストから選ぶ
-    = f.hidden_field :sorting_user_id, value: current_user.id
+    %br/
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :sorting_user_id, "仕分け担当者 :"
+      = f.collection_select(:sorting_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 7, 9] }), :id, :user_name)
     %br/
     %br/
     = link_to_remove_association "仕分け詳細を削除❌", f

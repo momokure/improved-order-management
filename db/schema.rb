@@ -247,7 +247,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.boolean "payment_confirmation", default: false, null: false
     t.boolean "send_receipt", default: false, null: false
     t.boolean "send_invoice", default: false, null: false
-    t.boolean "shipment_status", default: false, null: false
     t.datetime "shipment_date"
     t.bigint "shipment_user_id"
     t.integer "cancellation", default: 0, null: false

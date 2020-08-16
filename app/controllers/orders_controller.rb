@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
         :domestic_buying, :overseas_buying, :carry_in,
         :payment_deadline_date, :payment_amount, :payment_confirmation,
         :send_receipt, :send_invoice,
-        :shipment_status, :shipment_date, :shipment_user_id,
+        :shipment_date, :shipment_user_id,
         :cancellation,
         order_details_attributes: [:id, :mixed_techniques, :factory_id, :_destroy,
                                    order_detail_options_attributes: [:id, :order_option_id, :_destroy],

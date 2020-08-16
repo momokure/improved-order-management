@@ -6,8 +6,9 @@
     = f.label :amount_paid, "ご入金額"
     = f.number_field :amount_paid, autofocus: true, autocomplete: "amount_paid"
 
-    //改修予定 : 経理のリストから選ぶ
-    = f.hidden_field :accounting_user_id, value: current_user.id
+    %div{style: "display:inline-flex"}
+      = f.label :accounting_user_id, "経理担当者 :"
+      = f.collection_select(:accounting_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 4] }), :id, :user_name)
 
     %br/
     %br/
