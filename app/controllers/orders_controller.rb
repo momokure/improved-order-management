@@ -37,9 +37,9 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by(uid: params[:id])
     @order.update_attributes!(order_params)
-    if current_user.id == 2
-      redirect_to controller: 'representative/wip', action: 'index'
-    end
+    # if current_user.id == 2
+    #   redirect_to controller: 'representative/wip', action: 'index'
+    # end
   end
 
   def destroy
