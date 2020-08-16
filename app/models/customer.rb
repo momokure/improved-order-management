@@ -7,9 +7,6 @@ class Customer < ApplicationRecord
 
   belongs_to :customer_type
 
-  has_one :individual_customer
-  accepts_nested_attributes_for :individual_customer
-
   has_many :company_customers
   has_many :companies, through: :company_customers
   accepts_nested_attributes_for :companies, reject_if: :all_blank

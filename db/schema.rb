@@ -46,11 +46,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "company_name"
     t.string "company_name_furigana"
-    t.bigint "payment_method_id"
-    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["payment_method_id"], name: "index_companies_on_payment_method_id"
   end
 
   create_table "company_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -92,9 +89,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "customer_note"
     t.bigint "customer_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_customer_notes_on_customer_id"
+    t.index ["user_id"], name: "index_customer_notes_on_user_id"
   end
 
   create_table "customer_phone_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -116,9 +115,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.string "customer_name"
     t.string "customer_furigana"
     t.bigint "customer_type_id"
+    t.bigint "payment_method_id"
+    t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
+    t.index ["payment_method_id"], name: "index_customers_on_payment_method_id"
     t.index ["uid"], name: "index_customers_on_uid", unique: true
   end
 
@@ -138,25 +140,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.string "factory_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "individual_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "payment_method_id"
-    t.boolean "receipt_required", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_individual_customers_on_customer_id"
-    t.index ["payment_method_id"], name: "index_individual_customers_on_payment_method_id"
-  end
-
-  create_table "invoicing_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.bigint "payment_method_id"
-    t.bigint "department_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_invoicing_departments_on_department_id"
-    t.index ["payment_method_id"], name: "index_invoicing_departments_on_payment_method_id"
   end
 
   create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -410,7 +393,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "buy_details", "users", column: "buying_user_id"
   add_foreign_key "buy_notes", "buy_details"
   add_foreign_key "buy_notes", "users"
-  add_foreign_key "companies", "payment_methods"
   add_foreign_key "company_customers", "companies"
   add_foreign_key "company_customers", "customers"
   add_foreign_key "company_notes", "companies"
@@ -418,12 +400,10 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "customer_emails", "customers"
   add_foreign_key "customer_notes", "customers"
+  add_foreign_key "customer_notes", "users"
   add_foreign_key "customer_phone_numbers", "customers"
   add_foreign_key "customers", "customer_types"
-  add_foreign_key "individual_customers", "customers"
-  add_foreign_key "individual_customers", "payment_methods"
-  add_foreign_key "invoicing_departments", "departments"
-  add_foreign_key "invoicing_departments", "payment_methods"
+  add_foreign_key "customers", "payment_methods"
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_detail_options", "order_details"
