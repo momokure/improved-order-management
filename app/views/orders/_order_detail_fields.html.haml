@@ -5,8 +5,11 @@
     = f.label :mixed_techniques, "単独加工", {value: :unmixed, style: "display: inline-block;"}
     = f.radio_button :mixed_techniques, :mixed
     = f.label :mixed_techniques, "合体加工", {value: :mixed, style: "display: inline-block;"}
-
-    = f.hidden_field :factory_id, value: 1
+    %br/
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :factory_id, "🏭制作工場 : "
+      = f.collection_select(:factory_id, Factory.all, :id, :factory_name)
     %br/
     %br/
     = link_to_remove_association "🥚加工内容をすべて削除❌", f

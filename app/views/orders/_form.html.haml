@@ -1,8 +1,7 @@
 = form_with model: @order, local: true do |f|
-  = f.hidden_field :customer_id, value: @customer.id
-  = f.hidden_field :order_reflect_user_id, value: current_user.id
-  = f.hidden_field :representative_user_id, value: current_user.id
-  = f.hidden_field :progress_id, value: 1
+  -# = f.hidden_field :customer_id, value: @customer.id
+  -# = f.hidden_field :order_reflect_user_id, value: current_user.id
+  -# = f.hidden_field :representative_user_id, value: current_user.id
   = f.hidden_field :shipment_user_id, value: 1
 
   .field

@@ -15,12 +15,14 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
     t.date "arrival_date"
+    t.bigint "buy_progress_id"
     t.bigint "buy_type_id"
     t.bigint "supplier_id"
     t.bigint "order_detail_id"
     t.bigint "buying_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["buy_progress_id"], name: "index_buy_details_on_buy_progress_id"
     t.index ["buy_type_id"], name: "index_buy_details_on_buy_type_id"
     t.index ["buying_user_id"], name: "index_buy_details_on_buying_user_id"
     t.index ["order_detail_id"], name: "index_buy_details_on_order_detail_id"
@@ -35,6 +37,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.datetime "updated_at", null: false
     t.index ["buy_detail_id"], name: "index_buy_notes_on_buy_detail_id"
     t.index ["user_id"], name: "index_buy_notes_on_user_id"
+  end
+
+  create_table "buy_progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.string "buy_progress_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -199,7 +207,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.bigint "order_detail_id"
     t.bigint "technique_id"
     t.bigint "progress_id"
-    t.bigint "representative_user_id"
     t.bigint "pasteup_user_id"
     t.bigint "maker_id"
     t.datetime "created_at", null: false
@@ -208,7 +215,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.index ["order_detail_id"], name: "index_order_technique_details_on_order_detail_id"
     t.index ["pasteup_user_id"], name: "index_order_technique_details_on_pasteup_user_id"
     t.index ["progress_id"], name: "index_order_technique_details_on_progress_id"
-    t.index ["representative_user_id"], name: "index_order_technique_details_on_representative_user_id"
     t.index ["technique_id"], name: "index_order_technique_details_on_technique_id"
   end
 
@@ -387,6 +393,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.index ["user_id"], name: "index_users_factories_on_user_id"
   end
 
+  add_foreign_key "buy_details", "buy_progresses"
   add_foreign_key "buy_details", "buy_types"
   add_foreign_key "buy_details", "order_details"
   add_foreign_key "buy_details", "suppliers"
@@ -419,7 +426,6 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "order_technique_details", "techniques"
   add_foreign_key "order_technique_details", "users", column: "maker_id"
   add_foreign_key "order_technique_details", "users", column: "pasteup_user_id"
-  add_foreign_key "order_technique_details", "users", column: "representative_user_id"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "desired_delivery_types"
   add_foreign_key "orders", "order_types"

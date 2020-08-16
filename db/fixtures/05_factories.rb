@@ -1,7 +1,7 @@
 Factory.seed(
   {id: 1, factory_name: "❓"},
   {id: 4, factory_name: "🐭戸田公園第1"},
-  {id: 7, factory_name: "🐭中野"},
+  {id: 7, factory_name: "🐰中野"},
   {id: 8, factory_name: "🐲美女木"}
 )
 
