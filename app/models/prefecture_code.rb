@@ -21,4 +21,5 @@ class PrefectureCode < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :customer_addresses
+  has_many :order_addresses
 end
