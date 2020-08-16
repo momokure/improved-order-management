@@ -40,6 +40,7 @@ class OrdersController < ApplicationController
     # if current_user.id == 2
     #   redirect_to controller: 'representative/wip', action: 'index'
     # end
+    redirect_to edit_order_path(uid: params[:id])
   end
 
   def destroy
@@ -65,7 +66,7 @@ class OrdersController < ApplicationController
                                    order_detail_options_attributes: [:id, :order_option_id, :_destroy],
                                    order_technique_details_attributes: [:id, :technique_id, :progress_id, :pasteup_user_id, :maker_id, :_destroy],
                                    order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy],
-                                   buy_details_attributes: [:id, :purchase_date, :arrival_date, :buy_type_id, :supplier_id, :order_detail_id, :buying_user_id ,:_destroy,
+                                   buy_details_attributes: [:id, :buy_progress_id, :purchase_date, :arrival_date, :buy_type_id, :supplier_id, :order_detail_id, :buying_user_id ,:_destroy,
                                                             buy_notes_attributes: [:id, :buy_note, :buy_detail_id, :user_id, :_destroy]
                                    ],
                                    sort_details_attributes: [:id, :technique_option_id, :_destroy,
