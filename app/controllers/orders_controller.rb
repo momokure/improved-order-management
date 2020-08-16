@@ -54,7 +54,8 @@ class OrdersController < ApplicationController
       .permit(
         :id, :uid, :customer_id, :order_reflect_user_id, :representative_user_id,
         :order_type_id, :quote_difficulty_level_id, :payment_method_id,
-        :order_date, :first_response_date, :desired_delivery_date, :desired_delivery_type_id, :internal_delivery_date, :specified_time_id,
+        :order_date, :first_response_date, :desired_delivery_date, :desired_delivery_type_id, :internal_delivery_date,
+        :specified_time_id, :change_delivery_date,
         :domestic_buying, :overseas_buying, :carry_in,
         :payment_deadline_date, :payment_amount, :payment_confirmation,
         :send_receipt, :send_invoice,
@@ -75,7 +76,7 @@ class OrdersController < ApplicationController
                               payment_notes_attributes: [:id, :payment_note, :user_id, :_destroy]
         ],
         customer_addresses_attributes: [:id, :prefecture_code, :customer_id, :_destroy],
-        order_notes_attributes: [:id, :order_note, :user_id]
+        order_notes_attributes: [:id, :order_note, :user_id, :_destroy]
     )
   end
 end

@@ -1,8 +1,10 @@
 %h2
   = link_to customer_path(@customer.uid) do
+    #{@order.customer.customer_type.customer_type_name}
     #{@customer.customer_name} 様
-  (#{@order.customer.customer_type.customer_type_name}) /ご注文ID :
+  (ご注文ID :
   = link_to @order.uid, 'https://mail.google.com/mail/u/0/#search/'+@order.uid, target:["_blank"]
+  )
   -# = PaymentMethod.find(@order.customer)
 
 %h3 ご注文日時(受信日時) : #{l(@order.order_date, format: :long, default: '')}
@@ -11,4 +13,4 @@
 
 %br/
 = render 'form', order: @order
-= link_to 'みつもり未対応一覧に戻る', representative_backlog_index_path
+-# = link_to 'みつもり未対応一覧に戻る', representative_backlog_index_path

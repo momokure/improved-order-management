@@ -11,7 +11,11 @@
     = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
     %br/
     %br/
+    = f.collection_select(:buy_progress_id, BuyProgress.all, :id, :buy_progress_name)
+    %br/
+    %br/
     = f.collection_select(:supplier_id, Supplier.all, :id, :supplier_name)
+    //改修予定 : 部署で絞る
     = f.hidden_field :buying_user_id, value: current_user.id
     %br/
     %br/

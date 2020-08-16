@@ -13,6 +13,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.date :desired_delivery_date
       t.references :desired_delivery_type, index: true, foreign_key: true
       t.date :internal_delivery_date
+      t.boolean :change_delivery_date, null: false, default: false
       t.references :specified_time, index: true, foreign_key: true
       t.boolean :domestic_buying, null: false, default: true
       t.boolean :overseas_buying, null: false, default: false
@@ -25,7 +26,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.boolean :shipment_status, null: false, default: false
       t.datetime :shipment_date
       t.references :shipment_user, index: true, foreign_key: { to_table: :users }
-      t.integer :cancellation
+      t.integer :cancellation, null: false, default: false
       t.timestamps
     end
     add_index :orders, :uid, unique: true

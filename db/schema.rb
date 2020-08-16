@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.date "desired_delivery_date"
     t.bigint "desired_delivery_type_id"
     t.date "internal_delivery_date"
+    t.boolean "change_delivery_date", default: false, null: false
     t.bigint "specified_time_id"
     t.boolean "domestic_buying", default: true, null: false
     t.boolean "overseas_buying", default: false, null: false
@@ -249,7 +250,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
     t.boolean "shipment_status", default: false, null: false
     t.datetime "shipment_date"
     t.bigint "shipment_user_id"
-    t.integer "cancellation"
+    t.integer "cancellation", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"

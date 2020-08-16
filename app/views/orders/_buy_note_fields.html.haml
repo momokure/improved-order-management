@@ -1,6 +1,6 @@
-.nested-fields.form-inline
-  %br/
+.nested-fields.well.well-compact
   .form-group
+    %br/
     = f.label :buy_note, "発注備考欄"
     = f.text_area :buy_note
     = f.hidden_field :user_id, value: current_user.id

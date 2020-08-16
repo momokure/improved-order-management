@@ -6,8 +6,9 @@
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
   = f.hidden_field :order_reflect_user_id, value: current_user.id
-  = f.hidden_field :payment_method_id, value: 1
 
+  //改修予定
+  = f.hidden_field :payment_method_id, value: 1
   = f.hidden_field :representative_user_id, value: 1
   = f.hidden_field :shipment_user_id, value: 1
 
@@ -28,9 +29,10 @@
     = f.datetime_select :order_date
 
   .field
-    = f.fields_for :order_addresses, OrderAddress.new do |a|
-      = a.label :order_addresses, "ご注文の納品先"
-      = a.collection_select(:customer_address_id, CustomerAddress.where(customer_id: @customer.id), :id, :view_prefecture_name)
+    = f.fields_for :customer_addresses do |customer_address|
+      = render 'customer_address_fields', f: customer_address
+    #links
+      = link_to_add_association '🗾納品先を追加➕', f, :customer_addresses
 
   .field
     = f.label :desired_delivery_type_name, "納品ご希望日の種類"

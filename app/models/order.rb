@@ -5,6 +5,7 @@ class Order < ApplicationRecord
     uid
   end
 
+  enum change_delivery_date: { no_change: false, change: true }
   enum domestic_buying: { not_included: false, included: true }, _prefix: true
   enum overseas_buying: { not_included: false, included: true }, _prefix: true
   enum carry_in: { not_included: false, included: true }, _prefix: true
@@ -34,8 +35,8 @@ class Order < ApplicationRecord
   has_many :payments, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true
 
-  has_many :order_notes
-  accepts_nested_attributes_for :order_notes, reject_if: :all_blank
+  has_many :order_notes, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :order_notes, reject_if: :all_blank, allow_destroy: true
 
   private
 

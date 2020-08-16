@@ -1,0 +1,8 @@
+.nested-fields.well.well-compact
+  .form-group
+    = f.label :order_note, "ご注文の備考欄"
+    = f.text_area :order_note, autofocus: true, autocomplete: "order_note"
+    = f.hidden_field :user_id, value: current_user.id
+
+    %br/
+    = link_to_remove_association "備考を削除❌", f

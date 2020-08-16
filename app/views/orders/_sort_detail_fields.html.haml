@@ -7,6 +7,7 @@
     = f.label :buy_type_id, "国内発注/海外発注"
     = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
 
+    //改修予定 : 経理のリストから選ぶ
     = f.hidden_field :sorting_user_id, value: current_user.id
     %br/
     %br/
