@@ -1,10 +1,21 @@
 .nested-fields.form-inline
+  %br/
   .form-group
     -# = f.label :order_option_id, "🐤加工方法"
     = f.collection_select(:technique_id, Technique.all, :id, :technique_name)
-    = f.hidden_field :progress_id, value: 1
+    = f.collection_select(:progress_id, Progress.all, :id, :progress_name)
+
+    %div{style: "display:inline-flex"}
+      = f.label :pasteup_user_id, "　🐔指示書担当者 :"
+      = f.collection_select(:pasteup_user_id, User.all, :id, :user_name)
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :maker_id, "　🌱制作担当者 :"
+      = f.collection_select(:maker_id, User.all, :id, :user_name)
+
     = f.hidden_field :representative_user_id, value: current_user.id
-    = f.hidden_field :pasteup_user_id, value: 1
-    = f.hidden_field :maker_id, value: 1
+    -# = f.hidden_field :pasteup_user_id, value: 1
+    -# = f.hidden_field :maker_id, value: 1
+    %br/
     %br/
     = link_to_remove_association "🐤加工方法を削除❌", f
