@@ -1,5 +1,4 @@
 Department.seed(
-  {id: 99, department_name: "該当なし"},
   {id: 1, department_name: "インフラ(システム管理)"},
   {id: 2, department_name: "ご注文管理"},
   {id: 3, department_name: "営業"},
@@ -16,5 +15,6 @@ Department.seed(
   {id: 14, department_name: "刺繍"},
   {id: 15, department_name: "UV"},
   {id: 16, department_name: "シルクスクリーンD"},
-  {id: 17, department_name: "発送"}
-)
+  {id: 17, department_name: "発送"},
+  {id: 99, department_name: "該当なし"}
+  )
