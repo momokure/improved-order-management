@@ -5,13 +5,14 @@ body {
 }
 
 .container {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -25%);
+  //position: absolute;
+  //top: 25%;
+  //left: 50%;
+  //transform: translate(-50%, -25%);
 }
 
 table.neumorphic {
+  margin: auto;
   width: 600px;
   border-spacing: 0;
   color: #212121;
