@@ -15,12 +15,12 @@ QuoteDifficultyLevel.seed do |s|
   s.quote_difficulty_level_name = "😽"
   s.score = 7
 end
-
-QuoteDifficultyLevel.seed do |s|
-  s.id = 4
-  s.quote_difficulty_level_name = "😽"
-  s.score = 7
-end
+#
+# QuoteDifficultyLevel.seed do |s|
+#   s.id = 4
+#   s.quote_difficulty_level_name = "😽"
+#   s.score = 7
+# end
 
 QuoteDifficultyLevel.seed do |s|
   s.id = 5
