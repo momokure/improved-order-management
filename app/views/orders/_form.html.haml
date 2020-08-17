@@ -5,8 +5,8 @@
 
 
   .field
-    = f.label :representative_user_id, "担当者"
-    = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3] } ), :id, :user_name)
+    -# = f.label :representative_user_id, "担当者"
+    -# = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3] } ), :id, :user_name)
 
   .field
     = f.label :order_type_name, "ご注文種別"

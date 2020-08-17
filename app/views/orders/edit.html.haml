@@ -9,6 +9,7 @@
 
 %h3 ご注文日時(受信日時) : #{l(@order.order_date, format: :long, default: '')}
 %h3 みつもり難易度 : #{QuoteDifficultyLevel.find(@order.quote_difficulty_level_id).quote_difficulty_level_name}
+%h3 担当者 : #{User.find(@order.representative_user_id).user_name}
 
 %br/
 = render 'form', order: @order
