@@ -1,4 +1,6 @@
 %h2 みつもり未対応一覧
+%h2 残#{Order.where(representative_user_id: 1, first_response_date: nil).count}件
+
 .container
   %table.neumorphic
     %thead
