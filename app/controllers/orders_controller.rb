@@ -40,7 +40,9 @@ class OrdersController < ApplicationController
     # if current_user.id == 2
     #   redirect_to controller: 'representative/wip', action: 'index'
     # end
-    redirect_to edit_order_path(uid: params[:id])
+    if User.left_joins(:users_departments).where( users_departments: { department_id: [3] })
+      redirect_to representative_wip_index_path
+    end
   end
 
   def destroy
