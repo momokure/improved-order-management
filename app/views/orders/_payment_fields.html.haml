@@ -9,7 +9,7 @@
     %div{style: "display:inline-flex"}
       = f.label :accounting_user_id, "経理担当者 :"
       -# = f.collection_select(:accounting_user_id, User.left_joins(:users_departments).where( users_departments: { user_id: [27, 26] }), :id, :user_name)
-      = f.collection_select(:accounting_user_id, User.where(id: [27, 26]), :id, :user_name)
+      = f.collection_select(:accounting_user_id, User.where(id: [27, 26]), :id, :user_name, selected: 27)
       //改修予定
     %br/
     %br/
