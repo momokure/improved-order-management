@@ -4,7 +4,7 @@
   %td
     = link_to customer_path(id: order.customer.uid) do
       #{order.customer.customer_type.customer_type_name}
-      #{order.customer.customer_name.to_s.truncate(20)} 様
+      #{order.customer.customer_name} 様
   %td
     = OrderType.find(order.order_type_id).order_type_name
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
@@ -31,6 +31,14 @@
   %td
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
+    -# = PaymentNote.find_by(Payment.find_by(order_id: order.id).try(:amount_paid).try(:payment_note).to_s.truncate(20)
+  %td
+    -# = form_with model: @payment, local: true do |f|
+    -#   = f.hidden_field :payment_date, value: @day
+    -#   = f.hidden_field :amount_paid, value: order.payment_amount
+    -#   = f.hidden_field :accounting_user_id, value: current_user.id
+    -#   = f.hidden_field :order_id, value: order.id
+    -#   = f.submit "本日付のご入金を照会済にする"
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
     .container
@@ -69,3 +77,5 @@
                 -#指示書作成済
               %td
                 -#制作済
+
+    -# = button_to "詳細を記入する", edit_order_path(id: order.uid), method: :get
