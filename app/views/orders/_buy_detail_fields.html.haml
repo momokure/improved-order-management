@@ -18,7 +18,7 @@
     %br/
     %div{style: "display:inline-flex"}
     = f.label :buying_user_id, "発注担当者 :"
-    = f.collection_select(:buying_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 7, 9] }), :id, :user_name)
+    = f.collection_select(:buying_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 6, 8] }), :id, :user_name)
     %br/
     %br/
     = link_to_remove_association "発注詳細を削除❌", f
