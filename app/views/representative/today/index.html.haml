@@ -1,0 +1,33 @@
+%h2 本日の対応件数
+%h2 #{Order.where(first_response_date: @from..@to).count}件対応済
+
+%br
+%h3 柳生チーム
+柳生 #{Order.where(representative_user_id: 2, first_response_date: @from..@to).count}件
+佐藤(絵) #{Order.where(representative_user_id: 3, first_response_date: @from..@to).count}件
+東雲 #{Order.where(representative_user_id: 17, first_response_date: @from..@to).count}件
+坂口 #{Order.where(representative_user_id: 12, first_response_date: @from..@to).count}件
+
+%br
+%h3 武内チーム
+武内 #{Order.where(representative_user_id: 18, first_response_date: @from..@to).count}件
+福留 #{Order.where(representative_user_id: 7, first_response_date: @from..@to).count}件
+菅野 #{Order.where(representative_user_id: 24, first_response_date: @from..@to).count}件
+矢部 #{Order.where(representative_user_id: 10, first_response_date: @from..@to).count}件
+立石(希) #{Order.where(representative_user_id: 15, first_response_date: @from..@to).count}件
+宗我部 #{Order.where(representative_user_id: 9, first_response_date: @from..@to).count}件
+
+%br
+%h3 穴澤チーム
+穴澤 #{Order.where(representative_user_id: 8, first_response_date: @from..@to).count}件
+柳沼 #{Order.where(representative_user_id: 19, first_response_date: @from..@to).count}件
+松友 #{Order.where(representative_user_id: 13, first_response_date: @from..@to).count}件
+加藤 #{Order.where(representative_user_id: 14, first_response_date: @from..@to).count}件
+
+%br
+%h3 研修
+一条 #{Order.where(representative_user_id: 23, first_response_date: @from..@to).count}件
+小平 #{Order.where(representative_user_id: 21, first_response_date: @from..@to).count}件
+宇喜多 #{Order.where(representative_user_id: 11, first_response_date: @from..@to).count}件
+最上 #{Order.where(representative_user_id: 22, first_response_date: @from..@to).count}件
+松浦 #{Order.where(representative_user_id: 16, first_response_date: @from..@to).count}件

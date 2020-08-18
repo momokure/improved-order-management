@@ -1,5 +1,7 @@
 class Representative::TodayController < ApplicationController
   def index
-    # @orders = Order.where(representative_user_id: current_user.id, payment_confirmation: "unconfirmed")
+    @orders = Order.all
+    @from = Date.today
+    @to = @from+1
   end
 end
