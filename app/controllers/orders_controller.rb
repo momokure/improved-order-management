@@ -39,7 +39,9 @@ class OrdersController < ApplicationController
     @order = Order.find_by(uid: params[:id])
     @order.update_attributes!(order_params)
 
-    if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 3
+    if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2
+      redirect_to root_path
+    elsif Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 3
       redirect_to representative_wip_index_path
     elsif Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4
       redirect_to root_path

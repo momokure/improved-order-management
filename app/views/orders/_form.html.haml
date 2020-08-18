@@ -1,12 +1,27 @@
 = form_with model: @order, local: true do |f|
-  -# = f.hidden_field :customer_id, value: @customer.id
-  -# = f.hidden_field :order_reflect_user_id, value: current_user.id
-  -# = f.hidden_field :representative_user_id, value: current_user.id
 
-  -#.field
-    -# = f.label :representative_user_id, "担当者"
-    -# = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3] } ), :id, :user_name)
+  - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
+    %br
+    %h3 👩‍🍳注文管理変更用👨‍🍳
+    .field
+    %div{style: "display:inline-flex"}
+      = f.label :order_date, "ご注文日 : "
+      = f.datetime_select :order_date
+    .field
+    %div{style: "display:inline-flex"}
+      = f.label :uid, "ID : "
+      = f.text_field :uid, autofocus: true, autocomplete: "uid"
 
+    .field
+    %div{style: "display:inline-flex"}
+      = f.label :quote_difficulty_level_id, "みつもり難易度 : "
+      = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
+
+    .field
+    %div{style: "display:inline-flex"}
+      = f.label :representative_user_id, "担当者 : "
+      = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3, 2] } ), :id, :user_name)
+  %br
   .field
     %div{style: "display:inline-flex"}
       = f.label :order_type_name, "ご注文種別 : "
@@ -20,13 +35,19 @@
     = link_to_add_association '🗾納品先を追加➕', f, :customer_addresses
 
   %br
-  .field
-    = f.label :desired_delivery_date, "納品ご希望日"
-    = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+  %h3 納品希望日 : #{l(order.try(:desired_delivery_date), format: :middle, default: '')}
 
-  .field
-    = f.label :desired_delivery_type_name, "納品ご希望日の種類"
-    = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
+  - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
+    .field
+      %div{style: "display:inline-flex"}
+        = f.label :desired_delivery_date, "　*注文管理者変更用 : "
+        = f.date_field :desired_delivery_date, autofocus: true, autocomplete: "desired_delivery_date"
+  %h4 納品希望日の種類 : #{DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name}
+  - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
+    .field
+      %div{style: "display:inline-flex"}
+        = f.label :desired_delivery_type_name, "　*注文管理者変更用 : "
+        = f.collection_select(:desired_delivery_type_id, DesiredDeliveryType.all, :id, :desired_delivery_type_name)
 
   .field
     = f.label :specified_time_name, "時間帯指定"
@@ -37,9 +58,12 @@
       = f.label :change_delivery_date, "🍳納期変更", {class: 'change_delivery_date'}
       = f.check_box :change_delivery_date, {class: 'change_delivery_date'}, "change", "no_change"
 
-  .field
-    = f.label :internal_delivery_date, "社内納品日"
-    = f.date_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
+  %h3 社内納品日 : #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+  - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
+    .field
+      %div{style: "display:inline-flex"}
+        = f.label :internal_delivery_date, "　*注文管理者変更用 : "
+        = f.date_field :internal_delivery_date, autofocus: true, autocomplete: "internal_delivery_date"
 
   %br
   %h3 🐣制作・加工内容について
@@ -100,7 +124,6 @@
     %div{style: "display:inline-flex"}
       = f.label :payment_confirmation, "ご入金連絡済"
       = f.check_box :payment_confirmation, {}, "confirmed", "unconfirmed"
-
 
   %br/
   %h2 💴経理記入用
