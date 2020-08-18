@@ -72,6 +72,20 @@
     = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
 
   %br
+  %h2 📦発注記入用
+  = f.fields_for :buy_details do |buy_detail|
+    = render 'buy_detail_fields', f: buy_detail
+  #links
+    = link_to_add_association "📦発注詳細を追加➕", f, :buy_details
+
+  %br
+  %h2 📋仕分け記入用
+  = f.fields_for :sort_details do |sort_detail|
+    = render 'sort_detail_fields', f: sort_detail
+  #links
+    = link_to_add_association "📋仕分け詳細を追加➕", f, :sort_details
+
+  %br
   %h3 💴ご入金について
   %b お支払い方法 :
 
@@ -90,7 +104,6 @@
       = f.label :payment_confirmation, "ご入金連絡済"
       = f.check_box :payment_confirmation, {}, "confirmed", "unconfirmed"
 
-  -# -if current_user.id == 2
 
   %br/
   %h2 💴経理記入用

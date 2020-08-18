@@ -38,6 +38,12 @@ class Order < ApplicationRecord
   has_many :order_notes, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :order_notes, reject_if: :all_blank, allow_destroy: true
 
+  has_many :buy_details, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :buy_details, reject_if: :all_blank, allow_destroy: true
+
+  has_many :sort_details, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :sort_details, reject_if: :all_blank, allow_destroy: true
+
   private
 
   def set_default_values

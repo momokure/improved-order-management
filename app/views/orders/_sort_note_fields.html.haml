@@ -1,9 +1,9 @@
 .nested-fields.form-inline
   %br/
   .form-group
-    = f.label :sort_note, "仕分け備考欄"
-    = f.text_area :sort_note
-    = f.hidden_field :user_id, value: current_user.id
-    %br/
-    %br/
-    = link_to_remove_association "仕分け備考を削除❌", f
+  = f.label :sort_note, "仕分け備考欄"
+  = f.text_area :sort_note
+  = f.hidden_field :user_id, value: current_user.id
+  %br/
+  %br/
+  = link_to_remove_association "仕分け備考を削除❌", f

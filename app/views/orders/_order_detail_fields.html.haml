@@ -34,17 +34,3 @@
     .links
       = link_to_add_association "🎁📷オプションを追加➕", f, :order_detail_options
     %br/
-
-  #buy.buy_details
-    %h2 📦発注記入用
-    = f.fields_for :buy_details do |buy_detail|
-      = render 'buy_detail_fields', f: buy_detail
-    .links
-      = link_to_add_association "📦発注詳細を追加➕", f, :buy_details
-
-  #sort.sort_details
-    %h2 📋仕分け記入用
-    = f.fields_for :sort_details do |sort_detail|
-      = render 'sort_detail_fields', f: sort_detail
-    .links
-      = link_to_add_association "📋仕分け詳細を追加➕", f, :sort_details
