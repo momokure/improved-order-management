@@ -20,7 +20,7 @@
     .field
     %div{style: "display:inline-flex"}
       = f.label :representative_user_id, "担当者 : "
-      = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3, 2] } ), :id, :user_name)
+      = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3, 2] } ), :id, :user_name, selected: order.representative_user_id)
   %br
   .field
     %div{style: "display:inline-flex"}
