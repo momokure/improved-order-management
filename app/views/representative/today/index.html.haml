@@ -1,16 +1,22 @@
-%h2 本日の対応件数
-%h2 #{Order.where(first_response_date: @from..@to).count}件対応済
+%h2 本日の対応件数 : 計#{Order.where(first_response_date: @from..@to).count}件
+
+%li
+  =link_to "みつもり未対応一覧", representative_today_index_path
+%li
+  =link_to "対応済一覧(ご入金未連絡)", representative_wip_index_path
+%li
+  =link_to "対応済一覧(ご入金連絡済)", representative_done_index_path
 
 %br
 %h3 柳生チーム (#{Order.where(representative_user_id: [2, 3, 17, 12], first_response_date: @from..@to).count}件)
-柳生 #{Order.where(representative_user_id: 2, first_response_date: @from..@to).count}件 /
+　柳生 #{Order.where(representative_user_id: 2, first_response_date: @from..@to).count}件 /
 佐藤(絵) #{Order.where(representative_user_id: 3, first_response_date: @from..@to).count}件 /
 東雲 #{Order.where(representative_user_id: 17, first_response_date: @from..@to).count}件 /
 坂口 #{Order.where(representative_user_id: 12, first_response_date: @from..@to).count}件
 
 %br
 %h3 武内チーム (#{Order.where(representative_user_id: [18, 7, 24, 10, 15, 9], first_response_date: @from..@to).count}件)
-武内 #{Order.where(representative_user_id: 18, first_response_date: @from..@to).count}件 /
+　武内 #{Order.where(representative_user_id: 18, first_response_date: @from..@to).count}件 /
 福留 #{Order.where(representative_user_id: 7, first_response_date: @from..@to).count}件 /
 菅野 #{Order.where(representative_user_id: 24, first_response_date: @from..@to).count}件 /
 矢部 #{Order.where(representative_user_id: 10, first_response_date: @from..@to).count}件 /
@@ -19,14 +25,14 @@
 
 %br
 %h3 穴澤チーム (#{Order.where(representative_user_id: [8, 19, 13, 14], first_response_date: @from..@to).count}件)
-穴澤 #{Order.where(representative_user_id: 8, first_response_date: @from..@to).count}件 /
+　穴澤 #{Order.where(representative_user_id: 8, first_response_date: @from..@to).count}件 /
 柳沼 #{Order.where(representative_user_id: 19, first_response_date: @from..@to).count}件 /
 松友 #{Order.where(representative_user_id: 13, first_response_date: @from..@to).count}件 /
 加藤 #{Order.where(representative_user_id: 14, first_response_date: @from..@to).count}件
 
 %br
 %h3 研修チーム (#{Order.where(representative_user_id: [23, 21, 11, 22, 16], first_response_date: @from..@to).count}件)
-一条 #{Order.where(representative_user_id: 23, first_response_date: @from..@to).count}件 /
+　一条 #{Order.where(representative_user_id: 23, first_response_date: @from..@to).count}件 /
 小平 #{Order.where(representative_user_id: 21, first_response_date: @from..@to).count}件 /
 宇喜多 #{Order.where(representative_user_id: 11, first_response_date: @from..@to).count}件 /
 最上 #{Order.where(representative_user_id: 22, first_response_date: @from..@to).count}件 /
@@ -34,4 +40,4 @@
 
 %br
 %h3 サポート
-水上 #{Order.where(representative_user_id: 6, first_response_date: @from..@to).count}件
+　水上 #{Order.where(representative_user_id: 6, first_response_date: @from..@to).count}件
