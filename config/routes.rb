@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   end
   resources :customers
 
+  namespace :order_management do
+    resources :undefined_date, only: :index
+    resources :undefined_factroy, only: :index
+    resources :change_delivery_date, only: :index
+  end
+
   namespace :representative do
     resources :backlog, only: :index
     resources :wip, only: :index
