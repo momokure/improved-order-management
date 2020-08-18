@@ -13,15 +13,21 @@ Rails.application.routes.draw do
     resources :done, only: :index
   end
 
-  namespace :pasteup do
+  namespace :accounting do
+    resources :backlog, only: :index
+    resources :deadline, only: :index
+  end
+
+  namespace :domestic_buying do
     resources :backlog, only: :index
     resources :wip, only: :index
     resources :done, only: :index
   end
 
-  namespace :accounting do
+  namespace :overseas_buying do
     resources :backlog, only: :index
-    resources :deadline, only: :index
+    resources :wip, only: :index
+    resources :done, only: :index
   end
 
   resources :orders do
