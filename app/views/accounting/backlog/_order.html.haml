@@ -3,17 +3,18 @@
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
     = link_to customer_path(id: order.customer.uid) do
+      #{order.customer.customer_type.customer_type_name}
       #{order.customer.customer_name} 様
   %td
-    #{order.customer.customer_type.customer_type_name}
+    = OrderType.find(order.order_type_id).order_type_name
+    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
     = l(order.try(:order_date), format: :middle, default: '')
   %td
-    = OrderType.find(order.order_type_id).order_type_name
+    = User.find(order.representative_user_id).user_name
   %td
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
-  %td
-    = PrefectureCode.find(CustomerAddress.find(OrderAddress.find_by(order_id: order.id).customer_address_id).prefecture_code).name
+    - OrderAddress.where(order_id: order.id).each do |oa|
+      = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
   %td
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td
@@ -21,20 +22,24 @@
   %td
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
+  %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
-    = OrderNote.find_by(order_id: order.id).try(:order_note)
   %td
-    = form_with model: @payment, local: true do |f|
-      = f.hidden_field :payment_date, value: @day
-      = f.hidden_field :amount_paid, value: order.payment_amount
-      = f.hidden_field :accounting_user_id, value: current_user.id
-      = f.hidden_field :order_id, value: order.id
-      = f.submit "本日付のご入金を照会済にする"
   %td
-    = button_to "詳細を記入する", edit_order_path(id: order.uid), method: :get
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
+    -# = PaymentNote.find_by(Payment.find_by(order_id: order.id).try(:amount_paid).try(:payment_note).to_s.truncate(20)
+  %td
+    -# = form_with model: @payment, local: true do |f|
+    -#   = f.hidden_field :payment_date, value: @day
+    -#   = f.hidden_field :amount_paid, value: order.payment_amount
+    -#   = f.hidden_field :accounting_user_id, value: current_user.id
+    -#   = f.hidden_field :order_id, value: order.id
+    -#   = f.submit "本日付のご入金を照会済にする"
+  %td
+    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
     .container
       %tbody
         %tr
@@ -53,11 +58,12 @@
                 ↳
               %td
                 = Technique.find(order_technique_detail.technique_id).technique_name
-              %td
+                %br
                 - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-                  = TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name
-                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                  = OrderOption.find(order_detail_option.order_option_id).order_option_name
+                  #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                  %br
+                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
               %td
                 #{Factory.find(order_detail.factory_id).factory_name}工場
               %td
@@ -70,3 +76,5 @@
                 -#指示書作成済
               %td
                 -#制作済
+
+    -# = button_to "詳細を記入する", edit_order_path(id: order.uid), method: :get

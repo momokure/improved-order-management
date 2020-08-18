@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   namespace :accounting do
-    resources :backlog, only: [:index, :update]
+    resources :backlog, only: :index
     resources :wip, only: :index
     resources :done, only: :index
   end

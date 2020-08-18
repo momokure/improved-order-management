@@ -1,5 +1,5 @@
 %h2
-  #{current_user.user_name}さんの対応済一覧 (ご入金確認 : 未連絡)
+  #{current_user.user_name}さんの対応済一覧 (ご入金確認済)
 
 - if @orders.present?
   .container
@@ -24,4 +24,4 @@
         = render partial: 'order', collection: @orders, locals: { order: @orders }
 
 - else
-  ご入金確認が未連絡のご注文はありません
+  ご入金確認連絡済のご注文はありません

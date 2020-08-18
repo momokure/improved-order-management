@@ -37,11 +37,11 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find_by(uid: params[:id])
     @order.update_attributes!(order_params)
-    # if current_user.id == 2
-    #   redirect_to controller: 'representative/wip', action: 'index'
-    # end
-    if User.left_joins(:users_departments).where( users_departments: { department_id: [3] })
+
+    if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 3
       redirect_to representative_wip_index_path
+    elsif Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4
+      redirect_to root_path
     end
   end
 
