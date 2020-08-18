@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :backlog, only: :index
     resources :wip, only: :index
     resources :done, only: :index
+    resources :today, only: :index
   end
 
   namespace :accounting do

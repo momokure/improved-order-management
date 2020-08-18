@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  require 'date'
 
   def index
     @orders = Order.all
