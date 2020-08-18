@@ -10,23 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_111327) do
+ActiveRecord::Schema.define(version: 2020_08_18_111640) do
 
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
-    t.date "arrival_date"
     t.bigint "buy_progress_id"
-    t.bigint "buy_type_id"
-    t.bigint "supplier_id"
-    t.bigint "order_detail_id"
     t.bigint "buying_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["buy_progress_id"], name: "index_buy_details_on_buy_progress_id"
-    t.index ["buy_type_id"], name: "index_buy_details_on_buy_type_id"
     t.index ["buying_user_id"], name: "index_buy_details_on_buying_user_id"
-    t.index ["order_detail_id"], name: "index_buy_details_on_order_detail_id"
-    t.index ["supplier_id"], name: "index_buy_details_on_supplier_id"
+    t.index ["order_id"], name: "index_buy_details_on_order_id"
   end
 
   create_table "buy_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -315,12 +310,12 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   create_table "sort_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "sort_date"
     t.bigint "buy_type_id"
-    t.bigint "order_detail_id"
     t.bigint "sorting_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["buy_type_id"], name: "index_sort_details_on_buy_type_id"
-    t.index ["order_detail_id"], name: "index_sort_details_on_order_detail_id"
+    t.index ["order_id"], name: "index_sort_details_on_order_id"
     t.index ["sorting_user_id"], name: "index_sort_details_on_sorting_user_id"
   end
 
@@ -394,9 +389,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   end
 
   add_foreign_key "buy_details", "buy_progresses"
-  add_foreign_key "buy_details", "buy_types"
-  add_foreign_key "buy_details", "order_details"
-  add_foreign_key "buy_details", "suppliers"
+  add_foreign_key "buy_details", "orders"
   add_foreign_key "buy_details", "users", column: "buying_user_id"
   add_foreign_key "buy_notes", "buy_details"
   add_foreign_key "buy_notes", "users"
@@ -440,7 +433,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_111327) do
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users", column: "accounting_user_id"
   add_foreign_key "sort_details", "buy_types"
-  add_foreign_key "sort_details", "order_details"
+  add_foreign_key "sort_details", "orders"
   add_foreign_key "sort_details", "users", column: "sorting_user_id"
   add_foreign_key "sort_notes", "sort_details"
   add_foreign_key "sort_notes", "users"
