@@ -24,10 +24,11 @@
   %td
     = l(order.try(:payment_deadline_date), format: :middle, default: '')
   %td
+    = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
+  %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
-  %td
   %td
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
