@@ -27,11 +27,11 @@ class CustomersController < ApplicationController
       .require(:customer)
       .permit(
         :customer_name, :customer_furigana, :customer_type_id, :payment_method_id, :receipt_required,
-        companies_attributes: [:company_name, :company_name_furigana],
-        customer_emails_attributes: [:customer_email],
-        customer_phone_numbers_attributes: [:customer_phone_number],
-        customer_addresses_attributes: [:prefecture_code],
-        customer_notes_attributes: [:customer_note]
+        companies_attributes: [:company_name, :company_name_furigana,:_destroy],
+        customer_emails_attributes: [:customer_email,:_destroy],
+        customer_phone_numbers_attributes: [:customer_phone_number,:_destroy],
+        customer_addresses_attributes: [:prefecture_code,:_destroy],
+        customer_notes_attributes: [:customer_note, :_destroy]
       )
   end
 end
