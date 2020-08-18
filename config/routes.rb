@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   namespace :order_management do
     resources :undefined_date, only: :index
-    resources :undefined_factroy, only: :index
+    resources :undefined_factory, only: :index
     resources :change_delivery_date, only: :index
   end
 
