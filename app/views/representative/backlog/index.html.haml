@@ -1,7 +1,5 @@
 %h2 みつもり未対応一覧
-%h2 残#{Order.where(representative_user_id: 1, first_response_date: nil).count}件
--#/
--##{Order.where(first_response_date: Date.today).count}件対応済
+%h2 残#{Order.where(representative_user_id: 1, first_response_date: nil).count}件 / #{Order.where(first_response_date: @from..@to).count}件対応済
 
 .container
   %table.neumorphic
