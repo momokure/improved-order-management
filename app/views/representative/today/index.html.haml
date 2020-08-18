@@ -1,7 +1,7 @@
 %h2 本日の対応件数 : 計#{Order.where(first_response_date: @from..@to).count}件
 
 %li
-  =link_to "みつもり未対応一覧", representative_today_index_path
+  =link_to "みつもり未対応一覧", representative_backlog_index_path
 %li
   =link_to "対応済一覧(ご入金未連絡)", representative_wip_index_path
 %li
