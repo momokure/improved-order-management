@@ -1,6 +1,6 @@
 Department.seed(
   {id: 1, department_name: "インフラ(システム管理)"},
-  {id: 2, department_name: "ご注文管理"},
+  {id: 2, department_name: "営業(ご注文管理)"},
   {id: 3, department_name: "営業"},
   {id: 4, department_name: "経理"},
   {id: 5, department_name: "データ/指示書"},
@@ -16,5 +16,6 @@ Department.seed(
   {id: 15, department_name: "UV"},
   {id: 16, department_name: "シルクスクリーンD"},
   {id: 17, department_name: "発送"},
+  {id: 18, department_name: "縫製"},
   {id: 99, department_name: "該当なし"}
   )
