@@ -1,5 +1,9 @@
 %h2
-  注文管理 : 納期未確定のご注文一覧
+  注文管理 : ご入金+納期未確定のご注文一覧
+%li
+  =link_to "工場未設定のご注文一覧", order_management_undefined_factory_index_path
+%li
+  =link_to "納期変更のご注文一覧", order_management_change_delivery_date_index
 
 .container
   %table.neumorphic
