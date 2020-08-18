@@ -22,6 +22,7 @@
   %td
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
+    = l(order.try(:payment_deadline_date), format: :middle, default: '')
   %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
