@@ -3,14 +3,14 @@
   -# = f.hidden_field :order_reflect_user_id, value: current_user.id
   -# = f.hidden_field :representative_user_id, value: current_user.id
 
-
-  .field
+  -#.field
     -# = f.label :representative_user_id, "担当者"
     -# = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3] } ), :id, :user_name)
 
   .field
-    = f.label :order_type_name, "ご注文種別"
-    = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
+    %div{style: "display:inline-flex"}
+      = f.label :order_type_name, "ご注文種別 : "
+      = f.collection_select(:order_type_id, OrderType.all, :id, :order_type_name)
 
   %br
   %h3 ⏳納品先と納期について
@@ -34,8 +34,8 @@
 
   .field
     %div{style: "display:inline-flex"}
-      = f.label :change_delivery_date, "納期変更"
-      = f.check_box :change_delivery_date, {}, "change", "no_change"
+      = f.label :change_delivery_date, "🍳納期変更", {class: 'change_delivery_date'}
+      = f.check_box :change_delivery_date, {class: 'change_delivery_date'}, "change", "no_change"
 
   .field
     = f.label :internal_delivery_date, "社内納品日"
@@ -87,10 +87,7 @@
 
   %br
   %h3 💴ご入金について
-  %b お支払い方法 :
-
-  %br/
-  %br/
+  -#%b お支払い方法 :
   .field
     = f.label :payment_deadline_date, "お支払い期限日"
     = f.date_field :payment_deadline_date, autofocus: true, autocomplete: "payment_deadline_date"
@@ -115,7 +112,7 @@
   %br/
   %h2 発送記入用
   %div{style: "display:inline-flex"}
-    = f.label :shipment_user_id, "発送担当者 :"
+    = f.label :shipment_user_id, "🚚発送担当者 :"
     = f.collection_select(:shipment_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 17] }), :id, :user_name)
   %br/
   %br/
