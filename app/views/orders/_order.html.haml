@@ -34,6 +34,9 @@
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
   %td
+    - SortDetail.where(order_id: order.id).each do |sort_detail|
+      済(#{User.find(sort_detail.sorting_user_id).user_name})
+  %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
@@ -64,12 +67,11 @@
               %td
                 #{Factory.find(order_detail.factory_id).factory_name}工場
               %td
-                -#国内発注済
+                -# - unless order_technique_detail.progress_id == 1
+                #{Progress.find(order_technique_detail.progress_id).progress_name}
               %td
-                -#海外発注済
+                - unless order_technique_detail.pasteup_user_id == 1
+                  🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
               %td
-                -#仕分け済
-              %td
-                -#指示書作成済
-              %td
-                -#制作済
+                - unless order_technique_detail.maker_id == 1
+                  🍗#{User.find(order_technique_detail.maker_id).user_name}
