@@ -27,13 +27,11 @@ Rails.application.routes.draw do
 
   namespace :domestic_buying do
     resources :backlog, only: :index
-    resources :wip, only: :index
     resources :done, only: :index
   end
 
   namespace :overseas_buying do
     resources :backlog, only: :index
-    resources :wip, only: :index
     resources :done, only: :index
   end
 

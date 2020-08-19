@@ -1,4 +1,6 @@
-%h2 国内未発注のご注文一覧
+%h2
+  国内未発注の商品一覧
+
 .container
   %table.neumorphic
     %thead
@@ -19,8 +21,8 @@
         %th ご入金予定額
         %th.payment ご入金日
         %th.payment ご入金額
+        %th 発注状況
+        %th 仕分け状況
         %th ご注文備考欄
-        %th
-        %th
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
