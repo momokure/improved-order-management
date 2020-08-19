@@ -7,6 +7,7 @@
     %div{style: "display:inline-flex"}
       = f.label :order_date, "ご注文日 : "
       = f.datetime_select :order_date
+
     .field
     %div{style: "display:inline-flex"}
       = f.label :uid, "ID : "
@@ -21,6 +22,13 @@
     %div{style: "display:inline-flex"}
       = f.label :representative_user_id, "担当者 : "
       = f.collection_select(:representative_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 3, 2] } ), :id, :user_name, selected: order.representative_user_id)
+
+    -#%br
+    .field
+      %div{style: "display:inline-flex"}
+        = f.label :cancellation, "キャンセル : "
+        = f.check_box :cancellation, {}, 1, 0
+
   %br
   .field
     %div{style: "display:inline-flex"}
