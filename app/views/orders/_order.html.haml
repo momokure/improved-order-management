@@ -30,10 +30,9 @@
   %td
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
-    -# - BuyDetail.where(order_id: order.id).each do |buy_detail|
-    -#   #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
-    -#   %br/
-      //カラム内縦方向並び...
+    - BuyDetail.where(order_id: order.id).each do |buy_detail|
+      #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
+      %br/
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
   %td
