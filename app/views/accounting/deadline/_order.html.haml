@@ -31,7 +31,7 @@
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
   %td
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
     -# = PaymentNote.find_by(Payment.find_by(order_id: order.id).try(:amount_paid).try(:payment_note).to_s.truncate(20)
   %td
     -# = form_with model: @payment, local: true do |f|

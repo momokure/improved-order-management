@@ -31,7 +31,7 @@
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
   %td
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(20)
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
     .container
