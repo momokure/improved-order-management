@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     resources :all, only: :index
     resources :silkscreen_a, only: :index
     resources :silkscreen_b, only: :index
-    resources :silkscreen_d, only: :index
+    resources :silkscreen_c, only: :index
     resources :uv, only: :index
   end
 
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders do
-    resources :calendar, only: :index
+    get :calendar, on: :collection
     member do
       patch 'update_representative_user'
     end

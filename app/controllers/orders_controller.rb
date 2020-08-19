@@ -53,6 +53,10 @@ class OrdersController < ApplicationController
     @order.destroy!
   end
 
+  def calendar
+
+  end
+
   private
   def order_params
     params
