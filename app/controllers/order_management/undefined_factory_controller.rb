@@ -3,6 +3,6 @@ class OrderManagement::UndefinedFactoryController < ApplicationController
   def index
     @orders = Order.left_joins(:order_details)
                 .where(order_details: { factory_id: 1 })
-                .order(:internal_delivery_date)
+                .order(:internal_delivery_date).distinct
   end
 end
