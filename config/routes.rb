@@ -28,13 +28,13 @@ Rails.application.routes.draw do
   namespace :domestic_buying do
     resources :backlog, only: :index
     resources :done, only: :index
-    resources :domestic_sorting, only: :index
+    resources :sorting, only: :index
   end
 
   namespace :overseas_buying do
     resources :backlog, only: :index
     resources :done, only: :index
-    resources :overseas_sorting, only: :index
+    resources :sorting, only: :index
   end
 
   namespace :toda1 do
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders do
+    resources :calendar, only: :index
     member do
       patch 'update_representative_user'
     end
