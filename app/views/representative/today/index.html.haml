@@ -1,5 +1,5 @@
 %h2 本日の対応件数 : 計#{Order.where(first_response_date: @from..@to).count}件
-%h4 現在時刻 : #{l(DateTime.now, format: :long, default: '')}
+-#%h4 現在時刻 : #{l(DateTime.now, format: :long, default: '')}
 
 %li
   =link_to "みつもり未対応一覧", representative_backlog_index_path
