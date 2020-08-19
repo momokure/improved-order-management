@@ -28,11 +28,33 @@ Rails.application.routes.draw do
   namespace :domestic_buying do
     resources :backlog, only: :index
     resources :done, only: :index
+    resources :domestic_sorting, only: :index
   end
 
   namespace :overseas_buying do
     resources :backlog, only: :index
     resources :done, only: :index
+    resources :overseas_sorting, only: :index
+  end
+
+  namespace :toda1 do
+    resources :all, only: :index
+    resources :silkscreen_a, only: :index
+    resources :inkjet, only: :index
+    resources :embroidery, only: :index
+    resources :sewing, only: :index
+  end
+
+  namespace :bijogi do
+    resources :all, only: :index
+    resources :silkscreen_a, only: :index
+    resources :silkscreen_b, only: :index
+    resources :silkscreen_d, only: :index
+    resources :uv, only: :index
+  end
+
+  namespace :yoyogi do
+    resources :silkscreen_d, only: :index
   end
 
   resources :orders do
