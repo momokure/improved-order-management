@@ -39,3 +39,15 @@ TechniqueOption.seed do |s|
   s.technique_option_name = "UV - 🏂デッキテープ"
   s.technique_id = 8
 end
+
+TechniqueOption.seed do |s|
+  s.id = 8
+  s.technique_option_name = "縫製 - 🔖タグ付"
+  s.technique_id = 6
+end
+
+TechniqueOption.seed do |s|
+  s.id = 9
+  s.technique_option_name = "縫製 - 🦔オリジナルボディ"
+  s.technique_id = 6
+end
