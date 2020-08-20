@@ -54,7 +54,9 @@ class OrdersController < ApplicationController
   end
 
   def calendar
-
+    @orders = Order.left_joins(order_details: :order_technique_details)
+                .where.not(order_technique_details: { technique_id: nil })
+                .order(:internal_delivery_date)
   end
 
   private
