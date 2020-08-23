@@ -28,7 +28,9 @@
   %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
-    = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+    -# = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+    - Payment.where(order_id: order.id).each do |paid|
+      = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
   %td
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
@@ -40,38 +42,38 @@
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
-    .container
-      %tbody
-        %tr
-        - OrderDetail.where(order_id: order.id).each do |order_detail|
-          %td{align: "right"}
-            ↳
-          %td
-            - if order_detail.mixed_techniques == "mixed"
-              合体加工
-            - else
-              単体加工
-          - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-            %tbody
-              %td
-              %td{align: "right"}
-                ↳
-              %td
-                = Technique.find(order_technique_detail.technique_id).technique_name
-                %br
-                - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-                  #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-                  %br
-                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-              %td
-                #{Factory.find(order_detail.factory_id).factory_name}工場
-              %td
-                -# - unless order_technique_detail.progress_id == 1
-                #{Progress.find(order_technique_detail.progress_id).progress_name}
-              %td
-                - unless order_technique_detail.pasteup_user_id == 1
-                  🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
-              %td
-                - unless order_technique_detail.maker_id == 1
-                  🍗#{User.find(order_technique_detail.maker_id).user_name}
+    -#.container
+    -#  %tbody
+    -#    %tr
+    -#    - OrderDetail.where(order_id: order.id).each do |order_detail|
+    -#      %td{align: "right"}
+    -#        ↳
+    -#      %td
+    -#        - if order_detail.mixed_techniques == "mixed"
+    -#          合体加工
+    -#        - else
+    -#          単体加工
+    -#      - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+    -#        %tbody
+    -#          %td
+    -#          %td{align: "right"}
+    -#            ↳
+    -#          %td
+    -#            = Technique.find(order_technique_detail.technique_id).technique_name
+    -#            %br
+    -#            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+    -#              #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+    -#              %br
+    -#              - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+    -#                #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+    -#          %td
+    -#            #{Factory.find(order_detail.factory_id).factory_name}工場
+    -#          %td
+    -#            -# - unless order_technique_detail.progress_id == 1
+    -#            #{Progress.find(order_technique_detail.progress_id).progress_name}
+    -#          %td
+    -#            - unless order_technique_detail.pasteup_user_id == 1
+    -#              🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
+    -#          %td
+    -#            - unless order_technique_detail.maker_id == 1
+    -#              🍗#{User.find(order_technique_detail.maker_id).user_name}
