@@ -1,20 +1,30 @@
 %h2 納品予定件数
-
-
-%h3 シルクスクリーンA
-%div{style: "display:inline-flex"}
-  日付
-  戸田公園第1工場
-  美女木工場
-
-%h3 インクジェット
-
-%h3 刺繍
-
-%h3 縫製
-
-%h3 シルクスクリーンB
-%h3 シルクスクリーンC
-%h4 UV
-
-%h4 シルクスクリーンD
+.container
+  %table.neumorphic
+    %tbody
+      %tr
+        %th
+        %th{colspan: "2"}シルクスクリーンA
+        %th{colspan: "2"}インクジェット
+        %th{colspan: "2"}刺繍
+        %th{colspan: "2"}縫製
+        %th シルクスクリーンB
+        %th シルクスクリーンC
+        %th シルクスクリーンD
+        %th UV
+      %tr
+        %th 日付
+        %td 戸田公園第1
+        %td 美女木
+        %td 戸田公園第1
+        %td 美女木
+        %td 戸田公園第1
+        %td 美女木
+        %td 戸田公園第1
+        %td 美女木
+        %td 戸田公園第1
+        %td 美女木
+        %td 中野(代々木)
+        %td 美女木
+      %tbody
+        = render partial: 'day', locals: { order: @orders }

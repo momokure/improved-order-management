@@ -54,9 +54,16 @@ class OrdersController < ApplicationController
   end
 
   def calendar
-    @orders = Order.left_joins(order_details: :order_technique_details)
-                .where.not(order_technique_details: { technique_id: nil })
-                .order(:internal_delivery_date)
+    @start = Date.today.prev_occurring(:sunday)
+    @end = @start.next_month.next_month.end_of_week
+    @count_day = Date.today.prev_occurring(:sunday) -1
+
+    # @silkscreen_toda1 = Order.includes(order_details: :order_technique_details).distinct
+    #                       .where(order_details: { factory_id: 4 }).distinct
+    #                       .where(order_technique_details: { technique_id: 1 }).distinct
+    # @bijogi = Order.includes(order_details: :order_technique_details).distinct
+    #             .where(order_details: { factory_id: 8 }).distinct
+    #             .where(order_technique_details: { technique_id: 1 }).distinct
   end
 
   private
