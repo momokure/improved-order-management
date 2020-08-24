@@ -58,12 +58,73 @@ class OrdersController < ApplicationController
     @end = @start.next_month.next_month.end_of_week
     @count_day = Date.today.prev_occurring(:sunday) -1
 
-    # @silkscreen_toda1 = Order.includes(order_details: :order_technique_details).distinct
-    #                       .where(order_details: { factory_id: 4 }).distinct
-    #                       .where(order_technique_details: { technique_id: 1 }).distinct
-    # @bijogi = Order.includes(order_details: :order_technique_details).distinct
-    #             .where(order_details: { factory_id: 8 }).distinct
-    #             .where(order_technique_details: { technique_id: 1 }).distinct
+    @silkscreen_a_toda1 = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 4 })
+                          .where(order_technique_details: { technique_id: 1 })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    @silkscreen_a_bijogi = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 8 })
+                          .where(order_technique_details: { technique_id: 1 })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    @inkjet_toda1 = Order.joins(order_details: :order_technique_details)
+                .where(order_details: { factory_id: 4 })
+                .where(order_technique_details: { technique_id: 4 })
+                .group("orders.internal_delivery_date")
+                .count
+
+    @inkjet_bijogi = Order.joins(order_details: :order_technique_details)
+                      .where(order_details: { factory_id: 8 })
+                      .where(order_technique_details: { technique_id: 4 })
+                      .group("orders.internal_delivery_date")
+                      .count
+
+    @embroidery_toda1 = Order.joins(order_details: :order_technique_details)
+                      .where(order_details: { factory_id: 4 })
+                      .where(order_technique_details: { technique_id: 5 })
+                      .group("orders.internal_delivery_date")
+                      .count
+
+    @embroidery_bijogi = Order.joins(order_details: :order_technique_details)
+                       .where(order_details: { factory_id: 8 })
+                       .where(order_technique_details: { technique_id: 5 })
+                       .group("orders.internal_delivery_date")
+                       .count
+
+    @sewing_toda1 = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 4 })
+                          .where(order_technique_details: { technique_id: 6 })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    @sewing_bijogi = Order.joins(order_details: :order_technique_details)
+                           .where(order_details: { factory_id: 8 })
+                           .where(order_technique_details: { technique_id: 6 })
+                           .group("orders.internal_delivery_date")
+                           .count
+
+    @silkscreen_b = Order.joins(order_details: :order_technique_details)
+                   .where(order_technique_details: { technique_id: 2 })
+                   .group("orders.internal_delivery_date")
+                   .count
+
+    @silkscreen_c = Order.joins(order_details: :order_technique_details)
+                   .where(order_technique_details: { technique_id: 3 })
+                   .group("orders.internal_delivery_date")
+                   .count
+
+    @silkscreen_d = Order.joins(order_details: :order_technique_details)
+                      .where(order_technique_details: { technique_id: 8 })
+                      .group("orders.internal_delivery_date")
+                      .count
+
+    @uv = Order.joins(order_details: :order_technique_details)
+            .where(order_technique_details: { technique_id: 7 })
+            .group("orders.internal_delivery_date")
+            .count
   end
 
   private
