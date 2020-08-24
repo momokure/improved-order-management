@@ -42,12 +42,18 @@ end
 
 TechniqueOption.seed do |s|
   s.id = 8
-  s.technique_option_name = "縫製 - 🔖タグ付"
+  s.technique_option_name = "縫製 - 🔖タグ付(🍡お持込タグ)"
   s.technique_id = 6
 end
 
 TechniqueOption.seed do |s|
   s.id = 9
   s.technique_option_name = "縫製 - 🦔オリジナルボディ"
+  s.technique_id = 6
+end
+
+TechniqueOption.seed do |s|
+  s.id = 10
+  s.technique_option_name = "縫製 - 🔖タグ付(🍮タグ)"
   s.technique_id = 6
 end

@@ -40,22 +40,61 @@ Rails.application.routes.draw do
 
   namespace :toda1 do
     resources :all, only: :index
-    resources :silkscreen_a, only: :index
-    resources :inkjet, only: :index
-    resources :embroidery, only: :index
-    resources :sewing, only: :index
+    resources :silkscreen_a, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :inkjet, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :embroidery, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :sewing, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
   end
 
   namespace :bijogi do
     resources :all, only: :index
-    resources :silkscreen_a, only: :index
-    resources :silkscreen_b, only: :index
-    resources :silkscreen_c, only: :index
-    resources :uv, only: :index
+    resources :silkscreen_a, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :inkjet, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :embroidery, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :sewing, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :silkscreen_b, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :silkscreen_c, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
+    resources :uv, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
   end
 
   namespace :yoyogi do
-    resources :silkscreen_d, only: :index
+    resources :silkscreen_d, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
   end
 
   resources :orders do
