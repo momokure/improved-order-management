@@ -3,17 +3,25 @@
     %td
       = l(date, format: :middle, default: '')
     %td
+      = @silkscreen_a_pending[date]
+    %td
       = @silkscreen_a_toda1[date]
     %td
       = @silkscreen_a_bijogi[date]
+    %td
+      = @inkjet_pending[date]
     %td
       = @inkjet_toda1[date]
     %td
       = @inkjet_bijogi[date]
     %td
+      = @embroidery_pending[date]
+    %td
       = @embroidery_toda1[date]
     %td
       = @embroidery_bijogi[date]
+    %td
+      = @sewing_pending[date]
     %td
       = @sewing_toda1[date]
     %td

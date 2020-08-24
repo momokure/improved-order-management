@@ -58,6 +58,12 @@ class OrdersController < ApplicationController
     @end = @start.next_month.next_month.end_of_week
     @count_day = Date.today.prev_occurring(:sunday) -1
 
+    @silkscreen_a_pending = Order.joins(order_details: :order_technique_details)
+                            .where(order_details: { factory_id: 1 })
+                            .where(order_technique_details: { technique_id: 1 })
+                            .group("orders.internal_delivery_date")
+                            .count
+
     @silkscreen_a_toda1 = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 1 })
@@ -70,29 +76,47 @@ class OrdersController < ApplicationController
                           .group("orders.internal_delivery_date")
                           .count
 
-    @inkjet_toda1 = Order.joins(order_details: :order_technique_details)
-                .where(order_details: { factory_id: 4 })
-                .where(order_technique_details: { technique_id: 4 })
-                .group("orders.internal_delivery_date")
-                .count
-
-    @inkjet_bijogi = Order.joins(order_details: :order_technique_details)
-                      .where(order_details: { factory_id: 8 })
+    @inkjet_pending = Order.joins(order_details: :order_technique_details)
+                      .where(order_details: { factory_id: 1 })
                       .where(order_technique_details: { technique_id: 4 })
                       .group("orders.internal_delivery_date")
                       .count
 
-    @embroidery_toda1 = Order.joins(order_details: :order_technique_details)
+    @inkjet_toda1 = Order.joins(order_details: :order_technique_details)
                       .where(order_details: { factory_id: 4 })
-                      .where(order_technique_details: { technique_id: 5 })
+                      .where(order_technique_details: { technique_id: 4 })
                       .group("orders.internal_delivery_date")
                       .count
 
-    @embroidery_bijogi = Order.joins(order_details: :order_technique_details)
+    @inkjet_bijogi = Order.joins(order_details: :order_technique_details)
                        .where(order_details: { factory_id: 8 })
-                       .where(order_technique_details: { technique_id: 5 })
+                       .where(order_technique_details: { technique_id: 4 })
                        .group("orders.internal_delivery_date")
                        .count
+
+    @embroidery_pending = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 1 })
+                          .where(order_technique_details: { technique_id: 5 })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    @embroidery_toda1 = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 4 })
+                          .where(order_technique_details: { technique_id: 5 })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    @embroidery_bijogi = Order.joins(order_details: :order_technique_details)
+                           .where(order_details: { factory_id: 8 })
+                           .where(order_technique_details: { technique_id: 5 })
+                           .group("orders.internal_delivery_date")
+                           .count
+
+    @sewing_pending = Order.joins(order_details: :order_technique_details)
+                        .where(order_details: { factory_id: 1 })
+                        .where(order_technique_details: { technique_id: 6 })
+                        .group("orders.internal_delivery_date")
+                        .count
 
     @sewing_toda1 = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
