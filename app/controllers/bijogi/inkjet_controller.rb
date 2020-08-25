@@ -1,4 +1,4 @@
-class Toda1::InkjetController < ApplicationController
+class Bijogi::InkjetController < ApplicationController
   def index
     @orders = Order.left_joins(order_details: :order_technique_details).distinct
                 .where(order_details: { factory_id: 8 }).distinct
