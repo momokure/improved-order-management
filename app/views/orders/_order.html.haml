@@ -4,9 +4,9 @@
   %td
     = link_to customer_path(id: order.customer.uid) do
       #{order.customer.customer_type.customer_type_name}
-      #{order.customer.customer_name.to_s.truncate(15)} 様
+      #{order.customer.customer_name.to_s.truncate(10)} 様
   %td
-    = OrderType.find(order.order_type_id).order_type_name
+    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
     = l(order.try(:order_date), format: :middle, default: '')
