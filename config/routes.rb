@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   end
 
   namespace :domestic_buying do
-    resources :backlog, only: :index
+    resources :backlog_all, only: :index
+    resources :backlog_paid, only: :index
+    resources :backlog_toda1, only: :index
+    resources :backlog_bijogi, only: :index
+    resources :backlog_mixed, only: :index
     resources :wip, only: :index
     resources :done, only: :index
     resources :sorting, only: :index
