@@ -4,21 +4,21 @@
       = l(date, format: :middle, default: '')
     %td
       - if @silkscreen_a_pending[date].present?
-        #{@silkscreen_a_pending[date]}件
+        全#{@silkscreen_a_pending[date]}件
     %td
       - if @silkscreen_a_toda1_wip[date].present?
         = link_to "残#{@silkscreen_a_toda1_wip[date]}件", wip_toda1_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_toda1_wip[date].to_i+@silkscreen_a_toda1_done[date].to_i}件
         %br/
       - if @silkscreen_a_toda1_done[date].present?
-        = link_to "#{@silkscreen_a_toda1_done[date]}件制作済", done_toda1_silkscreen_a_index_path(date: date)
+        = link_to "全#{@silkscreen_a_toda1_done[date]}件制作済", done_toda1_silkscreen_a_index_path(date: date)
     %td
       - if @silkscreen_a_bijogi_wip[date].present?
         = link_to "残#{@silkscreen_a_bijogi_wip[date]}件", wip_bijogi_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_bijogi_wip[date]+@silkscreen_a_bijogi_done[date].to_i}件
         %br/
       - if @silkscreen_a_bijogi_done[date].present?
-        = link_to "#{@silkscreen_a_bijogi_done[date]}件制作済", done_bijogi_silkscreen_a_index_path(date: date)
+        = link_to "全#{@silkscreen_a_bijogi_done[date]}件制作済", done_bijogi_silkscreen_a_index_path(date: date)
     %td
       - if @inkjet_pending[date].present?
         #{@inkjet_pending[date]}件
@@ -28,14 +28,14 @@
         \/ 計#{@inkjet_toda1_wip[date].to_i+@inkjet_toda1_done[date].to_i}件
         %br/
       - if @inkjet_toda1_done[date].present?
-        = link_to "#{@inkjet_toda1_done[date]}件制作済", done_toda1_inkjet_index_path(date: date)
+        = link_to "全#{@inkjet_toda1_done[date]}件制作済", done_toda1_inkjet_index_path(date: date)
     %td
       - if @inkjet_bijogi_wip[date].present?
         = link_to "残#{@inkjet_bijogi_wip[date]}件", wip_bijogi_inkjet_index_path(date: date)
         \/ 計#{@inkjet_bijogi_wip[date].to_i+@inkjet_bijogi_done[date].to_i}件
         %br/
       - if @inkjet_bijogi_done[date].present?
-        = link_to "#{@inkjet_bijogi_done[date]}件制作済", done_bijogi_inkjet_index_path(date: date)
+        = link_to "全#{@inkjet_bijogi_done[date]}件制作済", done_bijogi_inkjet_index_path(date: date)
     %td
       - if @embroidery_pending[date].present?
         #{@embroidery_pending[date]}件
@@ -45,14 +45,14 @@
         \/ 計#{@embroidery_toda1_wip[date].to_i+@embroidery_toda1_done[date].to_i}件
         %br/
       - if @embroidery_toda1_done[date].present?
-        = link_to "#{@embroidery_toda1_done[date]}件制作済", done_toda1_embroidery_index_path(date: date)
+        = link_to "全#{@embroidery_toda1_done[date]}件制作済", done_toda1_embroidery_index_path(date: date)
     %td
       - if @embroidery_bijogi_wip[date].present?
         = link_to "残#{@embroidery_bijogi_wip[date]}件", wip_bijogi_embroidery_index_path(date: date)
         \/ 計#{@embroidery_bijogi_wip[date].to_i+@embroidery_bijogi_done[date].to_i}件
         %br/
       - if @embroidery_bijogi_done[date].present?
-        = link_to "#{@embroidery_bijogi_done[date]}件制作済", done_bijogi_embroidery_index_path(date: date)
+        = link_to "全#{@embroidery_bijogi_done[date]}件制作済", done_bijogi_embroidery_index_path(date: date)
     %td
       - if @sewing_pending[date].present?
         #{@sewing_pending[date]}件
@@ -62,39 +62,39 @@
         \/ 計#{@sewing_toda1_wip[date].to_i+@sewing_toda1_done[date].to_i}件
         %br/
       - if @sewing_toda1_done[date].present?
-        = link_to "#{@sewing_toda1_done[date]}件制作済", done_toda1_sewing_index_path(date: date)
+        = link_to "全#{@sewing_toda1_done[date]}件制作済", done_toda1_sewing_index_path(date: date)
     %td
       - if @sewing_bijogi_wip[date].present?
         = link_to "残#{@sewing_bijogi_wip[date]}件", wip_bijogi_sewing_index_path(date: date)
-        \/ 計#{@sewing_toda1_wip[date].to_i+@sewing_toda1_done[date].to_i}件
+        \/ 計#{@sewing_bijogi_wip[date].to_i+@sewing_bijogi_done[date].to_i}件
         %br/
       - if @sewing_bijogi_done[date].present?
-        = link_to "#{@sewing_bijogi_done[date]}件制作済", done_bijogi_sewing_index_path(date: date)
+        = link_to "全#{@sewing_bijogi_done[date]}件制作済", done_bijogi_sewing_index_path(date: date)
     %td
       - if @silkscreen_b_wip[date].present?
         = link_to "残#{@silkscreen_b_wip[date]}件", wip_bijogi_silkscreen_b_index_path(date: date)
         \/ 計#{@silkscreen_b_wip[date].to_i+@silkscreen_b_done[date].to_i}件
         %br/
       - if @silkscreen_b_done[date].present?
-        = link_to "#{@silkscreen_b_done[date]}件制作済", done_bijogi_silkscreen_b_index_path(date: date)
+        = link_to "全#{@silkscreen_b_done[date]}件制作済", done_bijogi_silkscreen_b_index_path(date: date)
     %td
       - if @silkscreen_c_wip[date].present?
         = link_to "残#{@silkscreen_c_wip[date]}件", wip_bijogi_silkscreen_c_index_path(date: date)
         \/ 計#{@silkscreen_c_wip[date].to_i+@silkscreen_c_done[date].to_i}件
         %br/
       - if @silkscreen_c_done[date].present?
-        = link_to "#{@silkscreen_c_done[date]}件制作済", done_bijogi_silkscreen_c_index_path(date: date)
+        = link_to "全#{@silkscreen_c_done[date]}件制作済", done_bijogi_silkscreen_c_index_path(date: date)
     %td
       - if @silkscreen_d_wip[date].present?
         = link_to "残#{@silkscreen_d_wip[date]}件", wip_yoyogi_silkscreen_d_index_path(date: date)
         \/ 計#{@silkscreen_d_wip[date].to_i+@silkscreen_d_done[date].to_i}件
         %br/
       - if @silkscreen_d_done[date].present?
-        = link_to "#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
+        = link_to "全#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
     %td
       - if @uv_wip[date].present?
         = link_to "残#{@uv_wip[date]}件", wip_bijogi_uv_index_path(date: date)
         \/ 計#{@uv_wip[date].to_i+@uv_done[date].to_i}件
         %br/
       - if @uv_done[date].present?
-        = link_to "#{@uv_done[date]}件制作済", done_bijogi_uv_index_path(date: date)
+        = link_to "全#{@uv_done[date]}件制作済", done_bijogi_uv_index_path(date: date)
