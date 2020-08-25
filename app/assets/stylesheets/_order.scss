@@ -5,13 +5,13 @@
   //transform: translate(-50%, -25%);
 }
 
+
 table.neumorphic {
   margin: auto;
   width: 600px;
   border-spacing: 0;
   color: #212121;
   text-align: center;
-  overflow: hidden;
   box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
 
   thead {
@@ -19,8 +19,16 @@ table.neumorphic {
   }
 
   th {
+    background: #e0e5ec;
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
+
+
     white-space: nowrap;
     padding: 7px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
   th.payment{
@@ -29,6 +37,8 @@ table.neumorphic {
 
   > tbody > tr {
     > td {
+      overflow: hidden;
+
       white-space: nowrap;
       padding: 5px 10px;
       font-size: 12px;
@@ -36,12 +46,14 @@ table.neumorphic {
     }
 
     &:hover {
+
       padding: 20px;
       box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
     }
   }
 
   tr td:first-child::before {
+
     content: "";
     position: absolute;
     padding: 7px;
