@@ -17,5 +17,6 @@ Department.seed(
   {id: 16, department_name: "シルクスクリーンD"},
   {id: 17, department_name: "発送"},
   {id: 18, department_name: "縫製"},
+  {id: 19, department_name: "経営"},
   {id: 99, department_name: "該当なし"}
   )

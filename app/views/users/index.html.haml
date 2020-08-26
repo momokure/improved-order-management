@@ -1,0 +1,10 @@
+%h2 登録済のユーザー一覧
+%ul
+  - @users.each do |user|
+    %li
+      = user.id
+      = link_to user.user_name, user
+      = Department.find(UsersDepartment.find_by(user_id: user.id).department_id).department_name
+      = Factory.find(UsersFactory.find_by(user_id: user.id).factory_id).factory_name
+
+= link_to "ログアウト", destroy_user_session_path, method: :delete
