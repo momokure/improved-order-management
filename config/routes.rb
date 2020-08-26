@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, :only => [:index, :show]
 
   root to: 'orders#index'
+
+  # resources :users, index, show
+
   namespace :customers do
     resources :searches, only: :index, defaults: { format: :json }
   end
