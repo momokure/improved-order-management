@@ -13,7 +13,7 @@
       %br/
       %div{style: "display:inline-flex"}
         = f.label :maker_id, "　🌱制作担当者 :"
-        = f.collection_select(:maker_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 10, 11, 12, 13, 14, 15, 16] }), :id, :user_name, selected: 99)
+        = f.collection_select(:maker_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 10, 11, 12, 13, 14, 15, 16] }), :id, :user_name)
 
       %br/
       %br/
