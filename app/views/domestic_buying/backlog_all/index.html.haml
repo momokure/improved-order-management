@@ -1,5 +1,23 @@
 %h2
-  国内未発注 (納品日順) 全#{@orders.count}件
+  国内未発注 (社内納品日あり/社内納品日順) 全#{@orders.count}件
+
+%li
+  =link_to "国内未発注 (社内納品日あり/社内納品日順)", domestic_buying_backlog_all_index_path
+%li
+  =link_to "国内未発注 (社内納品日なし/ご注文日順)", domestic_buying_backlog_blank_index_path
+%li
+  =link_to "国内未発注 (ご入金あり/社内納品日順)", domestic_buying_backlog_paid_index_path
+%li
+  =link_to "国内未発注:戸田公園第1工場 (社内納品日あり/社内納品日順)", domestic_buying_backlog_toda1_index_path
+%li
+  =link_to "国内未発注:美女木工場 (社内納品日あり/社内納品日順)", domestic_buying_backlog_bijogi_index_path
+%li
+  =link_to "国内未発注:美女木工場 (社内納品日あり/社内納品日順)", domestic_buying_backlog_mixed_index_path
+
+%li
+  =link_to "国内発注作業中 (社内納品日順)", domestic_buying_wip_index_path
+%li
+  =link_to "国内発注完了 (社内納品日順)",   domestic_buying_done_index_path
 
 .container
   %table.neumorphic
@@ -24,5 +42,6 @@
         %th 発注状況
         %th 仕分け状況
         %th ご注文備考欄
+        %th
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
