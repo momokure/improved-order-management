@@ -12,12 +12,6 @@ class DomesticBuying::BacklogAllController < ApplicationController
                     .where(buy_details: { buying_user_id: 54 }).distinct
                     .order(:internal_delivery_date)
                 )
-                .or(
-                  Order.left_joins(:buy_details).distinct
-                    .where(orders: { domestic_buying: 1 }).distinct
-                    .where.not(buy_details: { buying_user_id: [29, 32, 33] }).distinct
-                    .order(:internal_delivery_date)
-                )
                 # .order(:internal_delivery_date)
   end
 end
