@@ -43,7 +43,6 @@ Rails.application.routes.draw do
   namespace :overseas_buying do
     resources :backlog, only: :index
     resources :done, only: :index
-    resources :sorting, only: :index
   end
 
   namespace :toda1 do

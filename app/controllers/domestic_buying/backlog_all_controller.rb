@@ -12,6 +12,5 @@ class DomesticBuying::BacklogAllController < ApplicationController
                     .where(buy_details: { buying_user_id: 54 }).distinct
                     .order(:internal_delivery_date)
                 )
-                # .order(:internal_delivery_date)
   end
 end
