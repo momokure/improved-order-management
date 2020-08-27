@@ -61,8 +61,8 @@
                 %br
                 - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
                   #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-                %br
-                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                  #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+                  %br
+                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
               %td
                 #{Factory.find(order_detail.factory_id).factory_name}工場
