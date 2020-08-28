@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   namespace :overseas_buying do
+    resources :all, only: :index
     resources :backlog, only: :index
     resources :done, only: :index
   end
