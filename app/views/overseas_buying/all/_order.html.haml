@@ -10,7 +10,7 @@
   %td
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
 
-  %td{class: ('yellow' if OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).count > 1)}
+  %td{class: ('yellow' if OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).count > 1 )}
     - OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).each do |order_detail|
       = Factory.find_by(id: order_detail).factory_name
       %br/
