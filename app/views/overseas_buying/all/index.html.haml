@@ -1,0 +1,18 @@
+%h2
+  海外発注を含むご注文一覧
+
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th ご注文ID
+        %th お客様種別/お名前
+        %th 社内納品日
+        %th 工場
+        %th.payment ご入金日
+        %th.payment ご入金額
+        %th 海外発注状況
+        %th ご注文備考欄
+        %th
+    %tbody
+      = render partial: 'order', collection: @orders, locals: { order: @orders }
