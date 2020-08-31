@@ -69,3 +69,7 @@ gem 'active_hash'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'cocoon'
+
+# PDF生成のためのGem
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
