@@ -19,7 +19,6 @@
 %h3 武内チーム (#{Order.where(representative_user_id: [18, 7, 24, 10, 15, 9], first_response_date: @from..@to).count}件)
 　武内 #{Order.where(representative_user_id: 18, first_response_date: @from..@to).count}件 /
 福留 #{Order.where(representative_user_id: 7, first_response_date: @from..@to).count}件 /
-菅野 #{Order.where(representative_user_id: 24, first_response_date: @from..@to).count}件 /
 矢部 #{Order.where(representative_user_id: 10, first_response_date: @from..@to).count}件 /
 立石(希) #{Order.where(representative_user_id: 15, first_response_date: @from..@to).count}件 /
 宗我部 #{Order.where(representative_user_id: 9, first_response_date: @from..@to).count}件
@@ -38,7 +37,3 @@
 宇喜多 #{Order.where(representative_user_id: 11, first_response_date: @from..@to).count}件 /
 最上 #{Order.where(representative_user_id: 22, first_response_date: @from..@to).count}件 /
 松浦 #{Order.where(representative_user_id: 16, first_response_date: @from..@to).count}件
-
-%br
-%h3 サポート
-　水上 #{Order.where(representative_user_id: 6, first_response_date: @from..@to).count}件
