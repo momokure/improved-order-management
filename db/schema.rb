@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_094624) do
+ActiveRecord::Schema.define(version: 2020_08_31_115519) do
 
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
+    t.bigint "buy_type_id"
     t.index ["buy_progress_id"], name: "index_buy_details_on_buy_progress_id"
+    t.index ["buy_type_id"], name: "index_buy_details_on_buy_type_id"
     t.index ["buying_user_id"], name: "index_buy_details_on_buying_user_id"
     t.index ["order_id"], name: "index_buy_details_on_order_id"
   end
@@ -189,6 +191,15 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.boolean "custody_tag_status"
+    t.boolean "custody_request"
+    t.bigint "order_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_detail_id"], name: "index_order_tags_on_order_detail_id"
+  end
+
   create_table "order_technique_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.bigint "order_detail_id"
     t.bigint "technique_option_id"
@@ -242,9 +253,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
     t.boolean "payment_confirmation", default: false, null: false
     t.boolean "send_receipt", default: false, null: false
     t.boolean "send_invoice", default: false, null: false
-    t.datetime "shipment_date"
-    t.bigint "shipment_user_id"
-    t.integer "cancellation", default: 0, null: false
+    t.boolean "cancellation", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
@@ -254,9 +263,17 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["quote_difficulty_level_id"], name: "index_orders_on_quote_difficulty_level_id"
     t.index ["representative_user_id"], name: "index_orders_on_representative_user_id"
-    t.index ["shipment_user_id"], name: "index_orders_on_shipment_user_id"
     t.index ["specified_time_id"], name: "index_orders_on_specified_time_id"
     t.index ["uid"], name: "index_orders_on_uid", unique: true
+  end
+
+  create_table "overseas_buying_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.date "sort_date"
+    t.date "transfer_date"
+    t.bigint "buy_details_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buy_details_id"], name: "index_overseas_buying_details_on_buy_details_id"
   end
 
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -307,15 +324,23 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shipments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.date "shipment_date"
+    t.bigint "factory_id"
+    t.bigint "shipment_user_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["factory_id"], name: "index_shipments_on_factory_id"
+    t.index ["shipment_user_id_id"], name: "index_shipments_on_shipment_user_id_id"
+  end
+
   create_table "sort_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "sort_date"
-    t.bigint "buy_type_id"
     t.bigint "sorting_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
-    t.index ["buy_type_id"], name: "index_sort_details_on_buy_type_id"
-    t.index ["order_id"], name: "index_sort_details_on_order_id"
+    t.bigint "order_detail_id"
+    t.index ["order_detail_id"], name: "index_sort_details_on_order_detail_id"
     t.index ["sorting_user_id"], name: "index_sort_details_on_sorting_user_id"
   end
 
@@ -383,6 +408,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
   end
 
   add_foreign_key "buy_details", "buy_progresses"
+  add_foreign_key "buy_details", "buy_types"
   add_foreign_key "buy_details", "orders"
   add_foreign_key "buy_details", "users", column: "buying_user_id"
   add_foreign_key "buy_notes", "buy_details"
@@ -406,6 +432,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_notes", "orders"
   add_foreign_key "order_notes", "users"
+  add_foreign_key "order_tags", "order_details"
   add_foreign_key "order_technique_detail_options", "order_details"
   add_foreign_key "order_technique_detail_options", "technique_options"
   add_foreign_key "order_technique_details", "order_details"
@@ -421,13 +448,14 @@ ActiveRecord::Schema.define(version: 2020_08_31_094624) do
   add_foreign_key "orders", "specified_times"
   add_foreign_key "orders", "users", column: "order_reflect_user_id"
   add_foreign_key "orders", "users", column: "representative_user_id"
-  add_foreign_key "orders", "users", column: "shipment_user_id"
+  add_foreign_key "overseas_buying_details", "buy_details", column: "buy_details_id"
   add_foreign_key "payment_notes", "payments"
   add_foreign_key "payment_notes", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users", column: "accounting_user_id"
-  add_foreign_key "sort_details", "buy_types"
-  add_foreign_key "sort_details", "orders"
+  add_foreign_key "shipments", "factories"
+  add_foreign_key "shipments", "users", column: "shipment_user_id_id"
+  add_foreign_key "sort_details", "order_details"
   add_foreign_key "sort_details", "users", column: "sorting_user_id"
   add_foreign_key "sort_notes", "sort_details"
   add_foreign_key "sort_notes", "users"

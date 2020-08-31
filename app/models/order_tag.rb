@@ -1,0 +1,2 @@
+class OrderTag < ApplicationRecord
+end

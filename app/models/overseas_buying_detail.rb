@@ -1,0 +1,2 @@
+class OverseasBuyingDetail < ApplicationRecord
+end
