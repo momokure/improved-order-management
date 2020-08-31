@@ -1,6 +1,9 @@
 %h2
   あたらしい注文管理システム
 
+%h4
+  = paginate @orders
+
 .container
   %table.neumorphic
     %thead
@@ -27,3 +30,6 @@
         %th 　
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
+
+%h4
+  = paginate @orders

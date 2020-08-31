@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   require 'date'
+  PER = 500
 
   def index
-    @orders = Order.all
+    @orders = Order.page(params[:page]).per(PER)
   end
 
   def new
