@@ -1,6 +1,6 @@
 class CreateOverseasBuyingDetails < ActiveRecord::Migration[5.2]
   def change
-    create_table :overseas_buying_details do |t|
+    create_table :overseas_buying_details, options: "DEFAULT CHARSET=utf8mb4" do |t|
       t.date :sort_date
       t.date :transfer_date
       t.references :buy_details, index: true, foreign_key: true

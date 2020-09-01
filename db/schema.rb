@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_115519) do
+ActiveRecord::Schema.define(version: 2020_09_01_023649) do
 
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
@@ -324,6 +324,16 @@ ActiveRecord::Schema.define(version: 2020_08_31_115519) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shipment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.text "shipment_note"
+    t.bigint "shipment_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipment_id"], name: "index_shipment_notes_on_shipment_id"
+    t.index ["user_id"], name: "index_shipment_notes_on_user_id"
+  end
+
   create_table "shipments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "shipment_date"
     t.bigint "factory_id"
@@ -453,6 +463,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_115519) do
   add_foreign_key "payment_notes", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "users", column: "accounting_user_id"
+  add_foreign_key "shipment_notes", "shipments"
+  add_foreign_key "shipment_notes", "users"
   add_foreign_key "shipments", "factories"
   add_foreign_key "shipments", "users", column: "shipment_user_id_id"
   add_foreign_key "sort_details", "order_details"
