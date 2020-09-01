@@ -14,4 +14,4 @@
       = f.label :sewing_user_id, "海外商品担当者 :"
       = f.collection_select(:buying_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 8] }), :id, :user_name)
 
-  = link_to_remove_association "海外発注詳細を削除❌", f
+  = link_to_remove_association "🐚海外発注詳細を削除❌", f
