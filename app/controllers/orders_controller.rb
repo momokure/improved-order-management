@@ -264,7 +264,9 @@ class OrdersController < ApplicationController
                                    sort_details_attributes: [:id, :sort_date, :order_detail_id, :sorting_user_id, :_destroy,
                                                              sort_notes_attributes: [:id, :sort_note, :sort_detail_id, :user_id, :_destroy]
                                    ],
-                                   order_tags_attributes: [:id, :custody_tag_status, :custody_request, :_destroy]
+                                   order_tags_attributes: [:id, :custody_tag_status, :custody_request, :sewing_user_id, :_destroy,
+                                                           order_tag_notes_attributes: [:id, :order_tag_note, :order_tags_id, :user_id, :_destroy]
+                                   ]
         ],
         payments_attributes: [:id, :payment_date, :amount_paid, :accounting_user_id, :_destroy,
                               payment_notes_attributes: [:id, :payment_note, :user_id, :_destroy]

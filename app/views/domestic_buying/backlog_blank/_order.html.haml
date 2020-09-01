@@ -34,8 +34,8 @@
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
   %td
-    - SortDetail.where(order_id: order.id).each do |sort_detail|
-      済(#{User.find(sort_detail.sorting_user_id).user_name})
+    -# - SortDetail.where(order_id: order.id).each do |sort_detail|
+    -#   済(#{User.find(sort_detail.sorting_user_id).user_name})
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
   %td
