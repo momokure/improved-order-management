@@ -272,6 +272,7 @@ class OrdersController < ApplicationController
                               payment_notes_attributes: [:id, :payment_note, :user_id, :_destroy]
         ],
         buy_details_attributes: [:id, :buy_progress_id, :purchase_date, :buy_type_id, :buying_user_id ,:_destroy,
+                                 overseas_buying_details_attributes: [:id, :sort, :transfer, :buying_user_id, :buy_detail_id, :_destroy],
                                  buy_notes_attributes: [:id, :buy_note, :buy_detail_id, :user_id, :_destroy]
         ],
         shipments_attributes: [:id, :shipment_date, :factory_id, :shipment_user_id, :_destroy,

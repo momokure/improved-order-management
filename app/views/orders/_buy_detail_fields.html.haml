@@ -13,9 +13,16 @@
     %br/
     %br/
     = link_to_remove_association "発注詳細を削除❌", f
+
     %br/
     .buy_notes
       = f.fields_for :buy_notes do |buy_note|
         = render 'buy_note_fields', f: buy_note
       .links
         = link_to_add_association "発注備考を追加➕", f, :buy_notes
+
+    .overseas_buying_details
+      = f.fields_for :overseas_buying_details do |overseas_buying_detail|
+        = render 'overseas_buying_detail_fields', f: overseas_buying_detail
+      .links
+        = link_to_add_association "海外発注詳細を追加➕", f, :overseas_buying_details

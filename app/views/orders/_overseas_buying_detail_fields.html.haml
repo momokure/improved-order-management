@@ -1,0 +1,17 @@
+.nested-fields.well.well-compact
+  .form-group
+    %div{style: "display:inline-flex"}
+      = f.label :sort, "海外発注商品の仕分け"
+      = f.check_box :sort, {}, "completed", "uncompleted"
+
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :transfer, "海外発注商品の転送"
+      = f.check_box :transfer, {}, "completed", "uncompleted"
+
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :sewing_user_id, "海外商品担当者 :"
+      = f.collection_select(:buying_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 8] }), :id, :user_name)
+
+  = link_to_remove_association "海外発注詳細を削除❌", f

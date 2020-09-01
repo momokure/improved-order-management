@@ -280,12 +280,14 @@ ActiveRecord::Schema.define(version: 2020_09_01_074036) do
   end
 
   create_table "overseas_buying_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.date "sort_date"
-    t.date "transfer_date"
-    t.bigint "buy_details_id"
+    t.boolean "sort"
+    t.boolean "transfer"
+    t.bigint "buying_user_id"
+    t.bigint "buy_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buy_details_id"], name: "index_overseas_buying_details_on_buy_details_id"
+    t.index ["buy_detail_id"], name: "index_overseas_buying_details_on_buy_detail_id"
+    t.index ["buying_user_id"], name: "index_overseas_buying_details_on_buying_user_id"
   end
 
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -473,7 +475,8 @@ ActiveRecord::Schema.define(version: 2020_09_01_074036) do
   add_foreign_key "orders", "specified_times"
   add_foreign_key "orders", "users", column: "order_reflect_user_id"
   add_foreign_key "orders", "users", column: "representative_user_id"
-  add_foreign_key "overseas_buying_details", "buy_details", column: "buy_details_id"
+  add_foreign_key "overseas_buying_details", "buy_details"
+  add_foreign_key "overseas_buying_details", "users", column: "buying_user_id"
   add_foreign_key "payment_notes", "payments"
   add_foreign_key "payment_notes", "users"
   add_foreign_key "payments", "orders"
