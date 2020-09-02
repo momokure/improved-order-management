@@ -80,6 +80,17 @@
         - if BuyProgress.find(buy_detail.buy_progress_id).id == 5
           %p{id: 'yellowred'}
             #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}
+
+  %td
+    - BuyDetail.where(order_id: order.id).each do |buy_detail|
+      - OverseasBuyingDetail.where(buy_detail_id: buy_detail).each do |overseas_buying_detail|
+        - if overseas_buying_detail.sort == "completed"
+          ✔️️
+  %td
+    - BuyDetail.where(order_id: order.id).each do |buy_detail|
+      - OverseasBuyingDetail.where(buy_detail_id: buy_detail).each do |overseas_buying_detail|
+        - if overseas_buying_detail.transfer == "completed"
+          ✔️️
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
 
