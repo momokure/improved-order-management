@@ -18,7 +18,7 @@ table.neumorphic {
     box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
 
     white-space: nowrap;
-    //padding: 7px;
+    padding: 5px 10px;
 
     position: sticky;
     top: 0;
@@ -35,19 +35,8 @@ table.neumorphic {
 
       white-space: nowrap;
       //padding: 5px 10px;
-      font-size: 8px;
+      font-size: 9px;
       position: relative;
-
-      &.yellow{
-        color: red;
-        font-weight: bold;
-        text-shadow: yellow 1px 1px 1px, yellow -1px 1px 1px, yellow 1px -1px 1px, yellow -1px -1px 1px;
-      }
-      &.blue{
-        color: dodgerblue;
-        font-weight: bold;
-        text-shadow: lightblue 1px 1px 1px, lightblue -1px 1px 1px, lightblue 1px -1px 1px, lightblue -1px -1px 1px;
-      }
     }
 
     &:hover {
