@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_074036) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
-    t.bigint "buy_type_id"
+    t.bigint "buy_type_id", default: 1
     t.index ["buy_progress_id"], name: "index_buy_details_on_buy_progress_id"
     t.index ["buy_type_id"], name: "index_buy_details_on_buy_type_id"
     t.index ["buying_user_id"], name: "index_buy_details_on_buying_user_id"
