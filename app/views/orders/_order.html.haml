@@ -19,7 +19,7 @@
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td
     = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
-  %td
+  %td{style: "font-weight:bold"}
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
     = l(order.try(:payment_deadline_date), format: :middle, default: '')
@@ -35,9 +35,9 @@
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
-  %td
-    - SortDetail.where(order_id: order.id).each do |sort_detail|
-      済(#{User.find(sort_detail.sorting_user_id).user_name})
+  -#%td
+    -# - SortDetail.where(order_id: order.id).each do |sort_detail|
+    -#   済(#{User.find(sort_detail.sorting_user_id).user_name})
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
   %td

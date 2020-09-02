@@ -1,21 +1,38 @@
 .nested-fields.well.well-compact
   .form-group
-    = f.label :purchase_date, "発注日"
-    = f.date_select :purchase_date
+    %div{style: "display:inline-flex"}
+      = f.label :buy_type_id, "国内/海外 :"
+      = f.collection_select(:buy_type_id, BuyType.all, :id, :buy_type_name)
+
+    %br/
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :purchase_date, "発注日 : "
+      = f.date_select :purchase_date
+
     %br/
     %br/
     = f.collection_select(:buy_progress_id, BuyProgress.all, :id, :buy_progress_name)
+
     %br/
     %br/
     %div{style: "display:inline-flex"}
       = f.label :buying_user_id, "発注担当者 :"
       = f.collection_select(:buying_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 6, 8] }), :id, :user_name)
+
     %br/
     %br/
     = link_to_remove_association "発注詳細を削除❌", f
+
     %br/
     .buy_notes
       = f.fields_for :buy_notes do |buy_note|
         = render 'buy_note_fields', f: buy_note
       .links
         = link_to_add_association "発注備考を追加➕", f, :buy_notes
+
+    .overseas_buying_details
+      = f.fields_for :overseas_buying_details do |overseas_buying_detail|
+        = render 'overseas_buying_detail_fields', f: overseas_buying_detail
+      .links
+        = link_to_add_association "🐚海外発注詳細を追加➕", f, :overseas_buying_details

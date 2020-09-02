@@ -256,21 +256,27 @@ class OrdersController < ApplicationController
         :domestic_buying, :overseas_buying, :carry_in,
         :payment_deadline_date, :payment_amount, :payment_confirmation,
         :send_receipt, :send_invoice,
-        :shipment_date, :shipment_user_id,
         :cancellation,
         order_details_attributes: [:id, :mixed_techniques, :factory_id, :_destroy,
                                    order_detail_options_attributes: [:id, :order_option_id, :_destroy],
                                    order_technique_details_attributes: [:id, :technique_id, :progress_id, :pasteup_user_id, :maker_id, :_destroy],
-                                   order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy]
+                                   order_technique_detail_options_attributes: [:id, :technique_option_id, :_destroy],
+                                   sort_details_attributes: [:id, :sort_date, :order_detail_id, :sorting_user_id, :_destroy,
+                                                             sort_notes_attributes: [:id, :sort_note, :sort_detail_id, :user_id, :_destroy]
+                                   ],
+                                   order_tags_attributes: [:id, :custody_tag_status, :custody_request, :sewing_user_id, :_destroy,
+                                                           order_tag_notes_attributes: [:id, :order_tag_note, :order_tags_id, :user_id, :_destroy]
+                                   ]
         ],
         payments_attributes: [:id, :payment_date, :amount_paid, :accounting_user_id, :_destroy,
                               payment_notes_attributes: [:id, :payment_note, :user_id, :_destroy]
         ],
-        buy_details_attributes: [:id, :buy_progress_id, :purchase_date, :arrival_date, :buy_type_id, :supplier_id, :order_detail_id, :buying_user_id ,:_destroy,
+        buy_details_attributes: [:id, :buy_progress_id, :purchase_date, :buy_type_id, :buying_user_id ,:_destroy,
+                                 overseas_buying_details_attributes: [:id, :sort, :transfer, :buying_user_id, :buy_detail_id, :_destroy],
                                  buy_notes_attributes: [:id, :buy_note, :buy_detail_id, :user_id, :_destroy]
         ],
-        sort_details_attributes: [:id, :buy_type_id, :order_detail_id, :sorting_user_id, :_destroy,
-                                  sort_notes_attributes: [:id, :sort_note, :sort_detail_id, :user_id, :_destroy]
+        shipments_attributes: [:id, :shipment_date, :factory_id, :shipment_user_id, :_destroy,
+                               shipment_notes_attributes: [:id, :shipment_note, :user_id, :_destroy]
         ],
         customer_addresses_attributes: [:id, :prefecture_code, :customer_id, :_destroy],
         order_notes_attributes: [:id, :order_note, :user_id, :_destroy]

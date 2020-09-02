@@ -111,14 +111,6 @@
   #links
     = link_to_add_association "📦発注詳細を追加➕", f, :buy_details
 
-  -# - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 7 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 9 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
-  %br
-  %h2 📋仕分け記入用
-  = f.fields_for :sort_details do |sort_detail|
-    = render 'sort_detail_fields', f: sort_detail
-  #links
-    = link_to_add_association "📋仕分け詳細を追加➕", f, :sort_details
-
   %br
   %h3 💴ご入金について
   -#%b お支払い方法 :
@@ -143,12 +135,6 @@
   #links
     = link_to_add_association '💴ご入金を反映➕', f, :payments
 
-  -# - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 17 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
-  %br/
-  %h2 発送記入用
-  %div{style: "display:inline-flex"}
-    = f.label :shipment_user_id, "🚚発送担当者 :"
-    = f.collection_select(:shipment_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 17] }), :id, :user_name)
   %br/
   %br/
   %h2 ご注文備考欄
