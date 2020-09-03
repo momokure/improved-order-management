@@ -1,0 +1,24 @@
+.nested-fields.well.well-compact
+  .form-group
+    = f.label :shipment_date, "発送日"
+    = f.date_select :shipment_date, autofocus: true, autocomplete: "shipment_date"
+
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :factory_id, "発送工場 :"
+      = f.collection_select(:factory_id, Factory.where(id: [4, 7, 8]), :id, :factory_name)
+
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :shipment_user_id, "発送担当者 :"
+      = f.collection_select(:shipment_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: 17 }), :id, :user_name)
+
+    %br/
+    %br/
+    = link_to_remove_association "🚚発送を削除❌", f
+    %br/
+  .payment_notes
+    = f.fields_for :shipment_notes do |shipment_note|
+      = render 'shipment_note_fields', f: shipment_note
+    .links
+      = link_to_add_association "発送備考を追加➕", f, :shipment_notes

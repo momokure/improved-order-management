@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_074036) do
+ActiveRecord::Schema.define(version: 2020_09_03_010857) do
 
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
@@ -354,7 +354,9 @@ ActiveRecord::Schema.define(version: 2020_09_01_074036) do
     t.bigint "shipment_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["factory_id"], name: "index_shipments_on_factory_id"
+    t.index ["order_id"], name: "index_shipments_on_order_id"
     t.index ["shipment_user_id"], name: "index_shipments_on_shipment_user_id"
   end
 
@@ -484,6 +486,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_074036) do
   add_foreign_key "shipment_notes", "shipments"
   add_foreign_key "shipment_notes", "users"
   add_foreign_key "shipments", "factories"
+  add_foreign_key "shipments", "orders"
   add_foreign_key "shipments", "users", column: "shipment_user_id"
   add_foreign_key "sort_details", "order_details"
   add_foreign_key "sort_details", "users", column: "sorting_user_id"

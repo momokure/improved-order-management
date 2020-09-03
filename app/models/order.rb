@@ -33,6 +33,9 @@ class Order < ApplicationRecord
   has_many :payments, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true
 
+  has_many :shipments, dependent: :destroy, inverse_of: :order
+  accepts_nested_attributes_for :shipments, reject_if: :all_blank, allow_destroy: true
+
   has_many :order_notes, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :order_notes, reject_if: :all_blank, allow_destroy: true
 

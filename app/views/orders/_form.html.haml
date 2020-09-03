@@ -137,6 +137,14 @@
 
   %br/
   %br/
+  %h2 🚚発送記入用
+  = f.fields_for :shipments do |shipment|
+    = render 'shipment_fields', f: shipment
+  #links
+    = link_to_add_association '🚚発送を反映➕', f, :shipments
+
+  %br/
+  %br/
   %h2 ご注文備考欄
   = f.fields_for :order_notes do |order_note|
     = render 'order_note_fields', f: order_note
