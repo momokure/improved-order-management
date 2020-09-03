@@ -1,16 +1,16 @@
 %h2
-  国内発注作業中 (社内納品日順) 全#{@orders.count}件
+  国内発注未完了 (ご入金あり/社内納品日順) 全#{@orders.count}件
 
 %li
   =link_to "国内発注未完了 (社内納品日あり/社内納品日順)", domestic_buying_backlog_all_index_path
-%li
-  =link_to "国内発注未完了 (ご入金あり/社内納品日順)", domestic_buying_backlog_paid_index_path
+-#%li
+-#  =link_to "国内発注未完了 (ご入金あり/社内納品日順)", domestic_buying_backlog_paid_index_path
 %li
   =link_to "国内発注未完了 (ご入金あり/ご入金日順)", domestic_buying_backlog_payment_date_index_path
 %li
   =link_to "国内発注未完了 (社内納品日なし/ご入金日順)", domestic_buying_backlog_blank_index_path
--#%li
--#  =link_to "国内発注作業中 (社内納品日順)", domestic_buying_wip_index_path
+%li
+  =link_to "国内発注作業中 (社内納品日順)", domestic_buying_wip_index_path
 %li
   =link_to "国内発注作業中 (発注担当者順)",  domestic_buying_wip_buying_user_index_path
 %li

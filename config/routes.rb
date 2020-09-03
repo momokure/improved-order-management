@@ -30,14 +30,12 @@ Rails.application.routes.draw do
 
   namespace :domestic_buying do
     resources :backlog_all, only: :index
-    resources :backlog_blank, only: :index
     resources :backlog_paid, only: :index
-    resources :backlog_toda1, only: :index
-    resources :backlog_bijogi, only: :index
-    resources :backlog_mixed, only: :index
+    resources :backlog_payment_date, only: :index
+    resources :backlog_blank, only: :index
     resources :wip, only: :index
+    resources :wip_buying_user, only: :index
     resources :done, only: :index
-    resources :sorting, only: :index
   end
 
   namespace :overseas_buying do
