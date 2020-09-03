@@ -4,8 +4,9 @@ class DomesticBuying::DoneController < ApplicationController
                     .where(orders: { domestic_buying: 1 }).distinct
                     .where(buy_details: { buy_type_id: 1 }).distinct
                     .where(buy_details: { buy_progress_id: 2 }).distinct
-                    .order(:internal_delivery_date)
-                    .order(Arel.sql('order_details.factory_id'))
-                    .order(:order_type_id)
+                .order(Arel.sql('internal_delivery_date IS NULL, internal_delivery_date ASC'))
+                .order(Arel.sql('order_details.factory_id'))
+                .order(:desired_delivery_type_id)
+                .order(:order_type_id)
   end
 end

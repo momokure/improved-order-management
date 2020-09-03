@@ -21,19 +21,19 @@
     - if order.internal_delivery_date.present?
       - if order.desired_delivery_type_id == 1
         %p{id: 'red'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}必着
 
       - elsif order.desired_delivery_type_id == 2
         %p{id: 'red'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}までに
 
       - elsif order.desired_delivery_type_id == 3
         %p{id: 'green'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}前後
 
       - elsif order.desired_delivery_type_id == 4
         %p{id: 'green'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}前後
 
   %td
     - OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).each do |order_detail|

@@ -41,11 +41,14 @@ Rails.application.routes.draw do
   namespace :overseas_buying do
     resources :all, only: :index
     resources :backlog, only: :index
-    resources :done, only: :index
   end
 
   namespace :toda1 do
     resources :all, only: :index
+    resources :sorting, only: :index do
+      get :backlog, on: :collection
+      get :done, on: :collection
+    end
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
@@ -66,6 +69,10 @@ Rails.application.routes.draw do
 
   namespace :bijogi do
     resources :all, only: :index
+    resources :sorting, only: :index do
+      get :backlog, on: :collection
+      get :done, on: :collection
+    end
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
