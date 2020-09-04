@@ -21,7 +21,7 @@ table.neumorphic {
     padding: 5px 10px;
 
     position: sticky;
-    top: 0;
+    top: 30px;
     z-index: 1;
   }
 
@@ -32,9 +32,7 @@ table.neumorphic {
   > tbody > tr {
     > td {
       overflow: hidden;
-
       white-space: nowrap;
-      //padding: 5px 10px;
       font-size: 9px;
       position: relative;
     }
