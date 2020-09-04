@@ -10,7 +10,7 @@
 
 %br
 %h3 柳生チーム (#{Order.where(representative_user_id: [2, 3, 17, 12], first_response_date: @from..@to).count}件)
-　柳生 #{Order.where(representative_user_id: 2, first_response_date: @from..@to).count}件 /
+　柳生 #{Order.where(representative_user_id: 20, first_response_date: @from..@to).count}件 /
 佐藤(絵) #{Order.where(representative_user_id: 3, first_response_date: @from..@to).count}件 /
 東雲 #{Order.where(representative_user_id: 17, first_response_date: @from..@to).count}件 /
 坂口 #{Order.where(representative_user_id: 12, first_response_date: @from..@to).count}件
