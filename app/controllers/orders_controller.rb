@@ -59,12 +59,14 @@ class OrdersController < ApplicationController
     @start = Date.today.prev_occurring(:sunday)
     @end = @start.next_month.next_month.end_of_week
 
+    #シルクスクリーン工場未定の件数表示
     @silkscreen_a_pending = Order.joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 1 })
                               .where(order_technique_details: { technique_id: 1 })
                               .group("orders.internal_delivery_date")
                               .count
 
+    #シルクスクリーンA戸田公園第１の未製作件数
     @silkscreen_a_toda1_wip = Order.joins(order_details: :order_technique_details)
                                 .where(order_details: { factory_id: 4 })
                                 .where(order_technique_details: { technique_id: 1 })
@@ -72,6 +74,16 @@ class OrdersController < ApplicationController
                                 .group("orders.internal_delivery_date")
                                 .count
 
+
+    #シルクスクリーンA戸田公園第１の指示書未製作件数🐤
+    @silkscreen_a_toda1_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                                .where(order_details: { factory_id: 4 })
+                                .where(order_technique_details: { technique_id: 1 })
+                                .where(order_technique_details: { progress_id: 1  })
+                                .group("orders.internal_delivery_date")
+                                .count
+
+    #シルクスクリーンA戸田公園第１の製作済みの件数
     @silkscreen_a_toda1_done = Order.joins(order_details: :order_technique_details)
                                 .where(order_details: { factory_id: 4 })
                                 .where(order_technique_details: { technique_id: 1 })
@@ -79,6 +91,8 @@ class OrdersController < ApplicationController
                                 .group("orders.internal_delivery_date")
                                 .count
 
+    #シルクスクリーンA美女木の未製作の件数
+    # factory_idが 8（工場が美女木）且つ、technique_idが1（加工方法がシルクスクリーン）且つ、progress_idが7以外（進行工程ステータスが製作完了）のorders.internal_delivery_dateの合計を、数えあげる
     @silkscreen_a_bijogi_wip = Order.joins(order_details: :order_technique_details)
                                  .where(order_details: { factory_id: 8 })
                                  .where(order_technique_details: { technique_id: 1 })
@@ -86,6 +100,14 @@ class OrdersController < ApplicationController
                                  .group("orders.internal_delivery_date")
                                  .count
 
+    #シルクスクリーンA美女木の指示書未製作の件数🐤
+    @silkscreen_a_bijogi_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                                 .where(order_details: { factory_id: 8 })
+                                 .where(order_technique_details: { technique_id: 1 })
+                                 .where(order_technique_details: { progress_id: 1  })
+                                 .group("orders.internal_delivery_date")
+                                 .count
+    #シルクスクリーンA美女木の製作済み件数
     @silkscreen_a_bijogi_done = Order.joins(order_details: :order_technique_details)
                                  .where(order_details: { factory_id: 8 })
                                  .where(order_technique_details: { technique_id: 1 })
@@ -93,12 +115,14 @@ class OrdersController < ApplicationController
                                  .group("orders.internal_delivery_date")
                                  .count
 
+    #インクジェットの工場未定件数
     @inkjet_pending = Order.joins(order_details: :order_technique_details)
                         .where(order_details: { factory_id: 1 })
                         .where(order_technique_details: { technique_id: 4 })
                         .group("orders.internal_delivery_date")
                         .count
 
+    #インクジェットの戸田公園第1の未製作件数
     @inkjet_toda1_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 4 })
@@ -106,6 +130,15 @@ class OrdersController < ApplicationController
                           .group("orders.internal_delivery_date")
                           .count
 
+    #インクジェットの戸田公園第一の見積もり済み指示書の未製作件数🐤
+    @inkjet_toda1_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 4 })
+                          .where(order_technique_details: { technique_id: 4 })
+                          .where(order_technique_details: { progress_id: 1  })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    #インクジェットの戸田公園第一の製作済み件数
     @inkjet_toda1_done = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 4 })
@@ -113,6 +146,7 @@ class OrdersController < ApplicationController
                           .group("orders.internal_delivery_date")
                           .count
 
+    #インクジェットの美女木の未製作件数
     @inkjet_bijogi_wip = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 4 })
@@ -120,6 +154,15 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
+    #インクジェットの美女木の見積もり済み指示書の未製作件数🐤
+    @inkjet_bijogi_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                              .where(order_details: { factory_id: 8 })
+                              .where(order_technique_details: { technique_id: 4 })
+                              .where(order_technique_details: { progress_id: 1  })
+                              .group("orders.internal_delivery_date")
+                              .count
+
+    #インクジェットの美女木の製作済み件数
     @inkjet_bijogi_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 4 })
@@ -127,12 +170,14 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
+    #刺繍の工場未定件数
     @embroidery_pending = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 1 })
                           .where(order_technique_details: { technique_id: 5 })
                           .group("orders.internal_delivery_date")
                           .count
 
+    #刺繍の戸田公園第1の未製作件数
     @embroidery_toda1_wip = Order.joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 4 })
                               .where(order_technique_details: { technique_id: 5 })
@@ -140,6 +185,15 @@ class OrdersController < ApplicationController
                               .group("orders.internal_delivery_date")
                               .count
 
+    #刺繍の戸田公園第1の見積もり済み指示書の未製作件数🐤
+    @embroidery_toda1_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                              .where(order_details: { factory_id: 4 })
+                              .where(order_technique_details: { technique_id: 5 })
+                              .where(order_technique_details: { progress_id: 1  })
+                              .group("orders.internal_delivery_date")
+                              .count
+
+    #刺繍の戸田公園第１の製作済み件数
     @embroidery_toda1_done = Order.joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 4 })
                               .where(order_technique_details: { technique_id: 5 })
@@ -147,6 +201,7 @@ class OrdersController < ApplicationController
                               .group("orders.internal_delivery_date")
                               .count
 
+    #刺繍の美女木の未製作件数
     @embroidery_bijogi_wip = Order.joins(order_details: :order_technique_details)
                                .where(order_details: { factory_id: 8 })
                                .where(order_technique_details: { technique_id: 5 })
@@ -154,6 +209,16 @@ class OrdersController < ApplicationController
                                .group("orders.internal_delivery_date")
                                .count
 
+
+    #刺繍の美女木の見積もり済み指示書の未製作件数🐤
+    @embroidery_bijogi_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                               .where(order_details: { factory_id: 8 })
+                               .where(order_technique_details: { technique_id: 5 })
+                               .where(order_technique_details: { progress_id: 1  })
+                               .group("orders.internal_delivery_date")
+                               .count
+
+    #刺繍の美女木の製作済み件数
     @embroidery_bijogi_done = Order.joins(order_details: :order_technique_details)
                                .where(order_details: { factory_id: 8 })
                                .where(order_technique_details: { technique_id: 5 })
@@ -161,12 +226,14 @@ class OrdersController < ApplicationController
                                .group("orders.internal_delivery_date")
                                .count
 
+    #縫製の工場未定件数
     @sewing_pending = Order.joins(order_details: :order_technique_details)
                         .where(order_details: { factory_id: 1 })
                         .where(order_technique_details: { technique_id: 6 })
                         .group("orders.internal_delivery_date")
                         .count
 
+    #縫製の戸田公園第１の未製作件数
     @sewing_toda1_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 6 })
@@ -174,6 +241,15 @@ class OrdersController < ApplicationController
                           .group("orders.internal_delivery_date")
                           .count
 
+    #縫製の戸田公園第１の見積もり済み指示書の未製作件数🐤
+    @sewing_toda1_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                          .where(order_details: { factory_id: 4 })
+                          .where(order_technique_details: { technique_id: 6 })
+                          .where(order_technique_details: { progress_id: 1  })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    #縫製の戸田公園第１の製作済み件数
     @sewing_toda1_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 4 })
                            .where(order_technique_details: { technique_id: 6 })
@@ -181,6 +257,7 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
+    #縫製の美女木の未製作件数
     @sewing_bijogi_wip = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
@@ -188,6 +265,15 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
+    #縫製の美女木の見積もり済み指示書の未製作件数🐤
+    @sewing_bijogi_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                             .where(order_details: { factory_id: 8 })
+                             .where(order_technique_details: { technique_id: 6 })
+                             .where(order_technique_details: { progress_id: 1  })
+                             .group("orders.internal_delivery_date")
+                             .count
+
+    #縫製の美女木の製作済み件数
     @sewing_bijogi_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
@@ -195,48 +281,83 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
+    #シルクスクリーンBの未製作件数
     @silkscreen_b_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 2 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
+    #シルクスクリーンBの見積もり済み指示書の未製作件数🐤
+    @silkscreen_b_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                          .where(order_technique_details: { technique_id: 2 })
+                          .where(order_technique_details: { progress_id: 1  })
+                          .group("orders.internal_delivery_date")
+                          .count
 
+    #シルクスクリーンBの製作済み件数
     @silkscreen_b_done = Order.joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 2 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
+    #シルクスクリーンCの未製作件数
     @silkscreen_c_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 3 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
+    #シルクスクリーンCの見積もり済み指示書の未製作件数🐤
+    @silkscreen_c_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                          .where(order_technique_details: { technique_id: 3 })
+                          .where(order_technique_details: { progress_id: 1  })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    #シルクスクリーンCの製作済み件数
     @silkscreen_c_done = Order.joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 3 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
+    #シルクスクリーンDの未製作件数
     @silkscreen_d_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
+    #シルクスクリーンDの見積もり済み指示書の未製作件数🐤
+    @silkscreen_d_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                          .where(order_technique_details: { technique_id: 8 })
+                          .where(order_technique_details: { progress_id: 1  })
+                          .group("orders.internal_delivery_date")
+                          .count
+
+    #シルクスクリーンDの製作済み件数
     @silkscreen_d_done = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
                           .where(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
+    #UVの未製作件数
     @uv_wip = Order.joins(order_details: :order_technique_details)
                 .where(order_technique_details: { technique_id: 7 })
                 .where.not(order_technique_details: { progress_id: 7  })
                 .group("orders.internal_delivery_date")
                 .count
 
+    #UVの見積もり済み指示書の未製作件数🐤
+    @uv_pasteup_wip = Order.joins(order_details: :order_technique_details)
+                .where(order_technique_details: { technique_id: 7 })
+                .where(order_technique_details: { progress_id: 1  })
+                .group("orders.internal_delivery_date")
+                .count
+
+    #UVの製作済み件数
     @uv_done = Order.joins(order_details: :order_technique_details)
                  .where(order_technique_details: { technique_id: 7 })
                  .where(order_technique_details: { progress_id: 7  })
