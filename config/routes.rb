@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   root to: 'orders#index'
 
-
   namespace :customers do
     resources :searches, only: :index, defaults: { format: :json }
   end
@@ -26,6 +25,10 @@ Rails.application.routes.draw do
   namespace :accounting do
     resources :backlog, only: :index
     resources :deadline, only: :index
+  end
+
+  namespace :pastup do
+    resources :calendar, only: :index
   end
 
   namespace :domestic_buying do
