@@ -18,7 +18,10 @@ class User < ApplicationRecord
   has_many :payments
   has_many :payment_notes
   has_many :buy_details
+  has_many :overseas_buying_details
   has_many :buy_notes
   has_many :sort_details
   has_many :sort_notes
+  has_many :order_tags
+  has_many :order_tag_notes
 end

@@ -1,5 +1,5 @@
 %h2
-  海外発注を含むご注文一覧
+  海外発注を含むすべてのご注文一覧 全#{@orders.count}件
 
 .container
   %table.neumorphic
@@ -9,9 +9,10 @@
         %th お客様種別/お名前
         %th 社内納品日
         %th 工場
-        %th.payment ご入金日
-        %th.payment ご入金額
+        %th ご入金
         %th 海外発注状況
+        %th 仕分け
+        %th 転送
         %th ご注文備考欄
         %th
     %tbody

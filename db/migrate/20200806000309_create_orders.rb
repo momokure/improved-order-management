@@ -23,7 +23,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.boolean :payment_confirmation, null: false, default: false
       t.boolean :send_receipt, null: false, default: false
       t.boolean :send_invoice, null: false, default: false
-      # t.boolean :shipment_status, null: false, default: false
       t.datetime :shipment_date
       t.references :shipment_user, index: true, foreign_key: { to_table: :users }
       t.integer :cancellation, null: false, default: false

@@ -15,22 +15,38 @@
     = link_to_remove_association "🥚加工内容をすべて削除❌", f
     %br/
     %br/
+
+
   .order_technique_details
     = f.fields_for :order_technique_details do |order_technique_detail|
       = render 'order_technique_detail_fields', f: order_technique_detail
     .links
-      %br/
       = link_to_add_association "🐤加工方法を追加➕", f, :order_technique_details
-    %br/
+
+
   .order_technique_detail_options
     = f.fields_for :order_technique_detail_options do |order_technique_detail_option|
       = render 'order_technique_detail_option_fields', f: order_technique_detail_option
     .links
       = link_to_add_association "🐤加工方法の詳細オプションを追加➕", f, :order_technique_detail_options
-    %br/
+
+
+  .order_tags
+    = f.fields_for :order_tags do |order_tag|
+      = render 'order_tag_fields', f: order_tag
+    .links
+      = link_to_add_association "🔖タグの受取状況を追加➕", f, :order_tags
+
+
   .order_detail_options
     = f.fields_for :order_detail_options do |order_detail_option|
       = render 'order_detail_option_fields', f: order_detail_option
     .links
       = link_to_add_association "🎁📷オプションを追加➕", f, :order_detail_options
-    %br/
+
+
+  .sort_details
+    = f.fields_for :sort_details do |sort_detail|
+      = render 'sort_detail_fields', f: sort_detail
+    .links
+      = link_to_add_association "📋仕分け詳細を追加➕", f, :sort_details

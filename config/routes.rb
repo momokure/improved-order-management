@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   root to: 'orders#index'
 
-
   namespace :customers do
     resources :searches, only: :index, defaults: { format: :json }
   end
@@ -28,26 +27,31 @@ Rails.application.routes.draw do
     resources :deadline, only: :index
   end
 
+  namespace :pastup do
+    resources :calendar, only: :index
+  end
+
   namespace :domestic_buying do
     resources :backlog_all, only: :index
-    resources :backlog_blank, only: :index
     resources :backlog_paid, only: :index
-    resources :backlog_toda1, only: :index
-    resources :backlog_bijogi, only: :index
-    resources :backlog_mixed, only: :index
+    resources :backlog_payment_date, only: :index
+    resources :backlog_blank, only: :index
     resources :wip, only: :index
+    resources :wip_buying_user, only: :index
     resources :done, only: :index
-    resources :sorting, only: :index
   end
 
   namespace :overseas_buying do
     resources :all, only: :index
     resources :backlog, only: :index
-    resources :done, only: :index
   end
 
   namespace :toda1 do
     resources :all, only: :index
+    resources :sorting, only: :index do
+      get :backlog, on: :collection
+      get :done, on: :collection
+    end
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
@@ -68,6 +72,10 @@ Rails.application.routes.draw do
 
   namespace :bijogi do
     resources :all, only: :index
+    resources :sorting, only: :index do
+      get :backlog, on: :collection
+      get :done, on: :collection
+    end
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection

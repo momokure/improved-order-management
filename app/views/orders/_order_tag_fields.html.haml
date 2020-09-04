@@ -1,0 +1,24 @@
+.nested-fields.well.well-compact
+  .form-group
+    %div{style: "display:inline-flex"}
+      = f.label :custody_tag_status, "タグの受取状況"
+      = f.check_box :custody_tag_status, {}, "received", "unreceived"
+    %br/
+    %div{style: "display:inline-flex"}
+      = f.label :custody_request, "保管希望"
+      = f.check_box :custody_request, {}, "yes", "no"
+    %br/
+    %br/
+
+    %div{style: "display:inline-flex"}
+      = f.label :sewing_user_id, "縫製担当者 :"
+      = f.collection_select(:sewing_user_id, User.left_joins(:users_departments).where( users_departments: { department_id: [99, 18] }), :id, :user_name)
+    %br/
+    %br/
+    = link_to_remove_association "タグの受取状況を削除❌", f
+    %br/
+    .order_tag_notes
+      = f.fields_for :order_tag_notes do |order_tag_note|
+        = render 'order_tag_note_fields', f: order_tag_note
+      .links
+        = link_to_add_association "タグの受取備考を追加➕", f, :order_tag_notes

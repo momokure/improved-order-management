@@ -1,17 +1,84 @@
 body {
   height: 100%;
-  //margin: 0;
   background: #e0e5ec;
   color: #333;
   margin: 33px;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-size: 11px;
-  line-height: 18px;
+  font-size: 10px;
+  margin: 0;
+  padding: 0px 5px;
+  border: 0;
+  font: inherit;
 }
+
+#red{
+  color: deeppink;
+  text-shadow: pink 1px 1px 1px, lightpink -1px 1px 1px, lightpink 1px -1px 1px, lightpink -1px -1px 1px;
+}
+
+#redyellow{
+  color: deeppink;
+  font-weight: bold;
+  text-shadow: yellow 1px 1px 1px, yellow -1px 1px 1px, yellow 1px -1px 1px, yellow -1px -1px 1px;
+}
+
+#yellowred{
+  color: yellow;
+  font-weight: bold;
+  text-shadow: deeppink 1px 1px 1px, deeppink -1px 1px 1px, deeppink 1px -1px 1px, deeppink -1px -1px 1px;
+}
+
+#green{
+  color: mediumseagreen;
+  text-shadow: palegreen 1px 1px 1px, palegreen -1px 1px 1px, palegreen 1px -1px 1px, palegreen -1px -1px 1px;
+}
+
+#lightblue{
+  color: cornflowerblue;
+  text-shadow: lightblue 1px 1px 1px, lightblue -1px 1px 1px, lightblue 1px -1px 1px, lightblue -1px -1px 1px;
+}
+
+#toda1{
+  color: dodgerblue;
+  text-shadow: lightblue 1px 1px 1px, lightblue -1px 1px 1px, lightblue 1px -1px 1px, lightblue -1px -1px 1px;
+}
+
+#nakano{
+  color: seagreen;
+  text-shadow: palegreen 1px 1px 1px, palegreen -1px 1px 1px, palegreen 1px -1px 1px, palegreen -1px -1px 1px;
+}
+
+#bijogi{
+  color: mediumslateblue;
+  text-shadow: plum 1px 1px 1px, plum -1px 1px 1px, plum 1px -1px 1px, plum -1px -1px 1px;
+}
+
+#fubi{
+  a{
+    color: deeppink;
+    &:hover {
+      background-color: yellow;
+    }
+  }
+  font-weight: bold;
+  text-shadow: yellow 1px 1px 1px, yellow -1px 1px 1px, yellow 1px -1px 1px, yellow -1px -1px 1px;
+}
+
+#kono{
+  a{
+    color: yellow;
+    &:hover {
+      background-color: hotpink;
+    }
+  }
+  font-weight: bold;
+  text-shadow: hotpink 1px 1px 1px, hotpink -1px 1px 1px, hotpink 1px -1px 1px, hotpink -1px -1px 1px;
+}
+
 
 pre {
   background-color: #eee;
@@ -20,7 +87,7 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #333;
 
   &:visited {
     color: #666;
@@ -74,3 +141,5 @@ div {
 label {
   display: block;
 }
+
+
