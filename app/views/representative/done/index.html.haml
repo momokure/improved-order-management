@@ -6,6 +6,12 @@
   =link_to "本日の対応件数", representative_today_index_path
 %li
   =link_to "対応済一覧(ご入金未連絡)", representative_wip_index_path
+%li
+  営業成績 (
+  =link_to "今月", representative_report_index_path(year_month: @this_month)
+  \ /
+  =link_to "先月", representative_report_index_path(year_month: @last_month)
+  )
 
 - if @orders.present?
   .container

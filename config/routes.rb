@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :wip, only: :index
     resources :done, only: :index
     resources :today, only: :index
+    resources :report, only: :index
   end
 
   namespace :accounting do

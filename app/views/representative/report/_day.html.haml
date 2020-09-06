@@ -1,0 +1,11 @@
+- (Date.parse("#{@year_month_beginning}")..Date.parse("#{@end}")).each do |date|
+  %tr
+    %td
+      = l(date, format: :middle, default: '')
+    %td
+      -# = @mizukami_number_day
+      -# = @mizukami_number_day.transform_keys {|k| k.to_date }
+      -# - if @mizukami_number_day.transform_keys! {|k| k.to_date }[date].present?
+      -#   #{@mizukami_number_day.transform_keys! {|k| k.to_date }[date].to_i}件
+
+      -#時刻も日本時間に合わせる...?
