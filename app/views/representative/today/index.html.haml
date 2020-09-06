@@ -1,4 +1,6 @@
-%h2 本日の対応件数 : 計#{Order.where(first_response_date: @from..@to).count}件
+- content_for(:html_title) { '本日の対応件数' }
+%h2
+  計#{Order.where(first_response_date: @from..@to).count}件
 -#%h4 現在時刻 : #{l(DateTime.now, format: :long, default: '')}
 
 %li

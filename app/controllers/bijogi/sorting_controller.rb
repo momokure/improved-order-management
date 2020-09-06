@@ -9,5 +9,6 @@ class Bijogi::SortingController < ApplicationController
   end
 
   def done
+
   end
 end

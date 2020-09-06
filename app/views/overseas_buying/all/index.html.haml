@@ -1,5 +1,7 @@
+- content_for(:html_title) { '海外発注を含むすべてのご注文一覧' }
+
 %h2
-  海外発注を含むすべてのご注文一覧 全#{@orders.count}件
+  全#{@orders.count}件
 
 .container
   %table.neumorphic

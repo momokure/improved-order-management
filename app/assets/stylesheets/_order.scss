@@ -14,6 +14,8 @@ table.neumorphic {
   }
 
   th {
+    opacity: 0.9;
+
     background: #e0e5ec;
     box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
 
@@ -21,7 +23,7 @@ table.neumorphic {
     padding: 5px 10px;
 
     position: sticky;
-    top: 0;
+    top: 70px;
     z-index: 1;
   }
 
@@ -32,9 +34,7 @@ table.neumorphic {
   > tbody > tr {
     > td {
       overflow: hidden;
-
       white-space: nowrap;
-      //padding: 5px 10px;
       font-size: 9px;
       position: relative;
     }

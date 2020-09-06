@@ -2,11 +2,12 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title あたらしい注文管理システム
+    %title= content_for?(:html_title) ? yield(:html_title) : "あたらしい注文管理システム"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = favicon_link_tag('favicon.ico')
   %body
+    = render partial: 'shared/header'
     = yield

@@ -1,5 +1,7 @@
+- content_for(:html_title) { '国内発注未完了 (社内納品日あり/社内納品日順)' }
+
 %h2
-  国内発注未完了 (社内納品日あり/社内納品日順) 全#{@orders.count}件
+  全#{@orders.count}件
 
 -#%li
 -#  =link_to "国内発注未完了 (社内納品日あり/社内納品日順)", domestic_buying_backlog_all_index_path
