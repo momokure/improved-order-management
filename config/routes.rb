@@ -48,6 +48,10 @@ Rails.application.routes.draw do
   end
 
   namespace :toda1 do
+    resources :blank, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :all, only: :index
     resources :sorting, only: :index do
       get :backlog, on: :collection
@@ -72,6 +76,10 @@ Rails.application.routes.draw do
   end
 
   namespace :bijogi do
+    resources :blank, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :all, only: :index
     resources :sorting, only: :index do
       get :backlog, on: :collection
@@ -108,6 +116,10 @@ Rails.application.routes.draw do
   end
 
   namespace :yoyogi do
+    resources :blank, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :silkscreen_d, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
