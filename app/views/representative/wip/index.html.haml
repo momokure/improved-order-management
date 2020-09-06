@@ -1,5 +1,5 @@
-%h2
-  #{current_user.user_name}さんの対応済一覧 (ご入金未連絡)
+- content_for(:html_title) { '対応済一覧 (ご入金未連絡)' }
+
 %li
   =link_to "みつもり未対応一覧", representative_backlog_index_path
 %li

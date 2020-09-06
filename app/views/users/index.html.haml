@@ -1,4 +1,5 @@
-%h2 登録済のユーザー一覧
+- content_for(:html_title) { '登録済のユーザー一覧' }
+
 %ul
   - @users.each do |user|
     %li
