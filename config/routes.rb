@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :deadline, only: :index
   end
 
-  namespace :pastup do
+  namespace :pasteup do
     resources :calendar, only: :index
   end
 
