@@ -1,3 +1,5 @@
+- content_for(:html_title) { @order.customer.customer_type.customer_type_name+" "+@customer.customer_name+" 様"+" / ご注文ID : "+@order.uid }
+
 %h2
   = link_to customer_path(@customer.uid) do
     #{@order.customer.customer_type.customer_type_name}

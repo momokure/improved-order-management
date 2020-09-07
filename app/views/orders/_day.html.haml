@@ -6,6 +6,17 @@
       /シルクスクリーンA工場未定
       - if @silkscreen_a_pending[date].present?
         = link_to "#{@silkscreen_a_pending[date]}件", order_management_undefined_factory_index_path
+
+    %td
+      - if @blank_toda1_wip[date].present?
+        = link_to "残#{@blank_toda1_wip[date]}件", wip_toda1_blank_index_path(date: date)
+        \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
+        %br/
+      - if @blank_toda1_wip[date].present? && @blank_toda1_done[date].present?
+        = link_to "#{@blank_toda1_done[date]}件制作済", done_toda1_blank_index_path(date: date)
+      - elsif @blank_toda1_wip[date].nil? && @blank_toda1_done[date].present?
+        = link_to "全#{@blank_toda1_done[date]}件制作済", done_toda1_blank_index_path(date: date)
+
     %td
       /シルクスクリーンA🐭戸田公園第1
       - if @silkscreen_a_toda1_wip[date].present?
@@ -21,7 +32,16 @@
         = link_to "🐤#{@silkscreen_a_toda1_pasteup_wip[date]}件", wip_toda1_silkscreen_a_index_path(date: date)
 
     %td
-      /シルクスクリーンA🐲美女木 もし未製作の注文があったら、残XX件と表示され、未製作の注文の検索結果へリンクして、製作中と製作済みの合計注文数をXX件と表示（リンクなし）
+      - if @blank_bijogi_wip[date].present?
+        = link_to "残#{@blank_bijogi_wip[date]}件", wip_bijogi_blank_index_path(date: date)
+        \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
+        %br/
+      - if @blank_bijogi_wip[date].present? && @blank_bijogi_done[date].present?
+        = link_to "#{@blank_bijogi_done[date]}件制作済", done_bijogi_blank_index_path(date: date)
+      - elsif @blank_bijogi_wip[date].nil? && @blank_bijogi_done[date].present?
+        = link_to "全#{@blank_bijogi_done[date]}件制作済", done_bijogi_blank_index_path(date: date)
+
+    %td
       - if @silkscreen_a_bijogi_wip[date].present?
         = link_to "残#{@silkscreen_a_bijogi_wip[date]}件", wip_bijogi_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_bijogi_wip[date]+@silkscreen_a_bijogi_done[date].to_i}件
@@ -162,7 +182,16 @@
         = link_to "🐤#{@silkscreen_c_pasteup_wip[date]}件", wip_bijogi_silkscreen_c_index_path(date: date)
 
     %td
-      /シルクスクリーンD中野
+      - if @blank_yoyogi_wip[date].present?
+        = link_to "残#{@blank_yoyogi_wip[date]}件", wip_yoyogi_blank_index_path(date: date)
+        \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
+        %br/
+      - if @blank_yoyogi_wip[date].present? && @blank_yoyogi_done[date].present?
+        = link_to "#{@blank_yoyogi_done[date]}件制作済", done_yoyogi_blank_index_path(date: date)
+      - elsif @blank_yoyogi_wip[date].nil? && @blank_yoyogi_done[date].present?
+        = link_to "全#{@blank_yoyogi_done[date]}件制作済", done_yoyogi_blank_index_path(date: date)
+
+    %td
       - if @silkscreen_d_wip[date].present?
         = link_to "残#{@silkscreen_d_wip[date]}件", wip_yoyogi_silkscreen_d_index_path(date: date)
         \/ 計#{@silkscreen_d_wip[date].to_i+@silkscreen_d_done[date].to_i}件

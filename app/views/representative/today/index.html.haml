@@ -1,4 +1,6 @@
-%h2 本日の対応件数 : 計#{Order.where(first_response_date: @from..@to).count}件
+- content_for(:html_title) { '本日の対応件数' }
+%h2
+  計#{Order.where(first_response_date: @from..@to).count}件
 -#%h4 現在時刻 : #{l(DateTime.now, format: :long, default: '')}
 
 %li
@@ -7,10 +9,16 @@
   =link_to "対応済一覧(ご入金未連絡)", representative_wip_index_path
 %li
   =link_to "対応済一覧(ご入金連絡済)", representative_done_index_path
+%li
+  営業成績 (
+  =link_to "今月", representative_report_index_path(year_month: @this_month)
+  \ /
+  =link_to "先月", representative_report_index_path(year_month: @last_month)
+  )
 
 %br
 %h3 柳生チーム (#{Order.where(representative_user_id: [2, 3, 17, 12], first_response_date: @from..@to).count}件)
-　柳生 #{Order.where(representative_user_id: 2, first_response_date: @from..@to).count}件 /
+　柳生 #{Order.where(representative_user_id: 20, first_response_date: @from..@to).count}件 /
 佐藤(絵) #{Order.where(representative_user_id: 3, first_response_date: @from..@to).count}件 /
 東雲 #{Order.where(representative_user_id: 17, first_response_date: @from..@to).count}件 /
 坂口 #{Order.where(representative_user_id: 12, first_response_date: @from..@to).count}件

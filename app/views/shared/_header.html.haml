@@ -1,0 +1,22 @@
+- if user_signed_in?
+  .header
+    .header__wrapper
+      .header__wrapper--title
+        = content_for?(:html_title) ? yield(:html_title) : "Default"
+
+      .header__wrapper--user
+        .header__wrapper--user__wrapper
+          .header__wrapper--user__wrapper--name
+            = current_user.user_name
+
+          .header__wrapper--user__wrapper--details
+            - UsersDepartment.where(user_id: current_user.id).each do |user_department|
+              = Department.find(user_department.department_id).department_name
+
+            -# - UsersFactory.where(user_id: current_user.id).each do |user_factory|
+            -#   (#{Factory.find(user_factory.factory_id).factory_name})
+
+        .header__wrapper--user__signOut
+          = link_to destroy_user_session_path, method: :delete, class: "header__wrapper--user__signOut--icon" do
+            %i.fa.fa-sign-out-alt
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header__wrapper--user__signOut--text"

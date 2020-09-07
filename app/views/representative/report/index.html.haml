@@ -1,0 +1,138 @@
+- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-0', '年',) +'月の成績' }
+
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th
+        %th{valign:"bottom"} 水上
+        %th{valign:"bottom"} 福留
+        %th{valign:"bottom"}
+          前田
+          %br/
+          (柳生)
+        %th{valign:"bottom"} 佐藤(絵)
+        %th{valign:"bottom"} 柳沼
+        %th{valign:"bottom"}
+          前田
+          %br/
+          (東雲)
+        %th{valign:"bottom"} 穴澤
+        %th{valign:"bottom"} 武内
+        %th{valign:"bottom"} 坂口
+        %th{valign:"bottom"} 菅野
+        %th{valign:"bottom"} 松友
+        %th{valign:"bottom"} 矢部
+        %th{valign:"bottom"} 立石
+        %th{valign:"bottom"} 加藤
+        %th{valign:"bottom"}
+          佐藤
+          %br/
+          (宗我部)
+        %th{valign:"bottom"}
+          伊藤
+          %br/
+          (一条)
+        %th{valign:"bottom"} 小平
+        %th{valign:"bottom"}
+          竹内
+          %br/
+          (宇喜多)
+        %th{valign:"bottom"}
+          田中
+          %br/
+          (最上)
+        %th{valign:"bottom"} 松浦
+        %th{valign:"bottom"}
+          壇ノ浦
+          %br/
+          (宮城)
+        %thead
+          %tr
+            %th 日付
+            %th
+              計#{}件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+            %th
+              計件/計点
+              %br
+                計円
+    %tbody
+      = render partial: 'day'

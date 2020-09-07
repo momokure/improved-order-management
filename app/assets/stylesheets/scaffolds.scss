@@ -2,7 +2,7 @@ body {
   height: 100%;
   background: #e0e5ec;
   color: #333;
-  margin: 33px;
+  //margin: 33px;
   font-size: 11px;
   line-height: 18px;
 }
@@ -89,9 +89,9 @@ pre {
 a {
   color: #333;
 
-  &:visited {
-    color: #666;
-  }
+  //&:visited {
+  //  color: #666;
+  //}
 
   &:hover {
     color: #fff;

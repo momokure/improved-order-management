@@ -24,7 +24,7 @@ end
 
 TechniqueOption.seed do |s|
   s.id = 5
-  s.technique_option_name = "✇パッド/UV - カセット"
+  s.technique_option_name = "✇パッド - カセット"
   s.technique_id = 8
 end
 
