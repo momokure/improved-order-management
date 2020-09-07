@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   namespace :pasteup do
     resources :calendar, only: :index
+    resources :wip, only: :index
+    resources :done, only: :index
   end
 
   namespace :domestic_buying do
