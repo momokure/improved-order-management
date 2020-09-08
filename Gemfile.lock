@@ -53,9 +53,13 @@ GEM
     bindex (0.8.1)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     bootsnap (1.4.6-java)
       msgpack (~> 1.0)
     bootsnap (1.4.8)
+=======
+    bootsnap (1.4.6)
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
     bootsnap (1.4.6)
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -254,8 +258,11 @@ GEM
     sexp_processor (4.15.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     spring (2.1.1)
 =======
+=======
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
     spring (2.1.0)
@@ -293,9 +300,13 @@ GEM
       railties (>= 5.0)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     websocket-driver (0.7.2-java)
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.3)
+=======
+    websocket-driver (0.7.2)
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
     websocket-driver (0.7.2)
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
