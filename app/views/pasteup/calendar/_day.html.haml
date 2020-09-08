@@ -13,7 +13,7 @@
     %td
       /シルクスクリーンA🐭戸田公園第1
       - if @silkscreen_a_toda1_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_a_toda1_pasteup_wip[date]}件", pasteup_wip_index_path(date: date)
+        = link_to "🐤#{@silkscreen_a_toda1_pasteup_wip[date]}件", wip_toda1_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_toda1_wip[date].to_i+@silkscreen_a_toda1_done[date].to_i}件
 
     %td

@@ -34,7 +34,7 @@ class Pasteup::CalendarController < ApplicationController
     @silkscreen_a_toda1_done = Order.joins(order_details: :order_technique_details)
                                 .where(order_details: { factory_id: 4 })
                                 .where(order_technique_details: { technique_id: 1 })
-                                .where(order_technique_details: { progress_id: 7  })
+                                .where.not(order_technique_details: { progress_id: [1,2]  })
                                 .group("orders.internal_delivery_date")
                                 .count
 
@@ -58,7 +58,7 @@ class Pasteup::CalendarController < ApplicationController
     @silkscreen_a_bijogi_done = Order.joins(order_details: :order_technique_details)
                                  .where(order_details: { factory_id: 8 })
                                  .where(order_technique_details: { technique_id: 1 })
-                                 .where(order_technique_details: { progress_id: 7  })
+                                 .where.not(order_technique_details: { progress_id: [1,2]  })
                                  .group("orders.internal_delivery_date")
                                  .count
 
@@ -89,7 +89,7 @@ class Pasteup::CalendarController < ApplicationController
     @inkjet_toda1_done = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 4 })
-                          .where(order_technique_details: { progress_id: 7  })
+                          .where.not(order_technique_details: { progress_id: [1,2]  })
                           .group("orders.internal_delivery_date")
                           .count
 
@@ -113,7 +113,7 @@ class Pasteup::CalendarController < ApplicationController
     @inkjet_bijogi_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 4 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -144,7 +144,7 @@ class Pasteup::CalendarController < ApplicationController
     @embroidery_toda1_done = Order.joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 4 })
                               .where(order_technique_details: { technique_id: 5 })
-                              .where(order_technique_details: { progress_id: 7  })
+                              .where.not(order_technique_details: { progress_id: [1,2]  })
                               .group("orders.internal_delivery_date")
                               .count
 
@@ -169,7 +169,7 @@ class Pasteup::CalendarController < ApplicationController
     @embroidery_bijogi_done = Order.joins(order_details: :order_technique_details)
                                .where(order_details: { factory_id: 8 })
                                .where(order_technique_details: { technique_id: 5 })
-                               .where(order_technique_details: { progress_id: 7  })
+                               .where.not(order_technique_details: { progress_id: [1,2]  })
                                .group("orders.internal_delivery_date")
                                .count
 
@@ -200,7 +200,7 @@ class Pasteup::CalendarController < ApplicationController
     @sewing_toda1_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 4 })
                            .where(order_technique_details: { technique_id: 6 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -208,7 +208,7 @@ class Pasteup::CalendarController < ApplicationController
     @sewing_bijogi_wip = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
-                           .where.not(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -224,7 +224,7 @@ class Pasteup::CalendarController < ApplicationController
     @sewing_bijogi_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -244,7 +244,7 @@ class Pasteup::CalendarController < ApplicationController
     #シルクスクリーンBの製作済み件数
     @silkscreen_b_done = Order.joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 2 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -265,13 +265,13 @@ class Pasteup::CalendarController < ApplicationController
     #シルクスクリーンCの製作済み件数
     @silkscreen_c_done = Order.joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 3 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
     @silkscreen_d_done = Order.joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 8 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -291,7 +291,7 @@ class Pasteup::CalendarController < ApplicationController
     #シルクスクリーンDの製作済み件数
     @silkscreen_d_done = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
-                          .where(order_technique_details: { progress_id: 7  })
+                          .where.not(order_technique_details: { progress_id: [1,2]  })
                           .group("orders.internal_delivery_date")
                           .count
 
@@ -305,7 +305,7 @@ class Pasteup::CalendarController < ApplicationController
     @blank_toda1_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 4 })
                            .where(order_technique_details: { technique_id: 9 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2]  })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -319,7 +319,7 @@ class Pasteup::CalendarController < ApplicationController
     @blank_bijogi_done = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 8 })
                           .where(order_technique_details: { technique_id: 9 })
-                          .where(order_technique_details: { progress_id: 7  })
+                          .where.not(order_technique_details: { progress_id: [1,2]  })
                           .group("orders.internal_delivery_date")
                           .count
 
@@ -333,7 +333,7 @@ class Pasteup::CalendarController < ApplicationController
     @blank_yoyogi_done = Order.joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 7 })
                            .where(order_technique_details: { technique_id: 9 })
-                           .where(order_technique_details: { progress_id: 7  })
+                           .where.not(order_technique_details: { progress_id: [1,2] })
                            .group("orders.internal_delivery_date")
                            .count
 
@@ -353,7 +353,7 @@ class Pasteup::CalendarController < ApplicationController
     #UVの製作済み件数
     @uv_done = Order.joins(order_details: :order_technique_details)
                  .where(order_technique_details: { technique_id: 7 })
-                 .where(order_technique_details: { progress_id: 7  })
+                 .where.not(order_technique_details: { progress_id: [1,2]  })
                  .group("orders.internal_delivery_date")
                  .count
   end
