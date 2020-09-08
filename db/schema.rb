@@ -13,7 +13,11 @@
 ActiveRecord::Schema.define(version: 2020_09_03_010857) do
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -31,7 +35,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "buy_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "buy_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "buy_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -45,7 +53,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "buy_progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "buy_progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "buy_progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -55,7 +67,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "buy_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -65,7 +81,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -76,7 +96,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "company_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "company_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "company_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -89,7 +113,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -103,7 +131,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -116,7 +148,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customer_emails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -128,7 +164,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customer_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -142,7 +182,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customer_phone_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customer_phone_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customer_phone_numbers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -154,7 +198,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customer_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -164,7 +212,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -182,7 +234,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -192,7 +248,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "desired_delivery_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "desired_delivery_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "desired_delivery_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -202,7 +262,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -212,7 +276,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -225,7 +293,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -238,7 +310,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -252,7 +328,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -266,7 +346,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -275,6 +359,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   create_table "order_tag_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "order_tag_note"
@@ -301,6 +386,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
 =======
   create_table "order_technique_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
+=======
+  create_table "order_technique_detail_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
     t.bigint "order_detail_id"
     t.bigint "technique_option_id"
     t.datetime "created_at", null: false
@@ -310,7 +398,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_technique_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_technique_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_technique_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -329,7 +421,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "order_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "order_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "order_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -339,7 +435,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -380,6 +480,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "overseas_buying_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.boolean "sort"
     t.boolean "transfer"
@@ -395,6 +496,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
 =======
   create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
+=======
+  create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
     t.string "payment_method_name"
     t.string "payment_condition"
     t.boolean "invoice_required", default: false, null: false
@@ -403,7 +507,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "payment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "payment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "payment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -417,7 +525,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -432,7 +544,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -442,7 +558,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "progresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -452,7 +572,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "quote_difficulty_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -462,6 +586,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   create_table "shipment_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "shipment_note"
@@ -489,6 +614,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
 =======
   create_table "sort_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
+=======
+  create_table "sort_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
     t.date "sort_date"
     t.bigint "sorting_user_id"
     t.datetime "created_at", null: false
@@ -499,7 +627,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "sort_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "sort_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "sort_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -513,7 +645,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "specified_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -523,8 +659,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "technique_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 =======
+=======
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
   create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "supplier_name"
     t.datetime "created_at", null: false
@@ -532,6 +671,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
   create_table "technique_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+<<<<<<< HEAD
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
+=======
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
     t.string "technique_option_name"
     t.bigint "technique_id"
@@ -541,7 +683,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "techniques", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "techniques", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "techniques", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -551,7 +697,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -568,7 +718,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "users_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "users_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "users_departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
@@ -583,7 +737,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_010857) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   create_table "users_factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+=======
+  create_table "users_factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+>>>>>>> parent of 2737443... editページに指示書レイアウト追加
 =======
   create_table "users_factories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
 >>>>>>> parent of 2737443... editページに指示書レイアウト追加
