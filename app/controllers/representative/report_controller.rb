@@ -7,6 +7,7 @@ class Representative::ReportController < ApplicationController
     @year_month_beginning = @year_month_beginning.to_date
     @end = @year_month_beginning.next_month-1
 
+    @period = (Date.parse("#{@year_month_beginning}")..Date.parse("#{@end}"))
 
     @mizukami_number = Order.where(representative_user_id: 6).distinct
                              .where(order_type_id: [1, 2]).distinct

@@ -54,9 +54,8 @@
           %tr
             %th 日付
             %th
-              - date = (Date.parse("#{@year_month_beginning}")..Date.parse("#{@end}"))
               - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
-              = @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+              - @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}.inject(0) {|sum, hash| sum + hash[:@period]}
               %br
                 計円
             %th
