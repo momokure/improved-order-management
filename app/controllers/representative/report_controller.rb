@@ -16,8 +16,9 @@ class Representative::ReportController < ApplicationController
                              .count
 
     @mizukami_number_day = Order.where(representative_user_id: 6).distinct
-                         .where(order_type_id: [1, 2]).distinct
-                         .group(:first_response_date)
-                         .count
+                             .where(order_type_id: [1, 2]).distinct
+                             .group(:first_response_date)
+                             .count
   end
 end
+

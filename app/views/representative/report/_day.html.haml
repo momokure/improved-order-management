@@ -6,5 +6,4 @@
       - from = date.to_datetime + Rational(9, 24)
       - to = from + 1
 
-      = @mizukami_number_day.count
       - @mizukami_number_day.transform_keys {|k| k+ Rational(9, 24) }
