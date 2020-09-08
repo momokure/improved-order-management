@@ -1,59 +1,49 @@
 %tr
   %td
-    /注文ID（リンクはGmailにおけるIDの検索結果）
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
-    /お客様種別/お名前 （ユーザーIDページにリンク）
     = link_to customer_path(id: order.customer.uid) do
       #{order.customer.customer_type.customer_type_name}
       #{order.customer.customer_name.to_s.truncate(15)} 様
   %td
-    /ご注文種別(みつもり難易度)
     = OrderType.find(order.order_type_id).order_type_name
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
-    /ご注文日
     = l(order.try(:order_date), format: :middle, default: '')
   %td
-    /担当者
     = User.find(order.representative_user_id).user_name
   %td
-    /納品先
     - OrderAddress.where(order_id: order.id).each do |oa|
       = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
   %td
-    /納品ご希望日
     = l(order.try(:desired_delivery_date), format: :middle, default: '')
   %td
-    /納品ご希望種別
     = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
   %td
-    /社内納品日
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
   %td
-    /ご入金期限
     = l(order.try(:payment_deadline_date), format: :middle, default: '')
   %td
-    /ご入金予定額
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
   %td
-    /ご入金日
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
   %td
-    /ご入金額
     = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
   %td
-    /発注状況
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
   %td
+<<<<<<< HEAD
     - OrderDetail.where(order_id: order.id).each do |order_detail|
       - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
         済(#{User.find(sort_detail.sorting_user_id).user_name})
         %br/
+=======
+    - SortDetail.where(order_id: order.id).each do |sort_detail|
+      済(#{User.find(sort_detail.sorting_user_id).user_name})
+>>>>>>> parent of ef405c4... カレンダーでのみつもり済🐤件数表示
   %td
-    /ご注文備考欄
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
@@ -74,7 +64,6 @@
               %td{align: "right"}
                 ↳
               %td
-                /加工方法
                 = Technique.find(order_technique_detail.technique_id).technique_name
                 %br
                 - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
@@ -83,17 +72,13 @@
                 - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
                   #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
               %td
-                /加工工場
                 #{Factory.find(order_detail.factory_id).factory_name}工場
               %td
-                /進行状況のステータスを表示。みつもり済🐤など
                 -# - unless order_technique_detail.progress_id == 1
                 #{Progress.find(order_technique_detail.progress_id).progress_name}
               %td
-                /指示書担当者IDが1以外の時、🐔マークと指示書担当者IDによる名前を表示
                 - unless order_technique_detail.pasteup_user_id == 1
                   🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
               %td
-                /製作担当者IDが1以外の時、🍗マークと製作担当者IDによる名前を表示
                 - unless order_technique_detail.maker_id == 1
                   🍗#{User.find(order_technique_detail.maker_id).user_name}
