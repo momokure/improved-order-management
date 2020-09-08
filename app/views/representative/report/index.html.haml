@@ -1,4 +1,6 @@
-- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-0', '年',) +'月の成績' }
+- @orders.transform_keys {|k| k+ Rational(9, 24)}
+- count = @orders.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month].to_s
+- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-0', '年',) + '月の成績 (計'+ count + '件)' }
 
 .container
   %table.neumorphic
@@ -55,88 +57,108 @@
             %th 日付
             %th
               - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
-              - @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}.inject(0) {|sum, hash| sum + hash[:@period]}
-              %br
-                計円
+              計#{@mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @fukudome_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@fukudome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @yagyu_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@yagyu_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @sato_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@sato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @yaginuma_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@yaginuma_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @shinonome_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@shinonome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @anazawa_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@anazawa_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @takeuchi_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@takeuchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @sakaguchi_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @kanno_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @matsutomo_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@matsutomo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @yabe_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@yabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @tateishi_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@tateishi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @kato_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@kato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @sogabe_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@sogabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @ichijo_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@ichijo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @kodaira_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@kodaira_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @ukita_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@ukita_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @mogami_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@mogami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @matsuura_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@matsuura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
             %th
-              計件/計点
-              %br
-                計円
+              - @dannoura_number.transform_keys {|k| k+ Rational(9, 24)}
+              計#{@dannoura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
+              -#%br
+              -#  計円
     %tbody
       = render partial: 'day'

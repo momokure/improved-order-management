@@ -1,4 +1,5 @@
 - (Date.parse("#{@year_month_beginning}")..Date.parse("#{@end}")).each do |date|
+
   %tr
     %td
       = l(date, format: :middle, default: '')
@@ -6,3 +7,103 @@
       - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
       - if @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
         = @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @fukudome_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @fukudome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @fukudome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @yagyu_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @yagyu_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @yagyu_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @sato_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @sato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @sato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @yaginuma_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @yaginuma_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @yaginuma_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @shinonome_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @shinonome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @shinonome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @anazawa_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @anazawa_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @anazawa_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @takeuchi_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @takeuchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @takeuchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @sakaguchi_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @kanno_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @matsutomo_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @matsutomo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @matsutomo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @yabe_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @yabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @yabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @tateishi_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @tateishi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @tateishi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @kato_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @kato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @kato_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @sogabe_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @sogabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @sogabe_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @ichijo_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @ichijo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @ichijo_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @kodaira_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @kodaira_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @kodaira_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @ukita_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @ukita_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @ukita_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @mogami_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @mogami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @mogami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @matsuura_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @matsuura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @matsuura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
+
+    %td
+      - @dannoura_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @dannoura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @dannoura_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
