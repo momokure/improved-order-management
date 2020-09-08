@@ -3,7 +3,6 @@
     %td
       = l(date, format: :middle, default: '')
     %td
-      - from = date.to_datetime + Rational(9, 24)
-      - to = from + 1
-
-      - @mizukami_number_day.transform_keys {|k| k+ Rational(9, 24) }
+      - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
+      - if @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
+        = @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
