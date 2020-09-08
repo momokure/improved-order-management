@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resources :embroidery, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :report, on: :collection
     end
     resources :sewing, only: :index do
       get :wip, on: :collection
