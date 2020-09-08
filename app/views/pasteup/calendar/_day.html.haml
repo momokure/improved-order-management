@@ -1,0 +1,99 @@
+- (Date.parse("#{@start}")..Date.parse("#{@end}")).each do |date|
+  %tr
+    %td
+      = l(date, format: :middle, default: '')
+
+    %td
+      /戸田公園加工なし
+      - if @blank_toda1_wip[date].present?
+        = link_to "🐤#{@blank_toda1_wip[date]}件", wip_toda1_blank_index_path(date: date)
+        %br/
+        \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
+        %br/
+
+    %td
+      /シルクスクリーンA🐭戸田公園第1
+      - if @silkscreen_a_toda1_pasteup_wip[date].present?
+        = link_to "🐤#{@silkscreen_a_toda1_pasteup_wip[date]}件", wip_toda1_silkscreen_a_index_path(date: date)
+        \/
+        /💭#{@silkscreen_a_toda1_wip[date].to_i+@silkscreen_a_toda1_done[date].to_i}件
+        /%br/
+        計#{@silkscreen_a_toda1_pasteup_wip[date].to_i+@silkscreen_a_toda1_done[date].to_i}件
+
+    %td
+      /美女木 加工なし
+      - if @blank_bijogi_wip[date].present?
+        = link_to "🐤#{@blank_bijogi_wip[date]}件", wip_bijogi_blank_index_path(date: date)
+        \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
+
+    %td
+      /シルクスクリーンA美女木
+      - if @silkscreen_a_bijogi_pasteup_wip[date].present?
+        = link_to "🐤#{@silkscreen_a_bijogi_pasteup_wip[date]}件", wip_bijogi_silkscreen_a_index_path(date: date)
+        \/ 計#{@silkscreen_a_bijogi_pasteup_wip[date]+@silkscreen_a_bijogi_done[date].to_i}件
+
+    %td
+      /インクジェット🐭戸田公園第1
+      - if @inkjet_toda1_pasteup_wip[date].present?
+        = link_to "🐤#{@inkjet_toda1_pasteup_wip[date]}件", wip_toda1_inkjet_index_path(date: date)
+        \/ 計#{@inkjet_toda1_pasteup_wip[date].to_i+@inkjet_toda1_done[date].to_i}件
+
+    %td
+      /インクジェット🐲美女木
+      - if @inkjet_bijogi_pasteup_wip[date].present?
+        = link_to "🐤#{@inkjet_bijogi_pasteup_wip[date]}件", wip_bijogi_inkjet_index_path(date: date)
+        \/ 計#{@inkjet_bijogi_pasteup_wip[date].to_i+@inkjet_bijogi_done[date].to_i}件
+
+    %td
+      /刺繍戸田公園第1
+      - if @embroidery_toda1_pasteup_wip[date].present?
+        = link_to "🐤#{@embroidery_toda1_pasteup_wip[date]}件", wip_toda1_embroidery_index_path(date: date)
+        \/ 計#{@embroidery_toda1_pasteup_wip[date].to_i+@embroidery_toda1_done[date].to_i}件
+
+    %td
+      /刺繍美女木
+      - if @embroidery_bijogi_pasteup_wip[date].present?
+        = link_to "🐤#{@embroidery_bijogi_pasteup_wip[date]}件", wip_bijogi_embroidery_index_path(date: date)
+        \/ 計#{@embroidery_bijogi_pasteup_wip[date].to_i+@embroidery_bijogi_done[date].to_i}件
+
+    %td
+      /縫製戸田公園第1
+      - if @sewing_toda1_pasteup_wip[date].present?
+        = link_to "🐤#{@sewing_toda1_pasteup_wip[date]}件", wip_toda1_sewing_index_path(date: date)
+        \/ 計#{@sewing_toda1_pasteup_wip[date].to_i+@sewing_toda1_done[date].to_i}件
+
+    %td
+      /縫製美女木
+      - if @sewing_bijogi_pasteup_wip[date].present?
+        = link_to "🐤#{@sewing_bijogi_pasteup_wip[date]}件", wip_bijogi_sewing_index_path(date: date)
+        \/ 計#{@sewing_bijogi_pasteup_wip[date].to_i+@sewing_bijogi_done[date].to_i}件
+
+    %td
+      /シルクスクリーンB美女木
+      - if @silkscreen_b_pasteup_wip[date].present?
+        = link_to "🐤#{@silkscreen_b_pasteup_wip[date]}件", wip_bijogi_silkscreen_b_index_path(date: date)
+        \/ 計#{@silkscreen_b_pasteup_wip[date].to_i+@silkscreen_b_done[date].to_i}件
+
+    %td
+      /シルクスクリーンC美女木
+      - if @silkscreen_c_pasteup_wip[date].present?
+        = link_to "🐤#{@silkscreen_c_pasteup_wip[date]}件", wip_bijogi_silkscreen_c_index_path(date: date)
+        \/ 計#{@silkscreen_c_pasteup_wip[date].to_i+@silkscreen_c_done[date].to_i}件
+
+    %td
+      /加工なし代々木（中野）
+      - if @blank_yoyogi_wip[date].present?
+        = link_to "🐤#{@blank_yoyogi_wip[date]}件", wip_yoyogi_blank_index_path(date: date)
+        \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
+
+    %td
+      /シルクスクリーンD
+      - if @silkscreen_d_pasteup_wip[date].present?
+        = link_to "🐤#{@silkscreen_d_pasteup_wip[date]}件", wip_yoyogi_silkscreen_d_index_path(date: date)
+        \/ 計#{@silkscreen_d_pasteup_wip[date].to_i+@silkscreen_d_done[date].to_i}件
+
+    %td
+      /UV美女木
+      - if @uv_pasteup_wip[date].present?
+        = link_to "🐤#{@uv_pasteup_wip[date]}件", wip_bijogi_uv_index_path(date: date)
+        \/ 計#{@uv_pasteup_wip[date].to_i+@uv_done[date].to_i}件
