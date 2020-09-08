@@ -2,8 +2,6 @@ class Pasteup::CalendarController < ApplicationController
   require 'date'
   PER = 500
 
-
-
   def index
     @start = Date.today.prev_occurring(:sunday)
     @end = @start.next_month.next_month.end_of_week
@@ -359,6 +357,24 @@ class Pasteup::CalendarController < ApplicationController
                  .group("orders.internal_delivery_date")
                  .count
   end
+
+  # def wip
+  #   @date = params[:date]
+  #   @orders = Order.left_joins(order_details: :order_technique_details).distinct
+  #               .where(order_technique_details: { technique_id: 1 }).distinct
+  #               .where.not(order_technique_details: { progress_id: 1 })
+  #               .where(orders: { internal_delivery_date: @date.to_date }).distinct
+  #               .order(:internal_delivery_date)
+  # end
+  #
+  # def done
+  #   @date = params[:date]
+  #   @orders = Order.left_joins(order_details: :order_technique_details).distinct
+  #               .where(order_technique_details: { technique_id: 1 }).distinct
+  #               .where(order_technique_details: { progress_id: 1 })
+  #               .where(orders: { internal_delivery_date: @date.to_date }).distinct
+  #               .order(:internal_delivery_date)
+  # end
 
   private
   def order_params

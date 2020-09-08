@@ -3,61 +3,13 @@ class Pasteup::WipController < ApplicationController
   PER = 500
 
   def index
-    @orders = Order.all
-    # @orders = Order.page(params[:page]).per(PER)
-  end
-
-  def new
-    @customer = Customer.find_by(uid: params[:customer_id])
-    @order = Order.new
-    @order.order_addresses.build
-    @order.payments.build
-    @order.order_notes.build
-  end
-
-  def create
-    order = Order.new(order_params)
-    order.save!
-    redirect_to customers_path
-  end
-
-  def show
-    @order = Order.find_by(uid: params[:id])
-    @customer = Customer.find(@order.customer_id)
-  end
-
-  def edit
-    @order = Order.find_by(uid: params[:id])
-    @customer = Customer.find(@order.customer_id)
-  end
-
-  def update_representative_user
-    @order = Order.find_by(uid: params[:id])
-    @order.update_attributes!(order_params)
-    redirect_to edit_order_path
-  end
-
-  def update
-    @order = Order.find_by(uid: params[:id])
-    @order.update_attributes!(order_params)
-
-    if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2
-      redirect_to root_path
-    elsif Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 3
-      redirect_to representative_wip_index_path
-    elsif Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4
-      redirect_to root_path
-    end
-  end
-
-  def destroy
-    @order = Order.find_by(uid: params[:id])
-    @order.destroy!
-  end
-
-  def calendar
     @start = Date.today.prev_occurring(:sunday)
     @end = @start.next_month.next_month.end_of_week
+
+    @orders = Order.left_joins(order_details: :order_technique_details).distinct
+                .where(order_details: { factory_id: 4 }).distinct
+                .where(order_technique_details: { technique_id: 1 }).distinct
+                .order(:internal_delivery_date)
 
     #シルクスクリーン工場未定の件数表示
     @silkscreen_a_pending = Order.joins(order_details: :order_technique_details)
@@ -411,12 +363,31 @@ class Pasteup::WipController < ApplicationController
                  .count
   end
 
+  def wip
+    @date = params[:date]
+    @orders = Order.left_joins(order_details: :order_technique_details).distinct
+                .where(order_technique_details: { technique_id: 1 }).distinct
+                .where.not(order_technique_details: { progress_id: 1 })
+                .where(orders: { internal_delivery_date: @date.to_date }).distinct
+                .order(:internal_delivery_date)
+  end
+
+  def done
+    @date = params[:date]
+    @orders = Order.left_joins(order_details: :order_technique_details).distinct
+                .where(order_technique_details: { technique_id: 1 }).distinct
+                .where(order_technique_details: { progress_id: 1 })
+                .where(orders: { internal_delivery_date: @date.to_date }).distinct
+                .order(:internal_delivery_date)
+  end
+
   private
   def order_params
     params
       .require(:order)
       .permit(
-        :id, :uid, :customer_id, :order_reflect_user_id, :representative_user_id,
+        :id, :uid, :customer_id,
+        :order_reflect_user_id, :representative_user_id,
         :order_type_id, :quote_difficulty_level_id, :payment_method_id,
         :order_date, :first_response_date, :desired_delivery_date, :desired_delivery_type_id, :internal_delivery_date,
         :specified_time_id, :change_delivery_date,

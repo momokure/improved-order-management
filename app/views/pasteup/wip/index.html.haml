@@ -1,6 +1,5 @@
 - content_for(:html_title) { 'みつもり済🐤 指示書未作成' }
-%h2 　
-
+%h2 　#{l(@date.to_date - 1, format: :middle, default: '')}制作 ➡ #{l(@date.to_date, format: :middle, default: '')}納品のご注文一覧 (未制作)
 
 .container
   %table.neumorphic
