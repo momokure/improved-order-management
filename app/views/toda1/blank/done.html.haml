@@ -1,5 +1,4 @@
-- content_for(:html_title) { '戸田公園第1工場 加工なし・ボディのみ' }
-%h2 　#{l(@date.to_date - 1, format: :middle, default: '')}制作 ➡ #{l(@date.to_date, format: :middle, default: '')}納品のご注文一覧 (制作済)
+- content_for(:html_title) { '戸田公園第1工場 加工なし・ボディのみ '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品のご注文一覧 (対応済)"}
 
 .container
   %table.neumorphic
