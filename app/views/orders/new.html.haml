@@ -1,7 +1,9 @@
+- content_for(:html_title) { @customer.customer_type.customer_type_name+" "+@customer.customer_name+" 様の新規ご注文を登録" }
+
 %h2
-  = link_to customer_path(@customer.uid) do
-    #{@customer.customer_name} 様
-  の新規ご注文を登録
+  -# = link_to customer_path(@customer.uid) do
+  -#   #{@customer.customer_name} 様
+  -# の新規ご注文を登録
 
 = form_with model: @order, local: true do |f|
   = f.hidden_field :customer_id, value: @customer.id
@@ -56,7 +58,30 @@
     #links
       = link_to_add_association '🥚加工内容を追加➕', f, :order_details
 
+  %br
+  %h3 📦発注内容について
+  .field
+    = f.label :domestic_buying, "🚚国内発注商品は"
+    = f.radio_button :domestic_buying, :not_included
+    = f.label :domestic_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :domestic_buying, :included
+    = f.label :domestic_buying, "含まれる", {value: :included, style: "display: inline-block;"}
 
+  .field
+    = f.label :overseas_buying, "🐚海外発注商品は"
+    = f.radio_button :overseas_buying, :not_included
+    = f.label :overseas_buying, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :overseas_buying, :included
+    = f.label :overseas_buying, "含まれる", {value: :included, style: "display: inline-block;"}
+
+  .field
+    = f.label :carry_in, "🍡お持込商品は"
+    = f.radio_button :carry_in, :not_included
+    = f.label :carry_in, "含まれない", {value: :not_included, style: "display: inline-block;"}
+    = f.radio_button :carry_in, :included
+    = f.label :carry_in, "含まれる", {value: :included, style: "display: inline-block;"}
+
+  %br
   .field
     = f.fields_for :order_notes, OrderNote.new do |n|
       = n.label :order_note, "ご注文の備考欄"
