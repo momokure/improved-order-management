@@ -25,5 +25,6 @@
         %th 発注状況
         %th 仕分け状況
         %th ご注文備考欄
+        %th
     %tbody
-      = render partial: 'order', collection: @orders, locals: { order: @orders }
+      = render partial: 'toda1/order', collection: @orders, locals: { order: @orders }
