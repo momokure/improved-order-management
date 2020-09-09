@@ -51,6 +51,13 @@
     = f.collection_select(:specified_time_id, SpecifiedTime.all, :id, :specified_time_name)
 
   .field
+    = f.fields_for :order_details do |order_detail|
+      = render 'order_detail_fields', f: order_detail
+    #links
+      = link_to_add_association '🥚加工内容を追加➕', f, :order_details
+
+
+  .field
     = f.fields_for :order_notes, OrderNote.new do |n|
       = n.label :order_note, "ご注文の備考欄"
       = n.text_area :order_note, autofocus: true, autocomplete: "order_note"
