@@ -21,7 +21,7 @@ class DomesticBuying::BacklogPaymentDateController < ApplicationController
                     .order(:desired_delivery_type_id)
                 )
                 .or(
-                  Order.left_joins(:buy_details, :order_details).distinct
+                  Order.left_joins(:payments, :buy_details).distinct
                     .where(orders: { domestic_buying: 1 }).distinct #国内発注あり
                     .where(orders: { overseas_buying: 1 }).distinct #海外発注あり
                     .order(Arel.sql('payments.payment_date'))

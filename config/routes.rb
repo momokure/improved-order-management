@@ -23,9 +23,10 @@ Rails.application.routes.draw do
     resources :report, only: :index
   end
 
-  namespace :accounting do
-    resources :backlog, only: :index
-    resources :deadline, only: :index
+  namespace :pasteup do
+    resources :calendar, only: :index
+    resources :wip, only: :index
+    resources :done, only: :index
   end
 
   namespace :pasteup do
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
     resources :embroidery, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :report, on: :collection
     end
     resources :sewing, only: :index do
       get :wip, on: :collection
