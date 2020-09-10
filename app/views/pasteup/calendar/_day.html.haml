@@ -7,7 +7,6 @@
       /戸田公園加工なし
       - if @blank_toda1_wip[date].present?
         = link_to "🐤#{@blank_toda1_wip[date]}件", wip_toda1_blank_index_path(date: date)
-        %br/
         \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
         %br/
 
