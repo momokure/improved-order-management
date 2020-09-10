@@ -41,6 +41,10 @@
         %p{id: 'fubi'}
           = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
           %br
+      - elsif PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 11 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 13 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 49
+        %p{id: 'lightblue'}
+          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %br
       - else
         = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
         %br
