@@ -1,20 +1,21 @@
 - content_for(:html_title) { '戸田公園第1工場 シルクスクリーンA '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品のご注文一覧 (指示書未作成)"}
 
 .container
-  %table.neumorphic
+  %table.neumorphic_pasteup
     %thead
       %tr
         %th ご注文ID
-        %th お客様種別/お名前
+        %th
+        %th お名前
         %th
           ご注文種別
           %br/
           (みつもり難易度)
+
         %th ご注文日
         %th 担当者
         %th 納品先
         %th 納品ご希望日
-        %th 納品ご希望種別
         %th 社内納品日
         %th ご入金期限
         %th ご入金予定額
@@ -25,4 +26,4 @@
         %th ご注文備考欄
         %th
     %tbody
-      = render partial: 'toda1/order', collection: @orders, locals: { order: @orders }
+      = render partial: 'toda1/pasteup/order', collection: @orders, locals: { order: @orders }
