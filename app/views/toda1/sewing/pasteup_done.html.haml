@@ -1,4 +1,4 @@
-- content_for(:html_title) { '戸田公園第1工場 シルクスクリーンA '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品のご注文一覧 (指示書未作成)"}
+- content_for(:html_title) { '戸田公園第1工場 縫製 '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品のご注文一覧 (指示書作成済)"}
 
 .container
   %table.neumorphic_pasteup
@@ -19,4 +19,4 @@
         %th ご注文備考欄
         %th
     %tbody
-      = render partial: 'pasteup/order', collection: @orders, locals: { order: @orders }
+      = render partial: 'toda1/pasteup/order', collection: @orders, locals: { order: @orders }
