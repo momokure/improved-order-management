@@ -3,6 +3,8 @@
     - if order.order_type_id == 1 || order.order_type_id == 2
       %p
         = order.uid
+        %p{style:'font-size:20px; margin-top:5px'}
+          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
     - if order.order_type_id == 3
       %p{id: 'fubi'}
@@ -10,11 +12,17 @@
         %br/
         (#{OrderType.find(order.order_type_id).order_type_name})
 
+      %p{style:'font-size:20px; margin-top:5px'}
+        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
       %p{id: 'kono'}
         = order.uid
         %br/
         (#{OrderType.find(order.order_type_id).order_type_name})
+
+      %p{style:'font-size:20px; margin-top:5px'}
+        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
   %td{style:'font-weight:bold'}
     - if order.customer.customer_type_id == 1
