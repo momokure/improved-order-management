@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
   namespace :pasteup do
     resources :calendar, only: :index
+    resources :wip, ponly: :index
+    resources :done, only: :index
+    get 'pdf/wicked', to: 'pdf#wicked'
   end
 
   namespace :domestic_buying do
