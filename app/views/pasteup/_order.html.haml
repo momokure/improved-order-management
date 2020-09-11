@@ -120,7 +120,7 @@
   %td
     - OrderDetail.where(order_id: order.id).each do |order_detail|
       - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
-        済(#{User.find(sort_detail.sorting_user_id).user_name})
+        ✔完了(#{User.find(sort_detail.sorting_user_id).user_name})
         %br/
 
   %td{style:'font-weight:bold'}
