@@ -25,14 +25,6 @@ Rails.application.routes.draw do
 
   namespace :pasteup do
     resources :calendar, only: :index
-    resources :wip, only: :index
-    resources :done, only: :index
-    resources :toda1 do
-      resources :silkscreen_a, only: :index do
-        get :wip, on: :collection
-        get :done, on: :collection
-      end
-    end
   end
 
   namespace :domestic_buying do
@@ -54,6 +46,8 @@ Rails.application.routes.draw do
     resources :blank, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :all, only: :index
     resources :sorting, only: :index do
@@ -63,19 +57,27 @@ Rails.application.routes.draw do
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :inkjet, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :embroidery, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
       get :report, on: :collection
     end
     resources :sewing, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
   end
 
@@ -83,6 +85,8 @@ Rails.application.routes.draw do
     resources :blank, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :all, only: :index
     resources :sorting, only: :index do
@@ -92,30 +96,44 @@ Rails.application.routes.draw do
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :inkjet, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :embroidery, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :sewing, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :silkscreen_b, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :silkscreen_c, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :uv, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
   end
 
@@ -123,10 +141,14 @@ Rails.application.routes.draw do
     resources :blank, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
     resources :silkscreen_d, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
+      get :pasteup_wip, on: :collection
+      get :pasteup_done, on: :collection
     end
   end
 

@@ -1,5 +1,4 @@
-- content_for(:html_title) { '美女木工場 インクジェット' }
-%h2 　#{l(@date.to_date - 1, format: :middle, default: '')}制作 ➡ #{l(@date.to_date, format: :middle, default: '')}納品のご注文一覧 (制作済)
+- content_for(:html_title) { '美女木工場 インクジェット '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品のご注文一覧 (制作済)"}
 
 .container
   %table.neumorphic
@@ -24,5 +23,6 @@
         %th 発注状況
         %th 仕分け状況
         %th ご注文備考欄
+        %th
     %tbody
-      = render partial: 'order', collection: @orders, locals: { order: @orders }
+      = render partial: 'bijogi/order', collection: @orders, locals: { order: @orders }

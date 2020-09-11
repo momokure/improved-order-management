@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   PER = 500
 
   def index
-    @orders = Order.all
+    @orders = Order.includes(:representative_user, :order_addresses, :payments, :buy_details, :order_notes)
     # @orders = Order.page(params[:page]).per(PER)
   end
 

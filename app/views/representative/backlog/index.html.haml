@@ -1,6 +1,6 @@
-- content_for(:html_title) { 'みつもり未対応一覧' }
-
-%h2 残#{Order.where(representative_user_id: 1, first_response_date: nil).count}件 / #{Order.where(first_response_date: @from..@to).count}件対応済
+- @remaining = Order.where(representative_user_id: 1, first_response_date: nil).count.to_s
+- @complete = Order.where(first_response_date: @from..@to).count.to_s
+- content_for(:html_title) { 'みつもり未対応一覧 残'+ @remaining + "件 / " + @complete +"件対応済"}
 
 %li
   =link_to "本日の対応件数", representative_today_index_path

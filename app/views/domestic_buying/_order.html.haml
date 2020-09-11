@@ -13,9 +13,17 @@
         = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
 
   %td
-    = link_to customer_path(id: order.customer.uid) do
-      #{order.customer.customer_type.customer_type_name}
-      #{order.customer.customer_name.to_s.truncate(15)} 様
+    - if order.customer.customer_type_id == 1
+      %p
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(15)} 様
+
+    - if order.customer.customer_type_id == 2
+      %p{id: 'fubi'}
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(15)} 様
 
   %td
     - if order.internal_delivery_date.present?

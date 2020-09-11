@@ -1,36 +1,104 @@
 %tr
   %td
-    = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+    - if order.order_type_id == 1 || order.order_type_id == 2
+      %p
+        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+
+    - if order.order_type_id == 3
+      %p{id: 'fubi'}
+        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+
+    - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
+      %p{id: 'kono'}
+        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+
   %td
-    = link_to customer_path(id: order.customer.uid) do
-      #{order.customer.customer_type.customer_type_name}
-      #{order.customer.customer_name.to_s.truncate(10)} 様
+    - if order.customer.customer_type_id == 1
+      %p
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(10)} 様
+
+    - if order.customer.customer_type_id == 2
+      %p{id: 'fubi'}
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(10)} 様
+
   %td
     = OrderType.find(order.order_type_id).order_type_name.truncate(8)
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
   %td
     = l(order.try(:order_date), format: :middle, default: '')
+
   %td
     = User.find(order.representative_user_id).user_name
+
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
-      = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+      - if PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(1, 2) || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 28 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(31, 47)
+        %p{id: 'fubi'}
+          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %br
+      - elsif PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 11 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 13 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 49
+        %p{id: 'lightblue'}
+          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %br
+      - else
+        = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+        %br
+
   %td
-    = l(order.try(:desired_delivery_date), format: :middle, default: '')
-  %td
-    = DesiredDeliveryType.find(order.desired_delivery_type_id).desired_delivery_type_name
+    - if order.desired_delivery_date.present?
+      - if order.desired_delivery_type_id == 1
+        %p{id: 'red'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}必着
+
+      - elsif order.desired_delivery_type_id == 2
+        %p{id: 'red'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}までに
+
+      - elsif order.desired_delivery_type_id == 3
+        %p{id: 'green'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+
+      - elsif order.desired_delivery_type_id == 4
+        %p{id: 'green'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+
   %td{style: "font-weight:bold"}
-    = l(order.try(:internal_delivery_date), format: :middle, default: '')
+    - if order.internal_delivery_date.present?
+      - if order.desired_delivery_type_id == 1
+        %p{id: 'red'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 2
+        %p{id: 'red'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 3
+        %p{id: 'green'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 4
+        %p{id: 'green'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
   %td
     = l(order.try(:payment_deadline_date), format: :middle, default: '')
+
   %td
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
+
   %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
+
   %td
     -# = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
     - Payment.where(order_id: order.id).each do |paid|
       = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
+
   %td
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
@@ -42,40 +110,6 @@
         %br/
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
+
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
-    -#.container
-    -#  %tbody
-    -#    %tr
-    -#    - OrderDetail.where(order_id: order.id).each do |order_detail|
-    -#      %td{align: "right"}
-    -#        ↳
-    -#      %td
-    -#        - if order_detail.mixed_techniques == "mixed"
-    -#          合体加工
-    -#        - else
-    -#          単体加工
-    -#      - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-    -#        %tbody
-    -#          %td
-    -#          %td{align: "right"}
-    -#            ↳
-    -#          %td
-    -#            = Technique.find(order_technique_detail.technique_id).technique_name
-    -#            %br
-    -#            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-    -#              #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-    -#              %br
-    -#              - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-    -#                #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-    -#          %td
-    -#            #{Factory.find(order_detail.factory_id).factory_name}工場
-    -#          %td
-    -#            -# - unless order_technique_detail.progress_id == 1
-    -#            #{Progress.find(order_technique_detail.progress_id).progress_name}
-    -#          %td
-    -#            - unless order_technique_detail.pasteup_user_id == 1
-    -#              🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
-    -#          %td
-    -#            - unless order_technique_detail.maker_id == 1
-    -#              🍗#{User.find(order_technique_detail.maker_id).user_name}
