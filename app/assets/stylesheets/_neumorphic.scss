@@ -1,0 +1,89 @@
+table.neumorphic {
+  margin: auto;
+  width: 600px;
+  border-spacing: 0;
+  text-align: center;
+  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
+
+  thead {
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
+  }
+
+  th {
+    opacity: 0.9;
+    background: #e0e5ec;
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
+    white-space: nowrap;
+    position: sticky;
+    top: 70px;
+    z-index: 1;
+  }
+
+  th.payment{
+    color: dodgerblue;
+  }
+
+  > tbody > tr {
+    > td {
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 9px;
+      position: relative;
+
+      &:hover {
+        border-radius: 20px;
+        box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.8), -9px -9px 16px rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    &:hover {
+      padding: 20px;
+      box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  tr td:first-child::before {
+    content: "";
+    position: absolute;
+    padding: 7px;
+    top: 0;
+    left: -5000px;
+    width: 10000px;
+    height: 100%;
+    z-index: -10;
+  }
+
+  td:hover::after {
+    content: "";
+    position: absolute;
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.nested-fields.well.well-compact {
+  margin: 10px;
+  border: dashed 1px #333333;
+  border-radius: 10px;
+  width: 300px;
+  padding: 10px;
+}
+
+#technique{
+  margin: 10px;
+  border: dashed 1px #333333;
+  border-radius: 10px;
+  width: 280px;
+  padding: 10px 20px;
+}
+
+.change_delivery_date{
+  font-size: 14px;
+  line-height: 13px;
+  color: red;
+  margin: 8px 3px;
+}

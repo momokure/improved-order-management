@@ -1,11 +1,7 @@
-.container {
-}
-
-table.neumorphic {
+table.neumorphic_pasteup {
   margin: auto;
   width: 600px;
   border-spacing: 0;
-  color: #212121;
   text-align: center;
   box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
 
@@ -15,13 +11,9 @@ table.neumorphic {
 
   th {
     opacity: 0.9;
-
     background: #e0e5ec;
     box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
-
     white-space: nowrap;
-    //padding: 5px 10px;
-
     position: sticky;
     top: 70px;
     z-index: 1;
@@ -31,17 +23,29 @@ table.neumorphic {
     color: dodgerblue;
   }
 
+  tr.wrapper{
+
+    td {
+
+    }
+  }
+
   > tbody > tr {
     > td {
       overflow: hidden;
       white-space: nowrap;
       font-size: 9px;
       position: relative;
+
+      &:hover {
+        border-radius: 20px;
+        box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.8), -9px -9px 16px rgba(255, 255, 255, 0.8);
+      }
     }
 
     &:hover {
       padding: 20px;
-      box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.6);
+      box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.8), -9px -9px 16px rgba(255, 255, 255, 0.8);
     }
   }
 
