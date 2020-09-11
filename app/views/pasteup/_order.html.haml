@@ -155,27 +155,17 @@
                     #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
 
               %td
-                - OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).each do |order_detail|
-                  - if OrderDetail.where(order_id: order.id).distinct.pluck(:factory_id).count > 1
-                    %p{id: 'redyellow'}
-                      = Factory.find_by(id: order_detail).factory_name
-                      %br/
+                - if Factory.find_by(id: order_detail.factory_id).id == 4
+                  %p{id: 'toda1'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
 
-                  - elsif Factory.find_by(id: order_detail).id == 1
-                    %p
-                      = Factory.find_by(id: order_detail).factory_name
+                - if Factory.find_by(id: order_detail.factory_id).id == 7
+                  %p{id: 'nakano'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
 
-                  - elsif Factory.find_by(id: order_detail).id == 4
-                    %p{id: 'toda1'}
-                      = Factory.find_by(id: order_detail).factory_name
-
-                  - elsif Factory.find_by(id: order_detail).id == 7
-                    %p{id: 'nakano'}
-                      = Factory.find_by(id: order_detail).factory_name
-
-                  - elsif Factory.find_by(id: order_detail).id == 8
-                    %p{id: 'bijogi'}
-                      = Factory.find_by(id: order_detail).factory_name
+                - if Factory.find_by(id: order_detail.factory_id).id == 8
+                  %p{id: 'bijogi'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
 
               %td
                 #{Progress.find(order_technique_detail.progress_id).progress_name}
