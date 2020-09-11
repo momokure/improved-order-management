@@ -27,12 +27,12 @@ Rails.application.routes.draw do
     resources :calendar, only: :index
     resources :wip, only: :index
     resources :done, only: :index
-  end
-
-  namespace :pasteup do
-    resources :calendar, only: :index
-    resources :wip, only: :index
-    resources :done, only: :index
+    resources :toda1 do
+      resources :silkscreen_a, only: :index do
+        get :wip, on: :collection
+        get :done, on: :collection
+      end
+    end
   end
 
   namespace :domestic_buying do

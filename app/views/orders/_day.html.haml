@@ -27,9 +27,6 @@
         = link_to "#{@silkscreen_a_toda1_done[date]}件制作済", done_toda1_silkscreen_a_index_path(date: date)
       - elsif @silkscreen_a_toda1_wip[date].nil? && @silkscreen_a_toda1_done[date].present?
         = link_to "全#{@silkscreen_a_toda1_done[date]}件制作済", done_toda1_silkscreen_a_index_path(date: date)
-        %br/
-      -  if @silkscreen_a_toda1_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_a_toda1_pasteup_wip[date]}件", wip_toda1_silkscreen_a_index_path(date: date)
 
     %td
       - if @blank_bijogi_wip[date].present?
@@ -52,10 +49,6 @@
         /もし製作中のものが無くて全て制作済みだったら、全XX件制作済みと表示され、全注文検索結果へのリンク
       - elsif @silkscreen_a_bijogi_wip[date].nil? && @silkscreen_a_bijogi_done[date].present?
         = link_to "全#{@silkscreen_a_bijogi_done[date]}件制作済", done_bijogi_silkscreen_a_index_path(date: date)
-        %br/
-        /ここに🐤の残り件数が表示されるようにしたい。コントローラーを作る必要がある。progress_idが1のものが🐤
-      -  if @silkscreen_a_bijogi_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_a_bijogi_pasteup_wip[date]}件", wip_bijogi_silkscreen_a_index_path(date: date)
 
     %td
       /インクジェット❓工場未定
@@ -71,9 +64,6 @@
         = link_to "#{@inkjet_toda1_done[date]}件制作済", done_toda1_inkjet_index_path(date: date)
       - elsif @inkjet_toda1_wip[date].nil? && @inkjet_toda1_done[date].present?
         = link_to "全#{@inkjet_toda1_done[date]}件制作済", done_toda1_inkjet_index_path(date: date)
-        %br/
-      -  if @inkjet_toda1_pasteup_wip[date].present?
-        = link_to "🐤#{@inkjet_toda1_pasteup_wip[date]}件", wip_toda1_inkjet_index_path(date: date)
 
     %td
       /インクジェット🐲美女木
@@ -85,9 +75,6 @@
         = link_to "#{@inkjet_bijogi_done[date]}件制作済", done_bijogi_inkjet_index_path(date: date)
       - elsif @inkjet_bijogi_wip[date].nil? && @inkjet_bijogi_done[date].present?
         = link_to "全#{@inkjet_bijogi_done[date]}件制作済", done_bijogi_inkjet_index_path(date: date)
-        %br/
-      -  if @inkjet_bijogi_pasteup_wip[date].present?
-        = link_to "🐤#{@inkjet_bijogi_pasteup_wip[date]}件", wip_bijogi_inkjet_index_path(date: date)
 
     %td
       /刺繍工場未定
@@ -103,9 +90,6 @@
         = link_to "#{@embroidery_toda1_done[date]}件制作済", done_toda1_embroidery_index_path(date: date)
       - elsif @embroidery_toda1_wip[date].nil? && @embroidery_toda1_done[date].present?
         = link_to "全#{@embroidery_toda1_done[date]}件制作済", done_toda1_embroidery_index_path(date: date)
-        %br/
-      -  if @embroidery_toda1_pasteup_wip[date].present?
-        = link_to "🐤#{@embroidery_toda1_pasteup_wip[date]}件", wip_toda1_embroidery_index_path(date: date)
 
     %td
       /刺繍美女木
@@ -117,9 +101,6 @@
         = link_to "#{@embroidery_bijogi_done[date]}件制作済", done_bijogi_embroidery_index_path(date: date)
       - elsif @embroidery_bijogi_wip[date].nil? && @embroidery_bijogi_done[date].present?
         = link_to "全#{@embroidery_bijogi_done[date]}件制作済", done_bijogi_embroidery_index_path(date: date)
-        %br/
-      -  if @embroidery_bijogi_pasteup_wip[date].present?
-        = link_to "🐤#{@embroidery_bijogi_pasteup_wip[date]}件", wip_bijogi_embroidery_index_path(date: date)
 
     %td
       /縫製工場未定
@@ -135,9 +116,6 @@
         = link_to "#{@sewing_toda1_done[date]}件制作済", done_toda1_sewing_index_path(date: date)
       - elsif @sewing_toda1_wip[date].nil? && @sewing_toda1_done[date].present?
         = link_to "全#{@sewing_toda1_done[date]}件制作済", done_toda1_sewing_index_path(date: date)
-        %br/
-      -  if @sewing_toda1_pasteup_wip[date].present?
-        = link_to "🐤#{@sewing_toda1_pasteup_wip[date]}件", wip_toda1_sewing_index_path(date: date)
 
     %td
       /縫製美女木
@@ -149,10 +127,6 @@
         = link_to "#{@sewing_bijogi_done[date]}件制作済", done_bijogi_sewing_index_path(date: date)
       - elsif @sewing_bijogi_wip[date].nil? && @sewing_bijogi_done[date].present?
         = link_to "全#{@sewing_bijogi_done[date]}件制作済", done_bijogi_sewing_index_path(date: date)
-        %br/
-      -  if @sewing_bijogi_pasteup_wip[date].present?
-        = link_to "🐤#{@sewing_bijogi_pasteup_wip[date]}件", wip_bijogi_sewing_index_path(date: date)
-
     %td
       /シルクスクリーンB美女木
       - if @silkscreen_b_wip[date].present?
@@ -163,9 +137,6 @@
         = link_to "#{@silkscreen_b_done[date]}件制作済", done_bijogi_silkscreen_b_index_path(date: date)
       - elsif @silkscreen_b_wip[date].nil? && @silkscreen_b_done[date].present?
         = link_to "全#{@silkscreen_b_done[date]}件制作済", done_bijogi_silkscreen_b_index_path(date: date)
-        %br/
-      -  if @silkscreen_b_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_b_pasteup_wip[date]}件", wip_bijogi_silkscreen_b_index_path(date: date)
 
     %td
       /シルクスクリーンC美女木
@@ -177,9 +148,6 @@
         = link_to "#{@silkscreen_c_done[date]}件制作済", done_bijogi_silkscreen_c_index_path(date: date)
       - elsif @silkscreen_c_wip[date].nil? && @silkscreen_c_done[date].present?
         = link_to "全#{@silkscreen_c_done[date]}件制作済", done_bijogi_silkscreen_c_index_path(date: date)
-        %br/
-      -  if @silkscreen_c_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_c_pasteup_wip[date]}件", wip_bijogi_silkscreen_c_index_path(date: date)
 
     %td
       - if @blank_yoyogi_wip[date].present?
@@ -200,9 +168,6 @@
         = link_to "#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
       - elsif @silkscreen_d_wip[date].nil? && @silkscreen_d_done[date].present?
         = link_to "全#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
-        %br/
-      -  if @silkscreen_d_pasteup_wip[date].present?
-        = link_to "🐤#{@silkscreen_d_pasteup_wip[date]}件", wip_yoyogi_silkscreen_d_index_path(date: date)
 
     %td
       /UV美女木
@@ -214,6 +179,4 @@
         = link_to "#{@uv_done[date]}件制作済", done_bijogi_uv_index_path(date: date)
       - elsif @uv_wip[date].nil? && @uv_done[date].present?
         = link_to "全#{@uv_done[date]}件制作済", done_bijogi_uv_index_path(date: date)
-        %br/
-      -  if @uv_pasteup_wip[date].present?
-        = link_to "🐤#{@uv_pasteup_wip[date]}件", wip_bijogi_uv_index_path(date: date)
+

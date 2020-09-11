@@ -12,6 +12,9 @@
     = OrderType.find(order.order_type_id).order_type_name
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
   %td
+    /ご注文日
+    = l(order.try(:order_date), format: :middle, default: '')
+  %td
     /担当者
     = User.find(order.representative_user_id).user_name
   %td
@@ -27,6 +30,9 @@
   %td
     /社内納品日
     = l(order.try(:internal_delivery_date), format: :middle, default: '')
+  %td
+    /ご入金期限
+    = l(order.try(:payment_deadline_date), format: :middle, default: '')
   %td
     /ご入金予定額
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
