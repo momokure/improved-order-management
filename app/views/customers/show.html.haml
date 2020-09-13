@@ -1,10 +1,8 @@
-- content_for(:html_title) { 'お客様情報' }
-
-%h2
-  #{@customer.customer_name} 様
+- content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + "様" }
 
 お客様の詳細情報は現在作成中です
 %br/
 %br/
 .link
-  = link_to 'あたらしいご注文を登録', new_order_path(customer_id: @customer.uid)
+  = link_to new_order_path(customer_id: @customer.uid) do
+    #{@customer.customer_name}様のあたらしいご注文を登録
