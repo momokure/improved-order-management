@@ -180,6 +180,11 @@ class Pasteup::CalendarController < ApplicationController
                           .group("orders.internal_delivery_date")
                           .count
 
+    @silkscreen_d_cassette = Order.joins(order_details: :order_technique_detail_options)
+                               .where(order_technique_detail_options: { technique_option_id: 5 })
+                               .group("orders.internal_delivery_date")
+                               .count
+
     #加工なし戸田1指示書未作成🐤
     @blank_toda1_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })

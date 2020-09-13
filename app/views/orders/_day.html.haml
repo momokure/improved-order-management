@@ -12,9 +12,9 @@
         \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
         %br/
       - if @blank_toda1_wip[date].present? && @blank_toda1_done[date].present?
-        = link_to "#{@blank_toda1_done[date]}件制作済", done_toda1_blank_index_path(date: date)
+        = link_to "#{@blank_toda1_done[date]}件対応済", done_toda1_blank_index_path(date: date)
       - elsif @blank_toda1_wip[date].nil? && @blank_toda1_done[date].present?
-        = link_to "全#{@blank_toda1_done[date]}件制作済", done_toda1_blank_index_path(date: date)
+        = link_to "全#{@blank_toda1_done[date]}件対応済", done_toda1_blank_index_path(date: date)
 
     %td
       - if @silkscreen_a_toda1_wip[date].present?
@@ -32,7 +32,7 @@
         \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
         %br/
       - if @blank_bijogi_wip[date].present? && @blank_bijogi_done[date].present?
-        = link_to "#{@blank_bijogi_done[date]}件制作済", done_bijogi_blank_index_path(date: date)
+        = link_to "#{@blank_bijogi_done[date]}件対応済", done_bijogi_blank_index_path(date: date)
       - elsif @blank_bijogi_wip[date].nil? && @blank_bijogi_done[date].present?
         = link_to "全#{@blank_bijogi_done[date]}件制作済", done_bijogi_blank_index_path(date: date)
 
@@ -141,9 +141,9 @@
         \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
         %br/
       - if @blank_yoyogi_wip[date].present? && @blank_yoyogi_done[date].present?
-        = link_to "#{@blank_yoyogi_done[date]}件制作済", done_yoyogi_blank_index_path(date: date)
+        = link_to "#{@blank_yoyogi_done[date]}件対応済", done_yoyogi_blank_index_path(date: date)
       - elsif @blank_yoyogi_wip[date].nil? && @blank_yoyogi_done[date].present?
-        = link_to "全#{@blank_yoyogi_done[date]}件制作済", done_yoyogi_blank_index_path(date: date)
+        = link_to "全#{@blank_yoyogi_done[date]}件対応済", done_yoyogi_blank_index_path(date: date)
 
     %td
       - if @silkscreen_d_wip[date].present?
@@ -154,6 +154,10 @@
         = link_to "#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
       - elsif @silkscreen_d_wip[date].nil? && @silkscreen_d_done[date].present?
         = link_to "全#{@silkscreen_d_done[date]}件制作済", done_yoyogi_silkscreen_d_index_path(date: date)
+
+    %td
+      - if @silkscreen_d_cassette[date].present?
+        = link_to "#{@silkscreen_d_cassette[date]}件", yoyogi_silkscreen_d_cassette_index_path(date: date)
 
     %td
       - if @uv_wip[date].present?

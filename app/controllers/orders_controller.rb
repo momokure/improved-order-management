@@ -222,12 +222,6 @@ class OrdersController < ApplicationController
                            .group("orders.internal_delivery_date")
                            .count
 
-    @silkscreen_d_done = Order.joins(order_details: :order_technique_details)
-                           .where(order_technique_details: { technique_id: 8 })
-                           .where(order_technique_details: { progress_id: 7  })
-                           .group("orders.internal_delivery_date")
-                           .count
-
     @silkscreen_d_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
                           .where.not(order_technique_details: { progress_id: 7  })
@@ -239,6 +233,11 @@ class OrdersController < ApplicationController
                           .where(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
+
+    @silkscreen_d_cassette = Order.joins(order_details: :order_technique_detail_options)
+                                   .where(order_technique_detail_options: { technique_option_id: 5 })
+                                   .group("orders.internal_delivery_date")
+                                   .count
 
     @blank_toda1_wip = Order.joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })

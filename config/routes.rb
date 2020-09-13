@@ -150,6 +150,7 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
+    resources :silkscreen_d_cassette, only: :index
   end
 
   resources :orders do
