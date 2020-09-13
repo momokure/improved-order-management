@@ -1,6 +1,7 @@
 - content_for(:html_title) { 'あたらしい注文管理システム : 全てのご注文一覧' }
 
 %h3
+  %br/
   #{paginate @orders}
 
 .container
@@ -26,4 +27,5 @@
       = render partial: 'order', collection: @orders, locals: { order: @orders }
 
 %h3
-  = paginate @orders
+  %br/
+  #{paginate @orders}

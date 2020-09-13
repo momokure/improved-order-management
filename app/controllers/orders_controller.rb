@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   require 'date'
-  PER = 250
+  PER = 100
 
   def index
-    @orders = Order
-                .includes(:representative_user, :order_addresses, :payments, :buy_details, :order_notes)
-                .order(order_date: "DESC")
-                .page(params[:page]).per(PER)
+    @q = Order.includes(:representative_user, :order_addresses, :payments, :buy_details, :order_notes)
+           .order(order_date: "DESC")
+           .page(params[:page]).per(PER)
+           .ransack(params[:q])
+    @orders = @q.result(distinct: true).per(PER)
   end
 
   def new
