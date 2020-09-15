@@ -86,7 +86,6 @@ p, ol, ul, td {
   text-shadow: hotpink 1px 1px 1px, hotpink -1px 1px 1px, hotpink 1px -1px 1px, hotpink -1px -1px 1px;
 }
 
-
 pre {
   background-color: #eee;
   padding: 10px;
@@ -95,10 +94,6 @@ pre {
 
 a {
   color: #333;
-
-  //&:visited {
-  //  color: #666;
-  //}
 
   &:hover {
     color: #fff;

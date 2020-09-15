@@ -1,28 +1,31 @@
-%tr.wrapper
+%tr
   %td{style:'font-weight:bold'}
     - if order.order_type_id == 1 || order.order_type_id == 2
-      %p
-        = order.uid
+      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+        %p{id: 'regular'}
+          = order.uid
         %p{style:'font-size:20px; margin-top:5px'}
           = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
     - if order.order_type_id == 3
-      %p{id: 'fubi'}
-        = order.uid
-        %br/
-        (#{OrderType.find(order.order_type_id).order_type_name})
+      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+        %p{id: 'fubi'}
+          = order.uid
+          %br/
+          (#{OrderType.find(order.order_type_id).order_type_name})
 
-      %p{style:'font-size:20px; margin-top:5px'}
-        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+        %p{style:'font-size:20px; margin-top:5px'}
+          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
-      %p{id: 'kono'}
-        = order.uid
-        %br/
-        (#{OrderType.find(order.order_type_id).order_type_name})
+      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+        %p{id: 'kono'}
+          = order.uid
+          %br/
+          (#{OrderType.find(order.order_type_id).order_type_name})
 
-      %p{style:'font-size:20px; margin-top:5px'}
-        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+        %p{style:'font-size:20px; margin-top:5px'}
+          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
   %td{style:'font-weight:bold'}
     - if order.customer.customer_type_id == 1
@@ -124,10 +127,7 @@
         %br/
 
   %td{style:'font-weight:bold'}
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
-
-  %td{style:'font-weight:bold'}
-    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
     .container
       %tbody
