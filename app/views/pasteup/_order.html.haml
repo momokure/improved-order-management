@@ -176,7 +176,11 @@
                     #{Factory.find(order_detail.factory_id).factory_name}
 
               %td
-                #{Progress.find(order_technique_detail.progress_id).progress_name}
+                - if order_technique_detail.progress_id == 2
+                  %p{id: 'fubi'}
+                    #{Progress.find(order_technique_detail.progress_id).progress_name}
+                - else
+                  #{Progress.find(order_technique_detail.progress_id).progress_name}
 
                 - unless order_technique_detail.pasteup_user_id == 1
                   %br/
