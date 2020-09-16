@@ -1,42 +1,60 @@
 %tr
   %td{style:'font-weight:bold'}
     - if order.order_type_id == 1 || order.order_type_id == 2
-      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
-        %p{id: 'regular'}
-          = order.uid
-        %p{style:'font-size:20px; margin-top:5px'}
-          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+      %div{style:'display:flex; justify-content: center'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+          %p{style:'font-size:20px; margin-top:5px'}
+            = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
+          %p#copytext
+            = order.uid
+
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 3
-      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
-        %p{id: 'fubi'}
-          = order.uid
-          %br/
+      %div{style:'display:flex'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+
+          %p{style:'font-size:20px; margin-top:5px'}
+            = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
+          #copytext
+            %p#fubi
+              = order.uid
+          %p
           (#{OrderType.find(order.order_type_id).order_type_name})
 
-        %p{style:'font-size:20px; margin-top:5px'}
-          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
-      = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
-        %p{id: 'kono'}
-          = order.uid
-          %br/
+      %div{style:'display:flex'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+
+          %p{style:'font-size:20px; margin-top:5px'}
+            = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+
+          #copytext
+            %p#kono
+              = order.uid
+          %p
           (#{OrderType.find(order.order_type_id).order_type_name})
 
-        %p{style:'font-size:20px; margin-top:5px'}
-          = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
+
 
   %td{style:'font-weight:bold'}
     - if order.customer.customer_type_id == 1
       %p
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_name}
+          #{order.customer.customer_name.strip}
 
     - if order.customer.customer_type_id == 2
       %p{id: 'fubi'}
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_name}
+          #{order.customer.customer_name.strip}
 
 
   %td{style:'font-weight:bold'}
