@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
-    @customer.companies.build
+    # @customer.companies.build
     @customer.customer_emails.build
     @customer.customer_phone_numbers.build
     @customer.customer_addresses.build
