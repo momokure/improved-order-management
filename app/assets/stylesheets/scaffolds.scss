@@ -62,9 +62,23 @@ p, ol, ul, td {
   text-shadow: plum 1px 1px 1px, plum -1px 1px 1px, plum 1px -1px 1px, plum -1px -1px 1px;
 }
 
+#regular{
+  a{
+    color: #333;
+    &:hover {
+      color: #eee;
+      background: #333;
+    }
+  }
+  color: #333;
+  font-weight: bold;
+  //text-shadow: yellow 1px 1px 1px, yellow -1px 1px 1px, yellow 1px -1px 1px, yellow -1px -1px 1px;
+}
+
 #fubi{
   a{
     color: deeppink;
+
     &:hover {
       background-color: yellow;
     }
@@ -94,6 +108,7 @@ pre {
 
 a {
   color: #333;
+  text-decoration: none;
 
   &:hover {
     color: #fff;
