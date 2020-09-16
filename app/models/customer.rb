@@ -9,9 +9,8 @@ class Customer < ApplicationRecord
 
   belongs_to :customer_type
 
-  has_many :company_customers
-  has_many :companies, through: :company_customers
-  accepts_nested_attributes_for :companies, reject_if: :all_blank, allow_destroy: true
+  belongs_to :company
+  # accepts_nested_attributes_for :companies, reject_if: :all_blank, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture_code

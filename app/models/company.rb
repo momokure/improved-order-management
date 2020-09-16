@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
-  has_many :company_customers
-  has_many :customers, through: :company_customers
+  validates :company_name, uniqueness: true
+
+  has_many :customers
   has_many :company_notes
 end
