@@ -27,7 +27,8 @@ Rails.application.routes.draw do
     resources :calendar, only: :index
     resources :wip, ponly: :index
     resources :done, only: :index
-    get 'pdf/wicked', to: 'pdf#wicked'
+    get 'sample_pdfs/wicked', to: 'sample_pdfs#wicked'
+    get 'things/show', to: 'things#show'
   end
 
   namespace :domestic_buying do
