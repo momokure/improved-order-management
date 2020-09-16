@@ -1,10 +1,29 @@
-- content_for(:html_title) { 'お客様情報' }
+- content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + " 様" }
 
-%h2
-  #{@customer.customer_name} 様
+-#%h3
+-#  - if CompanyCustomer.find_by(customer_id: @customer.id).present?
+-#    - CompanyCustomer.where(customer_id: @customer.id).each do |company_customer|
+-#      法人名 : #{Company.find(company_customer.company_id).company_name}
 
-お客様の詳細情報は現在作成中です
-%br/
-%br/
-.link
-  = link_to 'あたらしいご注文を登録', new_order_path(customer_id: @customer.uid)
+%h3
+  お支払い方法 : #{PaymentMethod.find(@customer.payment_method_id).payment_method_name}
+
+
+-#%h3
+-#  請求書 :
+-#
+-#%h3
+-#  領収書 :
+-#
+-# %h3
+-#   ご注文履歴 :
+
+- if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id.between?(1, 2)
+  %br/
+  .link
+    = link_to edit_customer_path do
+      お客様情報を編集
+
+  .link
+    = link_to new_order_path(customer_id: @customer.uid) do
+      あたらしいご注文を登録

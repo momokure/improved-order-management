@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_10_115229) do
+ActiveRecord::Schema.define(version: 2020_09_16_004954) do
 
   create_table "buy_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.date "purchase_date"
@@ -55,16 +55,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_115229) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "company_customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_company_customers_on_company_id"
-    t.index ["customer_id"], name: "index_company_customers_on_customer_id"
-  end
-
-  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "company_note"
     t.bigint "company_id"
     t.bigint "user_id"
@@ -124,6 +115,9 @@ ActiveRecord::Schema.define(version: 2020_09_10_115229) do
     t.boolean "receipt_required", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id", default: 1
+    t.boolean "sales", default: false
+    t.index ["company_id"], name: "index_customers_on_company_id"
     t.index ["customer_type_id"], name: "index_customers_on_customer_type_id"
     t.index ["payment_method_id"], name: "index_customers_on_payment_method_id"
     t.index ["uid"], name: "index_customers_on_uid", unique: true
@@ -441,8 +435,6 @@ ActiveRecord::Schema.define(version: 2020_09_10_115229) do
   add_foreign_key "buy_details", "users", column: "buying_user_id"
   add_foreign_key "buy_notes", "buy_details"
   add_foreign_key "buy_notes", "users"
-  add_foreign_key "company_customers", "companies"
-  add_foreign_key "company_customers", "customers"
   add_foreign_key "company_notes", "companies"
   add_foreign_key "company_notes", "users"
   add_foreign_key "customer_addresses", "customers"
@@ -450,6 +442,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_115229) do
   add_foreign_key "customer_notes", "customers"
   add_foreign_key "customer_notes", "users"
   add_foreign_key "customer_phone_numbers", "customers"
+  add_foreign_key "customers", "companies"
   add_foreign_key "customers", "customer_types"
   add_foreign_key "customers", "payment_methods"
   add_foreign_key "order_addresses", "customer_addresses"

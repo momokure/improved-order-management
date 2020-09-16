@@ -17,6 +17,16 @@ class CustomersController < ApplicationController
     customer.save!
   end
 
+  def edit
+    @customer = Customer.find_by(uid: params[:id])
+  end
+
+  def update
+    @customer = Customer.find_by(uid: params[:id])
+    @customer.update_attributes!(customer_params)
+    redirect_to customer_path(uid: params[:id])
+  end
+
   def show
     @customer = Customer.find_by(uid: params[:id])
   end
@@ -27,11 +37,11 @@ class CustomersController < ApplicationController
       .require(:customer)
       .permit(
         :customer_name, :customer_furigana, :customer_type_id, :payment_method_id, :receipt_required,
-        companies_attributes: [:company_name, :company_name_furigana,:_destroy],
-        customer_emails_attributes: [:customer_email,:_destroy],
-        customer_phone_numbers_attributes: [:customer_phone_number,:_destroy],
-        customer_addresses_attributes: [:prefecture_code,:_destroy],
-        customer_notes_attributes: [:customer_note, :_destroy]
+        companies_attributes: [:id, :company_name, :company_name_furigana,:_destroy],
+        customer_emails_attributes: [:id, :customer_email,:_destroy],
+        customer_phone_numbers_attributes: [:id, :customer_phone_number,:_destroy],
+        customer_addresses_attributes: [:id, :prefecture_code,:_destroy],
+        customer_notes_attributes: [:id, :customer_note, :_destroy]
       )
   end
 end

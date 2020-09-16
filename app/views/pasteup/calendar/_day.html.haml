@@ -5,6 +5,10 @@
 
     /🐭戸田公園第1工場 加工なし・ボディのみ
     %td
+      - if @blank_toda1_priority[date].present?
+        %p{id: 'fubi'}
+          #{@blank_toda1_priority[date]}件優先あり
+
       - if @blank_toda1_wip[date].present?
         = link_to "🐤残#{@blank_toda1_wip[date]}件", pasteup_wip_toda1_blank_index_path(date: date)
         \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
@@ -16,6 +20,10 @@
 
     /🐭戸田公園第1工場 シルクスクリーンA
     %td
+      - if @silkscreen_a_toda1_priority[date].present?
+        %p{id: 'fubi'}
+          #{@silkscreen_a_toda1_priority[date]}件優先あり
+
       - if @silkscreen_a_toda1_wip[date].present?
         = link_to "🐤残#{@silkscreen_a_toda1_wip[date]}件", pasteup_wip_toda1_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_toda1_wip[date].to_i+@silkscreen_a_toda1_done[date].to_i}件
@@ -27,6 +35,10 @@
 
     /🐲美女木工場 加工なし・ボディのみ
     %td
+      - if @blank_bijogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@blank_bijogi_priority[date]}件優先あり
+
       - if @blank_bijogi_wip[date].present?
         = link_to "🐤残#{@blank_bijogi_wip[date]}件", pasteup_wip_bijogi_blank_index_path(date: date)
         \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
@@ -38,6 +50,10 @@
 
     /🐲美女木工場 シルクスクリーンA
     %td
+      - if @silkscreen_a_bijogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@silkscreen_a_bijogi_priority[date]}件優先あり
+
       - if @silkscreen_a_bijogi_wip[date].present?
         = link_to "🐤残#{@silkscreen_a_bijogi_wip[date]}件", pasteup_wip_bijogi_silkscreen_a_index_path(date: date)
         \/ 計#{@silkscreen_a_bijogi_wip[date]+@silkscreen_a_bijogi_done[date].to_i}件
@@ -49,6 +65,10 @@
 
     /🐭戸田公園第1工場 インクジェット
     %td
+      - if @inkjet_toda1_priority[date].present?
+        %p{id: 'fubi'}
+          #{@inkjet_toda1_priority[date]}件優先あり
+
       - if @inkjet_toda1_wip[date].present?
         = link_to "🐤残#{@inkjet_toda1_wip[date]}件", pasteup_wip_toda1_inkjet_index_path(date: date)
         \/ 計#{@inkjet_toda1_wip[date].to_i+@inkjet_toda1_done[date].to_i}件
@@ -60,6 +80,10 @@
 
     /🐲美女木工場 インクジェット
     %td
+      - if @inkjet_bijogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@inkjet_bijogi_priority[date]}件優先あり
+
       - if @inkjet_bijogi_wip[date].present?
         = link_to "🐤残#{@inkjet_bijogi_wip[date]}件", pasteup_wip_bijogi_inkjet_index_path(date: date)
         \/ 計#{@inkjet_bijogi_wip[date].to_i+@inkjet_bijogi_done[date].to_i}件
@@ -71,6 +95,10 @@
 
     /🐭戸田公園第1工場 刺繍
     %td
+      - if @embroidery_toda1_priority[date].present?
+        %p{id: 'fubi'}
+          #{@embroidery_toda1_priority[date]}件優先あり
+
       - if @embroidery_toda1_wip[date].present?
         = link_to "🐤残#{@embroidery_toda1_wip[date]}件", pasteup_wip_toda1_embroidery_index_path(date: date)
         \/ 計#{@embroidery_toda1_wip[date].to_i+@embroidery_toda1_done[date].to_i}件
@@ -82,6 +110,10 @@
 
     /🐲美女木工場 刺繍
     %td
+      - if @embroidery_bijogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@embroidery_bijogi_priority[date]}件優先あり
+
       - if @embroidery_bijogi_wip[date].present?
         = link_to "🐤残#{@embroidery_bijogi_wip[date]}件", pasteup_wip_bijogi_embroidery_index_path(date: date)
         \/ 計#{@embroidery_bijogi_wip[date].to_i+@embroidery_bijogi_done[date].to_i}件
@@ -93,6 +125,10 @@
 
     /🐭戸田公園第1工場 縫製
     %td
+      - if @sewing_toda1_priority[date].present?
+        %p{id: 'fubi'}
+          #{@sewing_toda1_priority[date]}件優先あり
+
       - if @sewing_toda1_wip[date].present?
         = link_to "🐤残#{@sewing_toda1_wip[date]}件", pasteup_wip_toda1_sewing_index_path(date: date)
         \/ 計#{@sewing_toda1_wip[date].to_i+@sewing_toda1_done[date].to_i}件
@@ -104,6 +140,10 @@
 
     /🐲美女木工場 縫製
     %td
+      - if @sewing_bijogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@sewing_bijogi_priority[date]}件優先あり
+
       - if @sewing_bijogi_wip[date].present?
         = link_to "🐤残#{@sewing_bijogi_wip[date]}件", pasteup_wip_bijogi_sewing_index_path(date: date)
         \/ 計#{@sewing_bijogi_wip[date].to_i+@sewing_bijogi_done[date].to_i}件
@@ -115,6 +155,10 @@
 
     /🐲美女木工場 シルクスクリーンB
     %td
+      - if @silkscreen_b_priority[date].present?
+        %p{id: 'fubi'}
+          #{@silkscreen_b_priority[date]}件優先あり
+
       - if @silkscreen_b_wip[date].present?
         = link_to "🐤残#{@silkscreen_b_wip[date]}件", pasteup_wip_bijogi_silkscreen_b_index_path(date: date)
         \/ 計#{@silkscreen_b_wip[date].to_i+@silkscreen_b_done[date].to_i}件
@@ -126,6 +170,10 @@
 
     /🐲美女木工場 シルクスクリーンC
     %td
+      - if @silkscreen_c_priority[date].present?
+        %p{id: 'fubi'}
+          #{@silkscreen_c_priority[date]}件優先あり
+
       - if @silkscreen_c_wip[date].present?
         = link_to "🐤残#{@silkscreen_c_wip[date]}件", pasteup_wip_bijogi_silkscreen_c_index_path(date: date)
         \/ 計#{@silkscreen_c_wip[date].to_i+@silkscreen_c_done[date].to_i}件
@@ -137,6 +185,10 @@
 
     /🐰中野工場 加工なし・ボディのみ
     %td
+      - if @blank_yoyogi_priority[date].present?
+        %p{id: 'fubi'}
+          #{@blank_yoyogi_priority[date]}件優先あり
+
       - if @blank_yoyogi_wip[date].present?
         = link_to "🐤残#{@blank_yoyogi_wip[date]}件", pasteup_wip_yoyogi_blank_index_path(date: date)
         \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
@@ -148,6 +200,10 @@
 
     /🐰中野工場 シルクスクリーンD
     %td
+      - if @silkscreen_d_priority[date].present?
+        %p{id: 'fubi'}
+          #{@silkscreen_d_priority[date]}件優先あり
+
       - if @silkscreen_d_wip[date].present?
         = link_to "🐤残#{@silkscreen_d_wip[date]}件", pasteup_wip_yoyogi_silkscreen_d_index_path(date: date)
         \/ 計#{@silkscreen_d_wip[date].to_i+@silkscreen_d_done[date].to_i}件
@@ -157,8 +213,17 @@
       - elsif @silkscreen_d_wip[date].nil? && @silkscreen_d_done[date].present?
         = link_to "全#{@silkscreen_d_done[date]}件作成済", pasteup_done_yoyogi_silkscreen_d_index_path(date: date)
 
+    /🐰中野工場 カセット
+    %td
+      - if @silkscreen_d_cassette[date].present?
+        = link_to "#{@silkscreen_d_cassette[date]}件", yoyogi_silkscreen_d_cassette_index_path(date: date)
+
     /🐲美女木工場 UV
     %td
+      - if @uv_priority[date].present?
+        %p{id: 'fubi'}
+          #{@uv_priority[date]}件優先あり
+
       - if @uv_wip[date].present?
         = link_to "🐤残#{@uv_wip[date]}件", pasteup_wip_bijogi_uv_index_path(date: date)
         \/ 計#{@uv_wip[date].to_i+@uv_done[date].to_i}件

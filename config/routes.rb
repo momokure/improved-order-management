@@ -23,6 +23,12 @@ Rails.application.routes.draw do
     resources :report, only: :index
   end
 
+  namespace :accounting do
+    resources :all, only: :index
+    resources :backlog, only: :index
+    resources :deadline, only: :index
+  end
+
   namespace :pasteup do
     resources :calendar, only: :index
     resources :wip, ponly: :index
@@ -154,6 +160,7 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
+    resources :silkscreen_d_cassette, only: :index
   end
 
   resources :orders do

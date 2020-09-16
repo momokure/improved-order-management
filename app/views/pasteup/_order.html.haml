@@ -1,31 +1,62 @@
-%tr.wrapper
+%tr
   %td{style:'font-weight:bold'}
     - if order.order_type_id == 1 || order.order_type_id == 2
-      %p
-        = order.uid
+      %div{style:'display:flex; justify-content: center'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+          %div{style:'display:flex; justify-content: center'}
+            %div{style:'font-size:20px'}
+              = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+            #copytext
+              = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 3
-      %p{id: 'fubi'}
-        = order.uid
-        %br/
-        (#{OrderType.find(order.order_type_id).order_type_name})
+      %div{style:'display:flex; justify-content: center'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+          %div{style:'display:flex; justify-content: center'}
+            %div{style:'font-size:20px'}
+              = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+            #copytext
+              #fubi
+                = order.uid
+          %p
+          (#{OrderType.find(order.order_type_id).order_type_name})
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
-      %p{id: 'kono'}
-        = order.uid
-        %br/
-        (#{OrderType.find(order.order_type_id).order_type_name})
+      %div{style:'display:flex; justify-content: center'}
+        = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
+          %div{style:'display:flex; justify-content: center'}
+            %div{style:'font-size:20px'}
+              = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+            #copytext
+              #kono
+                = order.uid
+          %p
+          (#{OrderType.find(order.order_type_id).order_type_name})
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
+
 
   %td{style:'font-weight:bold'}
     - if order.customer.customer_type_id == 1
-      %p
+      %div{style:'display:flex; justify-content: center'}
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_name}
+          #copytext
+            #{order.customer.customer_name}
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.customer.customer_type_id == 2
-      %p{id: 'fubi'}
+      %div{style:'display:flex; justify-content: center'}
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_name}
+          #copytext
+            #fubi
+              #{order.customer.customer_name}
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
 
   %td{style:'font-weight:bold'}
@@ -42,57 +73,90 @@
     = l(order.try(:order_date), format: :middle, default: '')
 
   %td{style:'font-weight:bold'}
-    = User.find(order.representative_user_id).user_name
+    %div{style:'display:flex; justify-content: center'}
+      = link_to customer_path(id: order.customer.uid) do
+        #copytext
+          = User.find(order.representative_user_id).user_name
+      %button.copybtn{type: "button"}
+        %i.fas.fa-copy
+
 
   %td{style:'font-weight:bold'}
     - OrderAddress.where(order_id: order.id).each do |oa|
       - if PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(1, 2) || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 28 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(31, 47)
-        %p{id: 'fubi'}
-          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
-          %br
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #fubi
+              = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
       - elsif PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 11 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 13 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 49
-        %p{id: 'lightblue'}
-          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
-          %br
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #lightblue
+              = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
       - else
-        = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
-        %br
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
+
 
   %td{style:'font-weight:bold'}
     - if order.desired_delivery_date.present?
       - if order.desired_delivery_type_id == 1
-        %p{id: 'red'}
-          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}必着
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #red
+              #{l(order.try(:desired_delivery_date), format: :middle, default: '')}必着
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
 
       - elsif order.desired_delivery_type_id == 2
-        %p{id: 'red'}
-          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}までに
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #red
+              #{l(order.try(:desired_delivery_date), format: :middle, default: '')}までに
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
 
-      - elsif order.desired_delivery_type_id == 3
-        %p{id: 'green'}
-          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+      - elsif order.desired_delivery_type_id == 3 || order.desired_delivery_type_id == 4
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #green
+              #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
 
-      - elsif order.desired_delivery_type_id == 4
-        %p{id: 'green'}
-          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
 
   %td{style:'font-weight:bold'}
     - if order.internal_delivery_date.present?
-      - if order.desired_delivery_type_id == 1
-        %p{id: 'red'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+      - if order.desired_delivery_type_id == 1 || order.desired_delivery_type_id == 2
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #red
+              #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
 
-      - elsif order.desired_delivery_type_id == 2
-        %p{id: 'red'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
-
-      - elsif order.desired_delivery_type_id == 3
-        %p{id: 'green'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
-
-      - elsif order.desired_delivery_type_id == 4
-        %p{id: 'green'}
-          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+      - elsif order.desired_delivery_type_id == 3 || order.desired_delivery_type_id == 4
+        %div{style:'display:flex; justify-content: center'}
+          #copytext
+            #green
+              #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+          %button.copybtn{type: "button"}
+            %i.fas.fa-copy
+          %br/
 
   %td
     = l(order.try(:payment_deadline_date), format: :middle, default: '')
@@ -112,14 +176,11 @@
   %td
     - OrderDetail.where(order_id: order.id).each do |order_detail|
       - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
-        済(#{User.find(sort_detail.sorting_user_id).user_name})
+        ✔完了(#{User.find(sort_detail.sorting_user_id).user_name})
         %br/
 
   %td{style:'font-weight:bold'}
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
-
-  %td{style:'font-weight:bold'}
-    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
     .container
       %tbody
@@ -168,8 +229,12 @@
                     #{Factory.find(order_detail.factory_id).factory_name}
 
               %td
-                #{Progress.find(order_technique_detail.progress_id).progress_name}
+                - if order_technique_detail.progress_id == 2
+                  #fubi
+                    #{Progress.find(order_technique_detail.progress_id).progress_name}
+                - else
+                  #{Progress.find(order_technique_detail.progress_id).progress_name}
 
                 - unless order_technique_detail.pasteup_user_id == 1
-                  %br/
-                  (#{User.find(order_technique_detail.pasteup_user_id).user_name})
+                  %p
+                    (#{User.find(order_technique_detail.pasteup_user_id).user_name})
