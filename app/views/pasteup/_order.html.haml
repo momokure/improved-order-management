@@ -74,9 +74,8 @@
 
   %td{style:'font-weight:bold'}
     %div{style:'display:flex; justify-content: center'}
-      = link_to customer_path(id: order.customer.uid) do
-        #copytext
-          = User.find(order.representative_user_id).user_name
+      #copytext
+        = User.find(order.representative_user_id).user_name
       %button.copybtn{type: "button"}
         %i.fas.fa-copy
 
