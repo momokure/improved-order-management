@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   include IdGeneratorCustomer
   enum receipt_required: { not_required: false, required: true }
+  enum sales:  { received: false, sales: true }
 
   def to_param
     uid
