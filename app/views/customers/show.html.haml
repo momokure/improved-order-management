@@ -1,11 +1,10 @@
 - content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + " 様" }
 
--#%h3
--#  - if CompanyCustomer.find_by(customer_id: @customer.id).present?
--#    - CompanyCustomer.where(customer_id: @customer.id).each do |company_customer|
--#      法人名 : #{Company.find(company_customer.company_id).company_name}
+%h2
+  - if @customer.company_id != 1
+    法人名 : #{Company.find(@customer.company_id).company_name}
 
-%h3
+%h2
   お支払い方法 : #{PaymentMethod.find(@customer.payment_method_id).payment_method_name}
 
 
