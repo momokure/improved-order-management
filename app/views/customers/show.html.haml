@@ -1,28 +1,61 @@
 - content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + " 様" }
 
-%h3
+%h3{style:'margin-top:30px'}
   - if @customer.company_id != 1
+    %i.fas.fa-building
     法人名 : #{Company.find(@customer.company_id).company_name}
 
-%h3
-  お支払い方法 : #{PaymentMethod.find(@customer.payment_method_id).payment_method_name}
+%h3{style:'display:flex'}
+  %i.fas.fa-file-invoice
+    お支払い方法 :
+  - if @customer.payment_method_id == 1
+    %p{style:'margin:-3px 1px; font-weight:normal'}
+      #{PaymentMethod.find(@customer.payment_method_id).payment_method_name}
+  - else
+    #redyellow{style:'margin:-3px 4px'}
+      #{PaymentMethod.find(@customer.payment_method_id).payment_method_name}
 
+%h3{style:'display:flex'}
+  %i.fas.fa-receipt
+    領収書 :
+  - if @customer.receipt_required == "not_required"
+    %p{style:'margin:-3px 1px; font-weight:normal'}
+      不要
+  - else
+    #redyellow{style:'margin:-3px 4px'}
+      必要
 
--#%h3
--#  請求書 :
--#
--#%h3
--#  領収書 :
--#
--# %h3
--#   ご注文履歴 :
+%h3{style:'margin-top:30px'}
+
+%table.neumorphic
+  %thead
+    %tr
+      %th ご注文ID
+      -#%th お客様種別/お名前
+      %th ご注文種別
+      %th ご注文日
+      %th 担当者
+      %th 納品先
+      %th 納品ご希望日
+      %th 社内納品日
+      %th ご入金期限
+      %th ご入金予定額
+      %th.payment ご入金日
+      %th.payment ご入金額
+      %th 発注状況
+      %th ご注文備考欄
+      %th 　
+  %tbody
+    = render partial: 'order', collection: @orders, locals: { order: @orders }
 
 - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id.between?(1, 2)
   %br/
-  .link
+  .link{style:'font-size:13px'}
     = link_to edit_customer_path do
+      %i.fas.fa-user-edit
       お客様情報を編集
 
-  .link
+  .link{style:'font-size:13px; margin-top:5px'}
     = link_to new_order_path(customer_id: @customer.uid) do
-      あたらしいご注文を登録
+      %i.fas.fa-plus-square
+      新規ご注文を登録

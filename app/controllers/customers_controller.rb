@@ -5,7 +5,6 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
-    # @customer.companies.build
     @customer.customer_emails.build
     @customer.customer_phone_numbers.build
     @customer.customer_addresses.build
@@ -29,6 +28,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find_by(uid: params[:id])
+    @orders = Order.where(customer_id: @customer.id)
   end
 
   private
