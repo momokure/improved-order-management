@@ -40,6 +40,11 @@
           #{order.customer.customer_name.to_s.truncate(10)} 様
 
   %td
+    = link_to customer_path(id: order.customer.uid) do
+      %i.fas.fa-history
+      #{Order.where(customer_id: order.customer_id).count}
+
+  %td
     = OrderType.find(order.order_type_id).order_type_name.truncate(8)
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
