@@ -55,6 +55,8 @@
     - if order.representative_user_id == 1
       %p{style: 'color:lightgray'}
         = User.find(order.representative_user_id).user_name
+    - else
+      = User.find(order.representative_user_id).user_name
 
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
