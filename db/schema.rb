@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_004954) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "company_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "company_note"
     t.bigint "company_id"
     t.bigint "user_id"
