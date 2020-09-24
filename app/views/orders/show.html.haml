@@ -1,3 +1,53 @@
-%h2 Order
-= @order.id
-= @customer.customer_name
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title title
+    %link{:href => "pasteup_pdf.scss", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    %h2 Order
+    = @order.id
+    = @customer.customer_name
+    #wrapper
+      #row1.row
+        #label
+          [工場] [SILK]
+        #body-order-date [発注日] 　　 [着日]
+        #payment 入金 [済]
+        #address-label 納品先
+      #row2.row
+        #customer-name
+          [お客様名]　　　
+          %span 様
+        #address [〇〇都道府県]
+      #row3.row
+        #delivery-date
+          #year 2020年
+          #date 納期
+          #date-note 納品希望日 備考欄
+        #special-mark
+        #absoluteness 絶対 / 通常
+      #row4.row
+        #id-label ID
+        #id-box [XXXXXXXXXX]
+      #row5.row
+        #blank
+        #picking ピッキング:
+        #fabrication 製作:
+        #confirmation 確認:
+        #inspection 検品:
+        #packing 梱包:
+      #row6.row
+        #manufacturing-label 加工
+        #manufacturing-box [加工名]
+        #pasteup 指示書作成:
+        #representive
+      #row7.row
+        #status-label 状況
+        #status-box
+      #row8.row
+        #estimation
+          #data
+      #row9.row
+        #note-label 備考
+        #note-box

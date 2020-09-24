@@ -181,6 +181,11 @@
   %td{style:'font-weight:bold'}
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
+  %td
+    %div
+      = link_to '⏬', order_path(id: order.uid), method: :get, target:["_blank"] 
+
+
     .container
       %tbody
         %tr
