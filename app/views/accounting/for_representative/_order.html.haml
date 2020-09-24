@@ -40,23 +40,15 @@
           #{order.customer.customer_name.to_s.truncate(10)} 様
 
   %td
-    = link_to customer_path(id: order.customer.uid) do
-      %i.fas.fa-history
-      #{Order.where(customer_id: order.customer_id).count}
-
-  %td
-    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+    - if order.payment_method_id == 1
+      %p{style:'color:lightgrey'}
+        = PaymentMethod.find(order.payment_method_id).payment_method_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
 
   %td
-    - if order.representative_user_id == 1
-      %p{style: 'color:lightgray'}
-        = User.find(order.representative_user_id).user_name
-    - else
-      = User.find(order.representative_user_id).user_name
+    = User.find(order.representative_user_id).user_name
 
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
@@ -115,22 +107,17 @@
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
 
   %td
+
+
+  %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
 
   %td
     - Payment.where(order_id: order.id).each do |paid|
       = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
-
-  %td
-    - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
-
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
 
   %td
-    = form_with model: order, url: update_representative_user_order_path(id: order.uid), local: true do |f|
-      = f.hidden_field :representative_user_id, value: current_user.id
-      = f.hidden_field :first_response_date , value: DateTime.now
-      = f.submit "ご対応する"
+    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get

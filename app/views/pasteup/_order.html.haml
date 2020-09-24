@@ -74,9 +74,8 @@
 
   %td{style:'font-weight:bold'}
     %div{style:'display:flex; justify-content: center'}
-      = link_to customer_path(id: order.customer.uid) do
-        #copytext
-          = User.find(order.representative_user_id).user_name
+      #copytext
+        = User.find(order.representative_user_id).user_name
       %button.copybtn{type: "button"}
         %i.fas.fa-copy
 
@@ -209,11 +208,13 @@
               %td
                 = Technique.find(order_technique_detail.technique_id).technique_name
                 %br
+                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                  #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+                  %br
+
                 - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
                   #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                   %br
-                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
 
               %td
                 - if Factory.find_by(id: order_detail.factory_id).id == 4

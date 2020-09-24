@@ -1,16 +1,30 @@
 %tr
   %td
     - if order.order_type_id == 1 || order.order_type_id == 2
-      %p
-        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 3
-      %p{id: 'fubi'}
-        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            #fubi
+              = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
-      %p{id: 'kono'}
-        = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            #kono
+              = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
 
   %td
     - if order.customer.customer_type_id == 1
@@ -26,6 +40,11 @@
           #{order.customer.customer_name.to_s.truncate(10)} 様
 
   %td
+    = link_to customer_path(id: order.customer.uid) do
+      %i.fas.fa-history
+      #{Order.where(customer_id: order.customer_id).count}
+
+  %td
     = OrderType.find(order.order_type_id).order_type_name.truncate(8)
     = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
@@ -33,7 +52,11 @@
     = l(order.try(:order_date), format: :middle, default: '')
 
   %td
-    = User.find(order.representative_user_id).user_name
+    - if order.representative_user_id == 1
+      %p{style: 'color:lightgray'}
+        = User.find(order.representative_user_id).user_name
+    - else
+      = User.find(order.representative_user_id).user_name
 
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
@@ -95,7 +118,6 @@
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
 
   %td
-    -# = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
     - Payment.where(order_id: order.id).each do |paid|
       = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
 

@@ -1,4 +1,4 @@
-- content_for(:html_title) { @customer.customer_name + '様のご登録情報を編集' }
+- content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + ' 様のご登録情報を編集' }
 
 = form_with model: @customer, local: true do |f|
 
@@ -16,7 +16,7 @@
     = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
     = f.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
 
-  .field
+  -#.field
     -# = f.fields_for :companies, Company.new do |c|
     -#   = c.label :法人名
     -#   = c.text_field :company_name, autofocus: true, autocomplete: "company_name"

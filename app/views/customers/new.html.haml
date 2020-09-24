@@ -20,7 +20,7 @@
     = f.fields_for :companies, Company.new do |c|
       = c.label :法人名
       = c.text_field :company_name, autofocus: true, autocomplete: "company_name"
-      -# = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
+      = c.text_field :company_name_furigana, autofocus: true, autocomplete: "company_name_furigana"
 
   .field
     = f.fields_for :customer_emails, CustomerEmail.new do |e|

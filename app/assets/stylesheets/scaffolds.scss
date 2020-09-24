@@ -68,6 +68,7 @@ p, ol, ul, td {
     &:hover {
       color: #eee;
       background: #333;
+      border-radius: 3px;
     }
   }
   color: #333;
@@ -81,6 +82,7 @@ p, ol, ul, td {
 
     &:hover {
       background-color: yellow;
+      border-radius: 3px;
     }
   }
   color: deeppink;
@@ -93,6 +95,7 @@ p, ol, ul, td {
     color: yellow;
     &:hover {
       background-color: hotpink;
+      border-radius: 3px;
     }
   }
   color: yellow;
@@ -113,6 +116,7 @@ a {
   &:hover {
     color: #fff;
     background-color: #000;
+    border-radius: 5px;
   }
 }
 
@@ -170,4 +174,22 @@ button{
 
 button:focus {
   outline:0;
+}
+
+h2{
+  opacity: 0.9;
+  color: #333;
+  font-size: 19px;
+  font-style: italic;
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 2px #b4b4b4);
+}
+
+h3{
+  opacity: 0.9;
+  color: #333;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 2px #b4b4b4);
 }
