@@ -168,6 +168,7 @@ Rails.application.routes.draw do
     get :calendar, on: :collection
     member do
       patch 'update_representative_user'
+      get :pasteup
     end
   end
 

@@ -413,6 +413,11 @@ class OrdersController < ApplicationController
                  .count
   end
 
+  def pasteup
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find(@order.customer_id)
+  end
+
   private
   def order_params
     params
