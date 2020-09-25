@@ -2,34 +2,51 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title title
+    %title 指示書PDF出力
     %link{:href => "pasteup_pdf.scss", :rel => "stylesheet", :type => "text/css"}/
   %body
-    %h2 Order
-    = @order.id
-    = @customer.customer_name
+    %h2 指示書
+    / = @order.id
+    / = @customer.customer_name
     #wrapper
       #row1.row
         #label
-          [工場] [SILK]
-        #body-order-date [発注日] 　　 [着日]
-        #payment 入金 [済]
+          [] [SILK]
+        #body-order-date
+        #payment
+          - if Payment.find_by(order_id: @order.id).try(:payment_date).blank?
+            未入金!!
+          - elsif @order.try(:payment_deadline_date) == Payment.find_by(order_id: @order.id).try(:payment_date)
+            入金済み
         #address-label 納品先
       #row2.row
-        #customer-name
-          [お客様名]　　　
-          %span 様
-        #address [〇〇都道府県]
+        #customer-name-box
+          #name
+            #{@customer.customer_name}
+            #sama 様
+        #address
+          - OrderAddress.where(order_id: @order.id).each do |oa|
+            = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
       #row3.row
         #delivery-date
           #year 2020年
-          #date 納期
-          #date-note 納品希望日 備考欄
+          #date #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
+          #date-note
+            - if @order.desired_delivery_date.present?
+              - if @order.desired_delivery_type_id == 1
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}必着
+              - elsif @order.desired_delivery_type_id == 2
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}までに
+              - elsif @order.desired_delivery_type_id == 3 || @order.desired_delivery_type_id == 4
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
         #special-mark
+          - if @order.customer.customer_type_id == 2
+            ⚠️
         #absoluteness 絶対 / 通常
       #row4.row
         #id-label ID
-        #id-box [XXXXXXXXXX]
+        #id-box
+          #{@order.uid}
       #row5.row
         #blank
         #picking ピッキング:
@@ -39,15 +56,16 @@
         #packing 梱包:
       #row6.row
         #manufacturing-label 加工
-        #manufacturing-box [加工名]
+        #manufacturing-box 加工方法
         #pasteup 指示書作成:
-        #representive
+        #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
       #row7.row
         #status-label 状況
         #status-box
       #row8.row
         #estimation
-          #data
+          #data DATA:
+          #file-name #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
       #row9.row
         #note-label 備考
         #note-box
