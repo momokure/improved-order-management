@@ -1,9 +1,6 @@
 html {
-  font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
+  font-family: 
+    "小塚ゴシック Pro","Kozuka Gothic Pro",
     sans-serif;
 }
 
@@ -32,12 +29,20 @@ html {
 }
 
 #label {
+  display: flex;
   width: 200px;
   border: solid 1px #000000;
   text-align-last: justify;
   text-align: center;
   background: #00A1D5;
   font-weight: bold;
+  font-size:11pt;
+  #label-factory{
+
+  }
+  #label-manufacturing{
+
+  }
 }
 
 #body-order-date {
@@ -187,6 +192,8 @@ html {
   width: 420px;
   border: solid 1px #000000;
   font-weight: bold;
+  color:#ff0000;
+  font-size:12pt;
 }
 
 #row6 {
@@ -196,7 +203,7 @@ html {
 #pasteup, #representive {
   border: solid 1px #000000;
   width: 140px;
-  font-size: 8pt;
+  font-size: 7pt;
 }
 
 #row7 {
