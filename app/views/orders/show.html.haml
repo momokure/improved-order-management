@@ -11,7 +11,27 @@
     #wrapper
       #row1.row
         #label
-          [] [SILK]
+          #label-factory
+            - OrderDetail.where(order_id: @order.id).each do |order_detail|
+              - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+                - if Factory.find_by(id: order_detail.factory_id).id == 4
+                  %p{class: 'toda1'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
+
+                - if Factory.find_by(id: order_detail.factory_id).id == 7
+                  %p{class: 'nakano'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
+
+                - if Factory.find_by(id: order_detail.factory_id).id == 8
+                  %p{class: 'bijogi', style:'color:#ffff00'}
+                    #{Factory.find(order_detail.factory_id).factory_name}
+          #label-manufacturing
+            - OrderDetail.where(order_id: @order.id).each do |order_detail|
+              - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+                - if Technique.find_by(id: order_technique_detail.technique_id).id == 1 || Technique.find_by(id: order_technique_detail.technique_id).id == 2 || Technique.find_by(id: order_technique_detail.technique_id).id == 3
+                  SILK
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 4
+                  INKJET
         #body-order-date
         #payment
           - if Payment.find_by(order_id: @order.id).try(:payment_date).blank?
@@ -56,7 +76,19 @@
         #packing 梱包:
       #row6.row
         #manufacturing-label 加工
-        #manufacturing-box 加工方法
+        #manufacturing-box
+          - OrderDetail.where(order_id: @order.id).each do |order_detail|
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+              %tbody{style:'border:solid 1px #000;'}
+                %td{style:'border:solid 1px #000;'}
+                  = Technique.find(order_technique_detail.technique_id).technique_name
+                  %br
+                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+                    %br
+                  - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                    #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                    %br
         #pasteup 指示書作成:
         #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
       #row7.row
@@ -69,3 +101,10 @@
       #row9.row
         #note-label 備考
         #note-box
+          - OrderDetail.where(order_id: @order.id).each do |order_detail|
+            - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+              #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+              %br
+            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+              #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+              %br
