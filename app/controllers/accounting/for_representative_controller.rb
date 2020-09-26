@@ -10,13 +10,12 @@ class Accounting::ForRepresentativeController < ApplicationController
 
   end
 
-  #ご入金予定額 - (すべてのご入金額) = 過不足額
+  #(すべてのご入金額 : amount_paid) - ご入金予定額(payment_amount) = 過不足額
   # 　0 == ご入金済、0 > 不足、1=< 超過
 
-
   # difference(差額)カラムを作成
-  # カラムには下記が 自動で更新されるようにする
-  # ご入金額(amount_paid) - 入金予定額(payment_amount)
+  # カラムには下記が amount_paidが更新される度に 自動で実行されるようにする
+  # ご入金額(amount_paid) - ご入金予定額(payment_amount)
 
 
   ## フィルタ
