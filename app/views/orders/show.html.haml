@@ -8,7 +8,7 @@
     %h2 指示書
     / = @order.id
     / = @customer.customer_name
-    #wrapper
+    #pdfwrapper
       #row1.row
         #label
           #label-factory
@@ -17,27 +17,40 @@
                 - if Factory.find_by(id: order_detail.factory_id).id == 4
                   %p{class: 'toda1'}
                     #{Factory.find(order_detail.factory_id).factory_name}
-
                 - if Factory.find_by(id: order_detail.factory_id).id == 7
                   %p{class: 'nakano'}
                     #{Factory.find(order_detail.factory_id).factory_name}
-
                 - if Factory.find_by(id: order_detail.factory_id).id == 8
                   %p{class: 'bijogi', style:'color:#ffff00'}
                     #{Factory.find(order_detail.factory_id).factory_name}
           #label-manufacturing
             - OrderDetail.where(order_id: @order.id).each do |order_detail|
               - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-                - if Technique.find_by(id: order_technique_detail.technique_id).id == 1 || Technique.find_by(id: order_technique_detail.technique_id).id == 2 || Technique.find_by(id: order_technique_detail.technique_id).id == 3
+                - if Technique.find_by(id: order_technique_detail.technique_id).id == 1
                   SILK
+                - if Technique.find_by(id: order_technique_detail.technique_id).id == 2
+                  STICKER/DECK
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 3
+                  NT TAG
                 - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 4
                   INKJET
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 5
+                  EMBROIDERY
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 6
+                  PAD
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 7
+                  UV
+                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 8
+                  EMPTY
         #body-order-date
         #payment
-          - if Payment.find_by(order_id: @order.id).try(:payment_date).blank?
+          - if Payment.find_by(order_id: @order.id).try(:amount_paid).blank?
             未入金!!
-          - elsif @order.try(:payment_deadline_date) == Payment.find_by(order_id: @order.id).try(:payment_date)
-            入金済み
+          - elsif @order.try(:payment_amount) == Payment.find_by(order_id: @order.id).try(:amount_paid)
+            入金
+            %span#done  済
+          -else
+            不明
         #address-label 納品先
       #row2.row
         #customer-name-box
@@ -61,8 +74,10 @@
                 #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
         #special-mark
           - if @order.customer.customer_type_id == 2
-            ⚠️
-        #absoluteness 絶対 / 通常
+            = image_tag 'dangerous.png', alt: '危険', width: '75px'
+        #absoluteness
+          %span.circle 絶対
+          %span / 通常
       #row4.row
         #id-label ID
         #id-box
@@ -77,6 +92,7 @@
       #row6.row
         #manufacturing-label 加工
         #manufacturing-box
+
           - OrderDetail.where(order_id: @order.id).each do |order_detail|
             - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
               %tbody{style:'border:solid 1px #000;'}
@@ -89,15 +105,19 @@
                   - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
                     #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                     %br
-        #pasteup 指示書作成:
-        #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
+        #pasteup
+          - OrderDetail.where(order_id: @order.id).each do |order_detail|
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+              指示書作成: #{User.find(order_technique_detail.pasteup_user_id).user_name}
+        #representive 営業担当: #{User.find(@order.representative_user_id).user_name}
       #row7.row
         #status-label 状況
         #status-box
-      #row8.row
-        #estimation
+      #row8
+        #detail
           #data DATA:
           #file-name #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
+          #estimation ◆◆◆◆◆◆
       #row9.row
         #note-label 備考
         #note-box

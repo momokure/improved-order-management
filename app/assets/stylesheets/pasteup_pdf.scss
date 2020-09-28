@@ -1,10 +1,10 @@
 html {
-  font-family: 
+  font-family:
     "小塚ゴシック Pro","Kozuka Gothic Pro",
     sans-serif;
 }
 
-#wrapper {
+#pdfwrapper {
   width: 750px;
   border: solid 2px #000000;
   background:#ffffff;
@@ -41,6 +41,7 @@ html {
 
   }
   #label-manufacturing{
+    font-weight: bold;
 
   }
 }
@@ -54,6 +55,10 @@ html {
 #payment {
   width: 100px;
   border: solid 1px #000000;
+  #done{
+    color:#ff0000;
+    font-size: 12px;
+  }
 }
 
 #address-label {
@@ -91,31 +96,31 @@ html {
 }
 
 #delivery-date {
-  width: 400px;
+  width: 350px;
   border: solid  1px #000000;
   box-sizing: border-box;
-}
 
-#year {
-  padding: 0px;
-  font-size: 7pt;
-}
+  #year {
+    padding: 0px;
+    font-size: 7pt;
+  }
 
-#date {
-  padding: 3px;
-  height:35px;
-  font-size: 24pt;
-  color:#ff0000;
-  font-weight: bold;
-}
+  #date {
+    padding: 3px;
+    height:35px;
+    font-size: 24pt;
+    color:#ff0000;
+    font-weight: bold;
+  }
 
-#date-note {
-  padding: 0px;
-  font-size: 7pt;
+  #date-note {
+    padding: 0px;
+    font-size: 7pt;
+  }
 }
 
 #special-mark {
-  width: 150px;
+  width: 200px;
   border: solid 1px #000000;
   padding-top: 10px;
   padding-left: 5px;
@@ -142,6 +147,14 @@ html {
   text-align: center;
   justify-content: center;
   align-items: center;
+  .circle{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    border: solid 4px #ff0000;
+  }
 }
 
 #row4 {
@@ -223,20 +236,28 @@ html {
 #row8 {
   height: 700px;
   border: solid 0.5px #000000;
+  padding:0px;
 
-  #estimation {
-    display: flex;
+  #detail {
+    display: inline-flex;
+    flex-wrap: wrap;
     #data{
       width: 50px;
       height: 30px;
       font-weight: bold;
       font-size:12pt;
+      float:left;
     }
     #file-name{
       color:#ff0000;
+      width:690px;
       height: 30px;
       font-weight: bold;
       font-size:12pt;
+      float:left;
+    }
+    #estimation{
+      clear:both;
     }
 
   }
