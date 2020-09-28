@@ -16,7 +16,12 @@ class Accounting::ForRepresentativeController < ApplicationController
   # difference(差額)カラムを作成
   # カラムには下記が amount_paidが更新される度に 自動で実行されるようにする
   # ご入金額(amount_paid) - ご入金予定額(payment_amount)
-
+  # ↓
+  # やること
+  # 差額(difference)のデフォルト値は ご入金予定額(payment_amount) が入る様にする
+  # ご入金額(amount_paid) を登録する度に [ご入金額(amount_paid) - ご入金予定額(payment_amount)] の式が実行される
+  # (不備・後納等の空欄は?)
+  # 差額カラムのみ表示するようにする
 
   ## フィルタ
   # ①customer_typeが 前払い(請求書不要)

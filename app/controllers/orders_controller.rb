@@ -42,6 +42,8 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find_by(uid: params[:id])
+    amount_paid = Payment.where(order_id: @order.id).sum(:amount_paid)
+    @order.difference = amount_paid - @order.payment_amount
     @order.update_attributes!(order_params)
 
     if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2
@@ -309,7 +311,7 @@ class OrdersController < ApplicationController
         :order_date, :first_response_date, :desired_delivery_date, :desired_delivery_type_id, :internal_delivery_date,
         :specified_time_id, :change_delivery_date,
         :domestic_buying, :overseas_buying, :carry_in,
-        :payment_deadline_date, :payment_amount, :payment_confirmation,
+        :payment_deadline_date, :payment_amount, :difference, :payment_confirmation,
         :send_receipt, :send_invoice,
         :cancellation,
         order_details_attributes: [:id, :mixed_techniques, :factory_id, :_destroy,

@@ -120,12 +120,17 @@
 
   .field
     = f.label :payment_amount, "ご入金予定額"
-    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
+    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_amount", class: "payment_amount"
 
   .field
     %div{style: "display:inline-flex"}
       = f.label :payment_confirmation, "ご入金連絡済"
       = f.check_box :payment_confirmation, {}, "confirmed", "unconfirmed"
+
+
+  = f.hidden_field :difference
+  #difference
+
 
   -# - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
   %br/
