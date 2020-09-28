@@ -14,10 +14,11 @@ $(function(){
 
     if (difference == 0) {
       $("#difference").fadeOut();
+
     } else if (difference > 0) {
-      $("#difference").fadeIn();
+      $("#difference").css('color', 'royalblue').fadeIn();
     } else if (difference < 0) {
-      $("#difference").fadeIn();
+      $("#difference").css('color', 'orangered').fadeIn();
     }
 
     $('input:hidden[name="order[difference]"]').val(difference);
