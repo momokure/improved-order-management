@@ -130,9 +130,13 @@
 
   = f.hidden_field :difference
   #difference
+    - if @order.difference != 0
+      %p 差額 :
+      %p.num ¥
+      %p.num
+        = @order.difference
 
 
-  -# - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
   %br/
   %h2 💴経理記入用
   = f.fields_for :payments do |payment|
