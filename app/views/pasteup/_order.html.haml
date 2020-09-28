@@ -181,6 +181,11 @@
   %td{style:'font-weight:bold'}
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
+  %td
+    %div{style:'font-size:18pt'}
+      = link_to pasteup_order_path(id: order.uid), method: :get, target:["_blank"] do
+        = icon("far", "file")
+
     .container
       %tbody
         %tr
