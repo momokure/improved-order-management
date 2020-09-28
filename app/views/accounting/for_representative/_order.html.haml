@@ -107,10 +107,16 @@
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
 
   %td
-
+    - if order.difference < 0
+      %p{id: 'red'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
+    - elsif order.difference > 0
+      %p{id: 'lightblue'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
 
   %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
+    %br/
 
   %td
     - Payment.where(order_id: order.id).each do |paid|

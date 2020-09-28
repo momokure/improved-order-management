@@ -42,8 +42,6 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find_by(uid: params[:id])
-    amount_paid = Payment.where(order_id: @order.id).sum(:amount_paid)
-    @order.difference = amount_paid - @order.payment_amount
     @order.update_attributes!(order_params)
 
     if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2
