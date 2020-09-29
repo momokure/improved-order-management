@@ -3,7 +3,6 @@ class Accounting::ForRepresentativeController < ApplicationController
 
   def index
     @orders = Order.left_joins(:payments).distinct
-                .where(orders: { order_type_id: 1 }).distinct
                 .where.not(orders: { difference: 0 }).distinct
                 .order(Arel.sql('internal_delivery_date IS NULL, internal_delivery_date ASC'))
                 .order(Arel.sql('payment_deadline_date IS NULL, payment_deadline_date ASC'))
