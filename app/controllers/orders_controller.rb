@@ -24,9 +24,17 @@ class OrdersController < ApplicationController
     redirect_to customers_path
   end
 
+  #PDF関係
   def show
     @order = Order.find_by(uid: params[:id])
     @customer = Customer.find(@order.customer_id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+          template: "orders/show.html.haml" # viewを対象にする
+      end
+    end
   end
 
   def edit

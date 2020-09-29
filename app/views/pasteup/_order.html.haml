@@ -181,10 +181,11 @@
   %td{style:'font-weight:bold'}
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
-  %td
-    %div{style:'font-size:18pt'}
-      = link_to pasteup_order_path(id: order.uid), method: :get, target:["_blank"] do
-        = icon("far", "file")
+    %td
+      #{OrderDetail.where(order_id: order.id).length} 種類
+    -#%div{style:'font-size:18pt'}
+      -#= link_to pasteup_order_path(id: order.uid), method: :get, target:["_blank"] do
+        -#= icon("far", "file")
 
     .container
       %tbody
@@ -244,3 +245,11 @@
                 - unless order_technique_detail.pasteup_user_id == 1
                   %p
                     (#{User.find(order_technique_detail.pasteup_user_id).user_name})
+              %td
+              %td
+              %td
+              %td
+              %td
+                %div{style:'font-size:18pt; padding:5px;'}
+                  = link_to order_path(id: order.uid), method: :get, target:["_blank"] do
+                    = icon("far", "file")

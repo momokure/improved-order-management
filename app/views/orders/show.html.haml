@@ -1,16 +1,17 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset:'utf8',　wicked_pdf_stylesheet_link_tag: 'pasteup_pdf.scss'}
+    = wicked_pdf_stylesheet_link_tag 'pasteup_pdf.scss'
+    = wicked_pdf_stylesheet_link_tag 'pdf.css'
     %title 指示書PDF出力
-    %link{:href => "pasteup_pdf.scss", :rel => "stylesheet", :type => "text/css"}/
   %body
-    %h2 指示書
+    /%h2 指示書
     / = @order.id
     / = @customer.customer_name
     #pdfwrapper
       #row1.row
-        #label
+        #label{style: 'boder: solid 1px;'}
           #label-factory
             - OrderDetail.where(order_id: @order.id).each do |order_detail|
               - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
