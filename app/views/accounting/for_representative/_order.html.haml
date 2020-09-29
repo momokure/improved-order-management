@@ -1,4 +1,34 @@
 %tr
+
+  %td
+    %p
+      - if order.internal_delivery_date == Date.today+2 && order.difference < 0
+        %p{id: 'fubi'}
+          明日発送予定
+      - elsif order.internal_delivery_date == Date.today+1 && order.difference < 0
+        %p{id: 'fubi'}
+          本日発送予定
+    %p
+      - if order.payment_deadline_date.nil?
+        %p{style:'font-style:italic'}
+          期限未設定
+      - elsif order.payment_deadline_date.present? && order.difference > 0
+        %p{style:'color:lightgrey'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')}
+      - elsif order.payment_deadline_date.present? && order.difference < 0
+        - if order.payment_deadline_date == Date.today
+          %p{id: 'red'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限当日)
+        - if order.payment_deadline_date < Date.today
+          %p{id: 'fubi'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限切れ)
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i == 1
+          %p{id: 'green'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (明日までに)
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i >= 2
+          %p{id: 'green'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (あと#{(order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1')}日)
+
   %td
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end'}
@@ -39,16 +69,20 @@
           #{order.customer.customer_type.customer_type_name}
           #{order.customer.customer_name.to_s.truncate(10)} 様
 
-  %td
-    - if order.payment_method_id == 1
-      %p{style:'color:lightgrey'}
-        = PaymentMethod.find(order.payment_method_id).payment_method_name
+  -#%td
+  -#  - if order.payment_method_id == 1
+  -#    %p{style:'color:lightgrey'}
+  -#      = PaymentMethod.find(order.payment_method_id).payment_method_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
 
   %td
-    = User.find(order.representative_user_id).user_name
+    - if order.representative_user_id == 1
+      %p{id: 'fubi'}
+        = User.find(order.representative_user_id).user_name
+    - else
+      = User.find(order.representative_user_id).user_name
 
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
@@ -101,21 +135,22 @@
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
   %td
-    = l(order.try(:payment_deadline_date), format: :middle, default: '')
-
-  %td
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
 
   %td
-
-
-  %td
-    = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
+    - if order.difference < 0
+      %p{id: 'red'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
+    - elsif order.difference > 0
+      %p{id: 'lightblue'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
 
   %td
     - Payment.where(order_id: order.id).each do |paid|
+      = l(paid.payment_date, format: :middle, default: '')
       = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
       %br/
+
   %td
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
 
