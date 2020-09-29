@@ -48,7 +48,11 @@
     = l(order.try(:order_date), format: :middle, default: '')
 
   %td
-    = User.find(order.representative_user_id).user_name
+    - if order.representative_user_id == 1
+      %p{id: 'fubi'}
+        = User.find(order.representative_user_id).user_name
+    - else
+      = User.find(order.representative_user_id).user_name
 
   %td
     - OrderAddress.where(order_id: order.id).each do |oa|
@@ -101,7 +105,25 @@
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
   %td
-    = l(order.try(:payment_deadline_date), format: :middle, default: '')
+    - if order.payment_deadline_date.nil?
+      %p{id: 'red'}
+        期限未設定
+    - elsif order.payment_deadline_date.present? && order.difference > 0
+      %p{style:'color:lightgrey'}
+        #{l(order.try(:payment_deadline_date), format: :middle, default: '')}
+    - elsif order.payment_deadline_date.present? && order.difference < 0
+      - if order.payment_deadline_date == Date.today
+        %p{id: 'fubi'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限当日)
+      - if order.payment_deadline_date < Date.today
+        %p{id: 'fubi'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限超過)
+      - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i == 1
+        %p{style:'color:red; font-weight:bold'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (明日までに)
+      - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i >= 2
+        %p{id: 'red'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (あと#{(order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1')}日)
 
   %td
     = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
