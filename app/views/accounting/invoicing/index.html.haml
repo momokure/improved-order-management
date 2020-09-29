@@ -1,7 +1,7 @@
-- content_for(:html_title) { '未入金アナウンス' }
+- content_for(:html_title) { '後払い(要請求書) 未入金一覧' }
 
 %li
-  =link_to "後払い(要請求書) 未入金一覧", accounting_invoicing_index_path
+  =link_to "未入金アナウンス", accounting_for_representative_index_path
 
 .container
   %table.neumorphic
@@ -21,5 +21,4 @@
         %th ご注文備考欄
         %th 　
     %tbody
-      = render partial: 'order', collection: @excess_orders, locals: { order: @excess_orders }
-      = render partial: 'order', collection: @deficiency_orders, locals: { order: @deficiency_orders }
+      = render partial: 'order', collection: @orders, locals: { order: @orders }

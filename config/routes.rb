@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :backlog, only: :index
     resources :deadline, only: :index
     resources :for_representative, only: :index
+    resources :invoicing, only: :index
   end
 
   namespace :pasteup do

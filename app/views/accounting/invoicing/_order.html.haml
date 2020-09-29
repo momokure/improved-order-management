@@ -1,0 +1,158 @@
+%tr
+
+  %td
+    %p
+      - if order.internal_delivery_date == Date.today+2 && order.difference < 0
+        %p{id: 'fubi'}
+          明日発送予定
+      - elsif order.internal_delivery_date == Date.today+1 && order.difference < 0
+        %p{id: 'fubi'}
+          本日発送予定
+    %p
+      - if order.payment_deadline_date.nil?
+        %p{style:'font-style:italic'}
+          期限未設定
+      - elsif order.payment_deadline_date.present? && order.difference > 0
+        %p{style:'color:lightgrey'}
+          #{l(order.try(:payment_deadline_date), format: :middle, default: '')}
+      - elsif order.payment_deadline_date.present? && order.difference < 0
+        - if order.payment_deadline_date == Date.today
+          %p{id: 'red'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限当日)
+        - if order.payment_deadline_date < Date.today
+          %p{id: 'fubi'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (期限切れ)
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i == 1
+          %p{id: 'green'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (明日までに)
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i >= 2
+          %p{id: 'green'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (あと#{(order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1')}日)
+
+  %td
+    - if order.order_type_id == 1 || order.order_type_id == 2
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
+
+    - if order.order_type_id == 3
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            #fubi
+              = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
+
+    - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
+      %div{style:'display:flex; justify-content: flex-end'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
+          #copytext
+            #kono
+              = order.uid
+        %button.copybtn{type: "button"}
+          %i.fas.fa-copy
+
+  %td
+    - if order.customer.customer_type_id == 1
+      %p
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(10)} 様
+
+    - if order.customer.customer_type_id == 2
+      %p{id: 'fubi'}
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_type.customer_type_name}
+          #{order.customer.customer_name.to_s.truncate(10)} 様
+
+  -#%td
+  -#  - if order.payment_method_id == 1
+  -#    %p{style:'color:lightgrey'}
+  -#      = PaymentMethod.find(order.payment_method_id).payment_method_name
+
+  %td
+    = l(order.try(:order_date), format: :middle, default: '')
+
+  %td
+    - if order.representative_user_id == 1
+      %p{id: 'fubi'}
+        = User.find(order.representative_user_id).user_name
+    - else
+      = User.find(order.representative_user_id).user_name
+
+  %td
+    - OrderAddress.where(order_id: order.id).each do |oa|
+      - if PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(1, 2) || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 28 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(31, 47)
+        %p{id: 'fubi'}
+          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %br
+      - elsif PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 11 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 13 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 49
+        %p{id: 'lightblue'}
+          = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %br
+      - else
+        = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+        %br
+
+  %td
+    - if order.desired_delivery_date.present?
+      - if order.desired_delivery_type_id == 1
+        %p{id: 'red'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}必着
+
+      - elsif order.desired_delivery_type_id == 2
+        %p{id: 'red'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}までに
+
+      - elsif order.desired_delivery_type_id == 3
+        %p{id: 'green'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+
+      - elsif order.desired_delivery_type_id == 4
+        %p{id: 'green'}
+          #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
+
+  %td{style: "font-weight:bold"}
+    - if order.internal_delivery_date.present?
+      - if order.desired_delivery_type_id == 1
+        %p{id: 'red'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 2
+        %p{id: 'red'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 3
+        %p{id: 'green'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+      - elsif order.desired_delivery_type_id == 4
+        %p{id: 'green'}
+          #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
+
+  %td
+    = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
+
+  %td
+    - if order.difference < 0
+      %p{id: 'red'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
+    - elsif order.difference > 0
+      %p{id: 'lightblue'}
+        = number_to_currency(order.try(:difference), format: "%u%n", unit: "¥")
+
+  %td
+    - Payment.where(order_id: order.id).each do |paid|
+      = l(paid.payment_date, format: :middle, default: '')
+      = number_to_currency(paid.amount_paid, format: "%u%n", unit: "¥")
+      %br/
+
+  %td
+    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
+
+  %td
+    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
