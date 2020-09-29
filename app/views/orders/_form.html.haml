@@ -15,6 +15,11 @@
 
     .field
     %div{style: "display:inline-flex"}
+      = f.label :"お支払い方法 : "
+      = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+
+    .field
+    %div{style: "display:inline-flex"}
       = f.label :quote_difficulty_level_id, "みつもり難易度 : "
       = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
 
