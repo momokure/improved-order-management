@@ -425,6 +425,20 @@ class OrdersController < ApplicationController
     @order = Order.find_by(uid: params[:id])
     @customer = Customer.find(@order.customer_id)
   end
+  def toda1
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find(@order.customer_id)
+    respond_to do |format|
+      format.html do
+        render html: @order.uid+' '+@customer.customer_name,   # PDF名
+          template: "orders/show.html.haml" # viewを対象にする
+      end
+      format.pdf do
+        render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+          template: "orders/show.html.haml" # viewを対象にする
+      end
+    end
+  end
 
   private
   def order_params

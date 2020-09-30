@@ -169,6 +169,14 @@ Rails.application.routes.draw do
     member do
       patch 'update_representative_user'
       get :pasteup
+      resources :toda1, only: :index do
+        get :inkjet, on: :collection
+        get :silkscreen_a, on: :collection
+      end
+      get :bijogi do
+        get :inkjet, on: :collection
+        get :silkscreen_a, on: :collection
+      end
     end
   end
 
