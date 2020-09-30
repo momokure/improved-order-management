@@ -1,19 +1,19 @@
-- content_for(:html_title) { '戸田公園第1工場 シルクスクリーンA 指示書' }
+- content_for(:html_title) { '戸田公園第1工場 インクジェット 指示書' }
 
 #pdfwrapper
   #row1.row
-    .label.label-silk-a
+    .label.label-inkjet
       #label-factory
         戸田1
       #label-manufacturing
-        SILK
+        INKJET
     #body-order-date
     #payment
       - if Payment.find_by(order_id: @order.id).try(:amount_paid).blank?
         未入金!!
       - elsif @order.try(:payment_amount) == Payment.find_by(order_id: @order.id).try(:amount_paid)
         入金
-        %span#done  済
+        %span#done 済
       -else
         不明
     #address-label 納品先
@@ -82,7 +82,7 @@
       #estimation ◆◆◆◆◆◆
   #row9.row
     #note-label 備考
-    #note-box{style:'font-size:14pt; color:#f00; font-weight:bold;'}
+    #note-box
       - OrderDetail.where(order_id: @order.id).each do |order_detail|
         - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
           #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
