@@ -19,7 +19,7 @@
 %h3{style:'display:flex'}
   %i.fas.fa-coins
     お預かり金 :
-  - if Order.where(customer_id: @customer.id).sum(:difference) == 0
+  - if Order.where(customer_id: @customer.id).sum(:difference) <= 0
     %p{style:'margin:-3px 1px; font-weight:normal'}
       なし
   - else
