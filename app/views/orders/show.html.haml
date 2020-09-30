@@ -8,7 +8,7 @@
     %h2 指示書
     / = @order.id
     / = @customer.customer_name
-    #wrapper
+    #pdfwrapper
       #row1.row
         #label
           #label-factory
@@ -61,7 +61,7 @@
                 #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
         #special-mark
           - if @order.customer.customer_type_id == 2
-            ⚠️
+            = image_tag 'dangerous.png', alt: '危険', width: '75px'
         #absoluteness 絶対 / 通常
       #row4.row
         #id-label ID
