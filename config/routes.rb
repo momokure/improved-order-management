@@ -165,7 +165,21 @@ Rails.application.routes.draw do
     get :calendar, on: :collection
     member do
       patch 'update_representative_user'
-      get :pasteup
+
+      resources :pasteup, only: :index do
+        get :toda1_silkscreen_a, on: :collection
+        get :toda1_inkjet, on: :collection
+        get :toda1_embroidery, on: :collection
+        get :toda1_sewing, on: :collection
+        get :bijogi_silkscreen_a, on: :collection
+        get :bijogi_inkjet, on: :collection
+        get :bijogi_embroidery, on: :collection
+        get :bijogi_sewing, on: :collection
+        get :bijogi_silkscreen_b, on: :collection
+        get :bijogi_silkscreen_c, on: :collection
+        get :bijogi_uv, on: :collection
+        get :yoyogi_silkscreen_d, on: :collection
+      end
     end
   end
 
