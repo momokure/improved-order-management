@@ -57,6 +57,9 @@
           %i.fas.fa-copy
 
   %td
+    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
+
+  %td
     - if order.customer.customer_type_id == 1
       %p
         = link_to customer_path(id: order.customer.uid) do
