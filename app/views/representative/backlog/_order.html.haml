@@ -39,6 +39,11 @@
           #{order.customer.customer_type.customer_type_name}
           #{order.customer.customer_name.to_s.truncate(10)} 様
 
+    - if Order.where(customer_id: order.customer.id).sum(:difference) > 0
+      %p{id: 'lightblue'}
+        %i.fas.fa-coins
+          = number_to_currency(Order.where(customer_id: order.customer.id).sum(:difference), format: "%u%n", unit: "¥")
+
   %td
     = link_to customer_path(id: order.customer.uid) do
       %i.fas.fa-history
