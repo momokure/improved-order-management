@@ -15,6 +15,11 @@
 
     .field
     %div{style: "display:inline-flex"}
+      = f.label :"お支払い方法 : "
+      = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
+
+    .field
+    %div{style: "display:inline-flex"}
       = f.label :quote_difficulty_level_id, "みつもり難易度 : "
       = f.collection_select(:quote_difficulty_level_id, QuoteDifficultyLevel.all, :id, :quote_difficulty_level_name)
 
@@ -120,14 +125,23 @@
 
   .field
     = f.label :payment_amount, "ご入金予定額"
-    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_deadline"
+    = f.number_field :payment_amount, autofocus: true, autocomplete: "payment_amount", class: "payment_amount"
 
   .field
     %div{style: "display:inline-flex"}
       = f.label :payment_confirmation, "ご入金連絡済"
       = f.check_box :payment_confirmation, {}, "confirmed", "unconfirmed"
 
-  -# - if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 4 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 2 || Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id == 1
+
+  = f.hidden_field :difference
+  #difference
+    - if @order.difference != 0
+      %p 差額 :
+      %p.num ¥
+      %p.num
+        = @order.difference
+
+
   %br/
   %h2 💴経理記入用
   = f.fields_for :payments do |payment|

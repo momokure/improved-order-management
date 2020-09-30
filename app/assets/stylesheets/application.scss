@@ -22,8 +22,23 @@
 @import "scaffolds";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 
-*{font-family:
-  //'Noto Sans JP', sans-serif;
-  "小塚ゴシック Pro","Kozuka Gothic Pro",
-  sans-serif;
+*{font-family: 'Noto Sans JP', sans-serif;
+}
+
+#difference{
+  display: flex;
+  p{
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 42px;
+    filter: drop-shadow(0px 0px 2px #b4b4b4);
+    &.num{
+      margin-top: 5px;
+      line-height: 40px;
+      font-family: 'arial black';
+      font-size: 28px;
+      font-weight: bold;
+      filter: drop-shadow(0px 0px 2px #b4b4b4);
+    }
+  }
 }

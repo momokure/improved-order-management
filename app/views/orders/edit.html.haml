@@ -7,9 +7,22 @@
   (ご注文ID :
   = link_to @order.uid, 'https://mail.google.com/mail/u/0/#search/'+@order.uid, target:["_blank"]
   )
-  -# = PaymentMethod.find(@order.customer)
 
 %h3 ご注文日時(受信日時) : #{l(@order.order_date, format: :long, default: '')}
+
+- if @order.payment_method_id != 1
+  %h3{id: 'fubi'} お支払い方法 : #{PaymentMethod.find(@order.payment_method_id).payment_method_name}
+- else
+  %h3 お支払い方法 : #{PaymentMethod.find(@order.payment_method_id).payment_method_name}
+
+- if Order.where(customer_id: @customer.id).sum(:difference) <= 0
+  %h3 お預かり金 : なし
+- else
+  %h3{style:'display:flex'}
+    お預かり金 :
+    #redyellow{style:'margin:0px 5px;'}
+      = number_to_currency(Order.where(customer_id: @customer.id).sum(:difference), format: "%u%n", unit: "¥")
+
 %h3 みつもり難易度 : #{QuoteDifficultyLevel.find(@order.quote_difficulty_level_id).quote_difficulty_level_name}
 %h3 担当者 : #{User.find(@order.representative_user_id).user_name}
 

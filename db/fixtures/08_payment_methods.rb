@@ -21,7 +21,7 @@ end
 
 PaymentMethod.seed do |s|
   s.id = 4
-  s.payment_method_name = "後払い (請求書不要)"
+  s.payment_method_name = "🈺後払い (請求書不要)"
   s.payment_condition = "後払い"
   s.invoice_required = true
 end
