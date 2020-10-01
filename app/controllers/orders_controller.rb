@@ -294,6 +294,14 @@ class OrdersController < ApplicationController
                  .count
   end
 
+  def pasteup
+    @order_detail = params[:詳細番号]
+    @order_detail = OrderDetail.find(@order_detail)
+    @technique = params[:制作部署]
+    @order = Order.find(OrderDetail.find(@order_detail.id).order_id)
+    @customer = Customer.find(@order.customer_id)
+  end
+
   private
   def order_params
     params

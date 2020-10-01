@@ -242,6 +242,5 @@
 
               %td
                 %div{style:'font-size:13pt'}
-                  - if order_detail.factory_id == 4 && order_technique_detail.technique_id == 1
-                    = link_to toda1_silkscreen_a_pasteup_index_path(id: order.uid), method: :get, target:["_blank"] do
-                      %i.fas.fa-file-download
+                  = link_to pasteup_order_path(id: order.uid, 詳細番号: order_detail.id, 制作部署: Technique.find(order_technique_detail.technique_id).technique_name), method: :get, target:["_blank"] do
+                    %i.fas.fa-file-download
