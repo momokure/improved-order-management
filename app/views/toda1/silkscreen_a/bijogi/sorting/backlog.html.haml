@@ -1,0 +1,18 @@
+- content_for(:html_title) { '美女木工場の仕分け未完了一覧' }
+
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th ご注文ID
+        %th お客様種別/お名前
+        %th 社内納品日
+        %th 工場
+        %th ご入金
+        %th 国内発注状況
+        %th 発注備考欄
+        %th 仕分け状況
+        %th ご注文備考欄
+        %th
+    %tbody
+      = render partial: 'bijogi/sorting/order', collection: @orders, locals: { order: @orders }

@@ -33,6 +33,10 @@ Rails.application.routes.draw do
 
   namespace :pasteup do
     resources :calendar, only: :index
+    resources :wip, ponly: :index
+    resources :done, only: :index
+    get 'sample_pdfs/wicked', to: 'sample_pdfs#wicked'
+    get 'things/show', to: 'things#show'
   end
 
   namespace :domestic_buying do

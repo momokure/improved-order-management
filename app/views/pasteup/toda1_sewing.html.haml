@@ -1,0 +1,91 @@
+- content_for(:html_title) { '戸田公園第1工場 縫製 指示書' }
+
+#pdfwrapper
+  #row1.row
+    .label.label-sewing
+      #label-factory
+        戸田1
+      #label-manufacturing
+        SEWING
+    #body-order-date
+    #payment
+      - if Payment.find_by(order_id: @order.id).try(:amount_paid).blank?
+        未入金!!
+      - elsif @order.try(:payment_amount) == Payment.find_by(order_id: @order.id).try(:amount_paid)
+        入金
+        %span#done  済
+      -else
+        不明
+    #address-label 納品先
+  #row2.row
+    #customer-name-box
+      #name
+        #{@customer.customer_name}
+        #sama 様
+    #address
+      - OrderAddress.where(order_id: @order.id).each do |oa|
+        = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+  #row3.row
+    #delivery-date
+      #year 2020年
+      #date #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
+      #date-note
+        - if @order.desired_delivery_date.present?
+          - if @order.desired_delivery_type_id == 1
+            #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}必着
+          - elsif @order.desired_delivery_type_id == 2
+            #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}までに
+          - elsif @order.desired_delivery_type_id == 3 || @order.desired_delivery_type_id == 4
+            #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
+    #special-mark
+      - if @order.customer.customer_type_id == 2
+        = image_tag 'dangerous.png', alt: '危険', height: '60px'
+      - OrderDetail.where(order_id: @order.id).each do |order_detail|
+        - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+          - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == 6
+            = image_tag 'tag.png', alt: 'タグ', height: '65px'
+    #absoluteness
+      %span.circle 絶対
+      %span / 通常
+  #row4.row
+    #id-label ID
+    #id-box
+      #{@order.uid}
+  #row5.row
+    #blank
+    #picking ピッキング:
+    #fabrication 製作:
+    #confirmation 確認:
+    #inspection 検品:
+    #packing 梱包:
+  #row6.row
+    #manufacturing-label 加工
+    #manufacturing-box
+      - OrderDetail.where(order_id: @order.id).each do |order_detail|
+        - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+          %tbody{style:'border:solid 1px #000;'}
+            %td{style:'border:solid 1px #000;'}
+              = Technique.find(order_technique_detail.technique_id).technique_name
+    #pasteup
+      指示書作成:
+      - OrderDetail.where(order_id: @order.id).each do |order_detail|
+        - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+          #{User.find(order_technique_detail.pasteup_user_id).user_name}
+    #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
+  #row7.row
+    #status-label 状況
+    #status-box
+  #row8.row
+    #detail
+      #data DATA:
+      #file-name #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
+      #estimation ◆◆◆◆◆◆
+  #row9.row
+    #note-label 備考
+    #note-box
+      - OrderDetail.where(order_id: @order.id).each do |order_detail|
+        - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+          #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+        - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+          #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+          %br

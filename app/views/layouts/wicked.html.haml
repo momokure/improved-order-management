@@ -1,0 +1,17 @@
+%h1.title{style: "text-align: center; font-size: 100px;"} wicked
+%p.date{style: "text-align: center; font-size: 50px;"}
+  = ::Temple::Utils.escape_html_safe(("#{l(DateTime.current)}"))
+%table{style: "text-align: left; margin: auto; font-size: 50px;"}
+  %thead
+    %tr
+      %th 名前
+      %th 年齢
+      %th 性別
+      %th 住所
+  %tbody
+    %tr
+      %td 井上
+      %td 22
+      %td 男
+      %td xxxx xxxx xxxx
+%div{style: "height: 500px; width: 500px; border: solid 1px red;"}

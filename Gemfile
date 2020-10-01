@@ -58,7 +58,7 @@ end
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 5.4.1'
 gem 'faker'
 gem 'kaminari'
 gem 'ransack'
@@ -69,3 +69,9 @@ gem 'active_hash'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'cocoon'
+
+# PDF生成のためのGem
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+# gem 'prawn'
+# gem 'prawn-table'

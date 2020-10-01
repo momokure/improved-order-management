@@ -181,6 +181,10 @@
   %td{style:'font-weight:bold'}
     = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(15)
 
+  %td
+    %div
+      #{OrderDetail.where(order_id: order.id).length} 種
+
     .container
       %tbody
         %tr
@@ -241,7 +245,20 @@
                     (#{User.find(order_technique_detail.pasteup_user_id).user_name})
 
               %td
+              %td
+              %td
+              %td
+              %td
                 %div{style:'font-size:13pt'}
                   - if order_detail.factory_id == 4 && order_technique_detail.technique_id == 1
                     = link_to toda1_silkscreen_a_pasteup_index_path(id: order.uid), method: :get, target:["_blank"] do
+                      %i.fas.fa-file-download
+                  - if order_detail.factory_id == 4 && order_technique_detail.technique_id == 4
+                    = link_to toda1_inkjet_pasteup_index_path(id: order.uid), method: :get, target:["_blank"] do
+                      %i.fas.fa-file-download
+                  - if order_detail.factory_id == 4 && order_technique_detail.technique_id == 5
+                    = link_to toda1_embroidery_pasteup_index_path(id: order.uid), method: :get, target:["_blank"] do
+                      %i.fas.fa-file-download
+                  - if order_detail.factory_id == 4 && order_technique_detail.technique_id == 6
+                    = link_to toda1_sewing_pasteup_index_path(id: order.uid), method: :get, target:["_blank"] do
                       %i.fas.fa-file-download
