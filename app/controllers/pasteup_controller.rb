@@ -15,7 +15,7 @@ class PasteupController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-      render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+      render pdf: @order.uid+' '+@customer.customer_name+'戸田1 emb'+Date.today.year,   # PDF名
         encording: 'UTF-8',
         template: 'pasteup/toda1_embroidery.html.haml' # viewを対象にする
       end
@@ -23,6 +23,16 @@ class PasteupController < ApplicationController
   end
 
   def toda1_sewing
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find(@order.customer_id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+      render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+        encording: 'UTF-8',
+        template: 'pasteup/toda1_sewing.html.haml' # viewを対象にする
+      end
+    end
   end
 
   def bijogi_silkscreen_a
