@@ -1,0 +1,9 @@
+- (Date.parse("#{@start}")..Date.parse("#{@end}")).each do |date|
+  %tr
+    %td
+      = l(date, format: :middle, default: '')
+    %td
+
+    %td
+
+    %td

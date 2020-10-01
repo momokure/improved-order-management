@@ -62,232 +62,232 @@ class OrdersController < ApplicationController
     @start = Date.today.prev_occurring(:sunday)
     @end = @start.next_month.next_month.end_of_week
 
-    @silkscreen_a_pending = Order.joins(order_details: :order_technique_details)
+    @silkscreen_a_pending = Order.left_joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 1 })
                               .where(order_technique_details: { technique_id: 1 })
                               .group("orders.internal_delivery_date")
                               .count
 
-    @silkscreen_a_toda1_wip = Order.joins(order_details: :order_technique_details)
+    @silkscreen_a_toda1_wip = Order.left_joins(order_details: :order_technique_details)
                                 .where(order_details: { factory_id: 4 })
                                 .where(order_technique_details: { technique_id: 1 })
                                 .where.not(order_technique_details: { progress_id: 7  })
                                 .group("orders.internal_delivery_date")
                                 .count
 
-    @silkscreen_a_toda1_done = Order.joins(order_details: :order_technique_details)
+    @silkscreen_a_toda1_done = Order.left_joins(order_details: :order_technique_details)
                                 .where(order_details: { factory_id: 4 })
                                 .where(order_technique_details: { technique_id: 1 })
                                 .where(order_technique_details: { progress_id: 7  })
                                 .group("orders.internal_delivery_date")
                                 .count
 
-    @silkscreen_a_bijogi_wip = Order.joins(order_details: :order_technique_details)
+    @silkscreen_a_bijogi_wip = Order.left_joins(order_details: :order_technique_details)
                                  .where(order_details: { factory_id: 8 })
                                  .where(order_technique_details: { technique_id: 1 })
                                  .where.not(order_technique_details: { progress_id: 7  })
                                  .group("orders.internal_delivery_date")
                                  .count
 
-    @silkscreen_a_bijogi_done = Order.joins(order_details: :order_technique_details)
+    @silkscreen_a_bijogi_done = Order.left_joins(order_details: :order_technique_details)
                                  .where(order_details: { factory_id: 8 })
                                  .where(order_technique_details: { technique_id: 1 })
                                  .where(order_technique_details: { progress_id: 7  })
                                  .group("orders.internal_delivery_date")
                                  .count
 
-    @inkjet_pending = Order.joins(order_details: :order_technique_details)
+    @inkjet_pending = Order.left_joins(order_details: :order_technique_details)
                         .where(order_details: { factory_id: 1 })
                         .where(order_technique_details: { technique_id: 4 })
                         .group("orders.internal_delivery_date")
                         .count
 
-    @inkjet_toda1_wip = Order.joins(order_details: :order_technique_details)
+    @inkjet_toda1_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 4 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @inkjet_toda1_done = Order.joins(order_details: :order_technique_details)
+    @inkjet_toda1_done = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 4 })
                           .where(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @inkjet_bijogi_wip = Order.joins(order_details: :order_technique_details)
+    @inkjet_bijogi_wip = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 4 })
                            .where.not(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @inkjet_bijogi_done = Order.joins(order_details: :order_technique_details)
+    @inkjet_bijogi_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 4 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @embroidery_pending = Order.joins(order_details: :order_technique_details)
+    @embroidery_pending = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 1 })
                           .where(order_technique_details: { technique_id: 5 })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @embroidery_toda1_wip = Order.joins(order_details: :order_technique_details)
+    @embroidery_toda1_wip = Order.left_joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 4 })
                               .where(order_technique_details: { technique_id: 5 })
                               .where.not(order_technique_details: { progress_id: 7  })
                               .group("orders.internal_delivery_date")
                               .count
 
-    @embroidery_toda1_done = Order.joins(order_details: :order_technique_details)
+    @embroidery_toda1_done = Order.left_joins(order_details: :order_technique_details)
                               .where(order_details: { factory_id: 4 })
                               .where(order_technique_details: { technique_id: 5 })
                               .where(order_technique_details: { progress_id: 7  })
                               .group("orders.internal_delivery_date")
                               .count
 
-    @embroidery_bijogi_wip = Order.joins(order_details: :order_technique_details)
+    @embroidery_bijogi_wip = Order.left_joins(order_details: :order_technique_details)
                                .where(order_details: { factory_id: 8 })
                                .where(order_technique_details: { technique_id: 5 })
                                .where.not(order_technique_details: { progress_id: 7  })
                                .group("orders.internal_delivery_date")
                                .count
 
-    @embroidery_bijogi_done = Order.joins(order_details: :order_technique_details)
+    @embroidery_bijogi_done = Order.left_joins(order_details: :order_technique_details)
                                .where(order_details: { factory_id: 8 })
                                .where(order_technique_details: { technique_id: 5 })
                                .where(order_technique_details: { progress_id: 7  })
                                .group("orders.internal_delivery_date")
                                .count
 
-    @sewing_pending = Order.joins(order_details: :order_technique_details)
+    @sewing_pending = Order.left_joins(order_details: :order_technique_details)
                         .where(order_details: { factory_id: 1 })
                         .where(order_technique_details: { technique_id: 6 })
                         .group("orders.internal_delivery_date")
                         .count
 
-    @sewing_toda1_wip = Order.joins(order_details: :order_technique_details)
+    @sewing_toda1_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 6 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @sewing_toda1_done = Order.joins(order_details: :order_technique_details)
+    @sewing_toda1_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 4 })
                            .where(order_technique_details: { technique_id: 6 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @sewing_bijogi_wip = Order.joins(order_details: :order_technique_details)
+    @sewing_bijogi_wip = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
                            .where.not(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @sewing_bijogi_done = Order.joins(order_details: :order_technique_details)
+    @sewing_bijogi_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 8 })
                            .where(order_technique_details: { technique_id: 6 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @silkscreen_b_wip = Order.joins(order_details: :order_technique_details)
+    @silkscreen_b_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 2 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @silkscreen_b_done = Order.joins(order_details: :order_technique_details)
+    @silkscreen_b_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 2 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @silkscreen_c_wip = Order.joins(order_details: :order_technique_details)
+    @silkscreen_c_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 3 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @silkscreen_c_done = Order.joins(order_details: :order_technique_details)
+    @silkscreen_c_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_technique_details: { technique_id: 3 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @silkscreen_d_wip = Order.joins(order_details: :order_technique_details)
+    @silkscreen_d_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @silkscreen_d_done = Order.joins(order_details: :order_technique_details)
+    @silkscreen_d_done = Order.left_joins(order_details: :order_technique_details)
                           .where(order_technique_details: { technique_id: 8 })
                           .where(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @silkscreen_d_cassette = Order.joins(order_details: :order_technique_detail_options)
+    @silkscreen_d_cassette = Order.left_joins(order_details: :order_technique_detail_options)
                                    .where(order_technique_detail_options: { technique_option_id: 5 })
                                    .group("orders.internal_delivery_date")
                                    .count
 
-    @blank_toda1_wip = Order.joins(order_details: :order_technique_details)
+    @blank_toda1_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 4 })
                           .where(order_technique_details: { technique_id: 9 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @blank_toda1_done = Order.joins(order_details: :order_technique_details)
+    @blank_toda1_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 4 })
                            .where(order_technique_details: { technique_id: 9 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @blank_bijogi_wip = Order.joins(order_details: :order_technique_details)
+    @blank_bijogi_wip = Order.left_joins(order_details: :order_technique_details)
                          .where(order_details: { factory_id: 8 })
                          .where(order_technique_details: { technique_id: 9 })
                          .where.not(order_technique_details: { progress_id: 7  })
                          .group("orders.internal_delivery_date")
                          .count
 
-    @blank_bijogi_done = Order.joins(order_details: :order_technique_details)
+    @blank_bijogi_done = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 8 })
                           .where(order_technique_details: { technique_id: 9 })
                           .where(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @blank_yoyogi_wip = Order.joins(order_details: :order_technique_details)
+    @blank_yoyogi_wip = Order.left_joins(order_details: :order_technique_details)
                           .where(order_details: { factory_id: 7 })
                           .where(order_technique_details: { technique_id: 9 })
                           .where.not(order_technique_details: { progress_id: 7  })
                           .group("orders.internal_delivery_date")
                           .count
 
-    @blank_yoyogi_done = Order.joins(order_details: :order_technique_details)
+    @blank_yoyogi_done = Order.left_joins(order_details: :order_technique_details)
                            .where(order_details: { factory_id: 7 })
                            .where(order_technique_details: { technique_id: 9 })
                            .where(order_technique_details: { progress_id: 7  })
                            .group("orders.internal_delivery_date")
                            .count
 
-    @uv_wip = Order.joins(order_details: :order_technique_details)
+    @uv_wip = Order.left_joins(order_details: :order_technique_details)
                 .where(order_technique_details: { technique_id: 7 })
                 .where.not(order_technique_details: { progress_id: 7  })
                 .group("orders.internal_delivery_date")
                 .count
 
-    @uv_done = Order.joins(order_details: :order_technique_details)
+    @uv_done = Order.left_joins(order_details: :order_technique_details)
                  .where(order_technique_details: { technique_id: 7 })
                  .where(order_technique_details: { progress_id: 7  })
                  .group("orders.internal_delivery_date")
