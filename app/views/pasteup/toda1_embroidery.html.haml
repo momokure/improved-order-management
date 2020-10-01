@@ -5,31 +5,24 @@
     = wicked_pdf_stylesheet_link_tag 'pasteup_pdf.scss'
     = wicked_pdf_stylesheet_link_tag 'pdf.css'
     %title 指示書PDF出力
-    %link{:href => "pdf.css", :rel => "stylesheet", :type => "text/css"}
   %body
-    %h2 指示書
-    / = @order.id
-    / = @customer.customer_name
+    - content_for(:html_title) { '戸田公園第1工場 刺繍 指示書' }
     #pdfwrapper
       #row1.row
-        #label
+        .label.label-embroidery
           #label-factory
-            - OrderDetail.where(order_id: @order.id).each do |order_detail|
-              - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-                #{Factory.find(order_detail.factory_id).factory_name}
+            戸田1
           #label-manufacturing
-            - OrderDetail.where(order_id: @order.id).each do |order_detail|
-              - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-                - if Technique.find_by(id: order_technique_detail.technique_id).id == 1 || Technique.find_by(id: order_technique_detail.technique_id).id == 2 || Technique.find_by(id: order_technique_detail.technique_id).id == 3
-                  SILK
-                - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 4
-                  INKJET
+            EMBROIDERY
         #body-order-date
         #payment
-          - if Payment.find_by(order_id: @order.id).try(:payment_date).blank?
+          - if Payment.find_by(order_id: @order.id).try(:amount_paid).blank?
             未入金!!
-          - elsif @order.try(:payment_deadline_date) == Payment.find_by(order_id: @order.id).try(:payment_date)
-            入金済み
+          - elsif @order.try(:payment_amount) == Payment.find_by(order_id: @order.id).try(:amount_paid)
+            入金
+            %span#done  済
+          -else
+            不明
         #address-label 納品先
       #row2.row
         #customer-name-box
@@ -53,7 +46,11 @@
                 #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
         #special-mark
           - if @order.customer.customer_type_id == 2
-            = image_tag 'dangerous.png', alt: '危険', width: '75px'
+            = image_tag 'dangerous.png', alt: '危険', height: '60px'
+          - OrderDetail.where(order_id: @order.id).each do |order_detail|
+            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+              - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == 6
+                = image_tag 'tag.png', alt: 'タグ', height: '65px'
         #absoluteness
           %span.circle 絶対
           %span / 通常
@@ -76,29 +73,26 @@
               %tbody{style:'border:solid 1px #000;'}
                 %td{style:'border:solid 1px #000;'}
                   = Technique.find(order_technique_detail.technique_id).technique_name
-                  %br
-                  - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-                    #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-                    %br
-                  - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-                    #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-                    %br
-        #pasteup 指示書作成:
+        #pasteup
+          指示書作成:
+          - OrderDetail.where(order_id: @order.id).each do |order_detail|
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+              #{User.find(order_technique_detail.pasteup_user_id).user_name}
         #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
       #row7.row
         #status-label 状況
         #status-box
       #row8.row
-        #estimation
+        #detail
           #data DATA:
           #file-name #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
+          #estimation ◆◆◆◆◆◆
       #row9.row
         #note-label 備考
         #note-box
           - OrderDetail.where(order_id: @order.id).each do |order_detail|
             - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
               #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-              %br
             - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
               #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
               %br
