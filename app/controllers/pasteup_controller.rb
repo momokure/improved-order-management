@@ -3,6 +3,7 @@ class PasteupController < ApplicationController
   before_action :set_params
 
   def toda1_silkscreen_a
+    @order
   end
 
   def toda1_inkjet
