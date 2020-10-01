@@ -3,12 +3,23 @@ class PasteupController < ApplicationController
   before_action :set_params
 
   def toda1_silkscreen_a
+    @order
   end
 
   def toda1_inkjet
   end
 
   def toda1_embroidery
+    @order = Order.find_by(uid: params[:id])
+    @customer = Customer.find(@order.customer_id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+      render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+        encording: 'UTF-8',
+        template: 'pasteup/toda1_embroidery.html.haml' # viewを対象にする
+      end
+    end
   end
 
   def toda1_sewing

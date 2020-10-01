@@ -1,9 +1,11 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    = wicked_pdf_stylesheet_link_tag 'pasteup_pdf.scss'
+    = wicked_pdf_stylesheet_link_tag 'pdf.css'
     %title 指示書PDF出力
-    %link{:href => "pasteup_pdf.scss", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "pdf.css", :rel => "stylesheet", :type => "text/css"}
   %body
     %h2 指示書
     / = @order.id
@@ -14,17 +16,7 @@
           #label-factory
             - OrderDetail.where(order_id: @order.id).each do |order_detail|
               - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-                - if Factory.find_by(id: order_detail.factory_id).id == 4
-                  %p{class: 'toda1'}
-                    #{Factory.find(order_detail.factory_id).factory_name}
-
-                - if Factory.find_by(id: order_detail.factory_id).id == 7
-                  %p{class: 'nakano'}
-                    #{Factory.find(order_detail.factory_id).factory_name}
-
-                - if Factory.find_by(id: order_detail.factory_id).id == 8
-                  %p{class: 'bijogi', style:'color:#ffff00'}
-                    #{Factory.find(order_detail.factory_id).factory_name}
+                #{Factory.find(order_detail.factory_id).factory_name}
           #label-manufacturing
             - OrderDetail.where(order_id: @order.id).each do |order_detail|
               - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
@@ -62,7 +54,9 @@
         #special-mark
           - if @order.customer.customer_type_id == 2
             = image_tag 'dangerous.png', alt: '危険', width: '75px'
-        #absoluteness 絶対 / 通常
+        #absoluteness
+          %span.circle 絶対
+          %span / 通常
       #row4.row
         #id-label ID
         #id-box

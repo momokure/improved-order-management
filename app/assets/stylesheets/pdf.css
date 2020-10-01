@@ -19,18 +19,38 @@ html {
 #row1 {
   height: 30px;
 }
-#label {
+.label {
   display: flex;
   width: 200px;
   border: solid 1px #000000;
   text-align-last: justify;
   text-align: center;
-  background: #00A1D5;
   font-weight: bold;
   font-size: 11pt;
 }
-#label #label-manufacturing {
+.label #label-factory {
+  color: #ffff00;
+}
+.label #label-manufacturing {
   font-weight: bold;
+}
+.label-silk-a {
+  background: #00A1D5;
+}
+.label-embroidery {
+  background: #52b900;
+}
+.label-inkjet {
+  background: #e07200;
+}
+.label-silk-b {
+  background: #ff6bf9;
+}
+.label-pad {
+  background: #ff0000;
+}
+.label-uv {
+  background: #b500ff;
 }
 #body-order-date {
   width: 250px;
@@ -189,7 +209,6 @@ html {
   padding: 0px;
 }
 #row8 #detail {
-  display: inline-flex;
   flex-wrap: wrap;
 }
 #row8 #detail #data {
@@ -207,9 +226,6 @@ html {
   font-size: 12pt;
   float: left;
 }
-#row8 #detail #estimation {
-  clear: both;
-}
 #row9 {
   height: 60px;
 }
@@ -222,4 +238,3 @@ html {
   width: 700px;
   border: solid 1px #000000;
 }
-steup_pdf.scss )

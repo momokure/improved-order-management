@@ -5,7 +5,7 @@
       %tr
         %th 納品日
         %th
-          シルクスクリーンA
+          ｼﾙｸｽｸﾘｰﾝA
           %br/
           ❓工場未定
         %th
@@ -13,7 +13,7 @@
           %br/
           🐭戸田公園第1
         %th
-          シルクスクリーンA
+          ｼﾙｸｽｸﾘｰﾝA
           %br/
           🐭戸田公園第1
         %th
@@ -21,19 +21,19 @@
           %br/
           🐲美女木
         %th
-          シルクスクリーンA
+          ｼﾙｸｽｸﾘｰﾝA
           %br/
           🐲美女木
         %th
-          インクジェット
+          ｲﾝｸｼﾞｪｯﾄ
           %br/
           ❓工場未定
         %th
-          インクジェット
+          ｲﾝｸｼﾞｪｯﾄ
           %br/
           🐭戸田公園第1
         %th
-          インクジェット
+          ｲﾝｸｼﾞｪｯﾄ
           %br/
           🐲美女木
         %th
@@ -61,28 +61,45 @@
           %br/
           🐲美女木
         %th
-          シルクスクリーンB
+          ｼﾙｸｽｸﾘｰﾝB
           %br/
           🐲美女木
         %th
-          シルクスクリーンC
+          ｼﾙｸｽｸﾘｰﾝC
           %br/
           🐲美女木
         %th
           加工なし
           %br/
-          🐰中野
+          🐯代々木
         %th
-          シルクスクリーンD
+          ｼﾙｸｽｸﾘｰﾝD
           %br/
-          🐰中野
+          🐯代々木
         %th
-          カセット
+          ｶｾｯﾄ
           %br/
-          🐰中野
+          🐯代々木
         %th
           UV
           %br/
           🐲美女木
       %tbody
         = render partial: 'day'
+
+%br/
+%br/
+%h2{style:'text-align:center'} 🏭工場別
+.container
+  %table.neumorphic
+    %tbody
+      %tr
+        %th 納品日
+        %th
+          🐭戸田公園第1
+        %th
+          🐲美女木
+        %th
+          🐯代々木
+      %tbody
+        = render partial: 'day_by_factory'
