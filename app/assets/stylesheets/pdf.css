@@ -2,7 +2,8 @@ html {
   font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", sans-serif;
 }
 #pdfwrapper {
-  width: 750px;
+  min-width: 210mm;
+  min-height: 297mm;
   border: solid 2px #000000;
   background: #ffffff;
 }
@@ -10,8 +11,11 @@ html {
   box-sizing: border-box;
 }
 .row {
+  display: -webkit-box; /* wkhtmltopdf uses this one */
   display: flex;
+  -webkit-box-pack: right; /* wkhtmltopdf uses this one */
   /*border:dashed 0.1px;*/
+  width:100%;
 }
 .row div {
   padding: 3px;
@@ -20,8 +24,10 @@ html {
   height: 30px;
 }
 .label {
+  display: -webkit-box; /* wkhtmltopdf uses this one */
   display: flex;
-  width: 200px;
+  -webkit-box-pack: center; /* wkhtmltopdf uses this one */
+  width: 30%;
   border: solid 1px #000000;
   text-align-last: justify;
   text-align: center;
@@ -53,12 +59,12 @@ html {
   background: #b500ff;
 }
 #body-order-date {
-  width: 250px;
+  width: 30%;
   float: left;
   border: solid 1px #000000;
 }
 #payment {
-  width: 100px;
+  width: 15%;
   border: solid 1px #000000;
 }
 #payment #done {
@@ -66,18 +72,20 @@ html {
   font-size: 12px;
 }
 #address-label {
-  width: 200px;
+  width: 25%;
   border: solid 1px #000000;
 }
 #row2 {
   height: 60px;
 }
 #customer-name-box {
-  width: 550px;
+  width: 75%;
   border: solid 1px #000000;
   font-size: 28px;
   align-items: flex-end;
+  display: -webkit-box; /* wkhtmltopdf uses this one */
   display: flex;
+  -webkit-box-pack: center; /* wkhtmltopdf uses this one */
 }
 #customer-name-box #name {
   width: 100%;
@@ -87,7 +95,7 @@ html {
   float: right;
 }
 #address {
-  width: 200px;
+  width: 25%;
   border: solid 1px #000000;
   font-size: 24px;
 }
@@ -95,7 +103,7 @@ html {
   height: 80px;
 }
 #delivery-date {
-  width: 350px;
+  width: 45%;
   border: solid 1px #000000;
   box-sizing: border-box;
 }
@@ -115,7 +123,7 @@ html {
   font-size: 7pt;
 }
 #special-mark {
-  width: 200px;
+  width: 30%;
   border: solid 1px #000000;
   padding-top: 10px;
   padding-left: 5px;
@@ -125,11 +133,13 @@ html {
   text-shadow: 2px 2px 0px #000000, -2px 2px 0px #000000, 2px -2px 0px #000000, -2px -2px 0px #000000, 2px 0px 0px #000000, 0px 2px 0px #000000, -2px 0px 0px #000000, 0px -2px 0px #000000;
 }
 #absoluteness {
-  width: 200px;
+  width: 25%;
   border: solid 1px #000000;
   box-sizing: border-box;
   font-size: 24px;
+  display: -webkit-box; /* wkhtmltopdf uses this one */
   display: flex;
+  -webkit-box-pack: center; /* wkhtmltopdf uses this one */
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -146,7 +156,7 @@ html {
   height: 30px;
 }
 #id-label {
-  width: 50px;
+  width: 5%;
   border: solid 1px #000000;
   text-align-last: justify;
   text-align: center;
@@ -154,7 +164,7 @@ html {
   font-size: 12pt;
 }
 #id-box {
-  width: 700px;
+  width: 95%;
   border: solid 1px #000000;
   color: #ff0000;
   font-weight: bold;
@@ -162,23 +172,29 @@ html {
 }
 #row5 {
   height: 30px;
-  font-size: 8pt;
-  display: flex;
+  font-size: 9pt;
 }
 #blank {
-  width: 50px;
+  width: 5%;
   border: solid 1px #000000;
+}
+#pfcip{
+  width:95%;
+  padding: 0;
+  display: -webkit-box; /* wkhtmltopdf uses this one */
+  display: flex;
+  -webkit-box-pack: right; /* wkhtmltopdf uses this one */
 }
 #row5 #picking, #row5 #fabrication, #row5 #confirmation, #row5 #inspection, #row5 #packing {
   border: solid 1px #000000;
-  width: 140px;
+  width: 20%;
 }
 #manufacturing-label {
-  width: 50px;
+  width: 5%;
   border: solid 1px #000000;
 }
 #manufacturing-box {
-  width: 420px;
+  width: 57%;
   border: solid 1px #000000;
   font-weight: bold;
   color: #ff0000;
@@ -189,52 +205,53 @@ html {
 }
 #pasteup, #representive {
   border: solid 1px #000000;
-  width: 140px;
-  font-size: 7pt;
+  width: 19%;
+  font-size: 9pt;
 }
 #row7 {
   height: 30px;
 }
 #status-label {
-  width: 50px;
-  border: solid 0.5px #000000;
+  width: 5%;
+  border: solid 1px #000000;
 }
 #status-box {
-  width: 700px;
-  border: solid 0.5px #000000;
+  width: 95%;
+  border: solid 1px #000000;
 }
 #row8 {
-  height: 700px;
-  border: solid 0.5px #000000;
+  height: 270mm;
+  border: solid 1px #000000;
   padding: 0px;
 }
 #row8 #detail {
   flex-wrap: wrap;
+  width:100%;
+  height:5%;
 }
 #row8 #detail #data {
-  width: 50px;
-  height: 30px;
+  width: 5%;
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 10pt;
   float: left;
 }
 #row8 #detail #file-name {
   color: #ff0000;
-  width: 690px;
-  height: 30px;
+  width: 95%;
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 10pt;
   float: left;
 }
 #row9 {
   height: 60px;
+  bottom:0;
 }
 #note-label {
-  width: 50px;
-  border: solid 0.5px #000000;
+  width: 5%;
+  border: solid 1px #000000;
   font-size: 14pt;
 }
 #note-box {
-  width: 700px;
+  width: 95%;
   border: solid 1px #000000;
 }

@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    = wicked_pdf_stylesheet_link_tag 'pasteup_pdf.scss'
+    -#= wicked_pdf_stylesheet_link_tag 'pasteup_pdf.scss'
     = wicked_pdf_stylesheet_link_tag 'pdf.css'
     %title 指示書PDF出力
   %body
@@ -60,11 +60,12 @@
           #{@order.uid}
       #row5.row
         #blank
-        #picking ピッキング:
-        #fabrication 製作:
-        #confirmation 確認:
-        #inspection 検品:
-        #packing 梱包:
+        #pfcip
+          #picking ピッキング:
+          #fabrication 製作:
+          #confirmation 確認:
+          #inspection 検品:
+          #packing 梱包:
       #row6.row
         #manufacturing-label 加工
         #manufacturing-box
