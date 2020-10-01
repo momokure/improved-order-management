@@ -1,0 +1,240 @@
+html {
+  font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", sans-serif;
+}
+#pdfwrapper {
+  width: 750px;
+  border: solid 2px #000000;
+  background: #ffffff;
+}
+#pdfwrapper div {
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+  /*border:dashed 0.1px;*/
+}
+.row div {
+  padding: 3px;
+}
+#row1 {
+  height: 30px;
+}
+.label {
+  display: flex;
+  width: 200px;
+  border: solid 1px #000000;
+  text-align-last: justify;
+  text-align: center;
+  font-weight: bold;
+  font-size: 11pt;
+}
+.label #label-factory {
+  color: #ffff00;
+}
+.label #label-manufacturing {
+  font-weight: bold;
+}
+.label-silk-a {
+  background: #00A1D5;
+}
+.label-embroidery {
+  background: #52b900;
+}
+.label-inkjet {
+  background: #e07200;
+}
+.label-silk-b {
+  background: #ff6bf9;
+}
+.label-pad {
+  background: #ff0000;
+}
+.label-uv {
+  background: #b500ff;
+}
+#body-order-date {
+  width: 250px;
+  float: left;
+  border: solid 1px #000000;
+}
+#payment {
+  width: 100px;
+  border: solid 1px #000000;
+}
+#payment #done {
+  color: #ff0000;
+  font-size: 12px;
+}
+#address-label {
+  width: 200px;
+  border: solid 1px #000000;
+}
+#row2 {
+  height: 60px;
+}
+#customer-name-box {
+  width: 550px;
+  border: solid 1px #000000;
+  font-size: 28px;
+  align-items: flex-end;
+  display: flex;
+}
+#customer-name-box #name {
+  width: 100%;
+}
+#customer-name-box #name #sama {
+  margin: 0 0 0 auto;
+  float: right;
+}
+#address {
+  width: 200px;
+  border: solid 1px #000000;
+  font-size: 24px;
+}
+#row3 {
+  height: 80px;
+}
+#delivery-date {
+  width: 350px;
+  border: solid 1px #000000;
+  box-sizing: border-box;
+}
+#delivery-date #year {
+  padding: 0px;
+  font-size: 7pt;
+}
+#delivery-date #date {
+  padding: 3px;
+  height: 35px;
+  font-size: 24pt;
+  color: #ff0000;
+  font-weight: bold;
+}
+#delivery-date #date-note {
+  padding: 0px;
+  font-size: 7pt;
+}
+#special-mark {
+  width: 200px;
+  border: solid 1px #000000;
+  padding-top: 10px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  font-size: 30pt;
+  color: yellow;
+  text-shadow: 2px 2px 0px #000000, -2px 2px 0px #000000, 2px -2px 0px #000000, -2px -2px 0px #000000, 2px 0px 0px #000000, 0px 2px 0px #000000, -2px 0px 0px #000000, 0px -2px 0px #000000;
+}
+#absoluteness {
+  width: 200px;
+  border: solid 1px #000000;
+  box-sizing: border-box;
+  font-size: 24px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+#absoluteness .circle {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+  border: solid 4px #ff0000;
+}
+#row4 {
+  height: 30px;
+}
+#id-label {
+  width: 50px;
+  border: solid 1px #000000;
+  text-align-last: justify;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+}
+#id-box {
+  width: 700px;
+  border: solid 1px #000000;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 12pt;
+}
+#row5 {
+  height: 30px;
+  font-size: 8pt;
+  display: flex;
+}
+#blank {
+  width: 50px;
+  border: solid 1px #000000;
+}
+#row5 #picking, #row5 #fabrication, #row5 #confirmation, #row5 #inspection, #row5 #packing {
+  border: solid 1px #000000;
+  width: 140px;
+}
+#manufacturing-label {
+  width: 50px;
+  border: solid 1px #000000;
+}
+#manufacturing-box {
+  width: 420px;
+  border: solid 1px #000000;
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 12pt;
+}
+#row6 {
+  height: 30px;
+}
+#pasteup, #representive {
+  border: solid 1px #000000;
+  width: 140px;
+  font-size: 7pt;
+}
+#row7 {
+  height: 30px;
+}
+#status-label {
+  width: 50px;
+  border: solid 0.5px #000000;
+}
+#status-box {
+  width: 700px;
+  border: solid 0.5px #000000;
+}
+#row8 {
+  height: 700px;
+  border: solid 0.5px #000000;
+  padding: 0px;
+}
+#row8 #detail {
+  flex-wrap: wrap;
+}
+#row8 #detail #data {
+  width: 50px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12pt;
+  float: left;
+}
+#row8 #detail #file-name {
+  color: #ff0000;
+  width: 690px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12pt;
+  float: left;
+}
+#row9 {
+  height: 60px;
+}
+#note-label {
+  width: 50px;
+  border: solid 0.5px #000000;
+  font-size: 14pt;
+}
+#note-box {
+  width: 700px;
+  border: solid 1px #000000;
+}
