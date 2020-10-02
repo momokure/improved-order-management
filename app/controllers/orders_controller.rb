@@ -349,6 +349,14 @@ class OrdersController < ApplicationController
     @technique = params[:制作部署]
     @order = Order.find(OrderDetail.find(@order_detail.id).order_id)
     @customer = Customer.find(@order.customer_id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+      render pdf: @order.uid+' '+@customer.customer_name,   # PDF名
+        encording: 'UTF-8',
+        template: 'pasteup/_pdf.html.haml' # viewを対象にする
+      end
+    end
   end
 
   private
