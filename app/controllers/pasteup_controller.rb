@@ -2,7 +2,6 @@ class PasteupController < ApplicationController
   require "date"
   before_action :set_params
   @@d = Date.today
-  $thisyear
 
   def toda1_silkscreen_a
     @order
