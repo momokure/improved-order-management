@@ -60,8 +60,7 @@
         #special-mark
           - if @order.customer.customer_type_id == 2
             = image_tag 'dangerous.png', alt: '危険', height: '60px'
-          - OrderDetail.where(order_id: @order.id).each do |order_detail|
-            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+            - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
               - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == 6
                 = image_tag 'tag.png', alt: 'タグ', height: '65px'
         #absoluteness
@@ -90,7 +89,10 @@
           %p
             = ary.join("➕")
 
-        #pasteup 指示書作成:
+        #pasteup
+          指示書作成:
+          - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
+            #{User.find(order_technique_detail.pasteup_user_id).user_name}
         #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
       #row7.row
         #status-label 状況
