@@ -21,7 +21,7 @@ html {
   padding: 3px;
 }
 #row1 {
-  height: 30px;
+  height: 5%;
 }
 .label {
   display: -webkit-box; /* wkhtmltopdf uses this one */
@@ -76,7 +76,7 @@ html {
   border: solid 1px #000000;
 }
 #row2 {
-  height: 60px;
+  height: 10%;
 }
 #customer-name-box {
   width: 75%;
