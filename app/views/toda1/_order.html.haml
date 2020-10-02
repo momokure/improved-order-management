@@ -29,15 +29,17 @@
   %td
     - if order.customer.customer_type_id == 1
       .overflow-tooltip
-        = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          #{order.customer.customer_name} 様
+        %span{title: "#{order.customer.customer_name} 様"}
+          = link_to customer_path(id: order.customer.uid) do
+            #{order.customer.customer_type.customer_type_name}
+            #{order.customer.customer_name} 様
 
     - if order.customer.customer_type_id == 2
       .overflow-tooltip{id: 'fubi'}
-        = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          #{order.customer.customer_name} 様
+        %span{title: "#{order.customer.customer_name} 様"}
+          = link_to customer_path(id: order.customer.uid) do
+            #{order.customer.customer_type.customer_type_name}
+            #{order.customer.customer_name} 様
 
   %td
     = link_to customer_path(id: order.customer.uid) do
@@ -134,13 +136,15 @@
         .overflow-tooltip
           %i.far.fa-check-circle{style:'font-size:10px; color:#333'}
           - BuyNote.where(buy_detail_id: buy_detail.id).each do |buy_note|
-            #{buy_note.buy_note}
-            %br/
+            %span{title: "#{buy_note.buy_note}"}
+              #{buy_note.buy_note}
+              %br/
 
-  %td{align: "left"}
     - OrderNote.where(order_id: order.id).each do |order_note|
-      .overflow-tooltip
-        #{order_note.order_note}
+      %td{align: "left"}
+        .overflow-tooltip
+          %span{title: "#{order_note.order_note}"}
+            #{order_note.order_note}
 
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
