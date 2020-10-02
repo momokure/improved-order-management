@@ -3,7 +3,32 @@
     %td
       = l(date, format: :middle, default: '')
     %td
-
+      - if @toda1_all_wip[date].present?
+        = link_to "残#{@toda1_all_wip[date]}件", wip_toda1_all_index_path(date: date)
+        \/
+        = link_to "計#{@toda1_all_wip[date].to_i+@toda1_all_done[date].to_i}件", toda1_all_index_path(date: date)
+        %br/
+      - if @toda1_all_wip[date].present? && @toda1_all_done[date].present?
+        = link_to "#{@toda1_all_done[date]}件制作済", done_toda1_all_index_path(date: date)
+      - elsif @toda1_all_wip[date].nil? && @toda1_all_done[date].present?
+        = link_to "全#{@toda1_all_done[date]}件制作済", done_toda1_all_index_path(date: date), style:'color:lightgray'
     %td
-
+      - if @bijogi_all_wip[date].present?
+        = link_to "残#{@bijogi_all_wip[date]}件", wip_bijogi_all_index_path(date: date)
+        \/
+        = link_to "計#{@bijogi_all_wip[date].to_i+@bijogi_all_done[date].to_i}件", bijogi_all_index_path(date: date)
+        %br/
+      - if @bijogi_all_wip[date].present? && @bijogi_all_done[date].present?
+        = link_to "#{@bijogi_all_done[date]}件制作済", done_bijogi_all_index_path(date: date)
+      - elsif @bijogi_all_wip[date].nil? && @bijogi_all_done[date].present?
+        = link_to "全#{@bijogi_all_done[date]}件制作済", done_bijogi_all_index_path(date: date), style:'color:lightgray'
     %td
+      - if @yoyogi_all_wip[date].present?
+        = link_to "残#{@yoyogi_all_wip[date]}件", wip_yoyogi_all_index_path(date: date)
+        \/
+        = link_to "計#{@yoyogi_all_wip[date].to_i+@yoyogi_all_done[date].to_i}件", yoyogi_all_index_path(date: date)
+        %br/
+      - if @yoyogi_all_wip[date].present? && @yoyogi_all_done[date].present?
+        = link_to "#{@yoyogi_all_done[date]}件制作済", done_yoyogi_all_index_path(date: date)
+      - elsif @yoyogi_all_wip[date].nil? && @yoyogi_all_done[date].present?
+        = link_to "全#{@yoyogi_all_done[date]}件制作済", done_yoyogi_all_index_path(date: date), style:'color:lightgray'

@@ -57,7 +57,10 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
-    resources :all, only: :index
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :sorting, only: :index do
       get :backlog, on: :collection
       get :done, on: :collection
@@ -96,7 +99,10 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
-    resources :all, only: :index
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :sorting, only: :index do
       get :backlog, on: :collection
       get :done, on: :collection
@@ -146,6 +152,10 @@ Rails.application.routes.draw do
   end
 
   namespace :yoyogi do
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :blank, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
