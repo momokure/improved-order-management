@@ -1,4 +1,4 @@
-- content_for(:html_title) { '戸田公園第1工場の全ご注文一覧' }
+- content_for(:html_title) { '戸田公園第1工場 '+l(@date.to_date - 1, format: :middle, default: '')+"制作➡"+ l(@date.to_date, format: :middle, default: '')+"納品の全ご注文一覧"}
 
 .container
   %table.neumorphic

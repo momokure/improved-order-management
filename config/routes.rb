@@ -61,7 +61,10 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
-    resources :all, only: :index
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :sorting, only: :index do
       get :backlog, on: :collection
       get :done, on: :collection
@@ -100,7 +103,10 @@ Rails.application.routes.draw do
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
     end
-    resources :all, only: :index
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :sorting, only: :index do
       get :backlog, on: :collection
       get :done, on: :collection
@@ -150,6 +156,10 @@ Rails.application.routes.draw do
   end
 
   namespace :yoyogi do
+    resources :all, only: :index do
+      get :wip, on: :collection
+      get :done, on: :collection
+    end
     resources :blank, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
@@ -168,22 +178,8 @@ Rails.application.routes.draw do
   resources :orders do
     get :calendar, on: :collection
     member do
+      get 'pasteup'
       patch 'update_representative_user'
-
-      resources :pasteup, only: :index do
-        get :toda1_silkscreen_a, on: :collection
-        get :toda1_inkjet, on: :collection
-        get :toda1_embroidery, on: :collection
-        get :toda1_sewing, on: :collection
-        get :bijogi_silkscreen_a, on: :collection
-        get :bijogi_inkjet, on: :collection
-        get :bijogi_embroidery, on: :collection
-        get :bijogi_sewing, on: :collection
-        get :bijogi_silkscreen_b, on: :collection
-        get :bijogi_silkscreen_c, on: :collection
-        get :bijogi_uv, on: :collection
-        get :yoyogi_silkscreen_d, on: :collection
-      end
     end
   end
 
