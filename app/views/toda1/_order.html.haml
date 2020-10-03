@@ -122,6 +122,7 @@
         %i.fas.fa-times-circle
         #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
 
+  - #海外発注のみ等、判定をどうするか...
   %td{align: "left"}
     - if BuyDetail.where(order_id: order.id).blank?
       #fubi
@@ -139,6 +140,7 @@
             %span{title: "#{buy_note.buy_note}"}
               #{buy_note.buy_note}
               %br/
+
 
     - OrderNote.where(order_id: order.id).each do |order_note|
       %td{align: "left"}
