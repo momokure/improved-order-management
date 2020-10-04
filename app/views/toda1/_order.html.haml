@@ -47,8 +47,10 @@
       #{Order.where(customer_id: order.customer_id).count}
 
   %td
-    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+    .overflow-tooltip
+      %span{title: "#{OrderType.find(order.order_type_id).order_type_name}"}
+        = OrderType.find(order.order_type_id).order_type_name
+        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
