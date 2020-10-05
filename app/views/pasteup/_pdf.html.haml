@@ -108,105 +108,243 @@
           - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
             #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
             %br
-    %svg{:viewbox => "0 0 595.28 841.89", :xmlns => "http://www.w3.org/2000/svg"}
-      \/*
-      :css
-        .st7,.st8{fill:#00a0e9;stroke:#000;stroke-width:.6792;stroke-miterlimit:10}.st8{fill:none;stroke-width:.4997}.st9{stroke-width:.5}.st10,.st11,.st12,.st13,.st14,.st15,.st16,.st9{fill:none;stroke:#000;stroke-miterlimit:10}.st11,.st12,.st13,.st14,.st15,.st16{stroke-width:.75}.st12,.st13,.st14,.st15,.st16{stroke-width:.5012}.st13,.st14,.st15,.st16{stroke-width:.3341}.st14,.st15,.st16{stroke-width:.4566}.st15,.st16{stroke-width:.4701}.st16{stroke-width:2}.st17{font-family:&apos;Helvetica-Bold&apos;}.st18{font-size:16px}.st19{fill:none}.st20{font-family:&apos;KozGoPr6N-Regular-83pv-RKSJ-H&apos;}.st21{font-size:21px}.st22{font-family:&apos;HiraginoSans-W5-83pv-RKSJ-H&apos;}.st23{font-size:15px}.st24{letter-spacing:1}.st25{font-size:8px}.st26{fill:#231815}.st27{font-size:24px}.st28{font-family:&apos;HiraginoSans-W7-83pv-RKSJ-H&apos;}.st29{letter-spacing:6}.st30{font-size:9px}.st31{fill:#040000}.st32{fill:#fff100}.st33,.st34{fill:none;stroke:#fff100;stroke-width:2.0475}.st34{stroke:#fff;stroke-width:2.9587;stroke-linecap:round;stroke-linejoin:round}.st37{fill-rule:evenodd;clip-rule:evenodd}.st38{fill:#fff799}.st39{stroke:#000;stroke-width:2.3514;stroke-miterlimit:10}.st40{fill:#e60012}.st42{font-size:10px}.st44{font-size:12px}.st47{font-size:30px}.st48{letter-spacing:-1}
-      */
-      %g
-        %g
-          %path.st7{:d => "M7.09 9.92h124.2v22.16H7.09z"}
-          %text.st17.st18{:transform => "translate(46.348 26.555)"}
-            SILK
-          %text{:transform => "translate(398.912 75.32)"}
-            %tspan.st20.st21{:x => "0", :y => "0"} 様
-          %text.st22.st23.st24{:transform => "translate(15.154 811.078)"}
-            備考
-          %text.st20.st25{:transform => "translate(65.12 189.546)"}
-            ピッキング
-          %text.st26.st20.st25{:transform => "translate(105.12 189.546)"}
-            \:
-          %text.st20.st25{:transform => "translate(411.734 189.546)"}
-            検品
-          %text.st26.st20.st25{:transform => "translate(427.734 189.546)"}
-            \:
-          %text.st20.st25{:transform => "translate(500.537 189.546)"}
-            梱包
-          %text.st26.st20.st25{:transform => "translate(516.537 189.546)"}
-            \:
-          %text.st20.st27{:transform => "translate(455 131.375)"}
-            絶対 / 通常
-          %text.st20.st23.st24{:transform => "translate(15.153 238.626)"}
-            状況
-          %text.st20.st23.st24{:transform => "translate(15.153 213.624)"}
-            加工
-          %text.st28.st18.st29{:transform => "translate(19.663 170.533)"}
-            ID
-          %text.st20.st30{:transform => "translate(439.067 21.91)"}
-            納品先
-          %text{:transform => "translate(139.662 23.104)"}
-            %tspan.st31.st20.st30{:x => "0", :y => "0"} 発注日
-          %text.st31.st20.st30{:transform => "translate(221.995 23.104)"}
-            着日
-          %text.st31.st20.st30{:transform => "translate(389.046 22.348)"}
-            入金
-          %path.st8{:d => "M7.74 89.08h580.45"}
-          %path.st9{:d => "M7.09 152.57h581.1M7.09 174.87h581.1M7.09 196.97h581.1"}
-          %path.st10{:d => "M7.09 220.2h581.1"}
-          %path.st11{:d => "M7.09 781.78h581.1"}
-          %path.st12{:d => "M433.38 9.97V153.3"}
-          %path.st13{:d => "M285.89 89.01v63.7"}
-          %path.st14{:d => "M433.32 27h154.87"}
-          %path.st11{:d => "M53.84 781.78v50.19"}
-          %path.st15{:d => "M53.84 152.64V245"}
-          %text.st20.st25{:transform => "translate(223.486 189.546)"}
-            製作
-          %text.st26.st20.st25{:transform => "translate(239.486 189.546)"}
-            \:
-          %path.st9{:d => "M220.75 174.87V197M402.51 174.87v22.1M402.51 196.97v23.23M490.59 220.2v-45.33"}
-          %path.st10{:d => "M7.09 245h581.1"}
-          %path.st9{:d => "M311.79 174.87v22.1"}
-          %g
-            %text.st20.st25{:transform => "translate(315.86 189.045)"}
-              確認
-            %text.st26.st20.st25{:transform => "translate(331.86 189.045)"}
-              \:
-          %path.st16{:d => "M7.09 9.92h581.1v822.05H7.09z"}
-          %g
-            %text.st26.st20.st25{:transform => "translate(411.734 211.907)"}
-              指示書作成 : 〇〇
-          %g
-            %text.st26.st20.st25{:transform => "translate(501.362 211.965)"}
-              営業担当 :
-      %g{:id => "記載"}
-        %text.st40.st28.st18{:transform => "translate(314.423 -56.898)"}
-          未入金
-        %g
-          %text.st26.st20.st25{:transform => "translate(549.365 211.965)"} #{User.find(@order.representative_user_id).user_name}
-        %g
-          %text.st40.st28.st18{:transform => "translate(64.86 215.01)"} シルクスクリーン
-        %text.st20{"font-size" => "22.168", :transform => "translate(437.035 50.105)"} 納品先
-        %text.st40.st20.st42{:transform => "translate(409.949 35.707)"} 済
-        %text{:transform => "translate(13.244 98.857)"}
-          %tspan.st31.st28.st25{:x => "0", :y => "0"} 2020年
-        %ellipse{:cx => "480.97", :cy => "119.82", :fill => "none", :rx => "29.59", :ry => "28.34", :stroke => "#e60012", "stroke-miterlimit" => "10", "stroke-width" => "3"}
-        %text{:transform => "translate(152.29 36.463)"}
-          %tspan.st20.st44{:x => "0", :y => "0"} ○○
-          %tspan.st20.st44{:x => "36", :y => "0"} ○○
-        %g
-          %text.st28{"font-size" => "11.373", :transform => "translate(16.855 259.513)"} DATA :
-        %text.st20.st44{:transform => "translate(14.86 148.16)"}
-          #{l(@order.try(:desired_delivery_date), format: :middle, default: '')} #{DesiredDeliveryType.find(@order.desired_delivery_type_id).desired_delivery_type_name}
-        %text.st20.st47{:transform => "translate(13.023 80.526)"}
-          #{@customer.customer_name}
-        %g
-          %text.st40.st28.st47.st48{:transform => "translate(10.856 128.202)"}
-            #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
-        %g
-          %text.st40.st28.st44{:transform => "translate(63.008 168.018)"}
-            #{@order.uid}
-        %g
-          %text.st40.st28.st30{:transform => "translate(64.809 259.477)"}
-            #{@customer.customer_name} 加工箇所 入稿データ名 #{@order.uid}
-        %text.st20.st42{:transform => "translate(13.255 279.947)"}
-          ◆◆◆◆◆◆
+    %svg#svg114{:height => "297mm", :version => "1.1", :viewbox => "0 0 210 297", :width => "210mm", :xmlns => "http://www.w3.org/2000/svg", "xmlns:cc" => "http://creativecommons.org/ns#", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "xmlns:svg" => "http://www.w3.org/2000/svg"}
+      %defs
+        %style
+          :css
+            .st7,.st8 {
+              fill: #00a0e9;
+              stroke: #000;
+              stroke-width: .6792;
+              stroke-miterlimit: 10
+            }
+
+            .st8,.st9 {
+              stroke-width: .5
+            }
+
+            .st10,
+            .st11,
+            .st12,
+            .st13,
+            .st14,
+            .st15,
+            .st16,
+            .st9 {
+              fill: none;
+              stroke: #000;
+              stroke-miterlimit: 10
+            }
+
+            .st11,
+            .st12,
+            .st13,
+            .st14,
+            .st15,
+            .st16 {
+              stroke-width: .75
+            }
+
+            .st12,
+            .st13,
+            .st14,
+            .st15,
+            .st16 {
+              stroke-width: .5012
+            }
+
+            .st13,
+            .st14,
+            .st15 {
+              stroke-width: .3
+            }
+
+            .st16 {
+              stroke-width: 2
+            }
+            .label-box{
+              font-family: 'Helvetica-Bold';
+              font-size: 16px;
+            }
+
+            .body-ordr-box{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 10px;
+            }
+
+            .body-order{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 10px;
+            }
+            .payment{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 10px;
+            }
+            .payment-done{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              fill:red;
+              font-size: 10px;
+            }
+
+            .customer-name{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 30px;
+            }
+            .sama{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 21px;
+            }
+            .address{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 9px;
+            }
+            .address-box{
+              font-size:22.168px;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+            }
+            .year{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 8px;
+            }
+
+            .delivery-date{
+              fill:red;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 30px;
+            }
+            .desire{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 12px;
+            }
+
+            .absoluteness{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 24px;
+            }
+
+            .id{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H'；
+
+            }
+            .id-box{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              fill: red;
+              font-size: 12px;
+            }
+            .picking, .fabrication, .confirmation, .inspection, .pasteup, .representative{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 8px;
+            }
+            .technique{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 15px;
+            }
+            .technique-box{
+              fill: red;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+            }
+
+            .process{
+              font-family: 'HiraginoSans-W5-83pv-RKSJ-H'；
+                font-size: 15px;
+            }
+            .data{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size:11.373px;
+            }
+            .file-name{
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              fill: red;
+              font-size: 9px;
+            }
+
+            .estimation{
+              font-family:'KozGoPr6N-Regular-83pv-RKSJ-H';
+              font-size: 10px;
+            }
+            .note{
+              font-family: 'HiraginoSans-W5-83pv-RKSJ-H';
+              font-size: 15px;
+            }
+      %g#pdfwrapper{:transform => "matrix(0.35405249,0,0,0.35405249,-0.15617966,-1.1581482)"}
+        %g#frame-line
+          %path#path14.st7{:d => "m 7.09,9.92 h 124.2 V 32.08 H 7.09 Z"}
+          %path#path16.st8{:d => "M 7.74,89.08 H 588.19"}
+          %path#path18.st9{:d => "m 7.09,152.57 h 581.1 m -581.1,22.3 h 581.1 m -581.1,22.1 h 581.1"}
+          %path#path20.st10{:d => "m 7.09,220.2 h 581.1"}
+          %path#path22.st11{:d => "m 7.09,781.78 h 581.1"}
+          %path#path24.st12{:d => "M 433.38,9.97 V 153.3"}
+          %path#path26.st13{:d => "m 285.89,89.01 v 63.7"}
+          %path#path28.st14{:d => "M 433.32,27 H 588.19"}
+          %path#path30.st11{:d => "m 53.84,781.78 v 50.19"}
+          %path#path32.st15{:d => "M 53.84,152.64 V 245"}
+          %path#path34.st9{:d => "M 220.75,174.87 V 197 m 181.76,-22.13 v 22.1 m 0,0 v 23.23 m 88.08,0 v -45.33"}
+          %path#path36.st10{:d => "m 7.09,245 h 581.1"}
+          %path#path38.st9{:d => "m 311.79,174.87 v 22.1"}
+          %path#path40.st16{:d => "m 7.09,9.92 h 581.1 V 831.97 H 7.09 Z"}
+        %g#text-contents
+          %text.label-box{:x => "46.348", :y => "26.555"} [SILK]
+          %text.body-order{:x => "139.662", :y => "23.104"}
+          %text.body-order{:x => "221.995", :y => "23.104"}
+          %text.body-ordr-box{:x => "152.28999", :y => "36.463001"}
+          %text.payment{:x => "389.04599", :y => "22.348"} 入金
+          %text.payment-done{:x => "409.94901", :y => "35.707001"} 済
+          %text.customer-name{:x => "13.023", :y => "80.526001"} #{@customer.customer_name}
+          %text.sama{:x => "398.91199", :y => "75.32"} 様
+          %text.address{:x => "439.06699", :y => "21.91"} 納品先
+          %text.address-box{:x => "437.035", :y => "50.105"}
+            - OrderAddress.where(order_id: @order.id).each do |oa|
+              = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+          %text.year{:x => "13.244", :y => "98.857002"} 2020年
+          %text.delivery-date{:x => "10.856", :y => "128.202"} #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
+          %text.desire{:x => "14.86", :y => "148.16"}
+            - if @order.desired_delivery_date.present?
+              - if @order.desired_delivery_type_id == 1
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}必着
+              - elsif @order.desired_delivery_type_id == 2
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}までに
+              - elsif @order.desired_delivery_type_id == 3 || @order.desired_delivery_type_id == 4
+                #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
+          %g#special-mark{:x => "30.86", :y => "148.16"}
+            - if @order.customer.customer_type_id == 2
+              = image_tag 'dangerous.png', alt: '危険', height: '60px'
+              - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
+                - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == 6
+                  = image_tag 'tag.png', alt: 'タグ', height: '65px'
+          %text.absoluteness{:x => "455", :y => "131.375"} 絶対 / 通常
+          %ellipse{:cx => "480.97", :cy => "119.82", :fill => "none", :rx => "29.59", :ry => "28.34", :stroke => "#e60012", "stroke-miterlimit" => "10", "stroke-width" => "3"}
+          %text.id{:x => "19.663", :y => "170.533"} ID
+          %text.id-box{:x => "63.007999", :y => "168.01801"} #{@order.uid}
+          %text.picking{:x => "65.120003", :y => "189.54601"} ピッキング:
+          %text.fabrication{:x => "223.48599", :y => "189.54601"} 製作:
+          %text.confirmation{:x => "315.85999", :y => "189.045"} 確認:
+          %text.inspection{:x => "407", :y => "189.54601"} 検品:
+          %text.pasteup{:x => "497", :y => "189.54601"} 梱包:
+          %text.technique{:x => "15.153", :y => "213.62399"} 加工
+          %text.technique-box{:x => "64.860001", :y => "215.00999"}
+            -# - ary = []
+            -#   - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
+            -#     %text
+            -#       %tspan
+            -#       - tech = Technique.find(order_technique_detail.technique_id).technique_name
+            -#       - ary << tech
+            -#   %text
+            -#     = ary.join("➕")
+
+          %text.pasteup{:x => "407", :y => "211.907"}
+            指示書作成:
+            - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
+              #{User.find(order_technique_detail.pasteup_user_id).user_name}
+          %text.representative{:x => "497", :y => "211.965"} 営業担当: #{User.find(@order.representative_user_id).user_name}
+          %text.process{:x => "15.153", :y => "238.62601"} 状況
+          %text.data{:x => "16.855", :y => "259.513"} DATA:
+          %text.file-name{:x => "64.808998", :y => "259.47699"} #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
+          %text.estimation{:x => "13.255", :y => "279.94699"}
+          %text.note{:x => "15.154", :y => "811.078"} 備考
+          %text.note-box{:x => "65", :y => "811.078"}
+            - OrderDetailOption.where(order_detail_id: @order_detail.id).each do |order_detail_option|
+              #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+              %br
+            - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
+              #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+              %br
