@@ -1,6 +1,15 @@
 class Representative::BacklogController < ApplicationController
   def index
     @orders = Order.where(representative_user_id: 1, first_response_date: nil)
+                .where(order_type_id: [1, 2])
+                .order(:order_date)
+                .order(:internal_delivery_date)
+
+    @priority_orders = Order.where(representative_user_id: 1, first_response_date: nil)
+                         .where.not(order_type_id: [1, 2])
+                         .order(:order_date)
+                         .order(:internal_delivery_date)
+
     @from = DateTime.now.beginning_of_day - 9.hour
     @to = @from+1
 

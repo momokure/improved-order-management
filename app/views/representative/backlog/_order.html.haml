@@ -109,12 +109,6 @@
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
   %td
-    = l(order.try(:payment_deadline_date), format: :middle, default: '')
-
-  %td
-    = number_to_currency(order.try(:payment_amount), format: "%u%n", unit: "¥")
-
-  %td
     = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
 
   %td
