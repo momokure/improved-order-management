@@ -1,4 +1,24 @@
 %tr
+  -#%td
+  -#  - OrderDetail.where(order_id: order.id).each do |order_detail|
+  -#    - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+  -#      - if order_technique_detail.progress_id == 3
+  -#        💭指示書制作中
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 4
+  -#        🐔指示書制作済
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 5
+  -#        🍗指示書出力済
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 6
+  -#        💩製版出力済
+  -#        %br
+
+
   %td
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end'}
