@@ -27,20 +27,10 @@
           %i.fas.fa-copy
 
   %td
-    -# - if order.customer.customer_type_id == 1
-    -#   %p
-    -#     = link_to customer_path(id: order.customer.uid) do
-    -#       #{order.customer.customer_type.customer_type_name}
-    -#       #{order.customer.customer_name.to_s.truncate(10)} 様
-    -#
-    -# - if order.customer.customer_type_id == 2
-    -#   %p{id: 'fubi'}
-    -#     = link_to customer_path(id: order.customer.uid) do
-    -#       #{order.customer.customer_type.customer_type_name}
-    -#       #{order.customer.customer_name.to_s.truncate(10)} 様
-
-    = link_to customer_path(id: order.customer.uid) do
-      #{order.customer.customer_name.to_s.truncate(10)} 様
+    .overflow-tooltip
+      %span{title: "#{order.customer.customer_name} 様"}
+        = link_to customer_path(id: order.customer.uid) do
+          #{order.customer.customer_name} 様
 
     - if Order.where(customer_id: order.customer.id).sum(:difference) > 0
       %p{id: 'lightblue'}
@@ -53,8 +43,10 @@
       #{Order.where(customer_id: order.customer_id).count}
 
   %td
-    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+    .overflow-tooltip
+      %span{title: "#{QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name}"}
+        = OrderType.find(order.order_type_id).order_type_name
+        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
@@ -134,8 +126,10 @@
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
 
-  %td
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
+  %td{align: "left"}
+    .overflow-tooltip
+      %span{title: "#{OrderNote.find_by(order_id: order.id).try(:order_note)}"}
+        = OrderNote.find_by(order_id: order.id).try(:order_note)
 
   %td
     = form_with model: order, url: update_representative_user_order_path(id: order.uid), local: true do |f|

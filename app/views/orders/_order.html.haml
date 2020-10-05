@@ -1,4 +1,24 @@
 %tr
+  -#%td
+  -#  - OrderDetail.where(order_id: order.id).each do |order_detail|
+  -#    - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+  -#      - if order_technique_detail.progress_id == 3
+  -#        💭指示書制作中
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 4
+  -#        🐔指示書制作済
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 5
+  -#        🍗指示書出力済
+  -#        %br
+  -#
+  -#      - elsif order_technique_detail.progress_id == 6
+  -#        💩製版出力済
+  -#        %br
+
+
   %td
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end'}
@@ -28,16 +48,18 @@
 
   %td
     - if order.customer.customer_type_id == 1
-      %p
+      .overflow-tooltip
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          #{order.customer.customer_name.to_s.truncate(10)} 様
+          %span{title: "#{order.customer.customer_name} 様"}
+            #{order.customer.customer_type.customer_type_name}
+            #{order.customer.customer_name} 様
 
     - if order.customer.customer_type_id == 2
-      %p{id: 'fubi'}
+      .overflow-tooltip{id:'fubi'}
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          #{order.customer.customer_name.to_s.truncate(10)} 様
+          %span{title: "#{order.customer.customer_name} 様"}
+            #{order.customer.customer_type.customer_type_name}
+            #{order.customer.customer_name} 様
 
   %td
     = link_to customer_path(id: order.customer.uid) do
@@ -45,8 +67,10 @@
       #{Order.where(customer_id: order.customer_id).count}
 
   %td
-    = OrderType.find(order.order_type_id).order_type_name.truncate(8)
-    = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+    .overflow-tooltip
+      = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
+      %span{title: "#{OrderType.find(order.order_type_id).order_type_name}"}
+        = OrderType.find(order.order_type_id).order_type_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
@@ -125,13 +149,13 @@
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
       #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
       %br/
-  -#%td
-    - OrderDetail.where(order_id: order.id).each do |order_detail|
-      - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
-        済(#{User.find(sort_detail.sorting_user_id).user_name})
-        %br/
-  %td
-    = OrderNote.find_by(order_id: order.id).try(:order_note).to_s.truncate(10)
+
+  %td{align:'left'}
+    - OrderNote.where(order_id: order.id).each do |order_note|
+      .overflow-tooltip
+        %span{title: "#{order_note.order_note}"}
+          = order_note.order_note
+          %br/
 
   %td
     = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get

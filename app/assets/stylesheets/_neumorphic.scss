@@ -88,3 +88,10 @@ table.neumorphic {
   color: red;
   margin: 8px 3px;
 }
+
+.overflow-tooltip {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
