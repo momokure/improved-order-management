@@ -249,15 +249,13 @@
         %span{title: "#{order_note.order_note}"}
           #{order_note.order_note}
 
-    -# = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
-
     .container
       %tbody
         %tr
         - OrderDetail.where(order_id: order.id).each_with_index do |order_detail, i|
           %td{colspan: '2', align:'left'}
             - if order_detail.mixed_techniques == "mixed"
-              %p{style:'margin:5px 60px'}
+              %p{style:'margin:5px 0px 5px 80px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
                 合体 (#{Factory.find(order_detail.factory_id).factory_name})
@@ -265,13 +263,20 @@
                 - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
                   %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                     　#{i+1}-#{si+1}.
-                  %sapn
+                  %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
                     #{Technique.find(order_technique_detail.technique_id).technique_name}
+                  %span{style:'font-weight:normal; font-size:11px;'}
+                    (#{Progress.find(order_technique_detail.progress_id).progress_name})
                     %br/
 
-            - else
-              %p{style:'margin:5px 60px'}
+                    - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                      - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == order_technique_detail.technique_id
+                        %span{style:'font-weight:normal; font-size:10px; font-style:italic'}
+                          　　　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                          %br
 
+            - else
+              %p{style:'margin:5px 0px 5px 80px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
                 単体 (#{Factory.find(order_detail.factory_id).factory_name})
@@ -280,37 +285,28 @@
                 - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
                   %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                     　#{i+1}-#{si+1}.
-                  %sapn
+                  %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
                     #{Technique.find(order_technique_detail.technique_id).technique_name}
+                  %span{style:'font-weight:normal; font-size:11px;'}
+                    (#{Progress.find(order_technique_detail.progress_id).progress_name})
                     %br/
 
+                    - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                      - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == order_technique_detail.technique_id
+                        %span{style:'font-weight:normal; font-size:10px; font-style:italic'}
+                          　　　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                          %br
 
-                -#%p
-                -#- OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-                -#  #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-                -#  %br
 
-            %tbody
-            -#  %tr
-            -#    %td{colspan: "4", align:'right'}
-            -#      %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
-            -#        #{i+1}-#{si+1}.
-            -#      #{Technique.find(order_technique_detail.technique_id).technique_name}
-            -#      %p
-            -#      - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-            -#        #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-            -#        %br
-            -#      %p
-            -#      - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-            -#        #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-            -#        %br
-            -#    %td
-            -#
-            -#    %td
-            -#      #{Progress.find(order_technique_detail.progress_id).progress_name}
-            -#    %td
-            -#      - unless order_technique_detail.pasteup_user_id == 1
-            -#        🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
-            -#    %td
-            -#      - unless order_technique_detail.maker_id == 1
-            -#        🍗#{User.find(order_technique_detail.maker_id).user_name}
+                  -#%td
+                  -#  - unless order_technique_detail.pasteup_user_id == 1
+                  -#    🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
+                  -#%td
+                  -#  - unless order_technique_detail.maker_id == 1
+                  -#    🍗#{User.find(order_technique_detail.maker_id).user_name}
+            %td
+              = button_to edit_order_path(id: order.uid), method: :get do
+                %i.fas.fa-edit{style:'font-size:13px;color:#333'}
+                %p{style:'font-size:6px;color:#333'}
+                  Edit
+              %tbody
