@@ -3,7 +3,7 @@
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
-          #copytext
+          #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
             = order.uid
         %button.copybtn{type: "button"}
           %i.fas.fa-copy
@@ -11,46 +11,45 @@
     - if order.order_type_id == 3
       %div{style:'display:flex; justify-content: flex-end'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
-          #copytext
+          #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
             #fubi
               = order.uid
+          %span{style:'font-size:10px;font-style:italic'}
+            (#{OrderType.find(order.order_type_id).order_type_name})
         %button.copybtn{type: "button"}
           %i.fas.fa-copy
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
       %div{style:'display:flex; justify-content: flex-end'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
-          #copytext
+          #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
             #kono
               = order.uid
+          %span{style:'font-size:10px;font-style:italic'}
+            (#{OrderType.find(order.order_type_id).order_type_name})
         %button.copybtn{type: "button"}
           %i.fas.fa-copy
 
-  %td
+  %td{style:'font-size:12px;font-weight:bold;font-style:italic'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip
         %span{title: "#{order.customer.customer_name} 様"}
           = link_to customer_path(id: order.customer.uid) do
-            #{order.customer.customer_type.customer_type_name}
-            #{order.customer.customer_name} 様
+            #{order.customer.customer_type.customer_type_name}#{order.customer.customer_name} 様
 
     - if order.customer.customer_type_id == 2
       .overflow-tooltip{id: 'fubi'}
         %span{title: "#{order.customer.customer_name} 様"}
           = link_to customer_path(id: order.customer.uid) do
-            #{order.customer.customer_type.customer_type_name}
-            #{order.customer.customer_name} 様
+            #{order.customer.customer_type.customer_type_name}#{order.customer.customer_name} 様
+
+  %td{style:'font-size:14px'}
+    #{QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name}
 
   %td
     = link_to customer_path(id: order.customer.uid) do
       %i.fas.fa-history
       #{Order.where(customer_id: order.customer_id).count}
-
-  %td
-    .overflow-tooltip
-      %span{title: "#{OrderType.find(order.order_type_id).order_type_name}"}
-        = OrderType.find(order.order_type_id).order_type_name
-        = QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name
 
   %td
     = l(order.try(:order_date), format: :middle, default: '')
@@ -94,7 +93,7 @@
         %p{id: 'green'}
           #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
 
-  %td{style: "font-weight:bold"}
+  %td{style: 'font-weight:bold'}
     - if order.internal_delivery_date.present?
       - if order.desired_delivery_type_id == 1
         %p{id: 'red'}
@@ -124,8 +123,7 @@
         %i.fas.fa-times-circle
         #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
 
-
-  %td{align: "left"}
+  %td
     - if BuyDetail.where(order_id: order.id).blank?
       - if order.domestic_buying == "included"
         #fubi
@@ -245,71 +243,74 @@
       #regular{style:'color:silver'}
         🍡お持込あり
 
-    %td{align: "left"}
-      - OrderNote.where(order_id: order.id).each do |order_note|
-        .overflow-tooltip
-          %span{title: "#{order_note.order_note}"}
-            #{order_note.order_note}
+  %td{align: 'left'}
+    - OrderNote.where(order_id: order.id).each do |order_note|
+      .overflow-tooltip
+        %span{title: "#{order_note.order_note}"}
+          #{order_note.order_note}
 
-  %td
-    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
+    -# = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
 
-  -#
-  -# .container
-  -#   %tbody
-  -#     %tr
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#       %td
-  -#
+    .container
+      %tbody
+        %tr
+        - OrderDetail.where(order_id: order.id).each_with_index do |order_detail, i|
+          %td{colspan: '2', align:'left'}
+            - if order_detail.mixed_techniques == "mixed"
+              %p{style:'margin:5px 60px'}
+                %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+                  #{i+1}.
+                合体 (#{Factory.find(order_detail.factory_id).factory_name})
+                %br/
+                - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
+                  %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+                    　#{i+1}-#{si+1}.
+                  %sapn
+                    #{Technique.find(order_technique_detail.technique_id).technique_name}
+                    %br/
+
+            - else
+              %p{style:'margin:5px 60px'}
+
+                %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+                  #{i+1}.
+                単体 (#{Factory.find(order_detail.factory_id).factory_name})
+                %br/
+
+                - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
+                  %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+                    　#{i+1}-#{si+1}.
+                  %sapn
+                    #{Technique.find(order_technique_detail.technique_id).technique_name}
+                    %br/
 
 
+                -#%p
+                -#- OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+                -#  #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                -#  %br
 
-    -#.container
-    -#  %tbody
-    -#    %tr
-    -#    - OrderDetail.where(order_id: order.id).each do |order_detail|
-    -#      %td{align: "right"}
-    -#        ↳
-    -#      %td
-    -#        - if order_detail.mixed_techniques == "mixed"
-    -#          合体加工
-    -#        - else
-    -#          単体加工
-    -#      - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
-    -#        %tbody
-    -#          %td
-    -#          %td{align: "right"}
-    -#            ↳
-    -#          %td
-    -#            = Technique.find(order_technique_detail.technique_id).technique_name
-    -#            %br
-    -#            - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
-    -#              #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-    -#              %br
-    -#              - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
-    -#                #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-    -#          %td
-    -#            #{Factory.find(order_detail.factory_id).factory_name}工場
-    -#          %td
-    -#            -# - unless order_technique_detail.progress_id == 1
-    -#            #{Progress.find(order_technique_detail.progress_id).progress_name}
-    -#          %td
-    -#            - unless order_technique_detail.pasteup_user_id == 1
-    -#              🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
-    -#          %td
-    -#            - unless order_technique_detail.maker_id == 1
-    -#              🍗#{User.find(order_technique_detail.maker_id).user_name}
-
-      -#%td
-        - OrderDetail.where(order_id: order.id).each do |order_detail|
-          - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
-            済(#{User.find(sort_detail.sorting_user_id).user_name})
-            %br/
+            %tbody
+            -#  %tr
+            -#    %td{colspan: "4", align:'right'}
+            -#      %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+            -#        #{i+1}-#{si+1}.
+            -#      #{Technique.find(order_technique_detail.technique_id).technique_name}
+            -#      %p
+            -#      - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
+            -#        #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+            -#        %br
+            -#      %p
+            -#      - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+            -#        #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
+            -#        %br
+            -#    %td
+            -#
+            -#    %td
+            -#      #{Progress.find(order_technique_detail.progress_id).progress_name}
+            -#    %td
+            -#      - unless order_technique_detail.pasteup_user_id == 1
+            -#        🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
+            -#    %td
+            -#      - unless order_technique_detail.maker_id == 1
+            -#        🍗#{User.find(order_technique_detail.maker_id).user_name}
