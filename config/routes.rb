@@ -124,6 +124,7 @@ Rails.application.routes.draw do
       get :done, on: :collection
       get :pasteup_wip, on: :collection
       get :pasteup_done, on: :collection
+      get :report, on: :collection
     end
     resources :sewing, only: :index do
       get :wip, on: :collection
