@@ -28,12 +28,11 @@
         %th 納品先
         %th 納品ご希望日
         %th 社内納品日
-        %th ご入金期限
-        %th ご入金予定額
         %th.payment ご入金日
         %th.payment ご入金額
         %th 発注状況
         %th ご注文備考欄
-        %th 　
+        %th
     %tbody
+      = render partial: 'order', collection: @priority_orders, locals: { order: @orders }
       = render partial: 'order', collection: @orders, locals: { order: @orders }

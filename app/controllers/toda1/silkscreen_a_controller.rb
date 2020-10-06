@@ -13,6 +13,8 @@ class Toda1::SilkscreenAController < ApplicationController
                 .where(order_technique_details: { technique_id: 1 }).distinct
                 .where.not(order_technique_details: { progress_id: 7 })
                 .where(orders: { internal_delivery_date: @date.to_date }).distinct
+                .order(order_type_id: :desc)
+                .order(:desired_delivery_type_id)
                 .order(:internal_delivery_date)
   end
 
@@ -23,6 +25,8 @@ class Toda1::SilkscreenAController < ApplicationController
                 .where(order_technique_details: { technique_id: 1 }).distinct
                 .where(order_technique_details: { progress_id: 7 })
                 .where(orders: { internal_delivery_date: @date.to_date }).distinct
+                .order(order_type_id: :desc)
+                .order(:desired_delivery_type_id)
                 .order(:internal_delivery_date)
   end
 

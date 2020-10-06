@@ -9,19 +9,26 @@ PaymentMethod.seed do |s|
   s.id = 2
   s.payment_method_name = "前払い (要請求書)"
   s.payment_condition = "前払い"
-  s.invoice_required = true
+  # s.invoice_required = true
 end
 
 PaymentMethod.seed do |s|
   s.id = 3
   s.payment_method_name = "後払い (要請求書)"
   s.payment_condition = "後払い (要請求書)"
-  # s.invoice_required = false
+  # s.invoice_required = true
 end
 
 PaymentMethod.seed do |s|
   s.id = 4
   s.payment_method_name = "🈺後払い (請求書不要)"
   s.payment_condition = "後払い"
-  s.invoice_required = true
+  # s.invoice_required = false
+end
+
+PaymentMethod.seed do |s|
+  s.id = 5
+  s.payment_method_name = "©🅿社内案件"
+  s.payment_condition = "請求不要"
+  # s.invoice_required = false
 end
