@@ -3,4 +3,3 @@
 - content_for(:html_title) { '美女木工場 刺繍 : '+ @year_month.sub('-0', '年',) + '月 計'+ orders_count + '件' }
 -# - @complaint.transform_keys {|k| k+ Rational(9, 24)}
 %h2 不備・クレーム : #{@complaint.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month].to_s}件
-
