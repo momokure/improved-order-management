@@ -26,6 +26,7 @@ table.neumorphic {
     position: sticky;
     top: 90px;
     z-index: 2;
+    padding:15px 0px;
 
     &:hover {
       border-radius: 0px;
@@ -108,3 +109,11 @@ table.neumorphic {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.overflow-tooltip_id {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

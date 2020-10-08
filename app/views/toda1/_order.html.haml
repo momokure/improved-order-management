@@ -1,11 +1,11 @@
 %tr
-  %td.id
+  %td.id{width:'170px'}
     - if order.order_type_id == 1 || order.order_type_id == 2
-      %div{style:'display:flex; justify-content: flex-end'}
+      %div{style:'display:flex; justify-content: flex-end;'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
-          #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
-            = order.uid
-        %button.copybtn{type: "button"}
+          #copytext{style:'font-size:16px;font-weight:bold;font-style:italic;'}
+            #{order.uid}
+        %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
     - if order.order_type_id == 3
@@ -13,10 +13,12 @@
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
             #fubi
-              = order.uid
+              .overflow-tooltip_id
+                %span{title: "#{order.uid}"}
+                  #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.copybtn{type: "button"}
+        %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
@@ -24,21 +26,23 @@
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:15px;font-weight:bold;font-style:italic'}
             #kono
-              = order.uid
+              .overflow-tooltip_id
+                %span{title: "#{order.uid}"}
+                  #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.copybtn{type: "button"}
+        %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
-  %td.id{style:'font-size:12px;font-weight:bold;font-style:italic'}
+  %td.id{style:'font-size:15px;font-weight:bold;font-style:italic'}
     - if order.customer.customer_type_id == 1
-      .overflow-tooltip
+      .overflow-tooltip_id
         %span{title: "#{order.customer.customer_name} 様"}
           = link_to customer_path(id: order.customer.uid) do
             #{order.customer.customer_type.customer_type_name}#{order.customer.customer_name} 様
 
     - if order.customer.customer_type_id == 2
-      .overflow-tooltip{id: 'fubi'}
+      .overflow-tooltip_id{id: 'fubi'}
         %span{title: "#{order.customer.customer_name} 様"}
           = link_to customer_path(id: order.customer.uid) do
             #{order.customer.customer_type.customer_type_name}#{order.customer.customer_name} 様
@@ -309,7 +313,6 @@
                         %span{style:'font-weight:bold; font-size:11px; font-style:italic; color:red'}
                           　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                           %br
-
 
                   -#%td
                   -#  - unless order_technique_detail.pasteup_user_id == 1
