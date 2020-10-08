@@ -307,7 +307,7 @@ GEM
     websocket-extensions (0.1.5)
     wicked_pdf (2.1.0)
       activesupport
-    wkhtmltopdf-binary (0.12.6.3)
+    wkhtmltopdf-binary (0.12.6.4)
 
 PLATFORMS
   java

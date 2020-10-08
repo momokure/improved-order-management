@@ -255,6 +255,11 @@
               font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
               font-size: 15px;
             }
+            .technique-plus{
+              fill: #000000;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 15px;
+            }
 
             .process{
               font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
@@ -451,14 +456,14 @@
             - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
               - if Technique.find(order_technique_detail.technique_id).id != 6
                 - tech = Technique.find(order_technique_detail.technique_id).technique_name
-                - ary << tech
-                %tspan.technique-box
-                  = tech
-                %tspan.technique-checkbox □
-                %tspan.technique-plus +
+                - techcheckbox = tech + '<tspan class="technique-checkbox">□</tspan>'
+                - ary << techcheckbox
+                -# %tspan.technique-box
+                -#   = tech
+                -# %tspan.technique-checkbox □
             %tspan.technique-box{:x => "64.860001", :y => "215.00999"}
-              /= ary.join("➕")
-
+              - plus = '<tspan class="technique-plus">+</tspan>'
+              != ary.join(plus)
           %text.pasteup{:x => "407", :y => "211.907"}
             -# 指示書作成:
             -# - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
