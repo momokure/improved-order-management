@@ -258,8 +258,15 @@
               %p{style:'margin:5px 0px 5px 80px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
-                合体 (#{Factory.find(order_detail.factory_id).factory_name})
-                %br/
+                %span{style:'font-weight:bold; font-size:12px; font-style:italic; text-decoration:underline'}
+                  合体 (#{Factory.find(order_detail.factory_id).factory_name})
+                  %br/
+
+                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                  %span{style:'font-weight:bold; font-size:11px; font-style:italic; color:red'}
+                    　　*#{OrderOption.find(order_detail_option.order_option_id).order_option_name}あり
+                    %br
+
                 - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
                   %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                     　#{i+1}-#{si+1}.
@@ -271,16 +278,22 @@
 
                     - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
                       - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == order_technique_detail.technique_id
-                        %span{style:'font-weight:normal; font-size:10px; font-style:italic'}
-                          　　　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                        %span{style:'font-weight:bold; font-size:11px; font-style:italic; color:red'}
+                          　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                           %br
 
             - else
               %p{style:'margin:5px 0px 5px 80px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
-                単体 (#{Factory.find(order_detail.factory_id).factory_name})
-                %br/
+                %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
+                  単体 (#{Factory.find(order_detail.factory_id).factory_name})
+                  %br/
+
+                - OrderDetailOption.where(order_detail_id: order_detail.id).each do |order_detail_option|
+                  %span{style:'font-weight:bold; font-size:11px; font-style:italic; color:red'}
+                    　　*#{OrderOption.find(order_detail_option.order_option_id).order_option_name}あり
+                    %br
 
                 - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
                   %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
@@ -293,8 +306,8 @@
 
                     - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
                       - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == order_technique_detail.technique_id
-                        %span{style:'font-weight:normal; font-size:10px; font-style:italic'}
-                          　　　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
+                        %span{style:'font-weight:bold; font-size:11px; font-style:italic; color:red'}
+                          　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                           %br
 
 

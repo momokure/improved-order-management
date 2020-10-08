@@ -3,20 +3,20 @@
     %td
       = l(date, format: :middle, default: '')
 
-    /🐭戸田公園第1工場 加工なし・ボディのみ
-    %td
-      - if @blank_toda1_priority[date].present?
-        %p{id: 'fubi'}
-          #{@blank_toda1_priority[date]}件優先あり
-
-      - if @blank_toda1_wip[date].present?
-        = link_to "🐤残#{@blank_toda1_wip[date]}件", pasteup_wip_toda1_blank_index_path(date: date)
-        \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
-        %br/
-      - if @blank_toda1_wip[date].present? && @blank_toda1_done[date].present?
-        = link_to "🐔#{@blank_toda1_done[date]}件作成済", pasteup_done_toda1_blank_index_path(date: date)
-      - elsif @blank_toda1_wip[date].nil? && @blank_toda1_done[date].present?
-        = link_to "全#{@blank_toda1_done[date]}件作成済", pasteup_done_toda1_blank_index_path(date: date), style:'color:lightgray'
+    -#/🐭戸田公園第1工場 加工なし・ボディのみ
+    -#%td
+    -#  - if @blank_toda1_priority[date].present?
+    -#    %p{id: 'fubi'}
+    -#      #{@blank_toda1_priority[date]}件優先あり
+    -#
+    -#  - if @blank_toda1_wip[date].present?
+    -#    = link_to "🐤残#{@blank_toda1_wip[date]}件", pasteup_wip_toda1_blank_index_path(date: date)
+    -#    \/ 計#{@blank_toda1_wip[date].to_i+@blank_toda1_done[date].to_i}件
+    -#    %br/
+    -#  - if @blank_toda1_wip[date].present? && @blank_toda1_done[date].present?
+    -#    = link_to "🐔#{@blank_toda1_done[date]}件作成済", pasteup_done_toda1_blank_index_path(date: date)
+    -#  - elsif @blank_toda1_wip[date].nil? && @blank_toda1_done[date].present?
+    -#    = link_to "全#{@blank_toda1_done[date]}件作成済", pasteup_done_toda1_blank_index_path(date: date), style:'color:lightgray'
 
     /🐭戸田公園第1工場 シルクスクリーンA
     %td
@@ -33,20 +33,20 @@
       - elsif @silkscreen_a_toda1_wip[date].nil? && @silkscreen_a_toda1_done[date].present?
         = link_to "全#{@silkscreen_a_toda1_done[date]}件作成済", pasteup_done_toda1_silkscreen_a_index_path(date: date), style:'color:lightgray'
 
-    /🐲美女木工場 加工なし・ボディのみ
-    %td
-      - if @blank_bijogi_priority[date].present?
-        %p{id: 'fubi'}
-          #{@blank_bijogi_priority[date]}件優先あり
-
-      - if @blank_bijogi_wip[date].present?
-        = link_to "🐤残#{@blank_bijogi_wip[date]}件", pasteup_wip_bijogi_blank_index_path(date: date)
-        \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
-        %br/
-      - if @blank_bijogi_wip[date].present? && @blank_bijogi_done[date].present?
-        = link_to "🐔#{@blank_bijogi_done[date]}件作成済", pasteup_done_bijogi_blank_index_path(date: date)
-      - elsif @blank_bijogi_wip[date].nil? && @blank_bijogi_done[date].present?
-        = link_to "全#{@blank_bijogi_done[date]}件作成済", pasteup_done_bijogi_blank_index_path(date: date), style:'color:lightgray'
+    -#/🐲美女木工場 加工なし・ボディのみ
+    -#%td
+    -#  - if @blank_bijogi_priority[date].present?
+    -#    %p{id: 'fubi'}
+    -#      #{@blank_bijogi_priority[date]}件優先あり
+    -#
+    -#  - if @blank_bijogi_wip[date].present?
+    -#    = link_to "🐤残#{@blank_bijogi_wip[date]}件", pasteup_wip_bijogi_blank_index_path(date: date)
+    -#    \/ 計#{@blank_bijogi_wip[date].to_i+@blank_bijogi_done[date].to_i}件
+    -#    %br/
+    -#  - if @blank_bijogi_wip[date].present? && @blank_bijogi_done[date].present?
+    -#    = link_to "🐔#{@blank_bijogi_done[date]}件作成済", pasteup_done_bijogi_blank_index_path(date: date)
+    -#  - elsif @blank_bijogi_wip[date].nil? && @blank_bijogi_done[date].present?
+    -#    = link_to "全#{@blank_bijogi_done[date]}件作成済", pasteup_done_bijogi_blank_index_path(date: date), style:'color:lightgray'
 
     /🐲美女木工場 シルクスクリーンA
     %td
@@ -123,35 +123,35 @@
       - elsif @embroidery_bijogi_wip[date].nil? && @embroidery_bijogi_done[date].present?
         = link_to "全#{@embroidery_bijogi_done[date]}件作成済", pasteup_done_bijogi_embroidery_index_path(date: date), style:'color:lightgray'
 
-    /🐭戸田公園第1工場 縫製
-    %td
-      - if @sewing_toda1_priority[date].present?
-        %p{id: 'fubi'}
-          #{@sewing_toda1_priority[date]}件優先あり
-
-      - if @sewing_toda1_wip[date].present?
-        = link_to "🐤残#{@sewing_toda1_wip[date]}件", pasteup_wip_toda1_sewing_index_path(date: date)
-        \/ 計#{@sewing_toda1_wip[date].to_i+@sewing_toda1_done[date].to_i}件
-        %br/
-      - if @sewing_toda1_wip[date].present? && @sewing_toda1_done[date].present?
-        = link_to "🐔#{@sewing_toda1_done[date]}件作成済", pasteup_done_toda1_sewing_index_path(date: date)
-      - elsif @sewing_toda1_wip[date].nil? && @sewing_toda1_done[date].present?
-        = link_to "全#{@sewing_toda1_done[date]}件作成済", pasteup_done_toda1_sewing_index_path(date: date), style:'color:lightgray'
-
-    /🐲美女木工場 縫製
-    %td
-      - if @sewing_bijogi_priority[date].present?
-        %p{id: 'fubi'}
-          #{@sewing_bijogi_priority[date]}件優先あり
-
-      - if @sewing_bijogi_wip[date].present?
-        = link_to "🐤残#{@sewing_bijogi_wip[date]}件", pasteup_wip_bijogi_sewing_index_path(date: date)
-        \/ 計#{@sewing_bijogi_wip[date].to_i+@sewing_bijogi_done[date].to_i}件
-        %br/
-      - if @sewing_bijogi_wip[date].present? && @sewing_bijogi_done[date].present?
-        = link_to "🐔#{@sewing_bijogi_done[date]}件作成済", pasteup_done_bijogi_sewing_index_path(date: date)
-      - elsif @sewing_bijogi_wip[date].nil? && @sewing_bijogi_done[date].present?
-        = link_to "全#{@sewing_bijogi_done[date]}件作成済", pasteup_done_bijogi_sewing_index_path(date: date), style:'color:lightgray'
+    -#/🐭戸田公園第1工場 縫製
+    -#%td
+    -#  - if @sewing_toda1_priority[date].present?
+    -#    %p{id: 'fubi'}
+    -#      #{@sewing_toda1_priority[date]}件優先あり
+    -#
+    -#  - if @sewing_toda1_wip[date].present?
+    -#    = link_to "🐤残#{@sewing_toda1_wip[date]}件", pasteup_wip_toda1_sewing_index_path(date: date)
+    -#    \/ 計#{@sewing_toda1_wip[date].to_i+@sewing_toda1_done[date].to_i}件
+    -#    %br/
+    -#  - if @sewing_toda1_wip[date].present? && @sewing_toda1_done[date].present?
+    -#    = link_to "🐔#{@sewing_toda1_done[date]}件作成済", pasteup_done_toda1_sewing_index_path(date: date)
+    -#  - elsif @sewing_toda1_wip[date].nil? && @sewing_toda1_done[date].present?
+    -#    = link_to "全#{@sewing_toda1_done[date]}件作成済", pasteup_done_toda1_sewing_index_path(date: date), style:'color:lightgray'
+    -#
+    -#/🐲美女木工場 縫製
+    -#%td
+    -#  - if @sewing_bijogi_priority[date].present?
+    -#    %p{id: 'fubi'}
+    -#      #{@sewing_bijogi_priority[date]}件優先あり
+    -#
+    -#  - if @sewing_bijogi_wip[date].present?
+    -#    = link_to "🐤残#{@sewing_bijogi_wip[date]}件", pasteup_wip_bijogi_sewing_index_path(date: date)
+    -#    \/ 計#{@sewing_bijogi_wip[date].to_i+@sewing_bijogi_done[date].to_i}件
+    -#    %br/
+    -#  - if @sewing_bijogi_wip[date].present? && @sewing_bijogi_done[date].present?
+    -#    = link_to "🐔#{@sewing_bijogi_done[date]}件作成済", pasteup_done_bijogi_sewing_index_path(date: date)
+    -#  - elsif @sewing_bijogi_wip[date].nil? && @sewing_bijogi_done[date].present?
+    -#    = link_to "全#{@sewing_bijogi_done[date]}件作成済", pasteup_done_bijogi_sewing_index_path(date: date), style:'color:lightgray'
 
     /🐲美女木工場 シルクスクリーンB
     %td
@@ -183,22 +183,22 @@
       - elsif @silkscreen_c_wip[date].nil? && @silkscreen_c_done[date].present?
         = link_to "全#{@silkscreen_c_done[date]}件作成済", pasteup_done_bijogi_silkscreen_c_index_path(date: date), style:'color:lightgray'
 
-    /🐰中野工場 加工なし・ボディのみ
-    %td
-      - if @blank_yoyogi_priority[date].present?
-        %p{id: 'fubi'}
-          #{@blank_yoyogi_priority[date]}件優先あり
+    -#/🐯代々木工場 加工なし・ボディのみ
+    -#%td
+    -#  - if @blank_yoyogi_priority[date].present?
+    -#    %p{id: 'fubi'}
+    -#      #{@blank_yoyogi_priority[date]}件優先あり
+    -#
+    -#  - if @blank_yoyogi_wip[date].present?
+    -#    = link_to "🐤残#{@blank_yoyogi_wip[date]}件", pasteup_wip_yoyogi_blank_index_path(date: date)
+    -#    \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
+    -#    %br/
+    -#  - if @blank_yoyogi_wip[date].present? && @blank_yoyogi_done[date].present?
+    -#    = link_to "🐔#{@blank_yoyogi_done[date]}件作成済", pasteup_done_yoyogi_blank_index_path(date: date)
+    -#  - elsif @blank_yoyogi_wip[date].nil? && @blank_yoyogi_done[date].present?
+    -#    = link_to "全#{@blank_yoyogi_done[date]}件作成済", pasteup_done_yoyogi_blank_index_path(date: date), style:'color:lightgray'
 
-      - if @blank_yoyogi_wip[date].present?
-        = link_to "🐤残#{@blank_yoyogi_wip[date]}件", pasteup_wip_yoyogi_blank_index_path(date: date)
-        \/ 計#{@blank_yoyogi_wip[date].to_i+@blank_yoyogi_done[date].to_i}件
-        %br/
-      - if @blank_yoyogi_wip[date].present? && @blank_yoyogi_done[date].present?
-        = link_to "🐔#{@blank_yoyogi_done[date]}件作成済", pasteup_done_yoyogi_blank_index_path(date: date)
-      - elsif @blank_yoyogi_wip[date].nil? && @blank_yoyogi_done[date].present?
-        = link_to "全#{@blank_yoyogi_done[date]}件作成済", pasteup_done_yoyogi_blank_index_path(date: date), style:'color:lightgray'
-
-    /🐰中野工場 シルクスクリーンD
+    /🐯代々木工場 シルクスクリーンD
     %td
       - if @silkscreen_d_priority[date].present?
         %p{id: 'fubi'}
@@ -213,7 +213,7 @@
       - elsif @silkscreen_d_wip[date].nil? && @silkscreen_d_done[date].present?
         = link_to "全#{@silkscreen_d_done[date]}件作成済", pasteup_done_yoyogi_silkscreen_d_index_path(date: date), style:'color:lightgray'
 
-    /🐰中野工場 カセット
+    /🐯代々木工場 カセット
     %td
       - if @silkscreen_d_cassette[date].present?
         = link_to "#{@silkscreen_d_cassette[date]}件", yoyogi_silkscreen_d_cassette_index_path(date: date)
