@@ -20,6 +20,19 @@ table.neumorphic {
     z-index: 1;
   }
 
+  td.id {
+    white-space: nowrap;
+    background: #EDF0F4;
+    position: sticky;
+    top: 90px;
+    z-index: 2;
+
+    &:hover {
+      border-radius: 0px;
+      box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.3);
+    }
+  }
+
   th.payment{
     color: dodgerblue;
   }

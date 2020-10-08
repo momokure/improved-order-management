@@ -1,5 +1,5 @@
 %tr
-  %td
+  %td.id
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
@@ -30,7 +30,7 @@
         %button.copybtn{type: "button"}
           %i.fas.fa-copy
 
-  %td{style:'font-size:12px;font-weight:bold;font-style:italic'}
+  %td.id{style:'font-size:12px;font-weight:bold;font-style:italic'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip
         %span{title: "#{order.customer.customer_name} 様"}
@@ -43,25 +43,25 @@
           = link_to customer_path(id: order.customer.uid) do
             #{order.customer.customer_type.customer_type_name}#{order.customer.customer_name} 様
 
-  %td{style:'font-size:14px'}
+  %td.id{style:'font-size:14px'}
     #{QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name}
 
-  %td
+  %td.id
     = link_to customer_path(id: order.customer.uid) do
       %i.fas.fa-history
       #{Order.where(customer_id: order.customer_id).count}
 
-  %td
+  %td.id
     = l(order.try(:order_date), format: :middle, default: '')
 
-  %td
+  %td.id
     - if order.representative_user_id == 1
       %p{style: 'color:lightgray'}
         = User.find(order.representative_user_id).user_name
     - else
       = User.find(order.representative_user_id).user_name
 
-  %td
+  %td.id
     - OrderAddress.where(order_id: order.id).each do |oa|
       - if PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(1, 2) || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id == 28 || PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).id.between?(31, 47)
         %p{id: 'fubi'}
@@ -75,7 +75,7 @@
         = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
         %br
 
-  %td
+  %td.id
     - if order.desired_delivery_date.present?
       - if order.desired_delivery_type_id == 1
         %p{id: 'red'}
@@ -93,7 +93,7 @@
         %p{id: 'green'}
           #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
 
-  %td{style: 'font-weight:bold'}
+  %td.id{style: 'font-weight:bold'}
     - if order.internal_delivery_date.present?
       - if order.desired_delivery_type_id == 1
         %p{id: 'red'}
@@ -111,7 +111,7 @@
         %p{id: 'green'}
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
-  %td
+  %td.id
     - if order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
@@ -123,7 +123,7 @@
         %i.fas.fa-times-circle
         #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
 
-  %td
+  %td.id
     - if BuyDetail.where(order_id: order.id).blank?
       - if order.domestic_buying == "included"
         #fubi
@@ -243,7 +243,7 @@
       #regular{style:'color:silver'}
         🍡お持込あり
 
-  %td{align: 'left'}
+  %td.id{align: 'left'}
     - OrderNote.where(order_id: order.id).each do |order_note|
       .overflow-tooltip
         %span{title: "#{order_note.order_note}"}
