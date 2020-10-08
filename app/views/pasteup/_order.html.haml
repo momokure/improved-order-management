@@ -183,7 +183,7 @@
 
   %td
     %div
-      #{OrderDetail.where(order_id: order.id).length} 種
+      -##{OrderDetail.where(order_id: order.id).length} 種
 
     .container
       %tbody
@@ -249,6 +249,8 @@
               %td
               %td
               %td
-                %div{style:'font-size:13pt'}
+                %div
                   = link_to pasteup_order_path(id: order.uid, 詳細番号: order_detail.id, 制作部署: Technique.find(order_technique_detail.technique_id).technique_name), method: :get, target:["_blank"] do
-                    %i.fas.fa-file-download
+                    %i.fas.fa-file.fa-2x
+                  -# %button.copy-outer{type: "button",:"data-target"=> "#svgcontent"}
+                  -#   %i.fas.fa-file.fa-2x
