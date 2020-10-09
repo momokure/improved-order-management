@@ -38,7 +38,17 @@
     #redyellow{style:'margin:-3px 4px'}
       必要
 
-%h3{style:'margin-top:30px'}
+- if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id.between?(1, 2)
+  %br/
+  .link{style:'font-size:13px'}
+    = link_to edit_customer_path do
+      %i.fas.fa-user-edit
+      お客様情報を編集
+
+  .link{style:'font-size:13px; margin-top:5px'}
+    = link_to new_order_path(customer_id: @customer.uid) do
+      %i.fas.fa-plus-square
+      新規ご注文を登録
 
 %table.neumorphic
   %thead
@@ -60,15 +70,3 @@
       %th 　
   %tbody
     = render partial: 'order', collection: @orders, locals: { order: @orders }
-
-- if Department.find(UsersDepartment.find_by(user_id: current_user.id).department_id).id.between?(1, 2)
-  %br/
-  .link{style:'font-size:13px'}
-    = link_to edit_customer_path do
-      %i.fas.fa-user-edit
-      お客様情報を編集
-
-  .link{style:'font-size:13px; margin-top:5px'}
-    = link_to new_order_path(customer_id: @customer.uid) do
-      %i.fas.fa-plus-square
-      新規ご注文を登録
