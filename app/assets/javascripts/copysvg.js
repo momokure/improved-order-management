@@ -3,7 +3,11 @@ jQuery(function($){
         var target = $(this).data('target');
         var text = $(target).prop('outerHTML');
         $(this).copy(text);
-        alert('指示書SVGをコピーしました。');
+        // alert('指示書SVGをコピーしました。');
+        $('#target_msg_box').show(0, function () {
+        //コールバックで2秒後にフェードアウト
+        $(this).delay(1000).fadeOut("slow");
+      });
     });
     $.fn.extend({
         copy: function(text) {

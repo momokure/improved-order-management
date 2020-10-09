@@ -3,6 +3,18 @@ html {
     "小塚ゴシック Pro","Kozuka Gothic Pro",
     sans-serif;
 }
+#btnarea{
+  padding:10px 5px;
+}
+
+#target_msg_box{
+  display: none;
+  font-size: 12pt;
+}
+
+.copy-outer:hover {
+  color:#999999;
+}
 
 #pdfwrapper {
   width: 750px;
@@ -23,7 +35,6 @@ html {
     padding: 3px;
   }
 }
-
 #row1 {
   height: 30px;
 }

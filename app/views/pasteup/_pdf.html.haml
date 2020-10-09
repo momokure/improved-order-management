@@ -107,8 +107,10 @@
     -#       - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
     -#         #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
     -#         %br
-    %button.copy-outer{type: "button",:"data-target"=> "#svgcontent"}
-      %i.fas.fa-file-code.fa-4x
+    %div#btnarea
+      %button.copy-outer{type: "button",:"data-target"=> "#svgcontent"}
+        %i.fas.fa-file-code.fa-4x
+      %span#target_msg_box 指示書SVGをコピーしました!
     %br
     %br
     %svg#svgcontent{:height => "297mm", :version => "1.1", :viewbox => "0 0 210 297", :width => "210mm", :xmlns => "http://www.w3.org/2000/svg", "xmlns:cc" => "http://creativecommons.org/ns#", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "xmlns:svg" => "http://www.w3.org/2000/svg"}
@@ -166,8 +168,8 @@
               stroke-width: 2
             }
             .label-factory{
-            font-family: 'Helvetica-Bold';
-            font-size: 14px;
+            font-family: 'HiraginoSans-W6-83pv-RKSJ-H';
+            font-size: 13px;
             }
             .toda1{
             fill:#0000ff;
@@ -179,8 +181,8 @@
             fill:#ffff00;
             }
             .label-box{
-              font-family: 'Helvetica-Bold';
-              font-size: 14px;
+              font-family: 'HiraginoSans-W6-83pv-RKSJ-H';
+              font-size: 13px;
             }
 
             .body-ordr-box{
@@ -405,7 +407,7 @@
         -#%text.address{:x => "439.06699", :y => "21.91"} 納品先
         %text.address-box{:x => "437.035", :y => "50.105"}
           - OrderAddress.where(order_id: @order.id).each do |oa|
-            = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+            = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name_text
         %text.year{:x => "13.244", :y => "98.857002"} #{@order.try(:internal_delivery_date).year}年
         %text.delivery-date{:x => "10.856", :y => "128.202"} #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
         %text.desire{:x => "14.86", :y => "148.16"}
@@ -464,23 +466,30 @@
         -# %text.pasteup{:x => "497", :y => "189.54601"} 梱包:
         -# %text.technique{:x => "15.153", :y => "213.62399"} 加工
         - ary = []
-        %text.technique-box{:x => "64.860001", :y => "215.00999"}
-          - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
-            - if Technique.find(order_technique_detail.technique_id).id != 6
-              - tech = Technique.find(order_technique_detail.technique_id).technique_name
-              - techcheckbox = tech + '<tspan class="technique-checkbox">□</tspan>'
-              - ary << techcheckbox
-              -# %tspan.technique-box
-              -#   = tech
-              -# %tspan.technique-checkbox □
-          %tspan.technique-box{:x => "64.860001", :y => "215.00999"}
-            - plus = '<tspan class="technique-plus">+</tspan>'
-            != ary.join(plus)
-        %text.pasteup{:x => "407", :y => "211.907"}
+        %text.technique-box{:x => "64.860001", :y => "215"}
+          - if OrderTechniqueDetail.where(order_detail_id: @order_detail.id).size == 1
+            - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
+              %tspan.technique-box{:x => "64.860001", :y => "215"}
+                #{Technique.find(order_technique_detail.technique_id).technique_name}
+          - else
+            - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
+              - if Technique.find(order_technique_detail.technique_id).id != 6
+                - tech = Technique.find(order_technique_detail.technique_id).technique_name
+                - techcheckbox = tech + '<tspan class="technique-checkbox">□</tspan>'
+                - ary << techcheckbox
+                -# %tspan.technique-box
+                -#   = tech
+                -# %tspan.technique-checkbox □
+                %tspan.technique-box{:x => "64.860001", :y => "215"}
+                  - plus = '<tspan class="technique-plus">+</tspan>'
+                  != ary.join(plus)
+
+
+        %text.pasteup{:x => "407", :y => "213"}
           -# 指示書作成:
           -# - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
           -#   #{User.find(@order_technique_detail.pasteup_user_id).user_name}
-        %text.representative{:x => "545", :y => "211.907"}
+        %text.representative{:x => "545", :y => "213"}
           -# %text.representative{:x => "497", :y => "211.965"}
           -# 営業担当:
           #{User.find(@order.representative_user_id).user_name}

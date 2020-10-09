@@ -61,22 +61,24 @@
 
   %td
     - if order.customer.customer_type_id == 1
-      %p
+      .overflow-tooltip
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          - if order.customer.sales == "sales"
-            %span{style:'font-family:"小塚ゴシック Pro"'}
-              🈺
-          #{order.customer.customer_name.to_s.truncate(10)} 様
+          %span{title: "#{order.customer.customer_name} 様"}
+            #{order.customer.customer_type.customer_type_name}
+            - if order.customer.sales == "sales"
+              %span{style:'font-family:"小塚ゴシック Pro"'}
+                🈺
+            #{order.customer.customer_name} 様
 
     - if order.customer.customer_type_id == 2
-      %p{id: 'fubi'}
+      .overflow-tooltip{id:'fubi'}
         = link_to customer_path(id: order.customer.uid) do
-          #{order.customer.customer_type.customer_type_name}
-          - if order.customer.sales == "sales"
-            %span{style:'font-family:"小塚ゴシック Pro"'}
-              🈺
-          #{order.customer.customer_name.to_s.truncate(10)} 様
+          %span{title: "#{order.customer.customer_name} 様"}
+            #{order.customer.customer_type.customer_type_name}
+            - if order.customer.sales == "sales"
+              %span{style:'font-family:"小塚ゴシック Pro"'}
+                🈺
+            #{order.customer.customer_name} 様
 
   -#%td
   -#  - if order.payment_method_id == 1
