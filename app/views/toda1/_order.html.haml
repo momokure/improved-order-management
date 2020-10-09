@@ -1,5 +1,5 @@
 %tr
-  %td.id{width:'170px'}
+  %td.id{width:'170px', height:'84px'}
     - if order.order_type_id == 1 || order.order_type_id == 2
       %div{style:'display:flex; justify-content: flex-end;'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
