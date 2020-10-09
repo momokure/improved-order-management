@@ -381,7 +381,7 @@
           -#%text.address{:x => "439.06699", :y => "21.91"} 納品先
           %text.address-box{:x => "437.035", :y => "50.105"}
             - OrderAddress.where(order_id: @order.id).each do |oa|
-              = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
+              = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name_text
           %text.year{:x => "13.244", :y => "98.857002"} #{@order.try(:internal_delivery_date).year}年
           %text.delivery-date{:x => "10.856", :y => "128.202"} #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
           %text.desire{:x => "14.86", :y => "148.16"}
