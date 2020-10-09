@@ -1,6 +1,12 @@
 - content_for(:html_title) { @customer.customer_type.customer_type_name + " " + @customer.customer_name + " 様のご注文一覧" }
 
-%h3{style:'margin-top:30px'}
+- if @customer.sales == "sales"
+  %h2{style:'font-family:"小塚ゴシック Pro";font-size:20px;'}
+    🈺
+    %span#redyellow
+      網本さん営業案件
+
+%h3
   - if @customer.company_id != 1
     %i.fas.fa-building
     法人名 : #{Company.find(@customer.company_id).company_name}
