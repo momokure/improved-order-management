@@ -246,8 +246,14 @@
               font-size: 15px;
             }
             .technique-box{
-              fill: red;
+              fill: #ff0000;
               font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 15px;
+            }
+            .technique-checkbox{
+              fill: #00ffff;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              font-size: 15px;
             }
             .technique-plus{
               fill: #000000;
@@ -279,10 +285,15 @@
             }
             .note-box{
               font-size: 21pt;
-              font-weight:bold;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
               fill:#ff0000;
               }
-              .cls-1 {
+            .note-checkbox{
+              font-size: 21pt;
+              font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
+              fill:#00ffff;
+            }
+            .cls-1 {
                 fill: #fff100;
               }
             .cls-2{fill:none;stroke:#fff100;stroke-width:2.05px}
@@ -466,12 +477,15 @@
           %text.file-name{:x => "64.808998", :y => "259.47699"} #{@customer.customer_name}  【加工箇所】 【入稿データ名】  #{@order.uid}
           %text.estimation{:x => "13.255", :y => "279.94699"}
           -# %text.note{:x => "15.154", :y => "811.078"} 備考
-          %text.note-box{:x => "65", :y => "811.078"}
+          %text{:x => "65", :y => "811.078"}
             - OrderDetailOption.where(order_detail_id: @order_detail.id).each do |order_detail_option|
               - if OrderOption.find(order_detail_option.order_option_id).id == 1
-                袋入れ□
+                %tspan.note-box 袋入れ
+                %tspan.note-checkbox □
               - if OrderOption.find(order_detail_option.order_option_id).id == 2
-                本制作前に写真確認
+                %tspan.note-box 本制作前に写真確認
+                %tspan.note-checkbox □
               - if OrderOption.find(order_detail_option.order_option_id).id == 3
-                制作完了後に写真送信
+                %tspan.note-box 制作完了後に写真送信
+                %tspan.note-checkbox □
               -#{OrderOption.find(order_detail_option.order_option_id).order_option_name}
