@@ -12,6 +12,13 @@
     = f.collection_select(:customer_type_id, CustomerType.all, :id, :customer_type_name)
 
   .field
+    %div{style: "display:inline-flex"}
+      %span{style:'font-family:"小塚ゴシック Pro"'}
+        🈺
+      = f.label :sales, "網本さん案件 : "
+      = f.check_box :sales, {}, "sales", "received"
+
+  .field
     = f.label :お客様のお支払い方法
     = f.collection_select(:payment_method_id, PaymentMethod.all, :id, :payment_method_name)
     = f.select(:receipt_required, [%w[領収書不要 not_required], %w[要領収書 required]])
