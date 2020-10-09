@@ -4,6 +4,7 @@
   %td
     = link_to customer_path(id: order.customer.uid) do
       #{order.customer.customer_type.customer_type_name}
+
       #{order.customer.customer_name.to_s.truncate(15)} 様
   %td
     = OrderType.find(order.order_type_id).order_type_name

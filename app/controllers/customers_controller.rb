@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
     params
       .require(:customer)
       .permit(
-        :customer_name, :customer_furigana, :customer_type_id, :payment_method_id, :receipt_required,
+        :customer_name, :customer_furigana, :customer_type_id, :payment_method_id, :receipt_required, :sales,
         companies_attributes: [:id, :company_name, :company_name_furigana,:_destroy],
         customer_emails_attributes: [:id, :customer_email,:_destroy],
         customer_phone_numbers_attributes: [:id, :customer_phone_number,:_destroy],
