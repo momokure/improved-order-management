@@ -3,6 +3,9 @@
 %h2
   = link_to customer_path(@customer.uid) do
     #{@order.customer.customer_type.customer_type_name}
+    - if @order.customer.sales == "sales"
+      %span{style:'font-family:"小塚ゴシック Pro"'}
+        🈺
     #{@customer.customer_name} 様
   (ご注文ID :
   = link_to @order.uid, 'https://mail.google.com/mail/u/0/#search/'+@order.uid, target:["_blank"]
@@ -27,4 +30,3 @@
 %h3 担当者 : #{User.find(@order.representative_user_id).user_name}
 
 = render 'form', order: @order
--# = link_to 'みつもり未対応一覧に戻る', representative_backlog_index_path
