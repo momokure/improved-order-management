@@ -12,7 +12,9 @@
   \ /
   =link_to "先月", representative_report_index_path(year_month: @last_month)
   )
-
+%li
+  =link_to "💴ご入金のみ - ご連絡不通案件", representative_payment_only_index_path
+  
 - if @orders.present?
   .container
     %table.neumorphic
