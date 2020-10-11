@@ -1,0 +1,37 @@
+- content_for(:html_title) { '💴ご入金のみ - ご連絡不通案件' }
+
+%li
+  =link_to "みつもり未対応一覧", representative_backlog_index_path
+%li
+  =link_to "本日の対応件数", representative_today_index_path
+%li
+  =link_to "対応済一覧(ご入金未連絡)", representative_wip_index_path
+%li
+  =link_to "対応済一覧(ご入金連絡済)", representative_done_index_path
+%li
+  営業成績 (
+  =link_to "今月", representative_report_index_path(year_month: @this_month)
+  \ /
+  =link_to "先月", representative_report_index_path(year_month: @last_month)
+  )
+
+.container
+  %table.neumorphic
+    %thead
+      %tr
+        %th ご注文ID
+        %th お客様種別/お名前
+        %th 履歴
+        %th ご注文種別
+        %th ご注文日
+        %th 担当者
+        %th 納品先
+        %th 納品ご希望日
+        %th 社内納品日
+        %th.payment ご入金日
+        %th.payment ご入金額
+        %th 発注状況
+        %th ご注文備考欄
+        %th
+    %tbody
+      = render partial: 'order', collection: @orders, locals: { order: @orders }
