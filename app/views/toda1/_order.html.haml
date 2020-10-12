@@ -1,6 +1,6 @@
 %tr
   %td.id{width:'170px', height:'84px'}
-    - if order.order_type_id == 1 || order.order_type_id == 2
+    - if order.order_type_id == 1 || order.order_type_id == 2 || order.order_type_id == 9
       %div{style:'display:flex; justify-content: flex-end;'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:16px;font-weight:bold;font-style:italic;'}

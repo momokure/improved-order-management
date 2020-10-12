@@ -1,6 +1,6 @@
 %tr
   %td{style:'font-weight:bold'}
-    - if order.order_type_id == 1 || order.order_type_id == 2
+    - if order.order_type_id == 1 || order.order_type_id == 2 || order.order_type_id == 9
       %div{style:'display:flex; justify-content: center'}
         = link_to edit_order_path(id: order.uid), method: :get, target:["_blank"] do
           %div{style:'display:flex; justify-content: center'}
