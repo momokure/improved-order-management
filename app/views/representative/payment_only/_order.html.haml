@@ -134,7 +134,4 @@
         = OrderNote.find_by(order_id: order.id).try(:order_note)
 
   %td
-    = form_with model: order, url: update_representative_user_order_path(id: order.uid), local: true do |f|
-      = f.hidden_field :representative_user_id, value: current_user.id
-      = f.hidden_field :first_response_date , value: DateTime.now
-      = f.submit "ご対応する"
+    = button_to '詳細・変更', edit_order_path(id: order.uid), method: :get
