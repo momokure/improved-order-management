@@ -141,25 +141,19 @@
 
 
   %td.id
-    - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      - if BuyDetail.where(order_id: order.id).blank?
-        - if order.domestic_buying == "included"
+    - if order.domestic_buying == "included"
+      - BuyDetail.where(order_id: order.id, buy_type_id: 1).each do |buy_detail|
+        - if buy_detail.nil?
           #fubi
             %i.fas.fa-times-circle
             国内:未発注
 
-        - if order.overseas_buying == "included"
-          #fubi
-            %i.fas.fa-times-circle
-            海外:未発注
-
-      - else
-        - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 1
+        - elsif buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             国内:作業中
 
-        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 2
+        - elsif buy_detail.buy_progress_id == 2
           .overflow-tooltip
             %i.far.fa-check-circle{style:'font-size:10px; color:#333'}
             国内:
@@ -168,7 +162,7 @@
                 #{buy_note.buy_note}
                 %br/
 
-        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 3
+        - elsif buy_detail.buy_progress_id == 3
           #fubi
             .overflow-tooltip
               %i.fas.fa-exclamation-triangle{style:'font-size:10px'}
@@ -178,7 +172,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 4
+        - elsif buy_detail.buy_progress_id == 4
           #fubi
             .overflow-tooltip
               %i.fas.fa-sync-alt{style:'font-size:10px'}
@@ -188,7 +182,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 5
+        - elsif buy_detail.buy_progress_id == 5
           #red
             .overflow-tooltip
               %i.fas.fa-apple-alt{style:'font-size:10px'}
@@ -198,12 +192,19 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 1
+    - if order.overseas_buying == "included"
+      - BuyDetail.where(order_id: order.id, buy_type_id: 2).each do |buy_detail|
+        - if buy_detail.nil?
+          #fubi
+            %i.fas.fa-times-circle
+            海外:未発注
+
+        - elsif buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             海外:作業中
 
-        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 2
+        - elsif buy_detail.buy_progress_id == 2
           - OverseasBuyingDetail.where(buy_detail_id: buy_detail.id).each do |overseas_buying_detail|
             - if overseas_buying_detail.sort == "completed" && overseas_buying_detail.transfer == "completed"
               .overflow-tooltip
@@ -217,7 +218,7 @@
                 %span{title: "#{l(overseas_buying_detail.updated_at, format: :middle, default: '')}仕分け済/転送未完了"}
                   海外: #{l(overseas_buying_detail.updated_at, format: :middle, default: '')}仕分け済/転送未完了
 
-        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 3
+        - elsif buy_detail.buy_progress_id == 3
           #fubi
             .overflow-tooltip
               %i.fas.fa-exclamation-triangle{style:'font-size:10px'}
@@ -227,7 +228,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 4
+        - elsif buy_detail.buy_progress_id == 4
           #fubi
             .overflow-tooltip
               %i.fas.fa-sync-alt{style:'font-size:10px;'}
@@ -237,7 +238,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 5
+        - elsif buy_detail.buy_progress_id == 5
           #red
             .overflow-tooltip
               %i.fas.fa-apple-alt{style:'font-size:10px'}
