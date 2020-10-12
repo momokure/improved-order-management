@@ -2,8 +2,23 @@
   %td
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
-    = link_to customer_path(id: order.customer.uid) do
-      #{order.customer.customer_name} 様
+    - if order.customer.sales == "sales"
+      .overflow-tooltip
+        %span{style:'font-family:"小塚ゴシック Pro"'}
+          🈺
+        %span{title: "#{order.customer.customer_name} 様"}
+          = link_to customer_path(id: order.customer.uid) do
+            #{order.customer.customer_name} 様
+    - else
+      .overflow-tooltip
+        %span{title: "#{order.customer.customer_name} 様"}
+          = link_to customer_path(id: order.customer.uid) do
+            #{order.customer.customer_name} 様
+
+    - if Order.where(customer_id: order.customer.id).sum(:difference) > 0
+      %p{id: 'lightblue'}
+        %i.fas.fa-coins
+          = number_to_currency(Order.where(customer_id: order.customer.id).sum(:difference), format: "%u%n", unit: "¥")
   %td
     #{order.customer.customer_type.customer_type_name}
   %td

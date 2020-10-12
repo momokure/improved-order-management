@@ -1,6 +1,6 @@
 %tr
   %td.id{width:'170px', height:'84px'}
-    - if order.order_type_id == 1 || order.order_type_id == 2
+    - if order.order_type_id == 1 || order.order_type_id == 2 || order.order_type_id == 9
       %div{style:'display:flex; justify-content: flex-end;'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:16px;font-weight:bold;font-style:italic;'}
@@ -126,6 +126,7 @@
         %p{id: 'green'}
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
+
   %td.id
     - if order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
@@ -138,26 +139,27 @@
         %i.fas.fa-times-circle
         #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
 
+
   %td.id
-    - if BuyDetail.where(order_id: order.id).blank?
-      - if order.domestic_buying == "included"
-        #fubi
-          %i.fas.fa-times-circle
-          国内:未発注
+    - BuyDetail.where(order_id: order.id).each do |buy_detail|
+      - if BuyDetail.where(order_id: order.id).blank?
+        - if order.domestic_buying == "included"
+          #fubi
+            %i.fas.fa-times-circle
+            国内:未発注
 
-      - if order.overseas_buying == "included"
-        #fubi
-          %i.fas.fa-times-circle
-          海外:未発注
+        - if order.overseas_buying == "included"
+          #fubi
+            %i.fas.fa-times-circle
+            海外:未発注
 
-    - else
-      - BuyDetail.where(order_id: order.id).each do |buy_detail|
+      - else
         - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             国内:作業中
 
-        - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 2
+        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 2
           .overflow-tooltip
             %i.far.fa-check-circle{style:'font-size:10px; color:#333'}
             国内:
@@ -166,7 +168,7 @@
                 #{buy_note.buy_note}
                 %br/
 
-        - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 3
+        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 3
           #fubi
             .overflow-tooltip
               %i.fas.fa-exclamation-triangle{style:'font-size:10px'}
@@ -176,7 +178,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 4
+        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 4
           #fubi
             .overflow-tooltip
               %i.fas.fa-sync-alt{style:'font-size:10px'}
@@ -186,7 +188,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - if order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 5
+        - elsif order.domestic_buying == "included" && buy_detail.buy_type_id == 1 && buy_detail.buy_progress_id == 5
           #red
             .overflow-tooltip
               %i.fas.fa-apple-alt{style:'font-size:10px'}
@@ -196,12 +198,12 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - if order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 1
+        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             海外:作業中
 
-        - if order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 2
+        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 2
           - OverseasBuyingDetail.where(buy_detail_id: buy_detail.id).each do |overseas_buying_detail|
             - if overseas_buying_detail.sort == "completed" && overseas_buying_detail.transfer == "completed"
               .overflow-tooltip
@@ -215,7 +217,7 @@
                 %span{title: "#{l(overseas_buying_detail.updated_at, format: :middle, default: '')}仕分け済/転送未完了"}
                   海外: #{l(overseas_buying_detail.updated_at, format: :middle, default: '')}仕分け済/転送未完了
 
-        - if order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 3
+        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 3
           #fubi
             .overflow-tooltip
               %i.fas.fa-exclamation-triangle{style:'font-size:10px'}
@@ -225,7 +227,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - if order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 4
+        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 4
           #fubi
             .overflow-tooltip
               %i.fas.fa-sync-alt{style:'font-size:10px;'}
@@ -235,7 +237,7 @@
                   #{buy_note.buy_note}
                   %br/
 
-        - if order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 5
+        - elsif order.overseas_buying == "included" && buy_detail.buy_type_id == 2 && buy_detail.buy_progress_id == 5
           #red
             .overflow-tooltip
               %i.fas.fa-apple-alt{style:'font-size:10px'}
@@ -257,6 +259,7 @@
     - if order.carry_in == "included"
       #regular{style:'color:silver'}
         🍡お持込あり
+
 
   %td.id{align: 'left'}
     - OrderNote.where(order_id: order.id).each do |order_note|

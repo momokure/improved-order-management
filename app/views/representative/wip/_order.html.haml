@@ -2,8 +2,23 @@
   %td
     = link_to order.uid, 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"]
   %td
-    = link_to customer_path(id: order.customer.uid) do
-      #{order.customer.customer_name} 様
+    - if order.customer.customer_type_id == 1
+      .overflow-tooltip
+        = link_to customer_path(id: order.customer.uid) do
+          %span{title: "#{order.customer.customer_name} 様"}
+            - if order.customer.sales == "sales"
+              %span{style:'font-family:"小塚ゴシック Pro"'}
+                🈺
+            #{order.customer.customer_name} 様
+
+    - if order.customer.customer_type_id == 2
+      .overflow-tooltip{id:'fubi'}
+        = link_to customer_path(id: order.customer.uid) do
+          %span{title: "#{order.customer.customer_name} 様"}
+            - if order.customer.sales == "sales"
+              %span{style:'font-family:"小塚ゴシック Pro"'}
+                🈺
+            #{order.customer.customer_name} 様
   %td
     #{order.customer.customer_type.customer_type_name}
   %td

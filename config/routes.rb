@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :done, only: :index
     resources :today, only: :index
     resources :report, only: :index
+    resources :payment_only, only: :index
   end
 
   namespace :accounting do

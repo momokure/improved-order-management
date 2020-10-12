@@ -30,7 +30,7 @@
             #{l(order.try(:payment_deadline_date), format: :middle, default: '')} (あと#{(order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1')}日)
 
   %td
-    - if order.order_type_id == 1 || order.order_type_id == 2
+    - if order.order_type_id == 1 || order.order_type_id == 2 || order.order_type_id == 9
       %div{style:'display:flex; justify-content: flex-end'}
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext

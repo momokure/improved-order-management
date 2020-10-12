@@ -1,7 +1,7 @@
-- @remaining = Order.where(representative_user_id: 1, first_response_date: nil).count.to_s
-- @complete = Order.where(first_response_date: @from..@to).count.to_s
-- content_for(:html_title) { 'みつもり未対応一覧 残'+ @remaining + "件 / " + @complete +"件対応済"}
+- content_for(:html_title) { '💴ご入金のみ - ご連絡不通案件' }
 
+%li
+  =link_to "みつもり未対応一覧", representative_backlog_index_path
 %li
   =link_to "本日の対応件数", representative_today_index_path
 %li
@@ -14,8 +14,6 @@
   \ /
   =link_to "先月", representative_report_index_path(year_month: @last_month)
   )
-%li
-  =link_to "💴ご入金のみ - ご連絡不通案件", representative_payment_only_index_path
 
 .container
   %table.neumorphic
@@ -36,5 +34,4 @@
         %th ご注文備考欄
         %th
     %tbody
-      = render partial: 'order', collection: @priority_orders, locals: { order: @orders }
       = render partial: 'order', collection: @orders, locals: { order: @orders }
