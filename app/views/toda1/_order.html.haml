@@ -272,8 +272,9 @@
         %tr
         - OrderDetail.where(order_id: order.id).each_with_index do |order_detail, i|
           %td{align:'right'}
-            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
               #progress
+                -##{i+1}-#{si+1}.
                 #{Progress.find(order_technique_detail.progress_id).progress_name}
                 %br
 
@@ -305,14 +306,14 @@
                           %br
 
                     - unless order_technique_detail.pasteup_user_id == 1
-                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　
                         %i.fas.fa-file-alt
                         指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
                         %br/
                     - unless order_technique_detail.maker_id == 1
-                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        　　　
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
+                        　　　　
                         %i.fas.fa-drumstick-bite
                         制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
@@ -344,14 +345,14 @@
                           %br
 
                     - unless order_technique_detail.pasteup_user_id == 1
-                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　
                         %i.fas.fa-file-alt
                         指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
                         %br/
                     - unless order_technique_detail.maker_id == 1
-                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        　　　
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
+                        　　　　
                         %i.fas.fa-drumstick-bite
                         制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
