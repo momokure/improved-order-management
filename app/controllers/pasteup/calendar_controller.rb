@@ -2,7 +2,7 @@ class Pasteup::CalendarController < ApplicationController
   require 'date'
 
   def index
-    @start = Date.today.last_month.prev_occurring(:sunday)
+    @start = Date.today.prev_occurring(:sunday)
     @end = @start.next_month.next_month.end_of_week
 
     #シルクスクリーンA戸田公園第1の未制作件数
