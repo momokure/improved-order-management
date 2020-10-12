@@ -34,7 +34,7 @@
         %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
-  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;'}
+  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;line-height: 100px;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip_id
         %span{title: "#{order.customer.customer_name} 様"}
@@ -277,7 +277,7 @@
                 #{Progress.find(order_technique_detail.progress_id).progress_name}
                 %br
 
-          %td{align:'left'}
+          %td{colspan:'3', align:'left'}
             - if order_detail.mixed_techniques == "mixed"
               %p{style:'margin:5px 0px 5px 20px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
@@ -330,16 +330,30 @@
                           　　*#{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
                           %br
 
-                  -#%td
-                  -#  - unless order_technique_detail.pasteup_user_id == 1
-                  -#    🐔#{User.find(order_technique_detail.pasteup_user_id).user_name}
-                  -#%td
-                  -#  - unless order_technique_detail.maker_id == 1
-                  -#    🍗#{User.find(order_technique_detail.maker_id).user_name}
-            %td
-              = button_to edit_order_path(id: order.uid), method: :get do
-                %i.fas.fa-edit{style:'font-size:13px;color:#333'}
-                %p{style:'font-size:6px;color:#333'}
-                  Edit
+                    - unless order_technique_detail.pasteup_user_id == 1
+                      %p{style:'font-weight:normal; font-size:8px; text-align:right'}
+                        指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+                        %br/
+                    - unless order_technique_detail.maker_id == 1
+                      %p{style:'font-weight:normal; font-size:8px; text-align:right'}
+                        制作 : #{User.find(order_technique_detail.maker_id).user_name}
+                        %br/
 
-              %tbody
+            -#%td{colspan:'4', align:'left'}
+            -#  - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
+            -#
+            -#    - unless order_technique_detail.pasteup_user_id == 1
+            -#      %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+            -#        　#{i+1}-#{si+1}.
+            -#      %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
+            -#        指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+            -#        %br/
+            -#    - unless order_technique_detail.maker_id == 1
+            -#      %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
+            -#        　#{i+1}-#{si+1}.
+            -#      %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
+            -#        制作 : #{User.find(order_technique_detail.maker_id).user_name}
+            -#        %br/
+
+
+            %tbody
