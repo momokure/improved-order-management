@@ -277,7 +277,7 @@
                 #{Progress.find(order_technique_detail.progress_id).progress_name}
                 %br
 
-          %td{colspan:'3', align:'left', style:'position: relative'}
+          %td{colspan:'2', align:'left'}
             - if order_detail.mixed_techniques == "mixed"
               %p{style:'margin:5px 0px 5px 20px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
@@ -306,10 +306,15 @@
 
                     - unless order_technique_detail.pasteup_user_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        　　　指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+                        　　　
+                        %i.fas.fa-file-alt
+                        指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+                        %br/
                     - unless order_technique_detail.maker_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        \/ 制作 : #{User.find(order_technique_detail.maker_id).user_name}
+                        　　　
+                        %i.fas.fa-drumstick-bite
+                        制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
 
             - else
@@ -340,10 +345,15 @@
 
                     - unless order_technique_detail.pasteup_user_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        　　　指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+                        　　　
+                        %i.fas.fa-file-alt
+                        指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
+                        %br/
                     - unless order_technique_detail.maker_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:#333'}
-                        \/ 制作 : #{User.find(order_technique_detail.maker_id).user_name}
+                        　　　
+                        %i.fas.fa-drumstick-bite
+                        制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
 
 
