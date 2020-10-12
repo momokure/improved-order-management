@@ -34,7 +34,7 @@
         %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
-  %td.id{style:'font-size:15px;font-weight:bold;font-style:italic'}
+  %td.id{style:'font-size:18px;font-weight:bold;font-style:italic'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip_id
         %span{title: "#{order.customer.customer_name} 様"}
@@ -271,9 +271,15 @@
       %tbody
         %tr
         - OrderDetail.where(order_id: order.id).each_with_index do |order_detail, i|
-          %td{colspan: '2', align:'left'}
+          %td{align:'right'}
+            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each do |order_technique_detail|
+              #progress
+                #{Progress.find(order_technique_detail.progress_id).progress_name}
+                %br
+
+          %td{align:'left'}
             - if order_detail.mixed_techniques == "mixed"
-              %p{style:'margin:5px 0px 5px 80px'}
+              %p{style:'margin:5px 0px 5px 20px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
                 %span{style:'font-weight:bold; font-size:12px; font-style:italic; text-decoration:underline'}
@@ -290,8 +296,6 @@
                     　#{i+1}-#{si+1}.
                   %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
                     #{Technique.find(order_technique_detail.technique_id).technique_name}
-                  %span{style:'font-weight:normal; font-size:11px;'}
-                    (#{Progress.find(order_technique_detail.progress_id).progress_name})
                     %br/
 
                     - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
@@ -301,7 +305,7 @@
                           %br
 
             - else
-              %p{style:'margin:5px 0px 5px 80px'}
+              %p{style:'margin:5px 0px 5px 20px'}
                 %span{style:'font-weight:bold; font-size:13px; font-style:italic'}
                   #{i+1}.
                 %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
@@ -318,8 +322,6 @@
                     　#{i+1}-#{si+1}.
                   %span{style:'font-weight:normal; font-size:12px; font-style:italic'}
                     #{Technique.find(order_technique_detail.technique_id).technique_name}
-                  %span{style:'font-weight:normal; font-size:11px;'}
-                    (#{Progress.find(order_technique_detail.progress_id).progress_name})
                     %br/
 
                     - OrderTechniqueDetailOption.where(order_detail_id: order_detail.id).each do |order_technique_detail_option|
