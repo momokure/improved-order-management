@@ -318,7 +318,7 @@
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　　
                         %i.fas.fa-box
-                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name}
+                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name} - #{l(sort_detail.sort_date, format: :middle, default: '')}
                         %br/
                     - unless order_technique_detail.maker_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
@@ -363,7 +363,7 @@
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　　
                         %i.fas.fa-box
-                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name}
+                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name} - #{l(sort_detail.sort_date, format: :middle, default: '')}
                         %br/
                     - unless order_technique_detail.maker_id == 1
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
