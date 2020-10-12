@@ -271,12 +271,15 @@
       %tbody
         %tr
         - OrderDetail.where(order_id: order.id).each_with_index do |order_detail, i|
-          %td{align:'right'}
-            - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
-              #progress
-                -##{i+1}-#{si+1}.
-                #{Progress.find(order_technique_detail.progress_id).progress_name}
-                %br
+          = button_to edit_order_path(id: order.uid), method: :get do
+
+            %td{align:'right'}
+              = button_to edit_order_path(id: order.uid), method: :get do
+                - OrderTechniqueDetail.where(order_detail_id: order_detail.id).each_with_index do |order_technique_detail, si|
+                  #progress
+                    -##{i+1}-#{si+1}.
+                    #{Progress.find(order_technique_detail.progress_id).progress_name}
+                    %br
 
           %td{colspan:'2', align:'left'}
             - if order_detail.mixed_techniques == "mixed"
@@ -311,9 +314,15 @@
                         %i.fas.fa-file-alt
                         指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
                         %br/
-                    - unless order_technique_detail.maker_id == 1
+                    - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　　
+                        %i.fas.fa-box
+                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name}
+                        %br/
+                    - unless order_technique_detail.maker_id == 1
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
+                        　　　　　
                         %i.fas.fa-drumstick-bite
                         制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
@@ -350,12 +359,24 @@
                         %i.fas.fa-file-alt
                         指示書 : #{User.find(order_technique_detail.pasteup_user_id).user_name}
                         %br/
-                    - unless order_technique_detail.maker_id == 1
+                    - SortDetail.where(order_detail_id: order_detail).each do |sort_detail|
                       %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
                         　　　　
+                        %i.fas.fa-box
+                        仕分け : #{User.find(sort_detail.sorting_user_id).user_name}
+                        %br/
+                    - unless order_technique_detail.maker_id == 1
+                      %span{style:'font-weight:normal; font-size:10px; text-align:right; color:gray'}
+                        　　　　　
                         %i.fas.fa-drumstick-bite
                         制作 : #{User.find(order_technique_detail.maker_id).user_name}
                         %br/
+
+          %td
+            = button_to edit_order_path(id: order.uid), method: :get do
+              %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+              %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                Edit
 
 
             %tbody
