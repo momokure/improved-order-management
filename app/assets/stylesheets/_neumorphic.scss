@@ -21,7 +21,6 @@ table.neumorphic {
   }
 
   td.id {
-    white-space: nowrap;
     background: #EDF0F4;
     position: sticky;
     top: 90px;
@@ -110,10 +109,14 @@ table.neumorphic {
 }
 
 .overflow-tooltip_id {
+  margin: 0 auto;
   width: 160px;
   white-space: nowrap;
+  height: 100px;
+  line-height: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)
 }
 
 #progress {
