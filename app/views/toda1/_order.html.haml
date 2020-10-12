@@ -126,6 +126,7 @@
         %p{id: 'green'}
           #{l(order.try(:internal_delivery_date), format: :middle, default: '')}
 
+
   %td.id
     - if order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
@@ -137,6 +138,7 @@
       %span#fubi
         %i.fas.fa-times-circle
         #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
+
 
   %td.id
     - if BuyDetail.where(order_id: order.id).blank?
@@ -257,6 +259,7 @@
     - if order.carry_in == "included"
       #regular{style:'color:silver'}
         🍡お持込あり
+
 
   %td.id{align: 'left'}
     - OrderNote.where(order_id: order.id).each do |order_note|
