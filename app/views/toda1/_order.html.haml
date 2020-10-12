@@ -142,13 +142,13 @@
 
   %td.id
     - if order.domestic_buying == "included"
-      - BuyDetail.where(order_id: order.id, buy_type_id: 1).each do |buy_detail|
-        - if BuyDetail.where(order_id: order.id) == nil
-          #fubi
-            %i.fas.fa-times-circle
-            国内:未発注
+      - if BuyDetail.find_by(order_id: order.id, buy_type_id: 1) == nil
+        #fubi
+          %i.fas.fa-times-circle
+          国内:未発注
 
-        - elsif buy_detail.buy_progress_id == 1
+      - BuyDetail.where(order_id: order.id, buy_type_id: 1).each do |buy_detail|
+        - if buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             国内:作業中
@@ -193,13 +193,13 @@
                   %br/
 
     - if order.overseas_buying == "included"
-      - BuyDetail.where(order_id: order.id, buy_type_id: 2).each do |buy_detail|
-        - if BuyDetail.where(order_id: order.id) == nil
-          #fubi
-            %i.fas.fa-times-circle
-            海外:未発注
+      - if BuyDetail.find_by(order_id: order.id, buy_type_id: 2) == nil
+        #fubi
+          %i.fas.fa-times-circle
+          海外:未発注
 
-        - elsif buy_detail.buy_progress_id == 1
+      - BuyDetail.where(order_id: order.id, buy_type_id: 2).each do |buy_detail|
+        - if buy_detail.buy_progress_id == 1
           #lightblue
             %i.fas.fa-hourglass-half{style:'font-size:10px; color:#333'}
             海外:作業中
