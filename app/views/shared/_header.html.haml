@@ -10,6 +10,9 @@
             = f.search_field :uid_cont, placeholder:"IDを入力"
             = f.submit "検索"
 
+        - elsif request.path_info == "/orders/"+params[:id].to_s+"/edit"
+          = render 'shared/information'
+
       .header__wrapper--user
         .header__wrapper--user__wrapper
           .header__wrapper--user__wrapper--name
