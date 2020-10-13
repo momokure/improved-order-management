@@ -69,11 +69,11 @@
         %span{title: "#{order.customer.customer_name} 様"}
           = link_to customer_path(id: order.customer.uid) do
             #{order.customer.customer_type.customer_type_name}
-          - if order.customer.sales == "sales"
-            %span{style:'font-family:"小塚ゴシック Pro"'}
-              🈺
-          - else
-            #{order.customer.customer_name} 様
+            - if order.customer.sales == "sales"
+              %span{style:'font-family:"小塚ゴシック Pro"'}
+                🈺
+            - else
+              #{order.customer.customer_name} 様
 
       %button.btn{type:"button", style:'font-size:15px;'}
         = link_to 'https://drive.google.com/drive/u/0/search?q='+order.customer.customer_name+' type:folder', target:["_blank"], style:'color:grey' do
