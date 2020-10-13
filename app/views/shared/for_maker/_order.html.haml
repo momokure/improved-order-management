@@ -5,8 +5,12 @@
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:16px;font-weight:bold;font-style:italic;'}
             #{order.uid}
-        %button.copybtn{type:"button", style:'font-size:12px'}
+        %button.btn{type:"button", style:'font-size:12px;'}
           %i.fas.fa-copy
+
+        %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
+          = link_to 'https://drive.google.com/drive/u/0/search?q='+order.uid+' type:folder', target:["_blank"], style:'color:grey' do
+            %i.fab.fa-google-drive
 
     - if order.order_type_id == 3
       %div{style:'display:flex; justify-content: flex-end'}
@@ -18,8 +22,12 @@
                   #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.copybtn{type:"button", style:'font-size:12px'}
+        %button.btn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
+
+        %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
+          = link_to 'https://drive.google.com/drive/u/0/search?q='+order.uid+' type:folder', target:["_blank"], style:'color:grey' do
+            %i.fab.fa-google-drive
 
     - if order.order_type_id == 4 || order.order_type_id == 5 || order.order_type_id == 6 || order.order_type_id == 7 || order.order_type_id == 8
       %div{style:'display:flex; justify-content: flex-end'}
@@ -31,10 +39,15 @@
                   #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.copybtn{type:"button", style:'font-size:12px'}
+        %button.btn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
-  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;line-height: 100px;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5);display:flex; justify-content:space-between'}
+        %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
+          = link_to 'https://drive.google.com/drive/u/0/search?q='+order.uid+' type:folder', target:["_blank"], style:'color:grey' do
+            %i.fab.fa-google-drive
+
+
+  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;line-height: 100px;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5);display:flex; justify-content:center'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip_id
         %span{title: "#{order.customer.customer_name} 様"}
@@ -47,7 +60,7 @@
             - else
               #{order.customer.customer_name} 様
 
-      %button{type:"button", style:'font-size:17px;'}
+      %button.btn{type:"button", style:'font-size:15px;'}
         = link_to 'https://drive.google.com/drive/u/0/search?q='+order.customer.customer_name+' type:folder', target:["_blank"], style:'color:grey' do
           %i.fab.fa-google-drive
 
@@ -62,7 +75,7 @@
           - else
             #{order.customer.customer_name} 様
 
-      %button{type:"button", style:'font-size:17px;'}
+      %button.btn{type:"button", style:'font-size:15px;'}
         = link_to 'https://drive.google.com/drive/u/0/search?q='+order.customer.customer_name+' type:folder', target:["_blank"], style:'color:grey' do
           %i.fab.fa-google-drive
 
