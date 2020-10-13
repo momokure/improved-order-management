@@ -3,10 +3,6 @@
   %tr
     %td
       = l(date, format: :middle, default: '')
-    %td
-      - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
-      - if @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
-        = @mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
 
     %td
       - @fukudome_number.transform_keys {|k| k+ Rational(9, 24)}
@@ -47,11 +43,6 @@
       - @sakaguchi_number.transform_keys {|k| k+ Rational(9, 24)}
       - if @sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
         = @sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
-
-    %td
-      - @kanno_number.transform_keys {|k| k+ Rational(9, 24)}
-      - if @kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date] > 0
-        = @kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date] += v}[date]
 
     %td
       - @matsutomo_number.transform_keys {|k| k+ Rational(9, 24)}
