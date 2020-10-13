@@ -473,7 +473,7 @@
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - elsif request.path_info == "/yoyogi/silkscreen_d_cassette/wip"
+              - elsif request.path_info == "/yoyogi/silkscreen_d_cassette"
                 - if order_detail.factory_id == 7 && order_technique_detail.technique_id == 8
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
