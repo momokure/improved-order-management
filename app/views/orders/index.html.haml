@@ -9,22 +9,38 @@
     %thead
       %tr
         -#%th ステータス
-        %th ご注文ID
-        %th お客様種別/お名前
-        %th 履歴
-        %th ご注文種別
-        %th ご注文日
-        %th 担当者
-        %th 納品先
-        %th 納品ご希望日
-        %th 社内納品日
-        %th ご入金期限
-        %th ご入金予定額
-        %th.payment ご入金日
-        %th.payment ご入金額
-        %th 発注状況
-        %th ご注文備考欄
-        %th 　
+        %th{style:'top: 91px;'}
+          ご注文ID
+        %th{style:'top: 91px;'}
+          お客様種別/お名前
+        %th{style:'top: 91px;'}
+          履歴
+        %th{style:'top: 91px;'}
+          ご注文種別
+        %th{style:'top: 91px;'}
+          ご注文日
+        %th{style:'top: 91px;'}
+          担当者
+        %th{style:'top: 91px;'}
+          納品先
+        %th{style:'top: 91px;'}
+          納品ご希望日
+        %th{style:'top: 91px;'}
+          社内納品日
+        %th{style:'top: 91px;'}
+          ご入金期限
+        %th{style:'top: 91px;'}
+          ご入金予定額
+        %th.payment{style:'top: 91px;'}
+          ご入金日
+        %th.payment{style:'top: 91px;'}
+          ご入金額
+        %th{style:'top: 91px;'}
+          発注状況
+        %th{style:'top: 91px;'}
+          ご注文備考欄
+        %th{style:'top: 91px;'}
+          　
     %tbody
       = render partial: 'order', collection: @orders, locals: { order: @orders }
 
