@@ -34,7 +34,7 @@
         %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
-  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;line-height: 100px;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+  %td.id{style:'font-size:20px;font-weight:bold;font-style:italic;line-height: 100px;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5);display:flex; justify-content:space-between'}
     - if order.customer.customer_type_id == 1
       .overflow-tooltip_id
         %span{title: "#{order.customer.customer_name} 様"}
@@ -47,6 +47,10 @@
             - else
               #{order.customer.customer_name} 様
 
+      %button{type:"button", style:'font-size:17px;'}
+        = link_to 'https://drive.google.com/drive/u/0/search?q='+order.customer.customer_name+' type:folder', target:["_blank"], style:'color:grey' do
+          %i.fab.fa-google-drive
+
     - if order.customer.customer_type_id == 2
       .overflow-tooltip_id{id: 'fubi'}
         %span{title: "#{order.customer.customer_name} 様"}
@@ -57,6 +61,11 @@
               🈺
           - else
             #{order.customer.customer_name} 様
+
+      %button{type:"button", style:'font-size:17px;'}
+        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"], style:'color:grey' do
+          %i.fab.fa-google-drive
+
 
   %td.id{style:'font-size:14px'}
     #{QuoteDifficultyLevel.find(order.quote_difficulty_level_id).quote_difficulty_level_name}
