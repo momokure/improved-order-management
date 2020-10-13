@@ -1,6 +1,6 @@
 - @orders.transform_keys {|k| k+ Rational(9, 24)}
 - count = @orders.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month].to_s
-- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-0', '年',) + '月の成績 (計'+ count + '件)' }
+- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-', '年',) + '月の成績 (計'+ count + '件)' }
 
 .container
   %table.neumorphic

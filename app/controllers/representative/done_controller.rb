@@ -5,7 +5,7 @@ class Representative::DoneController < ApplicationController
     @year = Date.today.year
     @this_month = Date.today.month
     @last_month = Date.today.month-1
-    @this_month = @year.to_s + "-0" + @this_month.to_s
-    @last_month = @year.to_s + "-0" + @last_month.to_s
+    @this_month = @year.to_s + "-" + @this_month.to_s
+    @last_month = @year.to_s + "-" + @last_month.to_s
   end
 end
