@@ -285,6 +285,7 @@
               font-family: 'HiraginoSans-W7-83pv-RKSJ-H';
               fill: red;
               font-size: 9px;
+              line-height: 12px;
             }
 
             .estimation{
@@ -495,7 +496,12 @@
           #{User.find(@order.representative_user_id).user_name}
         -# %text.process{:x => "15.153", :y => "238.62601"} 状況
         -# %text.data{:x => "16.855", :y => "259.513"} DATA:
-        %text.file-name{:x => "64.808998", :y => "259.47699"} #{@customer.customer_name}  【加工箇所】 【入稿データ名】  #{@order.uid}
+        - if Technique.find_by(technique_name: @technique).id == 7
+          %text.file-name{:x => "64.808998", :y => "259.47699", :style=>"line-height:200%;"}
+            #{@order.uid} #{@customer.customer_name} 【商品名】 【ボディカラー】
+        - elsif Technique.find_by(technique_name: @technique).id != 5
+          %text.file-name{:x => "64.808998", :y => "259.47699"}
+            #{@customer.customer_name}  【加工箇所】 【入稿データ名】  #{@order.uid}
         %text.estimation{:x => "13.255", :y => "279.94699"}
         -# %text.note{:x => "15.154", :y => "811.078"} 備考
         %text{:x => "65", :y => "811.078"}
