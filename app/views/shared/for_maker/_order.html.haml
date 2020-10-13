@@ -63,7 +63,7 @@
             #{order.customer.customer_name} 様
 
       %button{type:"button", style:'font-size:17px;'}
-        = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"], style:'color:grey' do
+        = link_to 'https://drive.google.com/drive/u/0/search?q='+order.customer.customer_name+' type:folder', target:["_blank"], style:'color:grey' do
           %i.fab.fa-google-drive
 
 
