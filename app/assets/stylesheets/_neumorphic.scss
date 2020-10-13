@@ -21,12 +21,10 @@ table.neumorphic {
   }
 
   td.id {
-    white-space: nowrap;
     background: #EDF0F4;
     position: sticky;
     top: 90px;
     z-index: 2;
-    //padding:15px 0px;
 
     &:hover {
       border-radius: 0px;
@@ -111,9 +109,17 @@ table.neumorphic {
 }
 
 .overflow-tooltip_id {
-  width: 150px;
+  margin: 0 auto;
+  width: 160px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+#progress {
+  padding: 5px;
+  color: #EDF0F4;
+  font-weight: bold;
+  font-size: 19px;
+  text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)
+}

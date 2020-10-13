@@ -3,110 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     = wicked_pdf_stylesheet_link_tag  'application'
-    %title 指示書PDF出力
+    %title 指示書出力
   %body
-    -# #pdfwrapper
-    -#   #row1.row
-    -#     #label.label
-    -#       - if Factory.find_by(id: @order_detail.factory_id).id == 4
-    -#         #label-factory{class: 'toda1'}
-    -#           #{Factory.find(@order_detail.factory_id).factory_name}
-    -#       - if Factory.find_by(id: @order_detail.factory_id).id == 7
-    -#         #label-factory{class: 'nakano'}
-    -#           #{Factory.find(@order_detail.factory_id).factory_name}
-    -#       - if Factory.find_by(id: @order_detail.factory_id).id == 8
-    -#         #label-factory{class: 'bijogi'}
-    -#           #{Factory.find(@order_detail.factory_id).factory_name}
-    -#       #label-manufacturing
-    -#         - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
-    -#           - if Technique.find_by(id: order_technique_detail.technique_id).id == 1 || Technique.find_by(id: order_technique_detail.technique_id).id == 2 || Technique.find_by(id: order_technique_detail.technique_id).id == 3
-    -#             SILK
-    -#           - elsif Technique.find_by(id: order_technique_detail.technique_id).id == 4
-    -#             INKJET
-    -#     #body-order-date
-    -#     #payment
-    -#       - if Payment.find_by(order_id: @order.id).try(:amount_paid).blank?
-    -#         未入金!!
-    -#       - elsif @order.try(:payment_amount) == Payment.find_by(order_id: @order.id).try(:amount_paid)
-    -#         入金
-    -#         %span#done  済
-    -#       -else
-    -#         不明
-    -#     #address-label 納品先
-    -#   #row2.row
-    -#     #customer-name-box
-    -#       #name
-    -#         #{@customer.customer_name}
-    -#         #sama 様
-    -#     #address
-    -#       - OrderAddress.where(order_id: @order.id).each do |oa|
-    -#         = PrefectureCode.find(CustomerAddress.find(oa.customer_address_id).prefecture_code).name
-    -#   #row3.row
-    -#     #delivery-date
-    -#       #year 2020年
-    -#       #date #{l(@order.try(:internal_delivery_date), format: :middle, default: '')}
-    -#       #date-note
-    -#         - if @order.desired_delivery_date.present?
-    -#           - if @order.desired_delivery_type_id == 1
-    -#             #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}必着
-    -#           - elsif @order.desired_delivery_type_id == 2
-    -#             #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}までに
-    -#           - elsif @order.desired_delivery_type_id == 3 || @order.desired_delivery_type_id == 4
-    -#             #{l(@order.try(:desired_delivery_date), format: :middle, default: '')}前後
-    -#     #special-mark
-    -#       - if @order.customer.customer_type_id == 2
-    -#         = image_tag 'dangerous.png', alt: '危険', height: '60px'
-    -#         - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
-    -#           - if TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_id == 6
-    -#             = image_tag 'tag.png', alt: 'タグ', height: '65px'
-    -#     #absoluteness
-    -#       %span.circle 絶対
-    -#       %span / 通常
-    -#   #row4.row
-    -#     #id-label ID
-    -#     #id-box
-    -#       #{@order.uid}
-    -#   #row5.row
-    -#     #blank
-    -#     #picking ピッキング:
-    -#     #fabrication 製作:
-    -#     #confirmation 確認:
-    -#     #inspection 検品:
-    -#     #packing 梱包:
-    -#   #row6.row
-    -#     - ary = []
-    -#     #manufacturing-label 加工
-    -#     #manufacturing-box
-    -#       - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
-    -#         %tbody{style:'border:solid 1px #000;'}
-    -#           %td{style:'border:solid 1px #000;'}
-    -#           - tech = Technique.find(order_technique_detail.technique_id).technique_name
-    -#           - ary << tech
-    -#       %p
-    -#         = ary.join("➕")
-    -#
-    -#     #pasteup
-    -#       指示書作成:
-    -#       - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
-    -#         #{User.find(order_technique_detail.pasteup_user_id).user_name}
-    -#     #representive 営業担当:#{User.find(@order.representative_user_id).user_name}
-    -#   #row7.row
-    -#     #status-label 状況
-    -#     #status-box
-    -#   #row8.row
-    -#     #detail
-    -#       #data DATA:
-    -#       #file-name #{@customer.customer_name} 【加工箇所】【入稿データ名】 #{@order.uid}
-    -#       #estimation ◆◆◆◆◆◆
-    -#   #row9.row
-    -#     #note-label 備考
-    -#     #note-box
-    -#       - OrderDetailOption.where(order_detail_id: @order_detail.id).each do |order_detail_option|
-    -#         #{OrderOption.find(order_detail_option.order_option_id).order_option_name}
-    -#         %br
-    -#       - OrderTechniqueDetailOption.where(order_detail_id: @order_detail.id).each do |order_technique_detail_option|
-    -#         #{TechniqueOption.find(order_technique_detail_option.technique_option_id).technique_option_name}
-    -#         %br
     %div#btnarea
       %button.copy-outer{type: "button",:"data-target"=> "#svgcontent"}
         %i.fas.fa-file-code.fa-4x
@@ -170,12 +68,18 @@
             .label-factory{
             font-family: 'HiraginoSans-W6-83pv-RKSJ-H';
             font-size: 13px;
+            fill:#ffff00;
+            }
+            .label-inkfactory{
+            font-family: 'HiraginoSans-W6-83pv-RKSJ-H';
+            font-size: 13px;
+            fill:#000000;
             }
             .toda1{
-            fill:#0000ff;
+            fill:#ffff00;
             }
             .yoyogi{
-            fill:#ffffff;
+            fill:#ffff00;
             }
             .bijogi{
             fill:#ffff00;
@@ -366,15 +270,22 @@
           -# %path#path36.st10{:d => "m 7.09,245 h 581.1"}
           -# %path#path38.st9{:d => "m 311.79,174.87 v 22.1"}
         -#%g#text-contents
-        - if Factory.find_by(id: @order_detail.factory_id).id == 4
-          %text.label-factory.toda1{:x => "10", :y => "26.555"}
-            戸田1
-        - if Factory.find_by(id: @order_detail.factory_id).id == 7
-          %text.label-factory.yoyogi{:x => "10", :y => "26.555"}
-            代々木
-        - if Factory.find_by(id: @order_detail.factory_id).id == 8
-          %text.label-factory.bijogi{:x => "10", :y => "26.555"}
-            美女木
+        - if Technique.find_by(technique_name: @technique).id == 4
+          %text.label-inkfactory{:x => "10", :y => "26.555"}
+            - if Factory.find_by(id: @order_detail.factory_id).id == 4
+              戸田１
+            - if Factory.find_by(id: @order_detail.factory_id).id == 7
+              代々木
+            - if Factory.find_by(id: @order_detail.factory_id).id == 8
+              美女木
+        - else
+          %text.label-factory{:x => "10", :y => "26.555"}
+            - if Factory.find_by(id: @order_detail.factory_id).id == 4
+              戸田1
+            - if Factory.find_by(id: @order_detail.factory_id).id == 7
+              代々木
+            - if Factory.find_by(id: @order_detail.factory_id).id == 8
+              美女木
         %text.label-box{:x => "60", :y => "26.555"}
           -# - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
           -#   - if Technique.find_by(id: order_technique_detail.technique_id).id == 1
@@ -471,16 +382,16 @@
           - if OrderTechniqueDetail.where(order_detail_id: @order_detail.id).size == 1
             - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
               %tspan.technique-box{:x => "64.860001", :y => "215"}
-                #{Technique.find(order_technique_detail.technique_id).technique_name}
+                - if Technique.find(order_technique_detail.technique_id).id == 8
+                  PAD
+                - else
+                  #{@technique}
           - else
             - OrderTechniqueDetail.where(order_detail_id: @order_detail.id).each do |order_technique_detail|
               - if Technique.find(order_technique_detail.technique_id).id != 6
                 - tech = Technique.find(order_technique_detail.technique_id).technique_name
                 - techcheckbox = tech + '<tspan class="technique-checkbox">□</tspan>'
                 - ary << techcheckbox
-                -# %tspan.technique-box
-                -#   = tech
-                -# %tspan.technique-checkbox □
                 %tspan.technique-box{:x => "64.860001", :y => "215"}
                   - plus = '<tspan class="technique-plus">+</tspan>'
                   != ary.join(plus)
@@ -497,7 +408,7 @@
         -# %text.process{:x => "15.153", :y => "238.62601"} 状況
         -# %text.data{:x => "16.855", :y => "259.513"} DATA:
         - if Technique.find_by(technique_name: @technique).id == 7
-          %text.file-name{:x => "64.808998", :y => "259.47699", :style=>"line-height:200%;"}
+          %text.file-name{:x => "64.808998", :y => "259.47699"}
             #{@order.uid} #{@customer.customer_name} 【商品名】 【ボディカラー】
         - elsif Technique.find_by(technique_name: @technique).id != 5
           %text.file-name{:x => "64.808998", :y => "259.47699"}
