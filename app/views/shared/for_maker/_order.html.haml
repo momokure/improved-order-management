@@ -5,7 +5,7 @@
         = link_to 'https://mail.google.com/mail/u/0/#search/'+order.uid, target:["_blank"] do
           #copytext{style:'font-size:16px;font-weight:bold;font-style:italic;'}
             #{order.uid}
-        %button.btn{type:"button", style:'font-size:12px;'}
+        %button.copybtn{type:"button", style:'font-size:12px;'}
           %i.fas.fa-copy
 
         %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
@@ -22,7 +22,7 @@
                   #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.btn{type:"button", style:'font-size:12px'}
+        %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
         %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
@@ -39,7 +39,7 @@
                   #{order.uid}
           %span{style:'font-size:10px;font-style:italic'}
             (#{OrderType.find(order.order_type_id).order_type_name})
-        %button.btn{type:"button", style:'font-size:12px'}
+        %button.copybtn{type:"button", style:'font-size:12px'}
           %i.fas.fa-copy
 
         %button.btn{type:"button", style:'font-size:15px;margin-left:5px'}
