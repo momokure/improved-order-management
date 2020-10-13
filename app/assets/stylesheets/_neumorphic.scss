@@ -16,14 +16,14 @@ table.neumorphic {
     box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
     white-space: nowrap;
     position: sticky;
-    top: 70px;
+    top: 80px;
     z-index: 1;
   }
 
   td.id {
     background: #EDF0F4;
     position: sticky;
-    top: 90px;
+    top: 100px;
     z-index: 2;
 
     &:hover {
