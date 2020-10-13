@@ -410,80 +410,102 @@
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/silkscreen_a/wip" || request.path_info == "/bijogi/silkscreen_a/done"
+              - elsif request.path_info == "/bijogi/silkscreen_a/wip" || request.path_info == "/bijogi/silkscreen_a/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 1
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/silkscreen_b/wip" || request.path_info == "/bijogi/silkscreen_b/done"
+              - elsif request.path_info == "/bijogi/silkscreen_b/wip" || request.path_info == "/bijogi/silkscreen_b/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 2
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/silkscreen_c/wip" || request.path_info == "/bijogi/silkscreen_c/done"
+              - elsif request.path_info == "/bijogi/silkscreen_c/wip" || request.path_info == "/bijogi/silkscreen_c/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 3
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/inkjet/wip" || request.path_info == "/bijogi/inkjet/done"
+              - elsif request.path_info == "/bijogi/inkjet/wip" || request.path_info == "/bijogi/inkjet/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 4
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/embroidery/wip" || request.path_info == "/bijogi/embroidery/done"
+              - elsif request.path_info == "/bijogi/embroidery/wip" || request.path_info == "/bijogi/embroidery/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 5
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/sewing/wip" || request.path_info == "/bijogi/sewing/done"
+              - elsif request.path_info == "/bijogi/sewing/wip" || request.path_info == "/bijogi/sewing/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 6
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/uv/wip" || request.path_info == "/bijogi/uv/done"
+              - elsif request.path_info == "/bijogi/uv/wip" || request.path_info == "/bijogi/uv/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 7
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/bijogi/blank/wip" || request.path_info == "/bijogi/blank/done"
+              - elsif request.path_info == "/bijogi/blank/wip" || request.path_info == "/bijogi/blank/done"
                 - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 9
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/yoyogi/silkscreen_d/wip" || request.path_info == "/yoyogi/silkscreen_d/done"
-                - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 8
+              - elsif request.path_info == "/yoyogi/silkscreen_d/wip" || request.path_info == "/yoyogi/silkscreen_d/done"
+                - if order_detail.factory_id == 7 && order_technique_detail.technique_id == 8
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/yoyogi/silkscreen_d_cassette/"
-                - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 8
+              - elsif request.path_info == "/yoyogi/silkscreen_d_cassette/wip"
+                - if order_detail.factory_id == 7 && order_technique_detail.technique_id == 8
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
 
-              - if request.path_info == "/yoyogi/blank/wip" || request.path_info == "/yoyogi/blank/done"
-                - if order_detail.factory_id == 8 && order_technique_detail.technique_id == 8
+              - elsif request.path_info == "/yoyogi/blank/wip" || request.path_info == "/yoyogi/blank/done"
+                - if order_detail.factory_id == 7 && order_technique_detail.technique_id == 8
                   = button_to edit_order_path(id: order.uid), method: :get do
                     %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                     %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
                       Edit
+
+              - elsif request.path_info == "/toda1/all/wip" || request.path_info == "/toda1/all/done"
+                - if order_detail.factory_id == 4
+                  = button_to edit_order_path(id: order.uid), method: :get do
+                    %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                    %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                      Edit
+
+              - elsif request.path_info == "/bijogi/all/wip" || request.path_info == "/bijogi/all/done"
+                - if order_detail.factory_id == 8
+                  = button_to edit_order_path(id: order.uid), method: :get do
+                    %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                    %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                      Edit
+
+              - elsif request.path_info == "/yoyogi/all/wip" || request.path_info == "/yoyogi/all/done"
+                - if order_detail.factory_id == 7
+                  = button_to edit_order_path(id: order.uid), method: :get do
+                    %i.fas.fa-edit{style:'font-size:15px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                    %p{style:'font-size:6px;color:grey;text-shadow: 2px 2px 4px rgba(163, 177, 198, 1), -2px -2px 4px rgba(255, 255, 255, 0.5)'}
+                      Edit
+
             %tbody
