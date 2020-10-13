@@ -62,10 +62,6 @@ Rails.application.routes.draw do
       get :wip, on: :collection
       get :done, on: :collection
     end
-    resources :sorting, only: :index do
-      get :backlog, on: :collection
-      get :done, on: :collection
-    end
     resources :silkscreen_a, only: :index do
       get :wip, on: :collection
       get :done, on: :collection
@@ -102,10 +98,6 @@ Rails.application.routes.draw do
     end
     resources :all, only: :index do
       get :wip, on: :collection
-      get :done, on: :collection
-    end
-    resources :sorting, only: :index do
-      get :backlog, on: :collection
       get :done, on: :collection
     end
     resources :silkscreen_a, only: :index do
@@ -180,6 +172,5 @@ Rails.application.routes.draw do
       patch 'update_representative_user'
     end
   end
-
   resources :payments
 end
