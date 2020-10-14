@@ -130,7 +130,7 @@
         %p{id: 'green'}
           #{l(order.try(:desired_delivery_date), format: :middle, default: '')}前後
 
-  %td.id{style: 'font-weight:bold'}
+  %td.id{style: 'font-weight:bold; font-size:18px; font-style:italic;'}
     - if order.internal_delivery_date.present?
       - if order.desired_delivery_type_id == 1
         %p{id: 'red'}
