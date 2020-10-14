@@ -154,7 +154,8 @@
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
       %p{style:'font-size:10px; transform:scale(0.8);'}
-        後払い (要請求書)
+        %i.fas.fa-file-invoice
+        請求書払い
     - elsif order.payment_method_id == 4
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
@@ -164,7 +165,7 @@
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
       %p{style:'font-size:10px; transform:scale(0.8);'}
-        ©🅿社内案件
+        %i.fas.fa-copyright社内案件
     - elsif order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
