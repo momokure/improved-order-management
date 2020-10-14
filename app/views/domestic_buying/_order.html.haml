@@ -80,7 +80,7 @@
 
   %td
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33
+      - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33 || buy_detail.buying_user_id == 96
         - if BuyProgress.find(buy_detail.buy_progress_id).id == 1
           %p{id: 'lightblue'}
             #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
@@ -103,7 +103,6 @@
 
   %td{style: "text-align:left"}
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      -# - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33
       - BuyNote.where(buy_detail_id: buy_detail.id).each do |buy_note|
         = buy_note.buy_note
         %br/
