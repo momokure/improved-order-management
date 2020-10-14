@@ -153,18 +153,18 @@
     - if order.payment_method_id == 3
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
-      %p
-      後払い (要請求書)
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        後払い (要請求書)
     - elsif order.payment_method_id == 4
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
-      %br/
-      🈺後払い
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        🈺後払い
     - elsif order.payment_method_id == 5
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
-      %br/
-      ©🅿社内案件
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        ©🅿社内案件
     - elsif order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
