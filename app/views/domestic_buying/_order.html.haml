@@ -74,7 +74,7 @@
         %p{id: 'bijogi'}
           = Factory.find_by(id: order_detail).factory_name
 
-  %td.id
+  %td
     - if order.payment_method_id == 3
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
