@@ -156,19 +156,26 @@
       %p{style:'font-size:10px; transform:scale(0.8);'}
         %i.fas.fa-file-invoice
         請求書払い
+
     - elsif order.payment_method_id == 4
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
       %p{style:'font-size:10px; transform:scale(0.8);'}
         🈺後払い
+
     - elsif order.payment_method_id == 5
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
       %p{style:'font-size:10px; transform:scale(0.8);'}
         %i.fas.fa-copyright社内案件
-    - elsif order.payment_amount.nil?
+
+    - elsif order.order_type_id != 1 && order.order_type_id != 2 && order.payment_amount.nil?
       %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
       不要
+
+    - elsif order.payment_amount.nil?
+      %p{id:'red', style:'font-size:10px; transform:scale(0.8);'}
+        予定額未記入
 
     - elsif order.difference >= 0
       %i.far.fa-check-circle{style:'font-size:10px; color:#333'}
