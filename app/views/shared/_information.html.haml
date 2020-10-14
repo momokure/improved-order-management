@@ -1,4 +1,4 @@
-%div{style:'display:flex; justify-content:space-around; width:180px'}
+%div{style:'display:flex; justify-content:space-around; width:230px'}
   - customer = Customer.find(Order.find_by(uid: params[:id]).customer_id)
 
   %li{style:'padding:0px 5px 10px;'}
@@ -21,6 +21,13 @@
         %i.fab.fa-google-drive
         %div{style:'font-size:3px'}
           お名前
+
+  %li{style:'padding:0px 5px 0px;font-size:5px;color:grey;text-align:right'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to 'https://drive.google.com/drive/folders/0ByfJ-O5WksyBb01pQWRldlVtQjA?usp=sharing', target:["_blank"], style:'color:grey' do
+        %i.fab.fa-google-drive
+        %div{style:'font-size:3px'}
+          新規
 
   %li{style:'padding:0px 5px 10px;'}
     %button.btn{type:"button", style:'font-size:23px'}
