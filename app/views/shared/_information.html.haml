@@ -1,0 +1,37 @@
+%div{style:'display:flex; justify-content:space-around; width:230px'}
+  - customer = Customer.find(Order.find_by(uid: params[:id]).customer_id)
+
+  %li{style:'padding:0px 5px 10px;'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to customer_path(customer.uid), target:["_blank"] do
+        %i.fas.fa-address-card
+        %div{style:'font-size:3px; color:grey'}
+          一覧
+
+  %p{style:'padding:0px 5px 10px;'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to 'https://drive.google.com/drive/search?q='+params[:id]+' type:folder source:domain', target:["_blank"], style:'color:grey' do
+        %i.fab.fa-google-drive
+        %div{style:'font-size:3px'}
+          ID
+
+  %li{style:'padding:0px 5px 0px; font-size:5px;color:grey;text-align:right'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to 'https://drive.google.com/drive/search?q='+customer.customer_name+' type:folder source:domain ', target:["_blank"], style:'color:grey' do
+        %i.fab.fa-google-drive
+        %div{style:'font-size:3px'}
+          お名前
+
+  %li{style:'padding:0px 5px 0px; font-size:5px;color:grey;text-align:right'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to 'https://drive.google.com/drive/folders/0ByfJ-O5WksyBb01pQWRldlVtQjA?usp=sharing', target:["_blank"], style:'color:grey' do
+        %i.fab.fa-google-drive
+        %div{style:'font-size:3px'}
+          新規
+
+  %li{style:'padding:0px 5px 10px;'}
+    %button.btn{type:"button", style:'font-size:23px'}
+      = link_to 'https://mail.google.com/mail/u/0/#search/'+params[:id], target:["_blank"], style:'color:grey' do
+        %i.fas.fa-envelope
+        %div{style:'font-size:3px'}
+          メール

@@ -1,13 +1,12 @@
 - @orders.transform_keys {|k| k+ Rational(9, 24)}
 - count = @orders.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month].to_s
-- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-0', '年',) + '月の成績 (計'+ count + '件)' }
+- content_for(:html_title) { '営業部署 : '+ @year_month.sub('-', '年',) + '月の成績 (計'+ count + '件)' }
 
 .container
   %table.neumorphic
     %thead
       %tr
         %th
-        %th{valign:"bottom"} 水上
         %th{valign:"bottom"} 福留
         %th{valign:"bottom"}
           前田
@@ -25,7 +24,6 @@
         %th{valign:"bottom"} 穴澤
         %th{valign:"bottom"} 武内
         %th{valign:"bottom"} 坂口
-        %th{valign:"bottom"} 菅野
         %th{valign:"bottom"} 松友
         %th{valign:"bottom"} 矢部
         %th{valign:"bottom"} 立石
@@ -55,11 +53,6 @@
         %thead
           %tr
             %th 日付
-            %th
-              - @mizukami_number.transform_keys {|k| k+ Rational(9, 24)}
-              計#{@mizukami_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
-              -#%br
-              -#  計円
             %th
               - @fukudome_number.transform_keys {|k| k+ Rational(9, 24)}
               計#{@fukudome_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
@@ -98,11 +91,6 @@
             %th
               - @sakaguchi_number.transform_keys {|k| k+ Rational(9, 24)}
               計#{@sakaguchi_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
-              -#%br
-              -#  計円
-            %th
-              - @kanno_number.transform_keys {|k| k+ Rational(9, 24)}
-              計#{@kanno_number.each_with_object(Hash.new(0)) {|(k, v), h| h[k.to_date.mon] += v}[@month]}件
               -#%br
               -#  計円
             %th
