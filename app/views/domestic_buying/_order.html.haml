@@ -75,12 +75,62 @@
           = Factory.find_by(id: order_detail).factory_name
 
   %td
-    = l(Payment.find_by(order_id: order.id).try(:payment_date), format: :middle, default: '')
-    = number_to_currency(Payment.find_by(order_id: order.id).try(:amount_paid), format: "%u%n", unit: "¥")
+    - if order.payment_method_id == 3
+      %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
+      不要
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        %i.fas.fa-file-invoice
+        請求書払い
+
+    - elsif order.payment_method_id == 4
+      %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
+      不要
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        🈺後払い
+
+    - elsif order.payment_method_id == 5
+      %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
+      不要
+      %p{style:'font-size:10px; transform:scale(0.8);'}
+        %i.fas.fa-copyright社内案件
+
+    - elsif order.order_type_id != 1 && order.order_type_id != 2 && order.payment_amount.nil?
+      %i.fab.fa-creative-commons-nc-jp{style:'font-size:10px; color:#333'}
+      不要
+
+    - elsif order.payment_amount.nil?
+      %p{id:'red', style:'font-size:10px; transform:scale(0.8);'}
+        予定額未記入
+
+    - elsif order.difference >= 0
+      %i.far.fa-check-circle{style:'font-size:10px; color:#333'}
+      #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
+
+    - elsif order.difference < 0
+      %span#fubi
+        %i.fas.fa-times-circle
+        #{number_to_currency(order.payment_amount, format: "%u%n", unit: "¥")}
+
+      - if order.payment_deadline_date.nil?
+        %p{style:'font-style:italic; font-size:10px; transform:scale(0.8);'}
+          期限未設定
+      - elsif order.payment_deadline_date.present? && order.difference < 0
+        - if order.payment_deadline_date == Date.today
+          %p{id: 'fubi', style:'font-size:10px; transform:scale(0.8);'}
+            期限当日 : #{l(order.try(:payment_deadline_date), format: :middle, default: '')}
+        - if order.payment_deadline_date < Date.today
+          %p{id: 'fubi', style:'font-size:10px; transform:scale(0.8);'}
+            期限切れ : #{l(order.try(:payment_deadline_date), format: :middle, default: '')}
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i == 1
+          %p{id: 'red', style:'font-size:10px; transform:scale(0.8);'}
+            (明日#{l(order.try(:payment_deadline_date), format: :middle, default: '')}までに)
+        - elsif order.payment_deadline_date > Date.today && (order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1').to_i >= 2
+          %p{style:'font-size:10px; transform:scale(0.8);'}
+            #{l(order.try(:payment_deadline_date), format: :middle, default: '')}までに(あと#{(order.payment_deadline_date - Date.today).to_i.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1')}日)
 
   %td
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33
+      - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33 || buy_detail.buying_user_id == 96
         - if BuyProgress.find(buy_detail.buy_progress_id).id == 1
           %p{id: 'lightblue'}
             #{BuyProgress.find(buy_detail.buy_progress_id).buy_progress_name}(#{User.find(buy_detail.buying_user_id).user_name})
@@ -103,7 +153,6 @@
 
   %td{style: "text-align:left"}
     - BuyDetail.where(order_id: order.id).each do |buy_detail|
-      -# - if buy_detail.buying_user_id == 29 || buy_detail.buying_user_id == 32 || buy_detail.buying_user_id == 33
       - BuyNote.where(buy_detail_id: buy_detail.id).each do |buy_note|
         = buy_note.buy_note
         %br/
